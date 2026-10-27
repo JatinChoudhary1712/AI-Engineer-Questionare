@@ -2,7 +2,9 @@
   const chapters = [
     ['3.1 Core ML Concepts', '3.1 Core concepts'],
     ['3.2 Linear & Logistic Regression', '3.2 Regression'],
-    ['3.3 Decision Trees & Ensembles', '3.3 Trees & ensembles']
+    ['3.3 Decision Trees & Ensembles', '3.3 Trees & ensembles'],
+    ['3.4 Unsupervised Learning', '3.4 Unsupervised learning'],
+    ['3.5 Hyperparameter Tuning', '3.5 Hyperparameter tuning']
   ];
   const nav = document.createElement('nav');
   nav.className = 'chapter-nav';

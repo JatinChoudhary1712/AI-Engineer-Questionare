@@ -4,7 +4,7 @@ const topics = [
     "questions": [
       [
         "What is a decision tree?",
-        "<p>A decision tree predicts by following a sequence of feature-based rules. Each internal node tests a condition, each branch represents an outcome, and each leaf gives a prediction.</p><p class=\"example\">Example: a tree might first ask whether income exceeds a threshold, then check debt to predict loan default.</p><p>Classification leaves estimate class probabilities or predict a class; regression leaves typically predict the mean target of their training examples.</p>"
+        "<p>A decision tree breaks a prediction into a sequence of questions about input features. Splitting criteria decide which question makes the resulting groups less mixed.</p><p>A decision tree predicts by following a sequence of feature-based rules. Each internal node tests a condition, each branch represents an outcome, and each leaf gives a prediction.</p><p class=\"example\">Example: a tree might first ask whether income exceeds a threshold, then check debt to predict loan default.</p><p>Classification leaves estimate class probabilities or predict a class; regression leaves typically predict the mean target of their training examples.</p>"
       ],
       [
         "What is Gini impurity?",
@@ -15,16 +15,16 @@ const topics = [
         "<p>Entropy measures uncertainty in the class distribution. Lower entropy means greater purity.</p><div class=\"formula\">\\[H=-\\sum_{k=1}^{K}p_k\\log_2(p_k)\\]</div><p>A pure node has entropy 0. A class with probability 0 contributes 0 to the sum.</p><p class=\"example\">For two equally likely classes, \\(H=-0.5\\log_2(0.5)-0.5\\log_2(0.5)=1\\) bit.</p>"
       ],
       [
+        "How do Gini impurity and entropy differ?",
+        "<p>Both measure how mixed the class labels are and both equal zero at a pure node.</p><p><strong>Gini:</strong> uses squared class proportions. <strong>Entropy:</strong> uses logarithms and measures uncertainty in bits when the log base is 2.</p><p>For a balanced binary node, Gini is 0.5 and entropy is 1 bit. These are different scales, so compare candidate splits using the same criterion. Neither criterion always gives the better tree.</p>"
+      ],
+      [
         "How does a tree choose a split using Gini or entropy?",
         "<p>It compares candidate feature splits and chooses one with the largest reduction in weighted impurity, subject to its stopping rules.</p><div class=\"formula\">\\[\\Delta I=I_{\\mathrm{parent}}-\\left(\\frac{n_L}{n}I_L+\\frac{n_R}{n}I_R\\right)\\]</div><p>\\(I\\) is Gini impurity or entropy; \\(n_L\\) and \\(n_R\\) are child sample counts, and \\(n=n_L+n_R\\). With entropy, this reduction is called <strong>information gain</strong>.</p><p class=\"example\">A parent with Gini 0.5 split into two pure children has a Gini reduction of 0.5.</p><p>Both criteria favor purer children and often produce similar trees. These criteria apply to classification; regression trees commonly use squared-error reduction.</p>"
       ],
       [
         "How do I calculate impurity reduction when child nodes have different sizes?",
         "<p>A parent has 10 samples: 5 positive and 5 negative, so Gini is 0.5. A split gives a pure left child with 4 positives and a right child with 1 positive and 5 negatives.</p><div class=\"formula\">\\[G_L=0,\\qquad G_R=1-(1/6)^2-(5/6)^2=5/18\\]\\[G_{\\mathrm{children}}=(4/10)(0)+(6/10)(5/18)=1/6\\]\\[\\Delta G=0.5-1/6=1/3\\]</div><p>Weight each child's impurity by its share of samples; do not average the two child impurities equally.</p>"
-      ],
-      [
-        "How do Gini impurity and entropy differ?",
-        "<p>Both measure how mixed the class labels are and both equal zero at a pure node.</p><p><strong>Gini:</strong> uses squared class proportions. <strong>Entropy:</strong> uses logarithms and measures uncertainty in bits when the log base is 2.</p><p>For a balanced binary node, Gini is 0.5 and entropy is 1 bit. These are different scales, so compare candidate splits using the same criterion. Neither criterion always gives the better tree.</p>"
       ],
       [
         "How do I train a decision tree with Gini versus entropy in scikit-learn?",
@@ -36,8 +36,8 @@ const topics = [
     "title": "Random forests - bagging of decision trees",
     "questions": [
       [
-        "What is bagging, and how does a random forest use it?",
-        "<p><strong>Bagging</strong> (bootstrap aggregating) trains models on different samples drawn with replacement from the training set, then combines their predictions.</p><p>A standard bagged random forest trains many decision trees this way and also considers a random subset of features at each split. This extra randomness helps make the trees less correlated.</p><p>Combining diverse trees reduces variance compared with a single deep tree.</p>"
+        "What is a random forest, and why does it use bagging?",
+        "<p>A random forest combines many decision trees instead of relying on one. Different training samples and feature choices make the trees diverse; combining them can make predictions more stable.</p><p><strong>Bagging</strong> (bootstrap aggregating) trains models on different samples drawn with replacement from the training set, then combines their predictions.</p><p>A standard bagged random forest trains many decision trees this way and also considers a random subset of features at each split. This extra randomness helps make the trees less correlated.</p><p>Combining diverse trees reduces variance compared with a single deep tree.</p>"
       ],
       [
         "What does sampling with replacement mean in bagging?",
@@ -69,12 +69,16 @@ const topics = [
     "title": "Gradient boosting - XGBoost and LightGBM",
     "questions": [
       [
-        "How does gradient boosting work?",
-        "<p>Gradient boosting builds trees sequentially. Each new tree learns a correction to the current ensemble, guided by the loss function's negative gradients.</p><div class=\"formula\">\\[F_m(\\mathbf{x})=F_{m-1}(\\mathbf{x})+\\eta h_m(\\mathbf{x})\\]</div><p>\\(h_m\\) is the new tree and \\(\\eta\\) is the learning rate. For squared-error regression, fitting negative gradients corresponds to fitting residuals. Other losses use their own gradient-based corrections.</p><p>The model improves by adding small corrections, rather than averaging independently trained trees.</p>"
+        "What is gradient boosting, and how do its trees improve a model?",
+        "<p>Gradient boosting builds an ensemble by adding trees one at a time. Each new tree learns a correction to the current model; XGBoost and LightGBM are implementations of this approach.</p><p>Gradient boosting builds trees sequentially. Each new tree learns a correction to the current ensemble, guided by the loss function's negative gradients.</p><div class=\"formula\">\\[F_m(\\mathbf{x})=F_{m-1}(\\mathbf{x})+\\eta h_m(\\mathbf{x})\\]</div><p>\\(h_m\\) is the new tree and \\(\\eta\\) is the learning rate. For squared-error regression, fitting negative gradients corresponds to fitting residuals. Other losses use their own gradient-based corrections.</p><p>The model improves by adding small corrections, rather than averaging independently trained trees.</p>"
       ],
       [
         "How does one boosting step update a prediction?",
         "<p>For squared-error regression, suppose the target is 10 and the current prediction is 6. The residual is 4.</p><p>If the next tree predicts a correction of 4 and the learning rate is 0.25:</p><div class=\"formula\">\\[F_{\\mathrm{new}}=6+0.25(4)=7\\]</div><p>The next tree is fitted using the updated ensemble. For other loss functions, corrections follow the loss gradients rather than simply the raw residuals.</p>"
+      ],
+      [
+        "How does bagging in a random forest differ from gradient boosting?",
+        "<div class=\"table-wrap\"><table><thead><tr><th></th><th>Random forest</th><th>Gradient boosting</th></tr></thead><tbody><tr><th>Training</th><td>Trees can be trained independently</td><td>New trees depend on the current ensemble</td></tr><tr><th>Combination</th><td>Average predictions or combine class votes/probabilities</td><td>Add successive corrections</td></tr><tr><th>Main idea</th><td>Reduce variance through diverse trees</td><td>Improve the objective through sequential updates</td></tr></tbody></table></div><p>XGBoost and LightGBM implement gradient boosting. Their performance depends on the data and settings; neither is universally best.</p>"
       ],
       [
         "What is XGBoost?",
@@ -85,16 +89,12 @@ const topics = [
         "<p><strong>LightGBM</strong> is a gradient-boosting framework designed for efficient training. It uses feature-value histograms to reduce split-search work and memory usage, and grows trees leaf-wise by choosing the leaf with the best gain.</p><p>Leaf-wise growth can create deep branches, so controls such as leaf count, minimum examples per leaf, and maximum depth help limit overfitting. LightGBM is often used for tabular classification and regression.</p><p><a href=\"https://lightgbm.readthedocs.io/en/stable/Features.html\" target=\"_blank\" rel=\"noopener noreferrer\">Reference: LightGBM features</a></p>"
       ],
       [
-        "What distinguishes XGBoost from LightGBM?",
-        "<p><strong>XGBoost:</strong> its tree booster uses first- and second-order loss information together with regularization on tree complexity and leaf weights.</p><p><strong>LightGBM:</strong> uses histogram-based split search and best-first, leaf-wise growth, which can create deep branches.</p><p>These are not exclusive lists of capabilities: XGBoost also supports histogram-based training. Neither library is always faster or more accurate; compare them on the same data and evaluation setup.</p>"
-      ],
-      [
-        "How does bagging in a random forest differ from gradient boosting?",
-        "<div class=\"table-wrap\"><table><thead><tr><th></th><th>Random forest</th><th>Gradient boosting</th></tr></thead><tbody><tr><th>Training</th><td>Trees can be trained independently</td><td>New trees depend on the current ensemble</td></tr><tr><th>Combination</th><td>Average predictions or combine class votes/probabilities</td><td>Add successive corrections</td></tr><tr><th>Main idea</th><td>Reduce variance through diverse trees</td><td>Improve the objective through sequential updates</td></tr></tbody></table></div><p>XGBoost and LightGBM implement gradient boosting. Their performance depends on the data and settings; neither is universally best.</p>"
-      ],
-      [
         "How do learning rate and tree count affect gradient boosting?",
         "<p>The learning rate scales each new tree contribution; tree count determines how many corrections are added.</p><p>A smaller learning rate often needs more trees. Too few trees can underfit, while too many or overly complex trees can fit noise. Use validation performance and early stopping to choose when to stop adding trees.</p>"
+      ],
+      [
+        "What distinguishes XGBoost from LightGBM?",
+        "<p><strong>XGBoost:</strong> its tree booster uses first- and second-order loss information together with regularization on tree complexity and leaf weights.</p><p><strong>LightGBM:</strong> uses histogram-based split search and best-first, leaf-wise growth, which can create deep branches.</p><p>These are not exclusive lists of capabilities: XGBoost also supports histogram-based training. Neither library is always faster or more accurate; compare them on the same data and evaluation setup.</p>"
       ],
       [
         "How do I train XGBoost and LightGBM classifiers on the same data?",
@@ -107,7 +107,7 @@ const topics = [
     "questions": [
       [
         "What is feature importance in tree models?",
-        "<p>Feature importance summarizes how much each input contributes to a fitted model according to a chosen measure.</p><ul><li><strong>Impurity importance:</strong> accumulate the weighted impurity reductions from splits using each feature, often averaged across forest trees.</li><li><strong>Gain importance:</strong> summarize improvement in the boosting objective from splits using a feature.</li><li><strong>Split count:</strong> count how often a feature is used for splitting.</li></ul><p>The definition matters: these scores measure different things and can give different rankings. A high score describes model use, not a causal effect.</p>"
+        "<p>Feature importance asks which inputs a fitted model relies on most. The answer depends on how importance is measured, so first understand the measure before comparing scores.</p><p>Feature importance summarizes how much each input contributes to a fitted model according to a chosen measure.</p><ul><li><strong>Impurity importance:</strong> accumulate the weighted impurity reductions from splits using each feature, often averaged across forest trees.</li><li><strong>Gain importance:</strong> summarize improvement in the boosting objective from splits using a feature.</li><li><strong>Split count:</strong> count how often a feature is used for splitting.</li></ul><p>The definition matters: these scores measure different things and can give different rankings. A high score describes model use, not a causal effect.</p>"
       ],
       [
         "How do impurity, gain, and split-count importance differ?",

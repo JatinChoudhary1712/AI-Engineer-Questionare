@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Revise K-Means, DBSCAN, PCA, and t-SNE/UMAP with focused questions, worked examples, and Python code.">
+  <title>Unsupervised Learning | Study Questions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css" integrity="sha384-WwGtaC6ywCHxA5cstpj/3+xIZvTez8dq2IcBQaXRkenHZ7FVVq1ZROtURwfbtTlG" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js" integrity="sha384-a1WQdjRj162i159OYq041X6I4K8NenkrI09LlPmiHg0YOb7CR+wJOraXwK9abpnE" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"></script>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="../study-interface.css">
+  <script src="../study-interface.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Unsupervised Learning<span>.</span></h1>
+    </div>
+  </header>
+  <main class="container">
+    <section class="controls" aria-label="Study controls">
+      <label for="search">Search notes</label>
+      <input id="search" type="search" placeholder="Search a concept..." autocomplete="off">
+      <div id="filters" class="filters" role="group" aria-label="Filter by topic"></div>
+      <div class="toolbar">
+        <p id="count" role="status" aria-live="polite"></p>
+        <div class="actions"><button id="expand" type="button">Expand all</button><button id="collapse" type="button">Collapse all</button></div>
+      </div>
+    </section>
+    <p id="math-status" role="status" hidden>Math rendering could not load. Connect to the internet and reload to display the LaTeX formulas.</p>
+    <div id="questions"></div>
+    <p id="empty" hidden>No matching questions. Try another keyword or select All topics.</p>
+    <noscript>Please enable JavaScript to display the questions and answers.</noscript>
+  </main>
+</body>
+</html>
