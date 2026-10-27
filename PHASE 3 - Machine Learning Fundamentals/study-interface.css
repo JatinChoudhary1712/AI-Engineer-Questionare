@@ -1,0 +1,61 @@
+:root{color-scheme:light;--ink:#242a31;--muted:#65707c;--accent:#245bc2;--line:#dce1e7;--paper:#fff}
+html{font-size:18px}
+body{background:#fff;color:var(--ink);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1rem;line-height:1.75}
+h1,h2,h3,h4{font-family:"Montserrat","Manrope",sans-serif}
+.container,.page-tools{width:min(100% - 40px,860px);margin-inline:auto}
+.hero{padding:24px 0 20px;background:#fff;color:var(--ink);border-bottom:1px solid var(--line)}
+.chapter-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:16px}
+.chapter-nav a{color:var(--muted);text-decoration:none;font-size:.9rem;padding:4px 0}
+.chapter-nav a[aria-current]{color:var(--accent);font-weight:700;border-bottom:2px solid var(--accent)}
+.chapter-nav a:hover{text-decoration:underline}
+.eyebrow{color:var(--muted);font-size:.7rem;letter-spacing:.09em}
+h1{font-size:clamp(1.7rem,4vw,2.3rem);letter-spacing:-.03em;line-height:1.3;margin:12px 0}
+h1>span{display:none}.intro{color:var(--muted);font-size:1rem;margin:0;max-width:none}
+.page-tools{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.page-tools p{margin:0;color:var(--muted);font-size:.85rem}
+button{border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--accent);font:inherit;padding:7px 12px;cursor:pointer}
+button:hover{background:#f1f5fc;border-color:#b8c9e9}button:disabled{opacity:.5;cursor:default}
+.page-tools button{font-size:.85rem;white-space:nowrap}
+.learning-notes{padding-top:8px}.learning-notes>h2,.qa-heading{font-size:1.35rem;letter-spacing:-.02em;margin:8px 0}
+.notes-intro{margin:0 0 16px;color:var(--muted);font-size:.9rem}
+.notes-nav{gap:6px;margin:16px 0 24px}.notes-nav a{border:0;background:transparent;padding:3px 0;margin-right:16px;font-size:.85rem;color:var(--accent)}
+.mastery-note{padding:0;margin:0 0 30px;border:1px solid var(--line);border-radius:6px;overflow:hidden;scroll-margin-top:16px}
+.mastery-note h3{font-size:1.05rem;line-height:1.5;padding:16px;margin:0;background:#f7f8fa}
+.mastery-header{padding:10px 16px 0;gap:12px}.mastery-header h4{font-size:.8rem;font-weight:500;color:var(--muted)}
+.mastery-count{font-size:.8rem;font-weight:600;color:var(--muted)}
+.mastery-progress{display:block;width:calc(100% - 32px);height:5px;margin:6px 16px 14px;accent-color:var(--accent)}
+.mastery-items{margin:0;padding:0;list-style:none}
+.mastery-items .mastery-item{display:flex;align-items:flex-start;gap:10px;padding:0 16px;border-top:1px solid var(--line)}
+.mastery-items .mastery-point-check{width:17px;height:17px;flex:0 0 17px;margin:18px 0 0;accent-color:var(--accent);cursor:pointer}
+.mastery-items .mastery-disclosure{flex:1;min-width:0;margin:0;border:0;border-radius:0;background:transparent;overflow:visible}
+.mastery-items .mastery-summary{padding:14px 0;font-size:.95rem;font-weight:550;gap:14px}
+.mastery-items .mastery-body{padding:0 0 16px;color:var(--ink);font-size:.95rem}
+.mastery-point-check:checked+.mastery-disclosure>.mastery-summary{color:var(--accent)}
+.mastery-body pre{background:#f5f6f8;color:#263445;border:1px solid var(--line);border-radius:4px;padding:14px;overflow-x:auto;font-size:.85rem;line-height:1.6}
+.qa-header{padding:0;border:0;display:block}.qa-heading{padding-top:20px;border-top:1px solid var(--line)}
+.controls{padding:16px 0 0}label[for=search]{font-size:.9rem;font-weight:600}
+input[type=search]{padding:10px 12px;border:1px solid var(--line);border-radius:5px;background:#fff;font-size:.95rem}
+.filters{gap:6px;margin:12px 0}.filters button{font-size:.8rem;padding:5px 9px}
+.filters button[aria-pressed=true]{background:#eaf0fc;color:#194da7;border-color:#b8c9e9}
+.toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 0 16px}.toolbar p{font-size:.8rem;margin:0;color:var(--muted)}
+#toggle-all-sections{font-size:.85rem;white-space:nowrap}
+main.container{padding-bottom:32px}
+#questions .topic{margin:0 0 24px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+#questions .topic h2{padding:14px 16px;margin:0;background:#f7f8fa;border:0;font-size:1.05rem;line-height:1.5}
+.topic-number{color:var(--muted);margin-right:10px}
+#questions details,#questions details[open]{border:0;border-top:1px solid var(--line);border-radius:0;margin:0}
+#questions summary{padding:16px;gap:10px;flex-wrap:nowrap;font-weight:600;font-size:1.05rem}
+summary{display:flex;align-items:center;cursor:pointer;list-style:none;line-height:1.5}
+summary::-webkit-details-marker{display:none}
+#questions summary::after,.mastery-items .mastery-summary::after{content:"";display:block;width:8px;height:8px;border-right:2px solid #7c8795;border-bottom:2px solid #7c8795;transform:rotate(45deg);margin:-4px 3px 0 auto;flex:0 0 8px}
+#questions details[open]>summary::after,.mastery-items details[open]>.mastery-summary::after{content:"";transform:rotate(225deg);margin-top:4px}
+summary:hover{background:#f7f9fc}.q-number{font-size:.7rem;min-width:22px;color:var(--muted)}
+.answer{padding:0 16px 18px 48px;color:var(--ink);font-size:1.05rem}
+.answer pre{max-width:100%;overflow-x:auto;background:#f5f6f8;color:#263445;border:1px solid var(--line);border-radius:4px;padding:14px;font-size:.85rem;line-height:1.6;tab-size:4}
+.answer code{font-family:ui-monospace,Consolas,monospace}
+.formula,.mastery-body .formula{background:#f5f7fa;border-left:2px solid #a7b9d6;border-radius:3px;overflow-x:auto;overflow-wrap:normal}
+.example{background:#f8f7f1}.table-wrap{overflow-x:auto}table{font-size:.85rem}th{background:#f5f7fa}
+.storage-note,#math-status{color:var(--muted);font-size:.8rem}footer{font-size:.75rem;padding:20px 0 28px}
+:focus-visible{outline:3px solid #7ba4ed;outline-offset:3px}[hidden]{display:none!important}
+@media(max-width:600px){.container,.page-tools{width:calc(100% - 28px)}.hero{padding:18px 0}.chapter-nav{gap:6px 14px;margin-bottom:20px}.chapter-nav a{font-size:.8rem}.page-tools{align-items:flex-start}.page-tools p{max-width:200px}.mastery-note h3{padding:14px}.mastery-items .mastery-item{padding-inline:12px}.answer{padding-left:16px}footer{flex-direction:column;gap:4px}}
+@media print{.chapter-nav,.page-tools,.controls,.notes-nav{display:none}.hero{padding:0}.mastery-note,#questions .topic{overflow:visible;break-inside:auto}details{break-inside:avoid}.mastery-body pre{white-space:pre-wrap}summary::after{display:none!important}}

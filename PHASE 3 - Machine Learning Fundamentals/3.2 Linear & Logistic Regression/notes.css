@@ -1,0 +1,27 @@
+﻿.learning-notes{padding-top:32px}.learning-notes>h2{margin-bottom:6px;font-size:1.65rem;letter-spacing:-.03em}.notes-intro{color:var(--muted);max-width:760px}.notes-nav{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 28px}.notes-nav a{color:var(--accent);border:1px solid var(--line);border-radius:7px;background:white;padding:7px 12px;font-size:.85rem;text-decoration:none}.notes-nav a:hover{background:#edf5f2;border-color:var(--accent)}.mastery-note{background:white;border:1px solid var(--line);border-radius:12px;margin-bottom:28px;padding:24px;scroll-margin-top:20px}.mastery-note h3{font-size:1.3rem;margin:0 0 14px;line-height:1.45}.mastery-header{display:flex;align-items:center;justify-content:space-between;gap:16px}.mastery-header h4{font-size:.9rem;margin:0}.mastery-count{color:var(--accent);font-weight:750;font-variant-numeric:tabular-nums}.mastery-progress{width:100%;height:8px;margin:8px 0 4px;accent-color:var(--accent)}.mastery-help{font-size:.8rem;color:var(--muted);margin:0 0 16px}.mastery-items{list-style:none;padding:0;margin:0}.mastery-item{padding:20px 0;border-top:1px solid var(--line)}.mastery-item:last-child{padding-bottom:0}.mastery-check{display:flex;align-items:center;gap:12px;cursor:pointer;margin:0;font-weight:700}.mastery-check input{width:19px;height:19px;margin:0;flex-shrink:0;accent-color:var(--accent);cursor:pointer}.mastery-body{padding-left:31px;color:#374e57}.mastery-body p{margin:10px 0}.mastery-body .formula{overflow-x:auto;overflow-wrap:normal}.mastery-body .katex{font-size:1.05em}.mastery-body pre{background:#152f38;color:#e1f1ed;border-radius:8px;padding:18px;overflow-x:auto;line-height:1.6;font-size:.85rem;tab-size:4}.mastery-body code{font-family:ui-monospace,Consolas,monospace}.mastery-body a{color:var(--accent)}.mastery-check:has(input:checked) span{color:var(--accent)}.qa-heading{padding-top:22px;border-top:1px solid var(--line);margin-bottom:0}.storage-note{font-size:.85rem;color:var(--muted)}@media(max-width:600px){.mastery-note{padding:17px}.mastery-body{padding-left:0}.mastery-header{align-items:flex-start}.mastery-note h3{font-size:1.15rem}.mastery-body pre{padding:12px;font-size:.8rem}}@media print{.notes-nav,.mastery-help,.storage-note{display:none}.mastery-note{border:0;padding:0}.mastery-item{break-inside:avoid}.mastery-body pre{white-space:pre-wrap;background:#f5f5f5;color:black}.mastery-body{color:black}.mastery-progress{display:none}}
+
+.qa-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:22px;border-top:1px solid var(--line)}.qa-header .qa-heading{padding:0;border:0;margin:0}.qa-header button{flex-shrink:0}@media(max-width:600px){.qa-header{align-items:flex-start;flex-direction:column;gap:10px}}@media print{.qa-header button{display:none}#qa-content[hidden]{display:block!important}}
+
+
+/* Each question is an independently expandable accordion row. */
+#questions .topic{border:1px solid #ccc;background:white;border-radius:0}
+#questions .topic h2{padding:16px 22px;margin:0;border-bottom:1px solid #ccc}
+#questions details,#questions details[open]{border:0;border-radius:0;margin:0}
+#questions details+details{border-top:1px solid #ccc}
+#questions summary{padding:16px 22px;flex-wrap:nowrap}
+#questions summary::after{content:none}
+#questions .question-chevron{width:12px;height:12px;border-right:3px solid #999;border-bottom:3px solid #999;transform:rotate(45deg);margin:-6px 10px 0 auto;flex-shrink:0}
+#questions details[open] .question-chevron{transform:rotate(225deg);margin-top:6px}
+#qa-content .actions button{border:0;background:transparent;color:#1645d8;border-radius:0;padding:8px 12px;font-size:1rem}
+#qa-content .actions button:hover{background:#f0f3ff;text-decoration:underline}
+@media(max-width:600px){#questions summary{padding:16px 14px}#questions .question-chevron{margin-right:4px}}
+/* Visible concept checklist: one accordion per learning point. */
+.mastery-items .mastery-item{display:flex;align-items:flex-start;gap:12px;padding:0}
+.mastery-items .mastery-point-check{width:19px;height:19px;flex:0 0 19px;margin:19px 0 0;accent-color:var(--accent);cursor:pointer}
+.mastery-items .mastery-disclosure{flex:1;min-width:0;border:0;border-radius:0;margin:0;background:transparent;overflow:visible}
+.mastery-items .mastery-summary{padding:16px 8px 16px 0;font-weight:700;gap:16px}
+.mastery-items .mastery-summary::after{content:none}
+.mastery-items .mastery-chevron{width:10px;height:10px;border-right:2px solid #888;border-bottom:2px solid #888;transform:rotate(45deg);margin:-5px 4px 0 auto;flex-shrink:0}
+.mastery-items .mastery-disclosure[open]>.mastery-summary .mastery-chevron{transform:rotate(225deg);margin-top:5px}
+.mastery-items .mastery-body{padding:0 12px 18px 0}
+.mastery-point-check:checked+.mastery-disclosure>.mastery-summary{color:var(--accent)}

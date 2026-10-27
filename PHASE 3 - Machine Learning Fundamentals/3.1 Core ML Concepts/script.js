@@ -98,7 +98,7 @@ function updateResults() {
   for (const section of questions.children) {
     section.hidden = !entries.some(entry => entry.section === section && !entry.detail.hidden);
   }
-  document.querySelector('#count').textContent = `${visible} of ${entries.length} questions · Click a question to reveal its answer`;
+  document.querySelector('#count').textContent = `${visible} of ${entries.length} questions`;
   document.querySelector('#empty').hidden = visible !== 0;
 }
 
