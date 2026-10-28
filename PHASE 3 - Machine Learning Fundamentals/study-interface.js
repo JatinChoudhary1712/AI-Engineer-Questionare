@@ -9,6 +9,10 @@
   const nav = document.createElement('nav');
   nav.className = 'chapter-nav';
   nav.setAttribute('aria-label', 'Machine learning chapters');
+  const home = document.createElement('a');
+  home.href = '../../index.html';
+  home.textContent = 'Home';
+  nav.append(home);
   for (const [folder, text] of chapters) {
     const link = document.createElement('a');
     link.href = '../' + encodeURIComponent(folder) + '/index.html';
