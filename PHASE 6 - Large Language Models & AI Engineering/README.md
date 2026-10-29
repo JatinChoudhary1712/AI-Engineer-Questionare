@@ -2,6 +2,12 @@
 
 > **Goal:** This is your core domain. Master LLM fundamentals, APIs, and production patterns.
 
+## Study questions
+
+[Open the Phase 6 question bank](index.html) - 95 answered study questions across five chapters. Search, filter by topic, expand answers, and track revision using the same interface as Phases 3-5.
+
+Model names from the roadmap are retained as learning references; availability, limits, and pricing depend on the chosen model and provider. Legacy API topics include migration context and official references. Existing notes and projects remain available below.
+
 ## Topics
 
 - [6.1 LLM Fundamentals](6.1%20LLM%20Fundamentals/Notes.md)

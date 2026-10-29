@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Study Working with AI APIs through beginner-friendly questions, examples, and explanations.">
+  <title>Working with AI APIs | Study Questions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../question-styles.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="../study-interface.css">
+  <script src="../study-interface.js" defer></script>
+  <link rel="stylesheet" href="../../study-ui.css">
+  <script src="../../study-data.js" defer></script>
+  <script src="../../study-ui.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Working with AI APIs<span>.</span></h1>
+    </div>
+  </header>
+  <main class="container">
+    <section class="controls" aria-label="Study controls">
+      <label for="search">Search notes</label>
+      <input id="search" type="search" placeholder="Search a concept..." autocomplete="off">
+      <div id="filters" class="filters" role="group" aria-label="Filter by topic"></div>
+      <div class="toolbar">
+        <p id="count" role="status" aria-live="polite"></p>
+        <div class="actions"><button id="expand" type="button">Expand all</button><button id="collapse" type="button">Collapse all</button></div>
+      </div>
+    </section>
+    <div id="questions"></div>
+    <p id="empty" hidden>No matching questions. Try another keyword or select All topics.</p>
+    <noscript>Please enable JavaScript to display the questions and answers.</noscript>
+  </main>
+</body>
+</html>

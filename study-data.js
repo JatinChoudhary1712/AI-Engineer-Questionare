@@ -188,5 +188,50 @@ window.STUDY_CHAPTERS = [
     "count": 14,
     "topics": 7,
     "description": "Know the Python tools used for linguistic processing, model loading, datasets, and evaluation."
+  },
+  {
+    "id": "6.1",
+    "phase": 6,
+    "title": "LLM Fundamentals",
+    "href": "PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html",
+    "count": 14,
+    "topics": 14,
+    "description": "Understand large-scale transformers, efficient attention, and how language models are trained."
+  },
+  {
+    "id": "6.2",
+    "phase": 6,
+    "title": "Prompt Engineering (Production-Grade)",
+    "href": "PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html",
+    "count": 24,
+    "topics": 24,
+    "description": "Design, version, evaluate, and protect prompts for reliable production behavior."
+  },
+  {
+    "id": "6.3",
+    "phase": 6,
+    "title": "Working with AI APIs",
+    "href": "PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html",
+    "count": 32,
+    "topics": 32,
+    "description": "Compare provider request formats, tools, multimodal inputs, and local model workflows."
+  },
+  {
+    "id": "6.4",
+    "phase": 6,
+    "title": "API Integration Patterns",
+    "href": "PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html",
+    "count": 19,
+    "topics": 19,
+    "description": "Manage context, streaming, retries, costs, and provider failures in production."
+  },
+  {
+    "id": "6.5",
+    "phase": 6,
+    "title": "Secure API Integration",
+    "href": "PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html",
+    "count": 6,
+    "topics": 6,
+    "description": "Protect credentials, enforce user budgets, and monitor backend AI requests."
   }
 ];

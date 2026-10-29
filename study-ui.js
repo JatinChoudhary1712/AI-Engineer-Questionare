@@ -81,7 +81,7 @@
     overview.append(icon('grid'), create('span', '', 'Your library'));
     if (!activePhase) overview.setAttribute('aria-current', 'page');
     nav.append(overview);
-    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers'};
+    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers', 6: 'LLMs & AI engineering'};
     for (const phase of [...new Set(chapters.map(chapter => chapter.phase))]) {
       const group = create('details', 'sidebar-phase');
       group.open = activePhase === phase;
