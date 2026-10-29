@@ -2,6 +2,10 @@
 
 > **Goal:** Understand neural networks deeply enough to work with transformers.
 
+## Study questions
+
+[Open the Phase 4 question bank](index.html) - 45 beginner-level questions, one per roadmap topic. Advanced, numerical, and debugging questions are excluded for now. All 45 questions include beginner-friendly answers, key points, memory aids, and relevant formulas, examples, or code.
+
 ## Topics
 
 - [4.1 Neural Network Fundamentals](4.1%20Neural%20Network%20Fundamentals/Notes.md)
