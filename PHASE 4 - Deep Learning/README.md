@@ -4,7 +4,7 @@
 
 ## Study questions
 
-[Open the Phase 4 question bank](index.html) - 45 beginner-level questions, one per roadmap topic. Advanced, numerical, and debugging questions are excluded for now. All 45 questions include beginner-friendly answers, key points, memory aids, and relevant formulas, examples, or code.
+[Open the Phase 4 question bank](index.html) - 112 beginner-level questions grouped under the 45 roadmap topic headings across seven chapters. Each heading contains its related questions. Question numbering restarts within each chapter. Answers include key points, memory aids, and relevant formulas, examples, or code.
 
 ## Topics
 

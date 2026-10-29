@@ -1,10 +1,14 @@
 const topics = [
   {
-    "title": "Attention as 'soft' alignment",
+    "title": "Attention as \"soft\" alignment",
     "questions": [
       [
         "What is attention, and what does soft alignment mean?",
         "<p>Soft attention forms a context by assigning continuous weights to relevant encoder states.</p><ol><li><strong>Scores:</strong> Compare the decoder's current needs with each encoder state.</li><li><strong>Weights:</strong> Softmax converts scores into non-negative weights that sum to one.</li><li><strong>Context:</strong> Take a weighted sum so several source positions can contribute and gradients can flow through the computation.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>attention_weights = softmax(scores); context = sum(weight_i * encoder_state_i)</code></p><p class=\"example\"><strong>Example:</strong> When translating a word, the decoder can emphasize the source words most relevant to that step.</p><p><strong>Remember:</strong> Soft alignment is a weighted mixture, not one forced position.</p>"
+      ],
+      [
+        "What are attention weights?",
+        "<p>Attention weights describe how much each source representation contributes to a context.</p><ul><li><strong>Scoring:</strong> Start with relevance scores for source positions.</li><li><strong>Softmax:</strong> Turn scores into non-negative weights that sum to one.</li><li><strong>Context:</strong> Use the weights to combine source representations.</li></ul><p><strong>Remember:</strong> Weights control contributions; they are not automatically explanations of causality.</p>"
       ]
     ]
   },
@@ -14,6 +18,14 @@ const topics = [
       [
         "What are additive and multiplicative attention, and how do they differ at a basic level?",
         "<p>Additive and multiplicative attention differ in how they score the match between two representations.</p><ul><li><strong>Additive:</strong> Learn projections and combine them through a small non-linear scoring network.</li><li><strong>Multiplicative:</strong> Compare representations using a dot product or a learned bilinear transformation.</li><li><strong>Dimensions:</strong> Raw dot products require equal dimensions; learned projections can make unequal original dimensions compatible.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Attention</th><th scope=\"col\">Scoring idea</th></tr></thead><tbody><tr><th scope=\"row\">Additive</th><td>score = v^T * tanh(W_s * decoder_state + W_h * encoder_state + b)</td></tr><tr><th scope=\"row\">Multiplicative</th><td>score = decoder_state^T * W * encoder_state</td></tr></tbody></table></div><p><strong>Symbols:</strong> The matrices W_s and W_h project states into a shared space; v maps the combined features to a scalar. The multiplicative matrix W makes compatible projected dimensions.</p><p><strong>Remember:</strong> Additive learns a small scoring network; multiplicative compares through products.</p>"
+      ],
+      [
+        "What is additive attention?",
+        "<p>Additive attention uses learned projections and a small non-linear network to score a query-source pair.</p><ul><li><strong>Projection:</strong> Map query and source representations into a shared scoring space.</li><li><strong>Combination:</strong> Add projected values and apply a non-linear transformation.</li><li><strong>Score:</strong> Reduce the result to one relevance value.</li></ul><p><strong>Remember:</strong> Additive attention learns a non-linear compatibility score.</p>"
+      ],
+      [
+        "What is multiplicative attention?",
+        "<p>Multiplicative attention scores compatibility through a dot product or a bilinear product.</p><ul><li><strong>Dot product:</strong> Compare vectors with matching dimensions.</li><li><strong>Projection:</strong> A learned transformation can make different original dimensions compatible.</li><li><strong>Score:</strong> Larger compatibility scores receive more weight after normalization.</li></ul><p><strong>Remember:</strong> Multiplicative attention compares through products.</p>"
       ]
     ]
   },
@@ -23,6 +35,10 @@ const topics = [
       [
         "What is Bahdanau attention, and how does it help a Seq2Seq decoder?",
         "<p>Bahdanau attention gives a Seq2Seq decoder a newly weighted source context for each output step.</p><ol><li><strong>Score:</strong> Compare encoder states with a decoder state using additive attention.</li><li><strong>Normalize:</strong> Apply softmax across source positions to obtain attention weights.</li><li><strong>Combine:</strong> Form a weighted context and use it with decoder information to generate the next output.</li></ol><p><strong>Remember:</strong> Score, normalize, combine, then decode.</p>"
+      ],
+      [
+        "What is the context vector in attention?",
+        "<p>The context vector is a weighted combination of source representations for a decoding step.</p><ul><li><strong>Inputs:</strong> Use the encoder states available to the decoder.</li><li><strong>Weights:</strong> Assign different contributions to different positions.</li><li><strong>Change:</strong> Recompute the context as the decoder generates different outputs.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>context = sum(attention_weight_i * encoder_state_i)</code></p><p><strong>Remember:</strong> The context is a source summary chosen for the current step.</p>"
       ]
     ]
   },
@@ -32,6 +48,10 @@ const topics = [
       [
         "What is the fixed-context bottleneck in Seq2Seq, and how does attention address it?",
         "<p>Attention relaxes the bottleneck of compressing an entire input into one fixed-size context vector.</p><ul><li><strong>Plain Seq2Seq:</strong> The decoder depends on a single summary that may lose details from long inputs.</li><li><strong>Attention:</strong> Keep encoder states available and build a new weighted context for each output step.</li><li><strong>Benefit:</strong> Provide more direct access to relevant positions; it does not remove every long-sequence difficulty.</li></ul><p><strong>Remember:</strong> Instead of remembering everything in one vector, revisit useful source states.</p>"
+      ],
+      [
+        "Why is one fixed-size context vector a bottleneck for long sequences?",
+        "<p>Compressing a long input into one vector can lose details needed for later outputs.</p><ul><li><strong>Compression:</strong> Many source details must share a limited representation.</li><li><strong>Access:</strong> A plain decoder cannot directly revisit individual encoder states.</li><li><strong>Attention:</strong> Keep those states accessible and combine relevant ones for each step.</li></ul><p><strong>Remember:</strong> One fixed summary can forget details; attention can revisit them.</p>"
       ]
     ]
   }
@@ -45,7 +65,7 @@ const questions = document.querySelector('#questions');
 const filters = document.querySelector('#filters');
 const search = document.querySelector('#search');
 let activeTopic = 'All topics';
-let number = 24;
+let number = 0;
 const entries = [];
 
 for (const [index, topic] of topics.entries()) {

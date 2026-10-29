@@ -1,0 +1,1185 @@
+{
+  "phase": "Phase 5 - Natural Language Processing & Transformers",
+  "total_questions": 131,
+  "questions": [
+    {
+      "id": 1,
+      "number": 1,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Tokenization - words, subwords, characters",
+      "type": "conceptual",
+      "question": "What is tokenization in NLP?",
+      "answer": "<p>Tokenization splits text into units that a model can process.</p><ul><li><strong>Words:</strong> Use whole words as units when the tokenizer supports them.</li><li><strong>Subwords:</strong> Split words into reusable pieces to balance vocabulary size and coverage.</li><li><strong>Characters:</strong> Use individual characters, usually producing longer sequences.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Unit</th><th scope=\"col\">Example idea</th><th scope=\"col\">Tradeoff</th></tr></thead><tbody><tr><th scope=\"row\">Word</th><td>Whole vocabulary words</td><td>Larger vocabulary, unfamiliar-word issues</td></tr><tr><th scope=\"row\">Subword</th><td>Reusable pieces inside words</td><td>Balance sequence length and vocabulary</td></tr><tr><th scope=\"row\">Character</th><td>Individual characters</td><td>Small inventory, longer sequences</td></tr></tbody></table></div><p><strong>Remember:</strong> A token is a processing unit, not necessarily a word.</p>"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Tokenization - words, subwords, characters",
+      "type": "conceptual",
+      "question": "How do word, subword, and character tokenization differ?",
+      "answer": "<p>They choose different-sized units and therefore different vocabulary and sequence lengths.</p><ul><li><strong>Word tokens:</strong> Easy to interpret but can leave unfamiliar words outside the vocabulary.</li><li><strong>Subword tokens:</strong> Reuse pieces to represent many unfamiliar words.</li><li><strong>Character tokens:</strong> Need a small character inventory but usually create more steps.</li></ul><p><strong>Remember:</strong> Smaller units improve coverage but often lengthen sequences.</p>"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Lowercasing, punctuation removal, whitespace normalization",
+      "type": "conceptual",
+      "question": "What is text normalization?",
+      "answer": "<p>Text normalization makes selected text variations consistent before processing.</p><ul><li><strong>Case:</strong> Lowercasing can merge words that differ only in capitalization.</li><li><strong>Punctuation:</strong> Remove it only if the task does not need its information.</li><li><strong>Whitespace:</strong> Standardize spaces or line breaks when their differences are irrelevant.</li></ul><p><strong>Remember:</strong> Normalize what is irrelevant; preserve what carries meaning.</p>"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Lowercasing, punctuation removal, whitespace normalization",
+      "type": "conceptual",
+      "question": "Should every NLP pipeline lowercase text and remove punctuation?",
+      "answer": "<p>No; preprocessing must match the task and the model's expected inputs.</p><ul><li><strong>Meaning:</strong> Capitalization and punctuation can change interpretation.</li><li><strong>Pretrained models:</strong> Follow the checkpoint's tokenizer rather than cleaning blindly.</li><li><strong>Validation:</strong> Compare preprocessing choices on representative examples.</li></ul><p class=\"example\"><strong>Example:</strong> Removing punctuation from C++ or lowercasing a named entity can discard information the task needs.</p><p><strong>Remember:</strong> Cleaning is a task-dependent choice, not a universal checklist.</p>"
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Stopword removal - when to and when not to",
+      "type": "conceptual",
+      "question": "What are stopwords, and why might we remove them?",
+      "answer": "<p>Stopwords are frequent words that some traditional pipelines exclude to reduce unhelpful features.</p><ul><li><strong>Examples:</strong> Lists often include words such as the, a, and is.</li><li><strong>Traditional uses:</strong> Removal may help some keyword-search or bag-of-words tasks.</li><li><strong>Decision:</strong> Frequency alone does not prove a word is irrelevant.</li></ul><p><strong>Remember:</strong> A common word can still carry important information.</p>"
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Stopword removal - when to and when not to",
+      "type": "conceptual",
+      "question": "When should we keep stopwords?",
+      "answer": "<p>Keep stopwords when they affect meaning or are expected by the model.</p><ul><li><strong>Negation:</strong> Removing not can reverse a sentiment statement.</li><li><strong>Sequence models:</strong> Pretrained language models usually expect natural text with function words.</li><li><strong>Tasks:</strong> Translation and grammatical analysis depend on words that a stopword list may remove.</li></ul><p class=\"example\"><strong>Example:</strong> I like it and I do not like it should not become equivalent because not was removed.</p><p><strong>Remember:</strong> Keep small words when the meaning depends on them.</p>"
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Stemming vs Lemmatization",
+      "type": "conceptual",
+      "question": "What is the difference between stemming and lemmatization?",
+      "answer": "<p>Stemming applies word-cutting rules; lemmatization aims to return a word's dictionary form.</p><ul><li><strong>Stemming:</strong> Can produce fragments that are not real words.</li><li><strong>Lemmatization:</strong> Uses vocabulary and often grammatical information.</li><li><strong>Tradeoff:</strong> Choose according to language, task, and available linguistic tools.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Method</th><th scope=\"col\">How it works</th><th scope=\"col\">Typical output</th></tr></thead><tbody><tr><th scope=\"row\">Stemming</th><td>Apply string-cutting rules</td><td>A stem that may not be a dictionary word</td></tr><tr><th scope=\"row\">Lemmatization</th><td>Use linguistic information and vocabulary</td><td>A dictionary base form</td></tr></tbody></table></div><p><strong>Remember:</strong> A stem is a rule-based shortcut; a lemma is a linguistic base form.</p>"
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Stemming vs Lemmatization",
+      "type": "conceptual",
+      "question": "Why can grammatical context matter for lemmatization?",
+      "answer": "<p>The correct dictionary form can depend on the word's grammatical role and meaning.</p><ul><li><strong>Part of speech:</strong> The same spelling can belong to different grammatical categories.</li><li><strong>Ambiguity:</strong> Saw can be a noun or a past-tense verb with lemma see.</li><li><strong>Tools:</strong> A lemmatizer's result depends on its language resources and supplied context.</li></ul><p><strong>Remember:</strong> The right base form may require knowing how the word is used.</p>"
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Sentence segmentation",
+      "type": "conceptual",
+      "question": "What is sentence segmentation?",
+      "answer": "<p>Sentence segmentation identifies sentence boundaries within a text.</p><ul><li><strong>Purpose:</strong> Break documents into units for later processing.</li><li><strong>Cues:</strong> Use punctuation, abbreviations, and learned or rule-based context.</li><li><strong>Uses:</strong> Support document analysis, sentence embeddings, and sentence-level evaluation.</li></ul><p><strong>Remember:</strong> Sentence segmentation decides where one sentence ends and the next begins.</p>"
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Sentence segmentation",
+      "type": "conceptual",
+      "question": "Why is splitting on every period unreliable for sentence segmentation?",
+      "answer": "<p>A period does not always mark the end of a sentence.</p><ul><li><strong>Abbreviations:</strong> Dr. and similar forms can occur inside a sentence.</li><li><strong>Numbers:</strong> Decimal points are not sentence boundaries.</li><li><strong>Context:</strong> Quotations and language-specific conventions need appropriate handling.</li></ul><p><strong>Remember:</strong> A period is a clue, not a complete boundary rule.</p>"
+    },
+    {
+      "id": 11,
+      "number": 11,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Handling special tokens: URLs, emails, hashtags",
+      "type": "conceptual",
+      "question": "How should a preprocessing pipeline handle URLs, emails, and hashtags?",
+      "answer": "<p>Choose whether to preserve, replace, or split these patterns according to the task.</p><ul><li><strong>Preserve:</strong> Keep exact values when they carry useful information.</li><li><strong>Replace:</strong> Use consistent placeholders when only the pattern matters.</li><li><strong>Hashtags:</strong> Consider whether the marker, text, or both matter for the task.</li></ul><p><strong>Remember:</strong> Handle patterns intentionally instead of deleting them blindly.</p>"
+    },
+    {
+      "id": 12,
+      "number": 12,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Handling special tokens: URLs, emails, hashtags",
+      "type": "conceptual",
+      "question": "Why might we replace a URL with a placeholder?",
+      "answer": "<p>A placeholder can retain the presence of a link without treating every address as a separate feature.</p><ul><li><strong>Generalization:</strong> Merge many task-irrelevant link strings.</li><li><strong>Information:</strong> Keep that a URL occurred in the message.</li><li><strong>Limitation:</strong> Replacement loses address details that could matter for phishing or domain analysis.</li></ul><p><strong>Remember:</strong> A placeholder keeps the pattern but removes its specific value.</p>"
+    },
+    {
+      "id": 13,
+      "number": 13,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Unicode and encoding issues (utf-8)",
+      "type": "conceptual",
+      "question": "What is the difference between Unicode and UTF-8?",
+      "answer": "<p>Unicode defines characters and code points; UTF-8 encodes those code points as bytes.</p><ul><li><strong>Characters:</strong> A visible symbol may involve one or several code points.</li><li><strong>Encoding:</strong> UTF-8 represents code points with variable-length byte sequences.</li><li><strong>Reading:</strong> Decode files with the encoding that was actually used to write them.</li></ul><pre><code class=\"language-python\"># Standard-library example: choose the known encoding explicitly.\nfrom pathlib import Path\n\n# text = Path('document.txt').read_text(encoding='utf-8')\ntext = 'Hello'\nraw_bytes = text.encode('utf-8')\nassert raw_bytes.decode('utf-8') == text</code></pre><p><strong>Remember:</strong> Unicode describes characters; UTF-8 stores them as bytes.</p>"
+    },
+    {
+      "id": 14,
+      "number": 14,
+      "section": "5.1 Text Preprocessing",
+      "bullet": "Unicode and encoding issues (utf-8)",
+      "type": "conceptual",
+      "question": "What causes garbled text or decoding errors?",
+      "answer": "<p>Encoding mismatches and damaged byte sequences can make text unreadable or invalid.</p><ul><li><strong>Mismatch:</strong> Decoding bytes with the wrong encoding can produce incorrect characters.</li><li><strong>Errors:</strong> Invalid byte sequences can raise exceptions instead of yielding text.</li><li><strong>Handling:</strong> Use the correct encoding and inspect errors rather than silently discarding data.</li></ul><p><strong>Remember:</strong> Decode with the right encoding before cleaning the text.</p>"
+    },
+    {
+      "id": 15,
+      "number": 1,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "Bag of Words (BoW)",
+      "type": "conceptual",
+      "question": "What is a Bag of Words representation?",
+      "answer": "<p>Bag of Words represents text using counts or presence of vocabulary items.</p><ul><li><strong>Vocabulary:</strong> Assign one feature position to each known term.</li><li><strong>Values:</strong> Store how often a term appears, or whether it appears.</li><li><strong>Limitation:</strong> Ordinary unigram BoW does not preserve word order.</li></ul><p class=\"example\"><strong>Example:</strong> With vocabulary [cat, dog], the document cat cat dog has count vector [2, 1].</p><p><strong>Remember:</strong> BoW counts what appears, not the sequence it appears in.</p>"
+    },
+    {
+      "id": 16,
+      "number": 2,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "Bag of Words (BoW)",
+      "type": "conceptual",
+      "question": "Can Bag of Words distinguish sentences with the same words in different orders?",
+      "answer": "<p>Unigram BoW cannot distinguish them when their word counts are identical.</p><ul><li><strong>Example:</strong> Dog bites man and man bites dog contain the same unigram counts.</li><li><strong>Missing information:</strong> The representation loses who acted on whom.</li><li><strong>Extension:</strong> Word n-grams can preserve some local ordering information.</li></ul><p><strong>Remember:</strong> Identical counts can hide different meanings.</p>"
+    },
+    {
+      "id": 17,
+      "number": 3,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "TF-IDF - formula and intuition",
+      "type": "conceptual",
+      "question": "What is TF-IDF?",
+      "answer": "<p>TF-IDF weights a term by its frequency in a document and its rarity across documents.</p><ul><li><strong>TF:</strong> Measure how strongly the term occurs within the document.</li><li><strong>IDF:</strong> Give less weight to terms found in many documents.</li><li><strong>Variants:</strong> Implementations can use smoothing, logarithmic TF, and vector normalization.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>TF-IDF(term, doc) = TF(term, doc) * IDF(term)</code></p><p><strong>Remember:</strong> Frequent here but rare across documents often means informative.</p>"
+    },
+    {
+      "id": 18,
+      "number": 4,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "TF-IDF - formula and intuition",
+      "type": "conceptual",
+      "question": "Why does TF-IDF downweight words that appear in nearly every document?",
+      "answer": "<p>Such words usually help less with distinguishing one document from another.</p><ul><li><strong>Document frequency:</strong> Count documents containing the term, not all occurrences.</li><li><strong>Rarity:</strong> Terms in fewer documents receive a larger rarity weight.</li><li><strong>Caution:</strong> Informative for retrieval does not automatically mean semantically important.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>One simple unsmoothed choice: IDF(term) = log(N / df(term)); N is document count and df counts documents containing the term.</code></p><p><strong>Remember:</strong> IDF rewards document-level rarity, not raw repetition.</p><p><a href=\"https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction\" target=\"_blank\" rel=\"noopener noreferrer\">scikit-learn text features</a></p>"
+    },
+    {
+      "id": 19,
+      "number": 5,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "N-grams - capturing context",
+      "type": "conceptual",
+      "question": "What are n-grams?",
+      "answer": "<p>N-grams are contiguous sequences of n units, such as words or characters.</p><ul><li><strong>Unigram:</strong> One unit, such as machine.</li><li><strong>Bigram:</strong> Two consecutive units, such as machine learning.</li><li><strong>Context:</strong> Larger n captures more local order but can create many sparse features.</li></ul><p><strong>Remember:</strong> N tells you how many adjacent units form one feature.</p>"
+    },
+    {
+      "id": 20,
+      "number": 6,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "N-grams - capturing context",
+      "type": "conceptual",
+      "question": "How do n-grams improve a simple text representation?",
+      "answer": "<p>They add local word-order patterns that individual-word counts cannot capture.</p><ul><li><strong>Phrases:</strong> Treat not good differently from the separate words not and good.</li><li><strong>Order:</strong> Distinguish some phrases with the same individual words.</li><li><strong>Cost:</strong> More possible features require careful vocabulary and data management.</li></ul><p><strong>Remember:</strong> N-grams add local context at the cost of more features.</p>"
+    },
+    {
+      "id": 21,
+      "number": 7,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "One-hot encoding - and why it fails at scale",
+      "type": "conceptual",
+      "question": "What is one-hot encoding for tokens?",
+      "answer": "<p>One-hot encoding represents a token with a vector containing one active position and zeros elsewhere.</p><ul><li><strong>Vocabulary:</strong> Give each token a separate coordinate.</li><li><strong>Identity:</strong> The active position identifies which token occurred.</li><li><strong>Limitation:</strong> It does not encode graded semantic similarity between different tokens.</li></ul><p class=\"example\"><strong>Example:</strong> For vocabulary [cat, dog, bird], the one-hot vector for dog is [0, 1, 0].</p><p><strong>Remember:</strong> One-hot represents identity, not meaning.</p>"
+    },
+    {
+      "id": 22,
+      "number": 8,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "One-hot encoding - and why it fails at scale",
+      "type": "conceptual",
+      "question": "Why is a large one-hot vocabulary inconvenient?",
+      "answer": "<p>Vocabulary-sized representations grow large and provide no shared semantic structure by themselves.</p><ul><li><strong>Dimensions:</strong> Each additional vocabulary item needs another coordinate.</li><li><strong>Semantics:</strong> Different token vectors are equally orthogonal in the basic representation.</li><li><strong>Storage:</strong> Sparse storage saves zeros, but does not create useful semantic relationships.</li></ul><p><strong>Remember:</strong> Sparse storage reduces memory; learned embeddings add shared structure.</p>"
+    },
+    {
+      "id": 23,
+      "number": 9,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "Sparse vs dense representations",
+      "type": "conceptual",
+      "question": "What is the difference between sparse and dense text representations?",
+      "answer": "<p>Sparse vectors contain mostly zero entries; dense vectors typically use many nonzero coordinates.</p><ul><li><strong>Sparse:</strong> BoW and TF-IDF often have vocabulary-sized feature spaces.</li><li><strong>Dense:</strong> Embeddings often use a smaller learned coordinate space.</li><li><strong>Meaning:</strong> Dense does not automatically mean good; usefulness depends on training and the task.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Representation</th><th scope=\"col\">Typical feature space</th><th scope=\"col\">Examples</th></tr></thead><tbody><tr><th scope=\"row\">Sparse</th><td>Many zero entries, often vocabulary-sized</td><td>BoW, TF-IDF</td></tr><tr><th scope=\"row\">Dense</th><td>Learned coordinates, often much smaller</td><td>Word and sentence embeddings</td></tr></tbody></table></div><p><strong>Remember:</strong> Sparse describes many zeros; dense describes filled coordinates.</p>"
+    },
+    {
+      "id": 24,
+      "number": 10,
+      "section": "5.2 Classical Text Representation",
+      "bullet": "Sparse vs dense representations",
+      "type": "conceptual",
+      "question": "Are dense embeddings always better than sparse text features?",
+      "answer": "<p>No; performance depends on the task, data, and evaluation conditions.</p><ul><li><strong>Exact terms:</strong> Sparse methods can be strong for keyword matching.</li><li><strong>Semantics:</strong> Suitable dense models can help with paraphrases and related meanings.</li><li><strong>Combination:</strong> Hybrid systems can benefit from both types of evidence.</li></ul><p><strong>Remember:</strong> Choose by measured task performance, not by vector type alone.</p>"
+    },
+    {
+      "id": 25,
+      "number": 1,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Why embeddings - dense, semantic vectors",
+      "type": "conceptual",
+      "question": "What is a word embedding?",
+      "answer": "<p>A word embedding is a learned dense vector representing a word in a numerical space.</p><ul><li><strong>Learning:</strong> Training determines which relationships the coordinates capture.</li><li><strong>Similarity:</strong> Related usages may produce nearby vectors.</li><li><strong>Use:</strong> Supply numerical inputs or similarity features for downstream tasks.</li></ul><p><strong>Remember:</strong> An embedding is a learned representation, not a dictionary definition.</p>"
+    },
+    {
+      "id": 26,
+      "number": 2,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Why embeddings - dense, semantic vectors",
+      "type": "conceptual",
+      "question": "Why use embeddings instead of raw token IDs?",
+      "answer": "<p>Embeddings provide learned feature values, while token IDs are only arbitrary identifiers.</p><ul><li><strong>IDs:</strong> A larger integer does not mean a word is more important.</li><li><strong>Lookup:</strong> An embedding table maps each known ID to a vector.</li><li><strong>Relationships:</strong> Training can make useful patterns available to the model.</li></ul><p><strong>Remember:</strong> IDs identify tokens; embeddings represent them.</p>"
+    },
+    {
+      "id": 27,
+      "number": 3,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Word2Vec - CBOW vs Skip-gram",
+      "type": "conceptual",
+      "question": "What is Word2Vec, and how do CBOW and Skip-gram differ?",
+      "answer": "<p>Word2Vec learns word vectors from local word-prediction tasks.</p><ul><li><strong>CBOW:</strong> Predict a target word using surrounding context words.</li><li><strong>Skip-gram:</strong> Predict surrounding context words using a target word.</li><li><strong>Result:</strong> Reuse learned vectors as static word representations.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Word2Vec variant</th><th scope=\"col\">Input signal</th><th scope=\"col\">Prediction target</th></tr></thead><tbody><tr><th scope=\"row\">CBOW</th><td>Surrounding context words</td><td>A target word</td></tr><tr><th scope=\"row\">Skip-gram</th><td>A target word</td><td>Surrounding context words</td></tr></tbody></table></div><p><strong>Remember:</strong> CBOW uses context to predict a word; Skip-gram uses a word to predict context.</p>"
+    },
+    {
+      "id": 28,
+      "number": 4,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Word2Vec - CBOW vs Skip-gram",
+      "type": "conceptual",
+      "question": "Are Word2Vec vectors contextual embeddings?",
+      "answer": "<p>Ordinary Word2Vec assigns each vocabulary word one learned vector, regardless of the current sentence.</p><ul><li><strong>Static lookup:</strong> Reuse the same stored vector for each occurrence.</li><li><strong>Ambiguity:</strong> Bank has one vector even when used in different senses.</li><li><strong>Contrast:</strong> Contextual models compute representations that depend on surrounding text.</li></ul><p><strong>Remember:</strong> Word2Vec learns from context but stores static word vectors.</p>"
+    },
+    {
+      "id": 29,
+      "number": 5,
+      "section": "5.3 Word Embeddings",
+      "bullet": "GloVe - global co-occurrence statistics",
+      "type": "conceptual",
+      "question": "What is GloVe?",
+      "answer": "<p>GloVe learns word vectors using global word co-occurrence statistics from a corpus.</p><ul><li><strong>Counts:</strong> Record which words appear near one another.</li><li><strong>Training:</strong> Fit vector relationships to information in the co-occurrence matrix.</li><li><strong>Output:</strong> Produce reusable static word embeddings.</li></ul><p><strong>Remember:</strong> GloVe turns corpus-wide co-occurrence patterns into vectors.</p><p><a href=\"https://nlp.stanford.edu/projects/glove/\" target=\"_blank\" rel=\"noopener noreferrer\">GloVe project</a></p>"
+    },
+    {
+      "id": 30,
+      "number": 6,
+      "section": "5.3 Word Embeddings",
+      "bullet": "GloVe - global co-occurrence statistics",
+      "type": "conceptual",
+      "question": "How does GloVe differ from Word2Vec at a basic level?",
+      "answer": "<p>GloVe explicitly fits global co-occurrence statistics, while Word2Vec trains local prediction tasks.</p><ul><li><strong>GloVe:</strong> Learn from a matrix summarizing corpus co-occurrences.</li><li><strong>Word2Vec:</strong> Learn through context-word prediction objectives.</li><li><strong>Common result:</strong> Both can yield useful static vectors with context-independent lookup.</li></ul><p><strong>Remember:</strong> Global statistics versus local prediction, both yielding word vectors.</p>"
+    },
+    {
+      "id": 31,
+      "number": 7,
+      "section": "5.3 Word Embeddings",
+      "bullet": "FastText - subword embeddings, handles OOV",
+      "type": "conceptual",
+      "question": "What is FastText's main idea for word embeddings?",
+      "answer": "<p>FastText represents words using learned character n-gram information as well as word-level information.</p><ul><li><strong>Subwords:</strong> Reuse patterns inside related word spellings.</li><li><strong>Composition:</strong> Combine subword vectors to form a word representation.</li><li><strong>Coverage:</strong> Often construct vectors for words absent from the training vocabulary.</li></ul><p><strong>Remember:</strong> FastText shares information through pieces inside words.</p><p><a href=\"https://fasttext.cc/docs/en/unsupervised-tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">FastText word vectors</a></p>"
+    },
+    {
+      "id": 32,
+      "number": 8,
+      "section": "5.3 Word Embeddings",
+      "bullet": "FastText - subword embeddings, handles OOV",
+      "type": "conceptual",
+      "question": "How can FastText represent an out-of-vocabulary word?",
+      "answer": "<p>It can compose a representation from character n-grams with learned vectors.</p><ul><li><strong>Breakdown:</strong> Extract the unfamiliar word's character pieces.</li><li><strong>Reuse:</strong> Combine pieces that received useful training.</li><li><strong>Limit:</strong> A constructed vector is not guaranteed to capture the word's actual meaning.</li></ul><p><strong>Remember:</strong> Subword coverage helps with unfamiliar spellings, not perfect understanding.</p>"
+    },
+    {
+      "id": 33,
+      "number": 9,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Cosine similarity on embeddings",
+      "type": "conceptual",
+      "question": "What does cosine similarity measure?",
+      "answer": "<p>Cosine similarity measures how closely two nonzero vectors point in the same direction.</p><ul><li><strong>Direction:</strong> Compare alignment rather than raw vector length.</li><li><strong>Range:</strong> Mathematical values lie between minus one and one.</li><li><strong>Interpretation:</strong> A useful semantic comparison requires embeddings trained for that purpose.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>cosine(a, b) = dot(a, b) / (norm(a) * norm(b))</code></p><p><strong>Remember:</strong> Cosine compares direction, not magnitude.</p>"
+    },
+    {
+      "id": 34,
+      "number": 10,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Cosine similarity on embeddings",
+      "type": "conceptual",
+      "question": "Does a high cosine similarity guarantee that two texts mean the same thing?",
+      "answer": "<p>No; similarity reflects the embedding model and may miss important distinctions.</p><ul><li><strong>Negation:</strong> Similar wording with opposite meaning can still be close.</li><li><strong>Task:</strong> A retrieval embedding and a word embedding need not encode the same relationships.</li><li><strong>Edge case:</strong> Cosine is undefined when either vector has zero norm.</li></ul><p><strong>Remember:</strong> A similarity score is evidence to validate, not a semantic guarantee.</p>"
+    },
+    {
+      "id": 35,
+      "number": 11,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Analogy tasks: king - man + woman = queen",
+      "type": "conceptual",
+      "question": "What is a word-embedding analogy task?",
+      "answer": "<p>An analogy task tests whether vector offsets reflect a relationship between words.</p><ul><li><strong>Operation:</strong> Subtract one word vector and add another.</li><li><strong>Search:</strong> Find a nearby vocabulary vector to the resulting vector.</li><li><strong>Example:</strong> The classic king-minus-man-plus-woman illustration may retrieve queen for some embeddings.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>vector(king) - vector(man) + vector(woman) -&gt; search for a nearby word vector</code></p><p class=\"example\"><strong>Example:</strong> Queen is a classic illustrative retrieval result for some embeddings, not an identity guaranteed by the formula.</p><p><strong>Remember:</strong> Analogy arithmetic is an empirical pattern, not an exact language law.</p>"
+    },
+    {
+      "id": 36,
+      "number": 12,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Analogy tasks: king - man + woman = queen",
+      "type": "conceptual",
+      "question": "Why should we treat embedding analogy results cautiously?",
+      "answer": "<p>They depend on training data, the evaluation method, and which relationships the model captures.</p><ul><li><strong>Reliability:</strong> Not every analogy is solved correctly or consistently.</li><li><strong>Bias:</strong> Learned vector relationships can reflect stereotypes in the corpus.</li><li><strong>Meaning:</strong> One successful result does not prove broad reasoning ability.</li></ul><p><strong>Remember:</strong> A neat analogy can coexist with errors and bias.</p>"
+    },
+    {
+      "id": 37,
+      "number": 13,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Static vs contextual embeddings",
+      "type": "conceptual",
+      "question": "How do static and contextual embeddings differ?",
+      "answer": "<p>Static embeddings reuse one vector per word; contextual embeddings vary with surrounding text.</p><ul><li><strong>Static:</strong> Word2Vec and GloVe usually return fixed vocabulary vectors.</li><li><strong>Contextual:</strong> A model such as BERT computes position-specific representations.</li><li><strong>Benefit:</strong> Context can help distinguish different uses of the same word.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Embedding</th><th scope=\"col\">Representation of a word</th><th scope=\"col\">Example family</th></tr></thead><tbody><tr><th scope=\"row\">Static</th><td>One vocabulary vector reused across occurrences</td><td>Word2Vec, GloVe</td></tr><tr><th scope=\"row\">Contextual</th><td>A vector computed for the current occurrence</td><td>BERT-style encoders</td></tr></tbody></table></div><p><strong>Remember:</strong> Static vectors identify a word; contextual vectors represent its current use.</p>"
+    },
+    {
+      "id": 38,
+      "number": 14,
+      "section": "5.3 Word Embeddings",
+      "bullet": "Static vs contextual embeddings",
+      "type": "conceptual",
+      "question": "Why does context matter when representing an ambiguous word?",
+      "answer": "<p>The same word can express different meanings in different sentences.</p><ul><li><strong>Example:</strong> Bank in a river description differs from bank in a finance discussion.</li><li><strong>Static limit:</strong> One stored word vector merges these usages.</li><li><strong>Contextual approach:</strong> Neighboring words influence the representation of that occurrence.</li></ul><p><strong>Remember:</strong> The sentence helps determine which meaning is relevant.</p>"
+    },
+    {
+      "id": 39,
+      "number": 1,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Byte Pair Encoding (BPE) - used in GPT",
+      "type": "conceptual",
+      "question": "What is Byte Pair Encoding in tokenization?",
+      "answer": "<p>BPE builds a reusable subword vocabulary by repeatedly merging frequent adjacent pieces during training.</p><ul><li><strong>Start:</strong> Begin with small units, which may be characters or bytes depending on the tokenizer.</li><li><strong>Merge:</strong> Add frequent adjacent combinations to the learned vocabulary.</li><li><strong>Tokenize:</strong> Apply the learned tokenizer to new text using its own rules.</li></ul><p><strong>Remember:</strong> BPE learns useful larger pieces from smaller units.</p><p><a href=\"https://huggingface.co/docs/transformers/tokenizer_summary\" target=\"_blank\" rel=\"noopener noreferrer\">Subword tokenization guide</a></p>"
+    },
+    {
+      "id": 40,
+      "number": 2,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Byte Pair Encoding (BPE) - used in GPT",
+      "type": "conceptual",
+      "question": "Why is byte-level BPE useful for text coverage?",
+      "answer": "<p>Byte-level BPE starts from a byte inventory that can encode arbitrary valid text bytes.</p><ul><li><strong>Coverage:</strong> Represent unfamiliar words without requiring a whole-word vocabulary entry.</li><li><strong>Efficiency:</strong> Learned merges compress common byte patterns into fewer tokens.</li><li><strong>Limit:</strong> An unfamiliar script or spelling may still require many tokens.</li></ul><p><strong>Remember:</strong> Byte coverage avoids missing word entries, not long token sequences.</p>"
+    },
+    {
+      "id": 41,
+      "number": 3,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "WordPiece - used in BERT",
+      "type": "conceptual",
+      "question": "What is WordPiece tokenization?",
+      "answer": "<p>WordPiece is a subword tokenization approach used by the original BERT tokenizers.</p><ul><li><strong>Vocabulary:</strong> Reuse pieces rather than storing only whole words.</li><li><strong>Splitting:</strong> A word can map to several vocabulary entries.</li><li><strong>Convention:</strong> Original BERT-style tokenizers often mark continuation pieces with two hash characters.</li></ul><p class=\"example\"><strong>Example:</strong> A BERT-style continuation marker may turn a word into an initial piece plus a piece written with a ## prefix; the exact split depends on the vocabulary.</p><p><strong>Remember:</strong> WordPiece represents many words using a shared piece vocabulary.</p>"
+    },
+    {
+      "id": 42,
+      "number": 4,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "WordPiece - used in BERT",
+      "type": "conceptual",
+      "question": "Does WordPiece always guarantee a representation for every word?",
+      "answer": "<p>Not necessarily; coverage depends on the vocabulary and tokenizer rules.</p><ul><li><strong>Unknowns:</strong> Some WordPiece tokenizers return an unknown-token marker for an unsegmentable word.</li><li><strong>Vocabulary:</strong> Learned pieces determine which spellings can be represented.</li><li><strong>Comparison:</strong> Byte-level tokenizers can offer different coverage behavior.</li></ul><p><strong>Remember:</strong> Subword tokenization reduces unknowns but does not always eliminate them.</p>"
+    },
+    {
+      "id": 43,
+      "number": 5,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "SentencePiece - used in T5, LLaMA",
+      "type": "conceptual",
+      "question": "What is SentencePiece?",
+      "answer": "<p>SentencePiece is a tokenizer toolkit that can train models such as unigram tokenization or BPE directly from raw text.</p><ul><li><strong>Toolkit:</strong> It is not one single tokenization algorithm.</li><li><strong>Text handling:</strong> It represents whitespace so segmentation need not depend on splitting at spaces first.</li><li><strong>Examples:</strong> T5 and earlier LLaMA versions use SentencePiece-based tokenizers.</li></ul><p><strong>Remember:</strong> SentencePiece is a toolkit; the checkpoint determines the actual algorithm.</p><p><a href=\"https://github.com/google/sentencepiece\" target=\"_blank\" rel=\"noopener noreferrer\">SentencePiece project</a></p>"
+    },
+    {
+      "id": 44,
+      "number": 6,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "SentencePiece - used in T5, LLaMA",
+      "type": "conceptual",
+      "question": "Do all LLaMA versions use the same tokenizer?",
+      "answer": "<p>No; tokenizer choices can change across model generations.</p><ul><li><strong>Earlier models:</strong> LLaMA 1 and 2 use SentencePiece-based tokenization.</li><li><strong>LLaMA 3:</strong> Uses a different BPE tokenizer based on tiktoken.</li><li><strong>Compatibility:</strong> Load the tokenizer matching the exact checkpoint.</li></ul><p><strong>Remember:</strong> A model-family name does not guarantee one tokenizer forever.</p><p><a href=\"https://huggingface.co/meta-llama/Meta-Llama-3-8B\" target=\"_blank\" rel=\"noopener noreferrer\">Meta Llama 3 model card</a></p>"
+    },
+    {
+      "id": 45,
+      "number": 7,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Special tokens: [CLS], [SEP], [PAD], [MASK], <eos>, <bos>",
+      "type": "conceptual",
+      "question": "What are special tokens?",
+      "answer": "<p>Special tokens are reserved vocabulary items that signal structure or a model-specific role.</p><ul><li><strong>BERT-style markers:</strong> CLS, SEP, and MASK have roles defined by the training setup.</li><li><strong>Padding:</strong> PAD fills unused positions in a batch and is commonly paired with an attention mask.</li><li><strong>Boundaries:</strong> BOS and EOS can mark sequence starts and ends when the tokenizer uses them.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Marker</th><th scope=\"col\">Typical role, when supported</th></tr></thead><tbody><tr><th scope=\"row\">[CLS]</th><td>Special sequence representation position in BERT-style setups</td></tr><tr><th scope=\"row\">[SEP]</th><td>Separate segments or mark an input boundary</td></tr><tr><th scope=\"row\">[PAD]</th><td>Fill unused batch positions</td></tr><tr><th scope=\"row\">[MASK]</th><td>Mark masked-token input in suitable training or prediction setups</td></tr><tr><th scope=\"row\">&lt;bos&gt;</th><td>Beginning-of-sequence marker</td></tr><tr><th scope=\"row\">&lt;eos&gt;</th><td>End-of-sequence marker</td></tr></tbody></table></div><p><strong>Remember:</strong> Special-token meaning depends on the model, not just its spelling.</p>"
+    },
+    {
+      "id": 46,
+      "number": 8,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Special tokens: [CLS], [SEP], [PAD], [MASK], <eos>, <bos>",
+      "type": "conceptual",
+      "question": "Why must we handle padding and attention masks together?",
+      "answer": "<p>Padding makes batch shapes compatible, while the mask tells a model which positions should be ignored.</p><ul><li><strong>Batching:</strong> Shorter examples may be extended to the batch length.</li><li><strong>Mask:</strong> Distinguish real input positions from padding according to the API convention.</li><li><strong>Loss:</strong> Padded target positions may also need exclusion from the training objective.</li></ul><p><strong>Remember:</strong> Padding fills space; masks prevent that space from becoming evidence.</p>"
+    },
+    {
+      "id": 47,
+      "number": 9,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Token IDs - how text maps to integers",
+      "type": "conceptual",
+      "question": "What is a token ID?",
+      "answer": "<p>A token ID is the integer index assigned to a token in a particular tokenizer's vocabulary.</p><ul><li><strong>Mapping:</strong> A tokenizer converts text pieces into their corresponding indices.</li><li><strong>Embedding:</strong> The model looks up vectors using those indices.</li><li><strong>Meaning:</strong> The numerical size of an ID does not measure semantic importance.</li></ul><p class=\"example\"><strong>Example:</strong> In a toy vocabulary, cat might have ID 7. That number is only a lookup address; another tokenizer may use a completely different ID.</p><p><strong>Remember:</strong> Token IDs are vocabulary addresses, not meanings.</p>"
+    },
+    {
+      "id": 48,
+      "number": 10,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Token IDs - how text maps to integers",
+      "type": "conceptual",
+      "question": "Can the same text have different token IDs in different models?",
+      "answer": "<p>Yes; different tokenizers can segment text differently and use different vocabulary mappings.</p><ul><li><strong>Pieces:</strong> One tokenizer may use one token where another uses several.</li><li><strong>Indices:</strong> Even equivalent pieces can have different IDs.</li><li><strong>Rule:</strong> Keep model weights and tokenizer configuration compatible.</li></ul><p><strong>Remember:</strong> The IDs belong to the tokenizer, not universally to the text.</p>"
+    },
+    {
+      "id": 49,
+      "number": 11,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Vocabulary size tradeoffs",
+      "type": "conceptual",
+      "question": "What changes when a tokenizer's vocabulary size increases?",
+      "answer": "<p>A larger vocabulary can shorten token sequences while increasing vocabulary-dependent model costs.</p><ul><li><strong>Sequence length:</strong> More common strings may fit into single tokens.</li><li><strong>Parameters:</strong> Embedding and output layers generally grow with vocabulary size.</li><li><strong>Coverage:</strong> Benefits vary across languages, domains, and the learned vocabulary.</li></ul><p><strong>Remember:</strong> More entries can mean fewer tokens but larger vocabulary layers.</p>"
+    },
+    {
+      "id": 50,
+      "number": 12,
+      "section": "5.4 Subword Tokenization (Modern)",
+      "bullet": "Vocabulary size tradeoffs",
+      "type": "conceptual",
+      "question": "Is the largest possible tokenizer vocabulary always best?",
+      "answer": "<p>No; vocabulary design balances sequence length, model size, coverage, and training efficiency.</p><ul><li><strong>Small vocabulary:</strong> Reuse many small units but often create longer sequences.</li><li><strong>Large vocabulary:</strong> Store more entries, including ones with fewer training examples.</li><li><strong>Choice:</strong> Evaluate the languages and domains the model must handle.</li></ul><p><strong>Remember:</strong> Choose an effective vocabulary, not simply the biggest one.</p>"
+    },
+    {
+      "id": 51,
+      "number": 1,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Why transformers replaced RNNs - parallelism and long-range attention",
+      "type": "conceptual",
+      "question": "Why did transformers become popular for language modeling?",
+      "answer": "<p>Transformers allow direct attention across positions and parallel computation across training tokens.</p><ul><li><strong>Parallel training:</strong> Process many positions together instead of recurrently updating one state at a time.</li><li><strong>Connections:</strong> Attention can link distant tokens without a long recurrent chain.</li><li><strong>Tradeoff:</strong> Standard full attention can be expensive for long sequences; RNNs still have useful applications.</li></ul><p><strong>Remember:</strong> Transformers improve training parallelism and direct context access.</p><p><a href=\"https://arxiv.org/abs/1706.03762\" target=\"_blank\" rel=\"noopener noreferrer\">Original transformer paper</a></p>"
+    },
+    {
+      "id": 52,
+      "number": 2,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Why transformers replaced RNNs - parallelism and long-range attention",
+      "type": "conceptual",
+      "question": "Are transformer generation steps all parallel?",
+      "answer": "<p>Ordinary autoregressive generation still produces new tokens sequentially.</p><ul><li><strong>Training:</strong> Known target sequences allow parallel token-position computation with causal masks.</li><li><strong>Generation:</strong> Each next token depends on the previously generated tokens.</li><li><strong>Distinction:</strong> Parallel work within a step is different from generating all unknown future tokens at once.</li></ul><p><strong>Remember:</strong> Parallel training does not imply fully parallel autoregressive generation.</p>"
+    },
+    {
+      "id": 53,
+      "number": 3,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Self-attention - every token attending to every other",
+      "type": "conceptual",
+      "question": "What is self-attention?",
+      "answer": "<p>Self-attention updates token representations by combining information from positions in the same sequence.</p><ul><li><strong>Queries:</strong> Each position asks what information is relevant.</li><li><strong>Weights:</strong> Scores determine how much each allowed position contributes.</li><li><strong>Masks:</strong> Causal or padding masks restrict which positions can contribute.</li></ul><p><strong>Remember:</strong> Self-attention lets sequence positions exchange relevant information.</p>"
+    },
+    {
+      "id": 54,
+      "number": 4,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Self-attention - every token attending to every other",
+      "type": "conceptual",
+      "question": "Can every token always attend to every other token?",
+      "answer": "<p>Only positions allowed by the model's attention pattern and masks can contribute.</p><ul><li><strong>Encoder attention:</strong> Often lets a real token access both left and right context.</li><li><strong>Causal attention:</strong> Blocks access to future positions.</li><li><strong>Padding:</strong> Masks can exclude padded positions from attention.</li></ul><p><strong>Remember:</strong> Attention access is defined by masks, not assumed to be unrestricted.</p>"
+    },
+    {
+      "id": 55,
+      "number": 5,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Query, Key, Value (Q, K, V) - intuition and matrix formulation",
+      "type": "conceptual",
+      "question": "What do queries, keys, and values represent in attention?",
+      "answer": "<p>Queries ask for information, keys indicate relevance, and values contain the information to combine.</p><ul><li><strong>Query:</strong> A learned representation of what the current position needs.</li><li><strong>Key:</strong> A learned representation used to score a candidate position.</li><li><strong>Value:</strong> A learned representation added to the weighted context.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Role</th><th scope=\"col\">Simple intuition</th></tr></thead><tbody><tr><th scope=\"row\">Query</th><td>What information does this position need?</td></tr><tr><th scope=\"row\">Key</th><td>How relevant is this candidate position?</td></tr><tr><th scope=\"row\">Value</th><td>What information can this position contribute?</td></tr></tbody></table></div><p><strong>Remember:</strong> Query asks, key matches, value supplies.</p>"
+    },
+    {
+      "id": 56,
+      "number": 6,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Query, Key, Value (Q, K, V) - intuition and matrix formulation",
+      "type": "conceptual",
+      "question": "How are Q, K, and V computed in self-attention?",
+      "answer": "<p>Learned linear projections transform the input representations into queries, keys, and values.</p><ul><li><strong>Shared input:</strong> Start with the current sequence representation matrix X.</li><li><strong>Parameters:</strong> Use different learned projection matrices for the three roles.</li><li><strong>Heads:</strong> Different heads can use different projected representation spaces.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>Q = X * W_Q; K = X * W_K; V = X * W_V</code></p><p><strong>Remember:</strong> Same input representations, three learned projections.</p>"
+    },
+    {
+      "id": 57,
+      "number": 7,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Attention score: softmax(QKᵀ / √d_k) * V",
+      "type": "conceptual",
+      "question": "How does scaled dot-product attention combine Q, K, and V?",
+      "answer": "<p>It scores query-key matches, scales and normalizes the scores, then combines value vectors.</p><ol><li><strong>Scores:</strong> Multiply queries by transposed keys to compare positions.</li><li><strong>Scaling:</strong> Divide by the square root of key dimension to moderate score magnitudes.</li><li><strong>Combination:</strong> Apply softmax across allowed key positions and multiply by values.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>Attention(Q, K, V) = softmax(Q * transpose(K) / sqrt(d_k) + mask) * V</code></p><p class=\"example\"><strong>Example:</strong> d_k is the key dimension. The mask excludes forbidden positions; softmax runs across the candidate key positions.</p><p><strong>Remember:</strong> Match, scale, normalize, then mix values.</p>"
+    },
+    {
+      "id": 58,
+      "number": 8,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Attention score: softmax(QKᵀ / √d_k) * V",
+      "type": "conceptual",
+      "question": "Why divide attention scores by the square root of key dimension?",
+      "answer": "<p>Scaling helps prevent dot-product magnitudes from growing too large as key dimension increases.</p><ul><li><strong>Magnitude:</strong> More terms in a dot product can increase its variance under common assumptions.</li><li><strong>Softmax:</strong> Very large differences can make weights excessively concentrated.</li><li><strong>Training:</strong> Better-scaled scores can make gradients easier to use.</li></ul><p><strong>Remember:</strong> Scaling keeps attention scores in a more manageable range.</p>"
+    },
+    {
+      "id": 59,
+      "number": 9,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Multi-head attention - attending to different aspects",
+      "type": "conceptual",
+      "question": "What is multi-head attention?",
+      "answer": "<p>Multi-head attention computes several attention outputs using different learned projections and then combines them.</p><ul><li><strong>Heads:</strong> Learn multiple representation subspaces.</li><li><strong>Parallel outputs:</strong> Each head can emphasize different relationships.</li><li><strong>Combination:</strong> Concatenate or otherwise assemble the outputs and apply a learned projection.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>MultiHead(X) = Concat(head_1, ..., head_h) * W_output</code></p><p><strong>Remember:</strong> Multiple heads provide multiple learned views of the sequence.</p>"
+    },
+    {
+      "id": 60,
+      "number": 10,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Multi-head attention - attending to different aspects",
+      "type": "conceptual",
+      "question": "Do different attention heads always learn clearly different linguistic roles?",
+      "answer": "<p>No; separate projections allow specialization but do not guarantee distinct interpretable roles.</p><ul><li><strong>Possibility:</strong> A head may emphasize position, syntax, or another useful pattern.</li><li><strong>Overlap:</strong> Different heads can learn similar or redundant behavior.</li><li><strong>Interpretation:</strong> Inspect behavior instead of assigning fixed meanings to heads.</li></ul><p><strong>Remember:</strong> Separate heads allow diversity; they do not guarantee neat explanations.</p>"
+    },
+    {
+      "id": 61,
+      "number": 11,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Positional encoding - injecting order",
+      "type": "conceptual",
+      "question": "Why does a transformer need positional information?",
+      "answer": "<p>Attention alone does not provide an intrinsic sequence order, so the model needs position information.</p><ul><li><strong>Problem:</strong> The same token collection can express different meanings in different orders.</li><li><strong>Approaches:</strong> Add position embeddings or use relative or rotary position mechanisms.</li><li><strong>Use:</strong> Let the model distinguish where tokens occur and how positions relate.</li></ul><p><strong>Remember:</strong> Attention supplies content relationships; positional methods supply order.</p>"
+    },
+    {
+      "id": 62,
+      "number": 12,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Positional encoding - injecting order",
+      "type": "conceptual",
+      "question": "Are sinusoidal position encodings the only way to represent order?",
+      "answer": "<p>No; transformers use several positional approaches.</p><ul><li><strong>Sinusoidal:</strong> Use fixed wave-based patterns, as in the original transformer.</li><li><strong>Learned positions:</strong> Train position-specific embedding values.</li><li><strong>Other approaches:</strong> Relative position biases and rotary embeddings encode positional relationships differently.</li></ul><p><strong>Remember:</strong> Position information is essential; its implementation can vary.</p>"
+    },
+    {
+      "id": 63,
+      "number": 13,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Feed-forward sublayer",
+      "type": "conceptual",
+      "question": "What does the transformer feed-forward sublayer do?",
+      "answer": "<p>It applies a learned non-linear feature transformation to each token representation.</p><ul><li><strong>Per position:</strong> Process each token separately within this sublayer.</li><li><strong>Parameters:</strong> Usually share the same feed-forward weights across positions.</li><li><strong>Activation:</strong> Use a non-linear function or gated construction between projections.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>PositionWiseFFN(x) = activation(x * W_1 + b_1) * W_2 + b_2</code></p><p><strong>Remember:</strong> Attention mixes positions; feed-forward layers transform features.</p>"
+    },
+    {
+      "id": 64,
+      "number": 14,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Feed-forward sublayer",
+      "type": "conceptual",
+      "question": "Does the standard feed-forward sublayer directly exchange information between tokens?",
+      "answer": "<p>No; the standard position-wise sublayer transforms each position independently.</p><ul><li><strong>Input:</strong> Receive token representations already influenced by earlier layers.</li><li><strong>Transformation:</strong> Apply the same network to each position.</li><li><strong>Contrast:</strong> Attention is the sublayer that directly mixes information across allowed positions.</li></ul><p><strong>Remember:</strong> Position-wise means shared computation without direct cross-token mixing.</p>"
+    },
+    {
+      "id": 65,
+      "number": 15,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Layer normalization and residual connections",
+      "type": "conceptual",
+      "question": "Why do transformer blocks use normalization and residual connections?",
+      "answer": "<p>They help manage representation scales and make deep networks easier to optimize.</p><ul><li><strong>Residual path:</strong> Add a learned change to a shortcut representation.</li><li><strong>Normalization:</strong> Stabilize feature scales within a position.</li><li><strong>Variants:</strong> Placement and normalization type vary; some models use RMSNorm instead of LayerNorm.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>Example pre-norm residual pattern: output = input + Sublayer(Norm(input))</code></p><p><strong>Remember:</strong> Shortcuts help information flow; normalization helps control scales.</p>"
+    },
+    {
+      "id": 66,
+      "number": 16,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Layer normalization and residual connections",
+      "type": "conceptual",
+      "question": "Does every transformer place LayerNorm in the same location?",
+      "answer": "<p>No; pre-normalization and post-normalization designs place it differently.</p><ul><li><strong>Pre-norm:</strong> Normalize inputs before a block's attention or feed-forward transformation.</li><li><strong>Post-norm:</strong> Normalize after combining the transformation and residual path.</li><li><strong>Model dependence:</strong> Follow the architecture definition rather than assuming one universal block order.</li></ul><p><strong>Remember:</strong> The normalization idea is shared; block layout can differ.</p>"
+    },
+    {
+      "id": 67,
+      "number": 17,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Encoder-only (BERT-style) - understanding tasks",
+      "type": "conceptual",
+      "question": "What is an encoder-only transformer?",
+      "answer": "<p>An encoder-only transformer builds contextual input representations, usually with access to both directions.</p><ul><li><strong>Context:</strong> Each allowed input position can use left and right information.</li><li><strong>Tasks:</strong> Add suitable heads for classification, token labeling, or extractive question answering.</li><li><strong>Example:</strong> BERT is a widely used encoder-only design.</li></ul><p><strong>Remember:</strong> Encoder-only models are a natural fit for input-understanding tasks.</p><p><a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>"
+    },
+    {
+      "id": 68,
+      "number": 18,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Encoder-only (BERT-style) - understanding tasks",
+      "type": "conceptual",
+      "question": "How does an encoder-only model perform classification?",
+      "answer": "<p>A task head maps a suitable sequence representation to class scores.</p><ul><li><strong>Representation:</strong> Obtain token-level contextual states from the encoder.</li><li><strong>Pooling:</strong> Select or combine states according to the model's training design.</li><li><strong>Head:</strong> Train a classifier on the chosen representation.</li></ul><p><strong>Remember:</strong> An encoder represents the input; a classifier head predicts its label.</p>"
+    },
+    {
+      "id": 69,
+      "number": 19,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Decoder-only (GPT-style) - generation tasks",
+      "type": "conceptual",
+      "question": "What is a decoder-only transformer?",
+      "answer": "<p>A decoder-only language model uses causal attention to predict tokens from preceding context.</p><ul><li><strong>Mask:</strong> Prevent a position from accessing future tokens during training.</li><li><strong>Prediction:</strong> Produce a distribution for the next token.</li><li><strong>Generation:</strong> Repeatedly select a token and extend the context.</li></ul><p><strong>Remember:</strong> Decoder-only language models generate by continuing a prefix.</p>"
+    },
+    {
+      "id": 70,
+      "number": 20,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Decoder-only (GPT-style) - generation tasks",
+      "type": "conceptual",
+      "question": "Can decoder-only models be used for tasks other than open-ended generation?",
+      "answer": "<p>Yes; many tasks can be expressed as conditioned outputs or supported by suitable heads.</p><ul><li><strong>Prompting:</strong> Ask for a label, answer, or structured response.</li><li><strong>Training:</strong> Adapt the model to a specific task when appropriate.</li><li><strong>Limits:</strong> Evaluate correctness and output constraints rather than assuming generation guarantees success.</li></ul><p><strong>Remember:</strong> An architecture's common use is not its only possible use.</p>"
+    },
+    {
+      "id": 71,
+      "number": 21,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Encoder-Decoder (T5-style) - seq2seq tasks",
+      "type": "conceptual",
+      "question": "What is an encoder-decoder transformer?",
+      "answer": "<p>It uses an encoder to represent source input and a decoder to generate a conditioned output sequence.</p><ul><li><strong>Encoder:</strong> Process the input using its allowed context.</li><li><strong>Decoder:</strong> Generate target tokens with causal self-attention.</li><li><strong>Cross-attention:</strong> Let decoder positions access encoder representations.</li></ul><p><strong>Remember:</strong> The encoder reads the source; the decoder writes a conditioned target.</p><p><a href=\"https://arxiv.org/abs/1910.10683\" target=\"_blank\" rel=\"noopener noreferrer\">T5 paper</a></p>"
+    },
+    {
+      "id": 72,
+      "number": 22,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Encoder-Decoder (T5-style) - seq2seq tasks",
+      "type": "conceptual",
+      "question": "Why is an encoder-decoder model useful for translation or summarization?",
+      "answer": "<p>It separates source understanding from target generation while linking them through attention.</p><ul><li><strong>Source:</strong> Encode the document or sentence before producing the target.</li><li><strong>Target:</strong> Generate an output of a potentially different length.</li><li><strong>Conditioning:</strong> Revisit useful source representations through cross-attention.</li></ul><p><strong>Remember:</strong> One component represents the input; another generates the requested output.</p>"
+    },
+    {
+      "id": 73,
+      "number": 23,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Causal masking in decoders",
+      "type": "conceptual",
+      "question": "What is a causal attention mask?",
+      "answer": "<p>A causal mask blocks attention to future sequence positions.</p><ul><li><strong>Training:</strong> Prevent a position from seeing information it is supposed to predict.</li><li><strong>Allowed context:</strong> Usually include the current representation and preceding positions under the model's shifted training setup.</li><li><strong>Mechanism:</strong> Exclude forbidden attention scores before softmax.</li></ul><p><strong>Remember:</strong> Causal masking prevents future-token leakage.</p>"
+    },
+    {
+      "id": 74,
+      "number": 24,
+      "section": "5.5 Transformer Architecture (Master This)",
+      "bullet": "Causal masking in decoders",
+      "type": "conceptual",
+      "question": "Why is causal masking needed when training positions are computed in parallel?",
+      "answer": "<p>The full target sequence is present during training, so unrestricted attention would reveal future answers.</p><ul><li><strong>Parallel inputs:</strong> Many positions are processed together.</li><li><strong>Leakage:</strong> Future tokens must not become evidence for earlier predictions.</li><li><strong>Consistency:</strong> Match the left-to-right information available during generation.</li></ul><p><strong>Remember:</strong> Parallel computation still needs a causal information boundary.</p>"
+    },
+    {
+      "id": 75,
+      "number": 1,
+      "section": "5.6 Language Modeling",
+      "bullet": "P(next token | previous tokens)",
+      "type": "conceptual",
+      "question": "What does next-token probability mean?",
+      "answer": "<p>It is a model's distribution over the token that follows the current prefix.</p><ul><li><strong>Conditioning:</strong> Use the previous tokens as context.</li><li><strong>Vocabulary:</strong> Assign probability mass across candidate next tokens.</li><li><strong>Uncertainty:</strong> Several continuations can be plausible even when one has the largest score.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>P(x_t given x_1, ..., x_(t-1))</code></p><p><strong>Remember:</strong> A language model predicts a distribution, not one inevitable next word.</p>"
+    },
+    {
+      "id": 76,
+      "number": 2,
+      "section": "5.6 Language Modeling",
+      "bullet": "P(next token | previous tokens)",
+      "type": "conceptual",
+      "question": "Is the next token always a complete word?",
+      "answer": "<p>No; token boundaries depend on the tokenizer.</p><ul><li><strong>Pieces:</strong> A token may represent a word, part of a word, punctuation, or other text.</li><li><strong>Generation:</strong> Append one selected vocabulary item at each ordinary decoding step.</li><li><strong>Decoding:</strong> Convert the resulting token sequence back into text.</li></ul><p><strong>Remember:</strong> Next-token prediction is not necessarily next-word prediction.</p>"
+    },
+    {
+      "id": 77,
+      "number": 3,
+      "section": "5.6 Language Modeling",
+      "bullet": "Autoregressive language modeling",
+      "type": "conceptual",
+      "question": "What is autoregressive language modeling?",
+      "answer": "<p>Autoregressive modeling factors a sequence into predictions conditioned on earlier tokens.</p><ul><li><strong>Order:</strong> Predict each next token using a prefix.</li><li><strong>Training:</strong> Learn from examples where the correct next tokens are known.</li><li><strong>Generation:</strong> Feed generated tokens back as context for following predictions.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>P(x_1, ..., x_T) = product over t of P(x_t given x_&lt;t)</code></p><p><strong>Remember:</strong> Predict, append, and predict again.</p>"
+    },
+    {
+      "id": 78,
+      "number": 4,
+      "section": "5.6 Language Modeling",
+      "bullet": "Autoregressive language modeling",
+      "type": "conceptual",
+      "question": "How does an autoregressive model generate a sentence?",
+      "answer": "<p>It repeatedly selects a next token from the distribution conditioned on its growing prefix.</p><ol><li><strong>Start:</strong> Supply a prompt or beginning-of-sequence context.</li><li><strong>Continue:</strong> Run the model, choose a token, and append it.</li><li><strong>Stop:</strong> End on a stopping condition such as EOS or a token limit.</li></ol><p><strong>Remember:</strong> Generation builds the continuation one step at a time.</p>"
+    },
+    {
+      "id": 79,
+      "number": 5,
+      "section": "5.6 Language Modeling",
+      "bullet": "Masked language modeling (MLM)",
+      "type": "conceptual",
+      "question": "What is masked language modeling?",
+      "answer": "<p>MLM trains a model to recover selected hidden or corrupted tokens from their surrounding context.</p><ul><li><strong>Input:</strong> Hide or replace selected token information according to the training recipe.</li><li><strong>Context:</strong> The model can often use both left and right context.</li><li><strong>Objective:</strong> Predict the selected original tokens rather than always predicting the next token.</li></ul><p><strong>Remember:</strong> MLM learns by recovering missing information.</p>"
+    },
+    {
+      "id": 80,
+      "number": 6,
+      "section": "5.6 Language Modeling",
+      "bullet": "Masked language modeling (MLM)",
+      "type": "conceptual",
+      "question": "How is MLM different from autoregressive next-token training?",
+      "answer": "<p>MLM recovers selected tokens from context; autoregressive training predicts a continuation from its prefix.</p><ul><li><strong>MLM:</strong> Commonly support bidirectional representation learning.</li><li><strong>Autoregressive:</strong> Enforce a causal boundary for prediction.</li><li><strong>Evaluation:</strong> The objectives differ, so their probability-based metrics are not automatically interchangeable.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Objective</th><th scope=\"col\">Information available</th><th scope=\"col\">Prediction target</th></tr></thead><tbody><tr><th scope=\"row\">Masked language modeling</th><td>Allowed surrounding context, often both directions</td><td>Selected hidden or corrupted tokens</td></tr><tr><th scope=\"row\">Autoregressive modeling</th><td>A causal prefix</td><td>Next token in the sequence</td></tr></tbody></table></div><p><strong>Remember:</strong> Recover hidden tokens versus continue a prefix.</p>"
+    },
+    {
+      "id": 81,
+      "number": 7,
+      "section": "5.6 Language Modeling",
+      "bullet": "Perplexity - evaluating language models",
+      "type": "conceptual",
+      "question": "What is language-model perplexity?",
+      "answer": "<p>Perplexity exponentiates average negative log-probability of reference tokens under a probabilistic language model.</p><ul><li><strong>Interpretation:</strong> Lower perplexity means the model assigns higher likelihood to those reference tokens.</li><li><strong>Evaluation:</strong> Measure on appropriate held-out data using a stated context and masking protocol.</li><li><strong>Comparison:</strong> Match tokenizer and evaluation setup; different token units distort direct comparisons.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>Perplexity = exp(-(1 / N) * sum(log p(reference_token_t given allowed context)))</code></p><p class=\"example\"><strong>Example:</strong> N counts scored reference tokens. This form uses natural logarithms and a stated autoregressive evaluation setup.</p><p><strong>Remember:</strong> Perplexity measures reference-token predictability, not overall answer quality.</p>"
+    },
+    {
+      "id": 82,
+      "number": 8,
+      "section": "5.6 Language Modeling",
+      "bullet": "Perplexity - evaluating language models",
+      "type": "conceptual",
+      "question": "Does lower perplexity guarantee better factual or helpful answers?",
+      "answer": "<p>No; predicting reference text well is different from meeting every product-quality goal.</p><ul><li><strong>Factuality:</strong> A likely continuation can still contain incorrect claims.</li><li><strong>Helpfulness:</strong> Following a user's needs requires evaluation beyond token likelihood.</li><li><strong>Scope:</strong> Use perplexity with task metrics and human assessment where appropriate.</li></ul><p><strong>Remember:</strong> Good likelihood is useful evidence, not a complete quality verdict.</p>"
+    },
+    {
+      "id": 83,
+      "number": 9,
+      "section": "5.6 Language Modeling",
+      "bullet": "Temperature, Top-k, Top-p (nucleus) sampling",
+      "type": "conceptual",
+      "question": "What do temperature, top-k, and top-p control during generation?",
+      "answer": "<p>They adjust the distribution or candidate set used to select a next token.</p><ul><li><strong>Temperature:</strong> Rescale logits before sampling to alter concentration.</li><li><strong>Top-k:</strong> Keep a fixed number of the highest-probability candidates.</li><li><strong>Top-p:</strong> Keep a high-probability set whose cumulative mass reaches the chosen threshold.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Control</th><th scope=\"col\">What changes</th></tr></thead><tbody><tr><th scope=\"row\">Temperature</th><td>Concentration of the probability distribution</td></tr><tr><th scope=\"row\">Top-k</th><td>Fixed number of leading candidates retained</td></tr><tr><th scope=\"row\">Top-p</th><td>Adaptive set reaching a probability-mass threshold</td></tr></tbody></table></div><p class=\"formula\"><strong>Formula:</strong> <code>For temperature T &gt; 0: sampling_probabilities = softmax(logits / T)</code></p><p><strong>Remember:</strong> Temperature changes concentration; top-k and top-p restrict candidates.</p>"
+    },
+    {
+      "id": 84,
+      "number": 10,
+      "section": "5.6 Language Modeling",
+      "bullet": "Temperature, Top-k, Top-p (nucleus) sampling",
+      "type": "conceptual",
+      "question": "How do top-k and top-p sampling differ?",
+      "answer": "<p>Top-k fixes the number of candidates; top-p adapts that number to the distribution.</p><ul><li><strong>Fixed count:</strong> Top-k can retain many or few probability-mass units depending on the scores.</li><li><strong>Adaptive set:</strong> Top-p retains enough leading candidates to meet the probability threshold.</li><li><strong>Selection:</strong> Sample from the retained set after the appropriate normalization.</li></ul><p><strong>Remember:</strong> Top-k fixes a count; top-p fixes a probability-mass target.</p>"
+    },
+    {
+      "id": 85,
+      "number": 11,
+      "section": "5.6 Language Modeling",
+      "bullet": "Greedy vs sampling vs beam search",
+      "type": "conceptual",
+      "question": "How do greedy decoding, sampling, and beam search differ?",
+      "answer": "<p>They choose continuations through local maximization, random selection, or a limited sequence search.</p><ul><li><strong>Greedy:</strong> Pick the highest-scoring next token.</li><li><strong>Sampling:</strong> Randomly choose from a configured next-token distribution.</li><li><strong>Beam search:</strong> Keep several high-scoring partial sequences and expand them.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Method</th><th scope=\"col\">Core rule</th><th scope=\"col\">Typical tradeoff</th></tr></thead><tbody><tr><th scope=\"row\">Greedy</th><td>Choose the highest-scoring next token</td><td>Simple and fast, commits locally</td></tr><tr><th scope=\"row\">Sampling</th><td>Draw from a configured distribution</td><td>Allows variation; results depend on settings</td></tr><tr><th scope=\"row\">Beam search</th><td>Retain several partial sequences</td><td>More search and computation, not guaranteed better text</td></tr></tbody></table></div><p><strong>Remember:</strong> One best local choice, a random choice, or several search paths.</p>"
+    },
+    {
+      "id": 86,
+      "number": 12,
+      "section": "5.6 Language Modeling",
+      "bullet": "Greedy vs sampling vs beam search",
+      "type": "conceptual",
+      "question": "Is beam search or a lower temperature always better?",
+      "answer": "<p>No; decoding quality depends on the task, model, scoring rule, and desired variation.</p><ul><li><strong>Search:</strong> Higher sequence scores do not guarantee more useful text.</li><li><strong>Variation:</strong> Lower temperature usually concentrates sampling but does not make claims true.</li><li><strong>Evaluation:</strong> Compare decoding settings with representative task examples.</li></ul><p><strong>Remember:</strong> Choose decoding for the task, not a universal quality rule.</p>"
+    },
+    {
+      "id": 87,
+      "number": 1,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Model comparison",
+      "type": "conceptual",
+      "question": "How should we compare the pretrained models in this roadmap?",
+      "answer": "<p>Compare documented architecture, input-output capabilities, access, and measured task performance rather than assuming one universal best model.</p><ul><li><strong>Architecture:</strong> Encoder, decoder, and encoder-decoder describe structural patterns, not a complete quality ranking.</li><li><strong>Evidence:</strong> For proprietary families, distinguish documented capabilities from undisclosed implementation details.</li><li><strong>Version:</strong> Treat the named models as learning references; availability, licenses, and capabilities vary by version.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Model reference</th><th scope=\"col\">Documented framing</th><th scope=\"col\">Common uses</th></tr></thead><tbody><tr><th scope=\"row\">BERT</th><td>Encoder-only transformer</td><td>Classification, NER, extractive QA</td></tr><tr><th scope=\"row\">GPT-4</th><td>Proprietary GPT-family generative model; full internals not inferred here</td><td>Historical generation and instruction-following reference</td></tr><tr><th scope=\"row\">Claude 3.5/4</th><td>Proprietary model generations; consult version documentation</td><td>Language assistance, analysis, coding; evaluate safety explicitly</td></tr><tr><th scope=\"row\">Gemini</th><td>Multimodal transformer family; original report uses decoder foundations</td><td>Version-specific multimodal tasks</td></tr><tr><th scope=\"row\">T5</th><td>Encoder-decoder transformer</td><td>Text-to-text and sequence transformation</td></tr><tr><th scope=\"row\">LLaMA 3</th><td>Decoder-only, open weights under a custom license</td><td>Adaptation and self-hosted language tasks when permitted</td></tr><tr><th scope=\"row\">Mistral 7B</th><td>Decoder-style model; distinguish base and instruct releases</td><td>Language-model deployment and adaptation</td></tr><tr><th scope=\"row\">Qwen 2.5</th><td>Causal language-model family with multilingual coverage</td><td>Multilingual generation and adaptation</td></tr></tbody></table></div><p><strong>Remember:</strong> Choose using verified model details and representative evaluation.</p><p><a href=\"https://developers.openai.com/api/docs/models/gpt-4\" target=\"_blank\" rel=\"noopener noreferrer\">GPT-4 official documentation</a> / <a href=\"https://arxiv.org/html/2312.11805v1\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini technical report</a></p>"
+    },
+    {
+      "id": 88,
+      "number": 2,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "BERT",
+      "type": "conceptual",
+      "question": "What is BERT commonly used for?",
+      "answer": "<p>BERT is an encoder-only transformer family used to build contextual representations for language-understanding tasks.</p><ul><li><strong>Context:</strong> Use bidirectional input context during representation learning.</li><li><strong>Tasks:</strong> Add suitable heads for classification, named entities, or extractive question answering.</li><li><strong>Training:</strong> The original BERT uses masked-language-model pretraining among its objectives.</li></ul><p><strong>Remember:</strong> BERT represents an input using context from both directions.</p><p><a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>"
+    },
+    {
+      "id": 89,
+      "number": 3,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "BERT",
+      "type": "conceptual",
+      "question": "Does a pretrained BERT checkpoint automatically solve every classification task?",
+      "answer": "<p>No; a task-specific head and appropriate training or adaptation are usually needed.</p><ul><li><strong>Backbone:</strong> Reuse pretrained language representations.</li><li><strong>Head:</strong> Match outputs to the target labels and task.</li><li><strong>Evaluation:</strong> Check performance on held-out target-domain data.</li></ul><p><strong>Remember:</strong> Pretrained representations are a starting point, not a finished custom classifier.</p>"
+    },
+    {
+      "id": 90,
+      "number": 4,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "GPT-4",
+      "type": "conceptual",
+      "question": "What does GPT-4 illustrate in this NLP roadmap?",
+      "answer": "<p>GPT-4 is a historical example of a proprietary GPT-family model used for generative language tasks.</p><ul><li><strong>Generation:</strong> Produce continuations or responses conditioned on input.</li><li><strong>Applications:</strong> Study generation, instruction following, and conversational interaction.</li><li><strong>Scope:</strong> This roadmap reference is not a claim about current API availability or a recommendation to deploy that exact version.</li></ul><p><strong>Remember:</strong> Use GPT-4 as a model-family learning example, not a current availability assumption.</p><p><a href=\"https://developers.openai.com/api/docs/models/gpt-4\" target=\"_blank\" rel=\"noopener noreferrer\">GPT-4 official documentation</a></p>"
+    },
+    {
+      "id": 91,
+      "number": 5,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "GPT-4",
+      "type": "conceptual",
+      "question": "Should we infer a proprietary model's full architecture from its product name?",
+      "answer": "<p>No; a family label and visible behavior do not establish every internal implementation detail.</p><ul><li><strong>Known information:</strong> Use the provider's actual technical documentation.</li><li><strong>Unknown details:</strong> Do not invent layer counts, parameter counts, or exact hidden design choices.</li><li><strong>Study pattern:</strong> Learn causal decoder-style generation separately from undocumented claims about a product.</li></ul><p><strong>Remember:</strong> Teach the documented concept and label unknown internals as unknown.</p>"
+    },
+    {
+      "id": 92,
+      "number": 6,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Claude 3.5/4",
+      "type": "conceptual",
+      "question": "What are Claude 3.5 and Claude 4 in this roadmap?",
+      "answer": "<p>They are generations of Anthropic's proprietary model family used for language assistance and related tasks.</p><ul><li><strong>Capabilities:</strong> Documented releases describe tasks such as writing, analysis, coding, and tool use.</li><li><strong>Versions:</strong> Context limits and supported features depend on the particular model and deployment.</li><li><strong>Evaluation:</strong> Safety and long-context quality require explicit tests, not a best-for label.</li></ul><p><strong>Remember:</strong> A family name does not replace a version-specific model card.</p><p><a href=\"https://www.anthropic.com/news/claude-4\" target=\"_blank\" rel=\"noopener noreferrer\">Claude 4 release</a></p>"
+    },
+    {
+      "id": 93,
+      "number": 7,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Claude 3.5/4",
+      "type": "conceptual",
+      "question": "Does a safety-focused model guarantee safe and correct outputs?",
+      "answer": "<p>No; safety training and evaluations reduce some risks but do not guarantee every output is safe or factual.</p><ul><li><strong>Model behavior:</strong> Performance can vary with inputs and operating conditions.</li><li><strong>Application:</strong> Product controls and task-specific evaluation still matter.</li><li><strong>Claims:</strong> Separate documented test results from universal guarantees.</li></ul><p><strong>Remember:</strong> Safety is evaluated behavior, not an absolute model property.</p>"
+    },
+    {
+      "id": 94,
+      "number": 8,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Gemini",
+      "type": "conceptual",
+      "question": "What is Gemini commonly used to illustrate?",
+      "answer": "<p>Gemini illustrates a multimodal model family that can work with more than text, depending on the version.</p><ul><li><strong>Modalities:</strong> Particular versions support specified combinations of text, images, audio, or other inputs.</li><li><strong>Architecture:</strong> The original Gemini report describes transformer-decoder foundations.</li><li><strong>Version:</strong> Do not assume all releases share identical internals or capabilities.</li></ul><p><strong>Remember:</strong> Multimodal describes supported information types, not automatically an encoder-decoder design.</p><p><a href=\"https://arxiv.org/html/2312.11805v1\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini technical report</a></p>"
+    },
+    {
+      "id": 95,
+      "number": 9,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Gemini",
+      "type": "conceptual",
+      "question": "Is every multimodal model an encoder-decoder transformer?",
+      "answer": "<p>No; multimodal inputs can be supported by several architectural designs.</p><ul><li><strong>Input handling:</strong> Images or audio may use specialized representation components.</li><li><strong>Language backbone:</strong> A system can still use a decoder-style generative transformer.</li><li><strong>Evidence:</strong> Read the technical report for the specific version instead of guessing from modality.</li></ul><p><strong>Remember:</strong> Multiple modalities do not imply one architecture category.</p>"
+    },
+    {
+      "id": 96,
+      "number": 10,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "T5",
+      "type": "conceptual",
+      "question": "What is T5's main idea?",
+      "answer": "<p>T5 uses an encoder-decoder transformer and expresses many NLP tasks as text-to-text transformations.</p><ul><li><strong>Input:</strong> Represent a task and its source information as text.</li><li><strong>Output:</strong> Generate a textual target such as a translation, summary, or label.</li><li><strong>Pretraining:</strong> Learn reusable representations using a text-corruption objective.</li></ul><p><strong>Remember:</strong> T5 turns many tasks into text in, text out.</p><p><a href=\"https://arxiv.org/abs/1910.10683\" target=\"_blank\" rel=\"noopener noreferrer\">T5 paper</a></p>"
+    },
+    {
+      "id": 97,
+      "number": 11,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "T5",
+      "type": "conceptual",
+      "question": "How is T5 different from a BERT-style encoder model?",
+      "answer": "<p>T5 has a generative decoder, while BERT primarily provides encoder representations for suitable heads.</p><ul><li><strong>BERT-style setup:</strong> Encode input and use a task-specific prediction head.</li><li><strong>T5-style setup:</strong> Encode source input and generate a target sequence.</li><li><strong>Choice:</strong> Use the architecture and training objective that suit the task.</li></ul><p><strong>Remember:</strong> T5 includes a decoder for generating conditioned text.</p>"
+    },
+    {
+      "id": 98,
+      "number": 12,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "LLaMA 3",
+      "type": "conceptual",
+      "question": "What is LLaMA 3?",
+      "answer": "<p>LLaMA 3 is a decoder-only language-model family with released weights under Meta's model-specific license.</p><ul><li><strong>Base models:</strong> Learn general continuation behavior through pretraining.</li><li><strong>Instruction variants:</strong> Receive additional adaptation for instruction-style interaction.</li><li><strong>Access:</strong> Weight availability does not imply unrestricted use or identical licensing to every open-source project.</li></ul><p><strong>Remember:</strong> LLaMA 3 offers open weights subject to its license terms.</p><p><a href=\"https://huggingface.co/meta-llama/Meta-Llama-3-8B\" target=\"_blank\" rel=\"noopener noreferrer\">Meta Llama 3 model card and license</a></p>"
+    },
+    {
+      "id": 99,
+      "number": 13,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "LLaMA 3",
+      "type": "conceptual",
+      "question": "What is the difference between open weights and open source?",
+      "answer": "<p>Open weights means model parameters are available; open source makes a broader claim about access and licensing.</p><ul><li><strong>Weights:</strong> Allow eligible users to run or adapt the released parameter values.</li><li><strong>Other materials:</strong> Training data, full training code, or processes may remain unavailable.</li><li><strong>Terms:</strong> Inspect the exact release license rather than treating all weight releases alike.</li></ul><p><strong>Remember:</strong> Available weights are one part of openness, not the whole definition.</p>"
+    },
+    {
+      "id": 100,
+      "number": 14,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Mistral 7B",
+      "type": "conceptual",
+      "question": "What is Mistral 7B?",
+      "answer": "<p>Mistral 7B is a released decoder-style language model designed to offer strong capability at a relatively modest parameter count.</p><ul><li><strong>Scale:</strong> The family name refers to roughly seven billion parameters.</li><li><strong>Architecture:</strong> Its original design uses techniques such as grouped-query and sliding-window attention.</li><li><strong>Use:</strong> A base checkpoint and an instruction-tuned checkpoint are different starting points.</li></ul><p><strong>Remember:</strong> Check the specific Mistral 7B variant and model card.</p><p><a href=\"https://huggingface.co/mistralai/Mistral-7B-v0.1\" target=\"_blank\" rel=\"noopener noreferrer\">Mistral 7B v0.1 model card</a></p>"
+    },
+    {
+      "id": 101,
+      "number": 15,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Mistral 7B",
+      "type": "conceptual",
+      "question": "Does a smaller model always make inference cheap or fast?",
+      "answer": "<p>No; parameter count is only one factor in serving cost and latency.</p><ul><li><strong>Memory:</strong> Precision, context length, and cached attention states affect usage.</li><li><strong>Compute:</strong> Hardware, batching, and implementation change throughput.</li><li><strong>Quality:</strong> A smaller model may need different adaptation or fail some tasks.</li></ul><p><strong>Remember:</strong> Size matters, but deployment performance must be measured.</p>"
+    },
+    {
+      "id": 102,
+      "number": 16,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Qwen 2.5",
+      "type": "conceptual",
+      "question": "What is Qwen 2.5?",
+      "answer": "<p>Qwen 2.5 is a family of causal language models with multilingual capabilities and multiple model sizes.</p><ul><li><strong>Family:</strong> Distinguish the exact size and checkpoint variant.</li><li><strong>Base versus instruct:</strong> A pretrained continuation model differs from an instruction-adapted one.</li><li><strong>Languages:</strong> Evaluate target-language performance rather than assuming equal quality across languages.</li></ul><p><strong>Remember:</strong> A multilingual family still needs language-specific evaluation.</p><p><a href=\"https://huggingface.co/Qwen/Qwen2.5-7B\" target=\"_blank\" rel=\"noopener noreferrer\">Qwen2.5-7B model card</a></p>"
+    },
+    {
+      "id": 103,
+      "number": 17,
+      "section": "5.7 Key Pretrained Models",
+      "bullet": "Qwen 2.5",
+      "type": "conceptual",
+      "question": "Does multilingual support mean equal performance in every language?",
+      "answer": "<p>No; quality can differ across languages, scripts, domains, and tasks.</p><ul><li><strong>Training:</strong> Data coverage can vary across languages.</li><li><strong>Tokenization:</strong> Some scripts or spellings may use longer token sequences.</li><li><strong>Evaluation:</strong> Use representative examples in the languages your application needs.</li></ul><p><strong>Remember:</strong> Supported does not mean equally accurate everywhere.</p>"
+    },
+    {
+      "id": 104,
+      "number": 1,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Accuracy, Precision, Recall, F1",
+      "type": "conceptual",
+      "question": "How do accuracy, precision, recall, and F1 apply to NLP tasks?",
+      "answer": "<p>They measure classification or labeling performance according to defined positive classes or label sets.</p><ul><li><strong>Accuracy:</strong> Measure the fraction of correct predictions.</li><li><strong>Precision and recall:</strong> Measure correctness among predicted positives and coverage of actual positives.</li><li><strong>F1:</strong> Combine precision and recall; specify class averaging and evaluation units.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>Accuracy = correct / total; Precision = TP / (TP + FP); Recall = TP / (TP + FN); F1 = 2 * Precision * Recall / (Precision + Recall)</code></p><p class=\"example\"><strong>Example:</strong> For entity extraction, a benchmark may require both the correct entity span and the correct entity type.</p><p><strong>Remember:</strong> Define the labels, units, and averaging before reporting a score.</p>"
+    },
+    {
+      "id": 105,
+      "number": 2,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Accuracy, Precision, Recall, F1",
+      "type": "conceptual",
+      "question": "Why can an NLP system have high accuracy but poor useful performance?",
+      "answer": "<p>Class imbalance and mismatched evaluation units can hide important errors.</p><ul><li><strong>Majority class:</strong> Predicting the frequent label may produce a high overall score.</li><li><strong>Rare classes:</strong> Inspect per-class precision, recall, and F1.</li><li><strong>NER:</strong> Token accuracy is different from exact entity-span evaluation.</li></ul><p><strong>Remember:</strong> A high aggregate score can hide failures on important examples.</p>"
+    },
+    {
+      "id": 106,
+      "number": 3,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "BLEU - machine translation",
+      "type": "conceptual",
+      "question": "What is BLEU?",
+      "answer": "<p>BLEU compares generated translations with reference text using modified n-gram precision and a brevity penalty.</p><ul><li><strong>Overlap:</strong> Reward matching n-gram occurrences with clipped counts.</li><li><strong>Length:</strong> Penalize translations that are too short relative to references.</li><li><strong>Scope:</strong> Corpus BLEU is a traditional comparison measure, not a guarantee of semantic correctness.</li></ul><p><strong>Remember:</strong> BLEU measures reference overlap while discouraging overly short outputs.</p><p><a href=\"https://aclanthology.org/P02-1040/\" target=\"_blank\" rel=\"noopener noreferrer\">BLEU paper</a></p>"
+    },
+    {
+      "id": 107,
+      "number": 4,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "BLEU - machine translation",
+      "type": "conceptual",
+      "question": "Why can BLEU miss a good translation?",
+      "answer": "<p>Several valid translations can express the same meaning using different wording.</p><ul><li><strong>References:</strong> A limited reference set cannot list every correct phrasing.</li><li><strong>Overlap:</strong> Different synonyms or word order may reduce matches.</li><li><strong>Assessment:</strong> Combine automatic scores with suitable human or semantic evaluation.</li></ul><p><strong>Remember:</strong> Low overlap can reflect different wording rather than wrong meaning.</p>"
+    },
+    {
+      "id": 108,
+      "number": 5,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "ROUGE - summarization",
+      "type": "conceptual",
+      "question": "What is ROUGE?",
+      "answer": "<p>ROUGE is a family of measures comparing generated summaries with reference summaries through overlap patterns.</p><ul><li><strong>ROUGE-N:</strong> Compare n-gram matches such as unigrams or bigrams.</li><li><strong>ROUGE-L:</strong> Use a longest-common-subsequence relationship.</li><li><strong>Reporting:</strong> State the variant and whether precision, recall, or F1 is reported.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Variant</th><th scope=\"col\">Overlap pattern</th></tr></thead><tbody><tr><th scope=\"row\">ROUGE-1</th><td>Unigram matches</td></tr><tr><th scope=\"row\">ROUGE-2</th><td>Bigram matches</td></tr><tr><th scope=\"row\">ROUGE-L</th><td>Longest common subsequence</td></tr></tbody></table></div><p><strong>Remember:</strong> ROUGE is a metric family, not one single number with one interpretation.</p><p><a href=\"https://aclanthology.org/W04-1013/\" target=\"_blank\" rel=\"noopener noreferrer\">ROUGE paper</a></p>"
+    },
+    {
+      "id": 109,
+      "number": 6,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "ROUGE - summarization",
+      "type": "conceptual",
+      "question": "Does high ROUGE prove a summary is factually correct?",
+      "answer": "<p>No; overlap with reference wording does not verify every statement in the summary.</p><ul><li><strong>Facts:</strong> A summary can reuse many reference words yet alter a critical detail.</li><li><strong>Coverage:</strong> A correct paraphrase may receive lower overlap.</li><li><strong>Evaluation:</strong> Check factual consistency and usefulness separately.</li></ul><p><strong>Remember:</strong> Reference overlap is different from factual verification.</p>"
+    },
+    {
+      "id": 110,
+      "number": 7,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Perplexity - language models",
+      "type": "conceptual",
+      "question": "How should perplexity be used when evaluating language models?",
+      "answer": "<p>Use it to measure reference-token likelihood under a clearly defined probabilistic evaluation setup.</p><ul><li><strong>Held-out data:</strong> Avoid evaluating memorized training examples as generalization evidence.</li><li><strong>Comparability:</strong> Match tokenizer, dataset, and context-handling protocol.</li><li><strong>Limits:</strong> Perplexity does not directly measure factuality, safety, or instruction following.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>Perplexity = exp(average negative log-probability of the evaluated reference tokens)</code></p><p><strong>Remember:</strong> Comparable perplexity needs comparable token units and evaluation conditions.</p>"
+    },
+    {
+      "id": 111,
+      "number": 8,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Perplexity - language models",
+      "type": "conceptual",
+      "question": "Can we directly compare perplexities from models with different tokenizers?",
+      "answer": "<p>Usually not meaningfully without accounting for the different units and evaluation protocol.</p><ul><li><strong>Units:</strong> One model token may represent a different amount of text from another.</li><li><strong>Averaging:</strong> Per-token negative log-likelihood changes with segmentation.</li><li><strong>Alternatives:</strong> Use a stated common normalization when justified and compare task outcomes as well.</li></ul><p><strong>Remember:</strong> Different tokenization changes what one unit of perplexity measures.</p>"
+    },
+    {
+      "id": 112,
+      "number": 9,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "BERTScore - semantic similarity",
+      "type": "conceptual",
+      "question": "What is BERTScore?",
+      "answer": "<p>BERTScore compares candidate and reference text using contextual token-embedding similarities.</p><ul><li><strong>Representations:</strong> Encode token occurrences using a selected contextual model.</li><li><strong>Matching:</strong> Align token similarities to summarize candidate-reference agreement.</li><li><strong>Variants:</strong> Scores depend on the model, settings, and any normalization choices.</li></ul><p><strong>Remember:</strong> BERTScore uses contextual similarity instead of only exact word overlap.</p><p><a href=\"https://arxiv.org/abs/1904.09675\" target=\"_blank\" rel=\"noopener noreferrer\">BERTScore paper</a></p>"
+    },
+    {
+      "id": 113,
+      "number": 10,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "BERTScore - semantic similarity",
+      "type": "conceptual",
+      "question": "Does BERTScore verify factual correctness?",
+      "answer": "<p>No; contextual similarity can remain high even when an important fact changes.</p><ul><li><strong>Similarity:</strong> Measure representational agreement with the reference.</li><li><strong>Errors:</strong> Negation, quantities, or entity substitutions can need separate checks.</li><li><strong>Use:</strong> Combine it with task-specific validation and human judgment when needed.</li></ul><p><strong>Remember:</strong> Semantic similarity is not automatic fact checking.</p>"
+    },
+    {
+      "id": 114,
+      "number": 11,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Human evaluation",
+      "type": "conceptual",
+      "question": "Why is human evaluation useful for NLP systems?",
+      "answer": "<p>People can assess task qualities that a single automatic metric may miss.</p><ul><li><strong>Criteria:</strong> Define dimensions such as correctness, relevance, clarity, and faithfulness.</li><li><strong>Procedure:</strong> Use representative examples and clear rating instructions.</li><li><strong>Reliability:</strong> Compare raters and review disagreements rather than assuming one judgment is universal.</li></ul><p><strong>Remember:</strong> Human evaluation needs a rubric, not just an impression.</p>"
+    },
+    {
+      "id": 115,
+      "number": 12,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Human evaluation",
+      "type": "conceptual",
+      "question": "How can we make human evaluation more consistent?",
+      "answer": "<p>Use explicit criteria, calibrated examples, and a controlled comparison procedure.</p><ul><li><strong>Rubric:</strong> Define what good and bad performance look like.</li><li><strong>Blinding:</strong> Hide model identities when appropriate to reduce expectation bias.</li><li><strong>Agreement:</strong> Use multiple raters or adjudication to understand inconsistent judgments.</li></ul><p><strong>Remember:</strong> Consistent instructions make human judgments easier to compare.</p>"
+    },
+    {
+      "id": 116,
+      "number": 13,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Exact Match (EM) - QA tasks",
+      "type": "conceptual",
+      "question": "What is Exact Match in question answering?",
+      "answer": "<p>Exact Match scores whether a predicted answer matches an accepted reference under the benchmark's normalization rules.</p><ul><li><strong>Binary result:</strong> Each example commonly receives a match or non-match score.</li><li><strong>Normalization:</strong> Rules may ignore case, punctuation, or articles, depending on the benchmark.</li><li><strong>Aggregation:</strong> Average these outcomes across examples.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>EM = mean(match(prediction, any accepted reference after specified normalization))</code></p><p><strong>Remember:</strong> Exact means exact under the stated evaluation rules.</p>"
+    },
+    {
+      "id": 117,
+      "number": 14,
+      "section": "5.8 NLP Evaluation Metrics",
+      "bullet": "Exact Match (EM) - QA tasks",
+      "type": "conceptual",
+      "question": "Why can Exact Match be harsh on a valid answer?",
+      "answer": "<p>A correct answer can use a different acceptable form not captured by the references or normalization.</p><ul><li><strong>Wording:</strong> Equivalent paraphrases may differ as strings.</li><li><strong>References:</strong> Multiple accepted answers improve coverage but cannot cover every case.</li><li><strong>Complement:</strong> Token-overlap or semantic checks can add context without replacing correctness assessment.</li></ul><p><strong>Remember:</strong> An exact string mismatch is not always a meaning mismatch.</p>"
+    },
+    {
+      "id": 118,
+      "number": 1,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "NLTK - classic NLP",
+      "type": "conceptual",
+      "question": "What is NLTK used for?",
+      "answer": "<p>NLTK provides tools and language resources for classical NLP and education.</p><ul><li><strong>Processing:</strong> Use tokenization, stemming, tagging, and other linguistic utilities.</li><li><strong>Resources:</strong> Access corpora and lexical datasets such as WordNet when installed.</li><li><strong>Requirements:</strong> Some functions need separate resource downloads.</li></ul><pre><code class=\"language-python\"># Requires nltk; this tokenizer does not need a downloaded model.\nfrom nltk.tokenize import wordpunct_tokenize\n\nprint(wordpunct_tokenize('NLP is useful!'))</code></pre><p><strong>Remember:</strong> NLTK combines classical NLP algorithms with language-learning resources.</p><p><a href=\"https://www.nltk.org/\" target=\"_blank\" rel=\"noopener noreferrer\">NLTK documentation</a></p>"
+    },
+    {
+      "id": 119,
+      "number": 2,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "NLTK - classic NLP",
+      "type": "conceptual",
+      "question": "Does installing NLTK include every dataset and model it can use?",
+      "answer": "<p>No; some resources must be obtained separately.</p><ul><li><strong>Library:</strong> The package supplies code and interfaces.</li><li><strong>Data:</strong> Particular tokenizers, taggers, or corpora may need additional files.</li><li><strong>Reproducibility:</strong> Record resource requirements alongside the code.</li></ul><p><strong>Remember:</strong> Package installation and language-resource installation are different steps.</p>"
+    },
+    {
+      "id": 120,
+      "number": 3,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "spaCy - production NLP: NER, parsing",
+      "type": "conceptual",
+      "question": "What is spaCy used for?",
+      "answer": "<p>spaCy organizes NLP processing into pipelines with components such as tokenization, entity recognition, and parsing.</p><ul><li><strong>Pipeline:</strong> Process text into a Doc object with token and span annotations.</li><li><strong>Models:</strong> Trained pipeline packages provide particular language capabilities.</li><li><strong>Customization:</strong> Add or configure components according to application needs.</li></ul><pre><code class=\"language-python\"># Requires spacy. A blank pipeline does not provide trained NER or parsing.\nimport spacy\n\nnlp = spacy.blank('en')\nnlp.add_pipe('sentencizer')\ndoc = nlp('NLP is useful. Tokenization comes first.')\nprint([sentence.text for sentence in doc.sents])</code></pre><p><strong>Remember:</strong> spaCy structures NLP as a configurable processing pipeline.</p><p><a href=\"https://spacy.io/usage/spacy-101\" target=\"_blank\" rel=\"noopener noreferrer\">spaCy 101</a></p>"
+    },
+    {
+      "id": 121,
+      "number": 4,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "spaCy - production NLP: NER, parsing",
+      "type": "conceptual",
+      "question": "Does a blank spaCy language pipeline automatically perform NER and parsing?",
+      "answer": "<p>No; a blank language object does not include all trained annotation components.</p><ul><li><strong>Tokenizer:</strong> Language rules can provide basic tokenization.</li><li><strong>Components:</strong> NER and dependency parsing need appropriate trained components.</li><li><strong>Loading:</strong> Select a pipeline package that includes the capabilities you require.</li></ul><p><strong>Remember:</strong> A blank pipeline is a foundation, not a fully trained analyzer.</p>"
+    },
+    {
+      "id": 122,
+      "number": 5,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "transformers (HuggingFace) - pretrained models",
+      "type": "conceptual",
+      "question": "What does the transformers library provide?",
+      "answer": "<p>It provides model architectures, pretrained checkpoint loading, tokenizers, and task-oriented tools.</p><ul><li><strong>Checkpoint:</strong> Load parameters associated with a specific model release.</li><li><strong>Inputs:</strong> Use the compatible tokenizer or processor.</li><li><strong>Tasks:</strong> Pipelines offer convenient inference when the checkpoint supports the requested task.</li></ul><pre><code class=\"language-python\"># Requires transformers and torch; downloads the checkpoint on first use.\nfrom transformers import pipeline\n\nclassifier = pipeline(\n    'sentiment-analysis',\n    model='distilbert/distilbert-base-uncased-finetuned-sst-2-english',\n    device=-1,\n)\nprint(classifier('This lesson is clear.'))</code></pre><p><strong>Remember:</strong> Match the task, checkpoint, and preprocessing tools.</p><p><a href=\"https://huggingface.co/docs/transformers/quicktour\" target=\"_blank\" rel=\"noopener noreferrer\">Transformers quickstart</a></p>"
+    },
+    {
+      "id": 123,
+      "number": 6,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "transformers (HuggingFace) - pretrained models",
+      "type": "conceptual",
+      "question": "Can any pretrained checkpoint be used directly for any NLP task?",
+      "answer": "<p>No; the architecture, training objective, and prediction head must suit the task.</p><ul><li><strong>Base checkpoint:</strong> May need a task-specific head and adaptation.</li><li><strong>Task-tuned checkpoint:</strong> Can already include a head trained for a particular label set.</li><li><strong>Validation:</strong> Check the model card and measure the target task.</li></ul><p><strong>Remember:</strong> Pretrained does not mean already trained for every task.</p>"
+    },
+    {
+      "id": 124,
+      "number": 7,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "datasets (HuggingFace) - loading datasets",
+      "type": "conceptual",
+      "question": "What is the datasets library used for?",
+      "answer": "<p>It provides structured loading, transformation, and iteration over datasets.</p><ul><li><strong>Loading:</strong> Read supported local files or dataset repositories.</li><li><strong>Transformation:</strong> Apply processing through methods such as map.</li><li><strong>Splits:</strong> Preserve train, validation, and test separation during the workflow.</li></ul><pre><code class=\"language-python\"># Requires datasets. This example uses in-memory data without a download.\nfrom datasets import Dataset\n\ndata = Dataset.from_dict({'text': ['good lesson', 'unclear lesson'], 'label': [1, 0]})\nprint(data[0])</code></pre><p><strong>Remember:</strong> Datasets manages examples and splits; it does not train the model.</p><p><a href=\"https://huggingface.co/docs/datasets/quickstart\" target=\"_blank\" rel=\"noopener noreferrer\">Datasets quickstart</a></p>"
+    },
+    {
+      "id": 125,
+      "number": 8,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "datasets (HuggingFace) - loading datasets",
+      "type": "conceptual",
+      "question": "Why keep training and evaluation splits separate when using datasets?",
+      "answer": "<p>Evaluation should measure the selected procedure on examples that did not guide fitting or tuning.</p><ul><li><strong>Training:</strong> Learn model parameters and learned preprocessing.</li><li><strong>Validation:</strong> Make configuration and selection decisions.</li><li><strong>Test:</strong> Reserve suitable untouched examples for the final evaluation.</li></ul><p><strong>Remember:</strong> Convenient data loading does not remove the need for clean evaluation boundaries.</p>"
+    },
+    {
+      "id": 126,
+      "number": 9,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "sentence-transformers - sentence embeddings",
+      "type": "conceptual",
+      "question": "What is sentence-transformers used for?",
+      "answer": "<p>It provides tools and models that embed sentences or passages for tasks such as semantic search.</p><ul><li><strong>Encoding:</strong> Map texts into fixed-size vector representations.</li><li><strong>Comparison:</strong> Compare suitable embeddings to retrieve or group related texts.</li><li><strong>Choice:</strong> Follow the selected model's intended task, language, and input conventions.</li></ul><pre><code class=\"language-python\"># Requires sentence-transformers; downloads this model on first use.\nfrom sentence_transformers import SentenceTransformer\n\nmodel = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')\nvectors = model.encode(['A cat is sleeping.', 'A kitten is resting.'], normalize_embeddings=True)\ncosine_similarity = float(vectors[0] @ vectors[1])\nprint(cosine_similarity)</code></pre><p><strong>Remember:</strong> Sentence embeddings make whole-text similarity practical.</p><p><a href=\"https://sbert.net/docs/quickstart.html\" target=\"_blank\" rel=\"noopener noreferrer\">Sentence Transformers quickstart</a></p>"
+    },
+    {
+      "id": 127,
+      "number": 10,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "sentence-transformers - sentence embeddings",
+      "type": "conceptual",
+      "question": "Should we assume every transformer checkpoint produces useful sentence-search vectors?",
+      "answer": "<p>No; the representation and training objective must support the intended similarity task.</p><ul><li><strong>Pooling:</strong> Token states need an appropriate aggregation strategy.</li><li><strong>Training:</strong> Retrieval-oriented adaptation can make vector similarity more meaningful.</li><li><strong>Evaluation:</strong> Test retrieval or semantic matching on the target data.</li></ul><p><strong>Remember:</strong> A transformer backbone alone is not a guarantee of a good search embedding.</p>"
+    },
+    {
+      "id": 128,
+      "number": 11,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "tiktoken - OpenAI tokenizer (BPE)",
+      "type": "conceptual",
+      "question": "What is tiktoken?",
+      "answer": "<p>tiktoken is a fast tokenizer library used to encode and decode text with supported OpenAI-style BPE encodings.</p><ul><li><strong>Encoding:</strong> Convert text to token IDs with a chosen encoding.</li><li><strong>Decoding:</strong> Reconstruct text from a valid sequence of IDs.</li><li><strong>Compatibility:</strong> Match the encoding to the intended model or explicitly document the encoding used.</li></ul><pre><code class=\"language-python\"># Requires tiktoken; the first use may download encoding data.\nimport tiktoken\n\nencoding = tiktoken.get_encoding('cl100k_base')  # An explicit encoding, not every model's tokenizer.\ntoken_ids = encoding.encode('Hello, NLP!')\nprint(token_ids, len(token_ids))\nassert encoding.decode(token_ids) == 'Hello, NLP!'</code></pre><p><strong>Remember:</strong> tiktoken converts text and token IDs; it does not run a language model.</p><p><a href=\"https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken\" target=\"_blank\" rel=\"noopener noreferrer\">Official tiktoken guide</a></p>"
+    },
+    {
+      "id": 129,
+      "number": 12,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "tiktoken - OpenAI tokenizer (BPE)",
+      "type": "conceptual",
+      "question": "Does tokenizing visible text always give the full API request token count?",
+      "answer": "<p>No; complete requests can include formatting, tools, modalities, and other model-specific input structure.</p><ul><li><strong>Plain text:</strong> Local tokenization can count tokens for the supplied string.</li><li><strong>Request structure:</strong> Message boundaries and other fields can add tokens.</li><li><strong>Verification:</strong> Use the provider's documented counting method for the actual request format.</li></ul><p><strong>Remember:</strong> Visible text tokens are not necessarily the entire request.</p><p><a href=\"https://developers.openai.com/api/docs/guides/token-counting\" target=\"_blank\" rel=\"noopener noreferrer\">Official request token-counting guidance</a></p>"
+    },
+    {
+      "id": 130,
+      "number": 13,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "evaluate - HuggingFace metrics",
+      "type": "conceptual",
+      "question": "What is the evaluate library used for?",
+      "answer": "<p>evaluate supplies interfaces for loading and computing evaluation measurements, including supported NLP metrics.</p><ul><li><strong>Inputs:</strong> Provide predictions and references in the metric's required format.</li><li><strong>Computation:</strong> Use the selected metric implementation and its configuration.</li><li><strong>Reporting:</strong> Record the metric, variant, and preprocessing to make results comparable.</li></ul><pre><code class=\"language-python\"># Requires evaluate; the first load may download the selected metric.\nimport evaluate\n\nmetric = evaluate.load('accuracy')\nresult = metric.compute(predictions=[1, 0, 1], references=[1, 1, 1])\nprint(result)  # Accuracy is 2 / 3.</code></pre><p><strong>Remember:</strong> A metric interface helps calculate scores; it does not choose the right evaluation for you.</p><p><a href=\"https://huggingface.co/docs/evaluate/index\" target=\"_blank\" rel=\"noopener noreferrer\">Evaluate documentation</a></p>"
+    },
+    {
+      "id": 131,
+      "number": 14,
+      "section": "5.9 Key Python Libraries",
+      "bullet": "evaluate - HuggingFace metrics",
+      "type": "conceptual",
+      "question": "Why must we document metric settings and input normalization?",
+      "answer": "<p>Different implementations and preprocessing choices can produce different scores for the same outputs.</p><ul><li><strong>Settings:</strong> Specify averaging, tokenization, smoothing, or metric variants as relevant.</li><li><strong>Normalization:</strong> State how case, punctuation, and references are handled.</li><li><strong>Reproducibility:</strong> Keep the evaluation procedure consistent across candidate models.</li></ul><p><strong>Remember:</strong> A score is meaningful only with its evaluation procedure.</p>"
+    }
+  ]
+}

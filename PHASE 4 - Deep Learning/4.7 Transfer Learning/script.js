@@ -5,6 +5,10 @@ const topics = [
       [
         "What is pretraining, and why is it useful for downstream tasks?",
         "<p>Pretraining learns reusable model parameters on a source dataset before adapting to a downstream task.</p><ul><li><strong>Knowledge:</strong> The model learns representations useful beyond its original training objective.</li><li><strong>Adaptation:</strong> Reuse it as a feature extractor or fine-tune selected parameters.</li><li><strong>Limits:</strong> Transfer depends on task and data similarity; a pretrained model does not always beat training from scratch.</li></ul><p class=\"example\"><strong>Example:</strong> A model trained on large image data provides visual features for a smaller flower-classification dataset.</p><p><strong>Remember:</strong> Learn reusable patterns first, then adapt them to the task.</p>"
+      ],
+      [
+        "Does a pretrained model always outperform training from scratch?",
+        "<p>No; pretraining is useful only when its transferred representations and adaptation suit the target task.</p><ul><li><strong>Similarity:</strong> Source-task features may or may not match the new domain.</li><li><strong>Data:</strong> Available target data and training resources affect the comparison.</li><li><strong>Evaluation:</strong> Compare suitable baselines on held-out target examples.</li></ul><p><strong>Remember:</strong> Transfer is a useful starting point, not a guarantee.</p>"
       ]
     ]
   },
@@ -14,6 +18,14 @@ const topics = [
       [
         "What is the difference between fine-tuning and feature extraction?",
         "<p>Feature extraction freezes a pretrained backbone; fine-tuning updates some or all of its parameters.</p><ul><li><strong>Feature extraction:</strong> Train a new head while keeping backbone weights fixed.</li><li><strong>Fine-tuning:</strong> Continue training selected pretrained layers along with the task head.</li><li><strong>Choice:</strong> Frozen features are a useful small-data baseline; fine-tuning offers more adaptation but can overfit.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Strategy</th><th scope=\"col\">Backbone weights</th><th scope=\"col\">Typical use</th></tr></thead><tbody><tr><th scope=\"row\">Feature extraction</th><td>Frozen</td><td>Fast baseline with limited labeled data</td></tr><tr><th scope=\"row\">Fine-tuning</th><td>Some or all trainable</td><td>Adapt representations when validation supports it</td></tr></tbody></table></div><p><strong>Remember:</strong> Feature extraction reuses fixed features; fine-tuning adapts them.</p>"
+      ],
+      [
+        "What is feature extraction with a pretrained model?",
+        "<p>Feature extraction uses a frozen pretrained backbone to produce representations for a new task.</p><ul><li><strong>Backbone:</strong> Keep its learned parameters fixed.</li><li><strong>Head:</strong> Train a new predictor using its features.</li><li><strong>Benefit:</strong> Provide a simple baseline with fewer trainable parameters.</li></ul><p><strong>Remember:</strong> Reuse fixed features and train the task head.</p>"
+      ],
+      [
+        "What is fine-tuning?",
+        "<p>Fine-tuning continues training some or all pretrained parameters for a target task.</p><ul><li><strong>Starting point:</strong> Begin with existing learned weights.</li><li><strong>Adaptation:</strong> Update selected layers using target-task data.</li><li><strong>Control:</strong> Use validation and suitable learning rates to limit overfitting or loss of useful features.</li></ul><p><strong>Remember:</strong> Fine-tuning adapts previously learned representations.</p>"
       ]
     ]
   },
@@ -23,6 +35,10 @@ const topics = [
       [
         "What does freezing a layer mean, and why do we freeze pretrained layers?",
         "<p>Freezing a layer prevents its parameters from being updated while other layers learn.</p><ul><li><strong>Purpose:</strong> Preserve useful pretrained features and reduce trainable parameter count.</li><li><strong>Adaptation:</strong> Train a new head first, then optionally unfreeze selected layers with a smaller learning rate.</li><li><strong>Caution:</strong> Freezing parameters does not automatically set BatchNorm or dropout to evaluation mode.</li></ul><pre><code class=\"language-python\">import torch\n\nbackbone = torch.nn.Linear(4, 8)  # Substitute your pretrained backbone.\nfor parameter in backbone.parameters():\n    parameter.requires_grad_(False)\n\nhead = torch.nn.Linear(8, 2)\nmodel = torch.nn.Sequential(backbone, torch.nn.ReLU(), head)\noptimizer = torch.optim.Adam(head.parameters(), lr=0.001)</code></pre><p><strong>Remember:</strong> Frozen weights stay fixed; model mode is a separate decision.</p>"
+      ],
+      [
+        "Why use a smaller learning rate for pretrained layers?",
+        "<p>Smaller updates can adapt pretrained features while reducing the risk of disrupting useful representations.</p><ul><li><strong>Existing knowledge:</strong> The weights already encode reusable patterns.</li><li><strong>Update size:</strong> Large changes may overwrite those patterns unnecessarily.</li><li><strong>Validation:</strong> Choose learning rates based on target performance rather than a fixed universal rule.</li></ul><p><strong>Remember:</strong> Adapt useful weights gently, then validate.</p>"
       ]
     ]
   },
@@ -32,6 +48,10 @@ const topics = [
       [
         "What does the ImageNet moment for NLP refer to, and which models helped establish it?",
         "<p>The ImageNet moment for NLP refers to the rise of broadly reusable pretrained language representations.</p><ul><li><strong>ELMo:</strong> Made contextual word representations from a pretrained language model useful across tasks.</li><li><strong>ULMFiT and GPT:</strong> Helped establish language-model pretraining followed by task adaptation.</li><li><strong>BERT:</strong> Made bidirectional transformer pretraining and fine-tuning widely influential; the phrase describes a transition, not one official event.</li></ul><p><strong>Remember:</strong> Large-scale pretraining became a reusable starting point for language tasks.</p><p><a href=\"https://arxiv.org/abs/1802.05365\" target=\"_blank\" rel=\"noopener noreferrer\">ELMo paper</a> / <a href=\"https://arxiv.org/abs/1801.06146\" target=\"_blank\" rel=\"noopener noreferrer\">ULMFiT paper</a> / <a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>"
+      ],
+      [
+        "What do ELMo and BERT have in common at a basic level?",
+        "<p>Both reuse language representations learned from large text collections to help downstream tasks.</p><ul><li><strong>Pretraining:</strong> Learn reusable patterns from text before the target task.</li><li><strong>Context:</strong> Represent words using their surrounding context.</li><li><strong>Difference:</strong> ELMo uses a bidirectional language-model representation; BERT uses a pretrained transformer encoder.</li></ul><p><strong>Remember:</strong> Both transfer contextual language knowledge, through different architectures.</p><p><a href=\"https://arxiv.org/abs/1802.05365\" target=\"_blank\" rel=\"noopener noreferrer\">ELMo paper</a> / <a href=\"https://arxiv.org/abs/1801.06146\" target=\"_blank\" rel=\"noopener noreferrer\">ULMFiT paper</a> / <a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>"
       ]
     ]
   },
@@ -41,6 +61,10 @@ const topics = [
       [
         "How do you use a pretrained HuggingFace model and tokenizer for a downstream task?",
         "<p>Use a tokenizer matched to a pretrained checkpoint and a model head suited to the downstream task.</p><ol><li><strong>Load:</strong> Select a compatible tokenizer and a task-specific model or pipeline.</li><li><strong>Prepare:</strong> Tokenize text into the input tensors expected by the checkpoint.</li><li><strong>Adapt:</strong> A task-tuned checkpoint can predict directly; a new or changed task head needs training on labeled data.</li></ol><pre><code class=\"language-python\"># Requires torch, transformers, and a first-time checkpoint download.\nfrom transformers import pipeline\n\nclassifier = pipeline(\n    'sentiment-analysis',\n    model='distilbert/distilbert-base-uncased-finetuned-sst-2-english',\n    device=-1,\n)\nprint(classifier('This course is useful.'))\n# This checkpoint is already fine-tuned for English sentiment classification.\n# A new label set requires training an appropriate task head.</code></pre><p><strong>Remember:</strong> Match tokenizer, checkpoint, and task head before making predictions.</p><p><a href=\"https://huggingface.co/docs/transformers/tasks/sequence_classification\" target=\"_blank\" rel=\"noopener noreferrer\">Hugging Face text classification</a></p>"
+      ],
+      [
+        "Why must a tokenizer match the pretrained model?",
+        "<p>A pretrained model expects token IDs and input conventions compatible with its training vocabulary.</p><ul><li><strong>Vocabulary:</strong> The tokenizer maps text pieces to the IDs the model understands.</li><li><strong>Formatting:</strong> Special tokens and other input conventions must match.</li><li><strong>Loading:</strong> Use the tokenizer associated with the checkpoint unless compatibility is established.</li></ul><p><strong>Remember:</strong> Correct model weights need compatible tokenization.</p><p><a href=\"https://huggingface.co/docs/transformers/tasks/sequence_classification\" target=\"_blank\" rel=\"noopener noreferrer\">Hugging Face text classification</a></p>"
       ]
     ]
   }
@@ -54,7 +78,7 @@ const questions = document.querySelector('#questions');
 const filters = document.querySelector('#filters');
 const search = document.querySelector('#search');
 let activeTopic = 'All topics';
-let number = 40;
+let number = 0;
 const entries = [];
 
 for (const [index, topic] of topics.entries()) {

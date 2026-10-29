@@ -2,6 +2,10 @@
 
 > **Goal:** Deep NLP expertise for LLM-powered products.
 
+## Study questions
+
+[Open the Phase 5 question bank](index.html) - 131 beginner-friendly questions and answers across 9 chapters. Topic headings follow the roadmap; question numbering restarts in each chapter. Model references describe the named versions rather than a current ranking.
+
 ## Topics
 
 - [5.1 Text Preprocessing](5.1%20Text%20Preprocessing/Notes.md)

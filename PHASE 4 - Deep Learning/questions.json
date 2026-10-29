@@ -1,366 +1,1126 @@
 {
   "phase": "Phase 4 - Deep Learning",
-  "total_questions": 45,
+  "total_questions": 112,
   "questions": [
     {
       "id": 1,
+      "number": 1,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Neuron, Perceptron, MLP",
       "type": "conceptual",
       "question": "What are a neuron, a perceptron, and a multilayer perceptron (MLP)?",
-      "answer": "<p>A neuron computes a weighted input; a perceptron makes a simple decision; an MLP connects neurons in multiple layers.</p><ul><li><strong>Neuron:</strong> Multiply inputs by weights, add a bias, then apply an activation.</li><li><strong>Perceptron:</strong> A classical single-layer perceptron uses a threshold and can separate linearly separable classes.</li><li><strong>MLP:</strong> Hidden layers with non-linear activations learn more complex input-output relationships.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>z = sum(w_i * x_i) + b; output = activation(z)</code></p><p class=\"example\"><strong>Example:</strong> A simple perceptron can separate some categories with a straight boundary; an MLP can learn more complex boundaries.</p><p><strong>Remember:</strong> Neuron computes; perceptron decides; MLP learns layered patterns.</p>"
+      "answer": "<p>A neuron computes a weighted input; a perceptron makes a simple decision; an MLP connects neurons in multiple layers.</p><ul><li><strong>Neuron:</strong> Multiply inputs by weights, add a bias, then apply an activation.</li><li><strong>Perceptron:</strong> A classical single-layer perceptron uses a threshold and can separate linearly separable classes.</li><li><strong>MLP:</strong> Hidden layers with non-linear activations learn more complex input-output relationships.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>z = sum(w_i * x_i) + b; output = activation(z)</code></p><p class=\"example\"><strong>Example:</strong> A simple perceptron can separate some categories with a straight boundary; an MLP can learn more complex boundaries.</p><p><strong>Remember:</strong> Neuron computes; perceptron decides; MLP learns layered patterns.</p>",
+      "subtopic": "Neuron, Perceptron, MLP"
     },
     {
       "id": 2,
+      "number": 2,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Neuron, Perceptron, MLP",
+      "type": "conceptual",
+      "question": "What is an artificial neuron?",
+      "answer": "<p>An artificial neuron transforms weighted inputs into an output.</p><ul><li><strong>Inputs:</strong> Receive feature values or outputs from earlier neurons.</li><li><strong>Weights and bias:</strong> Control each input's contribution and shift the combined value.</li><li><strong>Activation:</strong> Transform the combined value before passing it onward.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>output = activation(sum(weight_i * input_i) + bias)</code></p><p><strong>Remember:</strong> Multiply, add, then activate.</p>",
+      "subtopic": "Neuron, Perceptron, MLP"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Neuron, Perceptron, MLP",
+      "type": "conceptual",
+      "question": "What is a perceptron?",
+      "answer": "<p>A classical perceptron is a simple binary classifier using a weighted sum and a threshold.</p><ul><li><strong>Score:</strong> Combine inputs with learned weights and a bias.</li><li><strong>Decision:</strong> Output one of two classes according to the threshold.</li><li><strong>Limit:</strong> A single perceptron can only separate linearly separable classes.</li></ul><p><strong>Remember:</strong> A perceptron makes a threshold-based decision.</p>",
+      "subtopic": "Neuron, Perceptron, MLP"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Neuron, Perceptron, MLP",
+      "type": "conceptual",
+      "question": "What is an MLP, and what do hidden layers do?",
+      "answer": "<p>An MLP is a feed-forward network with learned layers between its input and output.</p><ul><li><strong>Input layer:</strong> Receives the features.</li><li><strong>Hidden layers:</strong> Transform features using weights and non-linear activations.</li><li><strong>Output layer:</strong> Produces task-specific predictions or scores.</li></ul><p><strong>Remember:</strong> Hidden layers learn useful intermediate representations.</p>",
+      "subtopic": "Neuron, Perceptron, MLP"
+    },
+    {
+      "id": 5,
+      "number": 5,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
       "question": "What are activation functions, and what are the basic differences between Sigmoid, Tanh, ReLU, GELU, and SwiGLU?",
-      "answer": "<p>Activation functions transform neuron outputs and let networks learn non-linear patterns.</p><ul><li><strong>Non-linearity:</strong> Without it, stacked affine layers collapse into one affine transformation.</li><li><strong>Choice:</strong> Match the activation to the layer and task; no activation is always best.</li><li><strong>Gating:</strong> SwiGLU multiplies learned branches to control feature contributions, rather than applying only one scalar activation.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Function</th><th scope=\"col\">Basic behavior</th><th scope=\"col\">Common role</th></tr></thead><tbody><tr><th scope=\"row\">Sigmoid</th><td>Output between 0 and 1; can saturate</td><td>Binary probability outputs</td></tr><tr><th scope=\"row\">Tanh</th><td>Output between -1 and 1; zero-centered; can saturate</td><td>Some recurrent hidden states</td></tr><tr><th scope=\"row\">ReLU</th><td>max(0, x); zero for negative inputs</td><td>Hidden layers in many MLPs and CNNs</td></tr><tr><th scope=\"row\">GELU</th><td>Smoothly weights x using a Gaussian cumulative probability</td><td>Hidden activations in transformer feed-forward blocks</td></tr><tr><th scope=\"row\">SwiGLU</th><td>Multiply two learned projections, with SiLU (x * sigmoid(x)) applied to one branch</td><td>Gated transformer feed-forward blocks</td></tr></tbody></table></div><p><strong>Remember:</strong> Activations add non-linearity; gates control information flow.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>"
+      "answer": "<p>Activation functions transform neuron outputs and let networks learn non-linear patterns.</p><ul><li><strong>Non-linearity:</strong> Without it, stacked affine layers collapse into one affine transformation.</li><li><strong>Choice:</strong> Match the activation to the layer and task; no activation is always best.</li><li><strong>Gating:</strong> SwiGLU multiplies learned branches to control feature contributions, rather than applying only one scalar activation.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Function</th><th scope=\"col\">Basic behavior</th><th scope=\"col\">Common role</th></tr></thead><tbody><tr><th scope=\"row\">Sigmoid</th><td>Output between 0 and 1; can saturate</td><td>Binary probability outputs</td></tr><tr><th scope=\"row\">Tanh</th><td>Output between -1 and 1; zero-centered; can saturate</td><td>Some recurrent hidden states</td></tr><tr><th scope=\"row\">ReLU</th><td>max(0, x); zero for negative inputs</td><td>Hidden layers in many MLPs and CNNs</td></tr><tr><th scope=\"row\">GELU</th><td>Smoothly weights x using a Gaussian cumulative probability</td><td>Hidden activations in transformer feed-forward blocks</td></tr><tr><th scope=\"row\">SwiGLU</th><td>Multiply two learned projections, with SiLU (x * sigmoid(x)) applied to one branch</td><td>Gated transformer feed-forward blocks</td></tr></tbody></table></div><p><strong>Remember:</strong> Activations add non-linearity; gates control information flow.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 3,
+      "id": 6,
+      "number": 6,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is the sigmoid activation function?",
+      "answer": "<p>Sigmoid maps a real-valued input to a number between zero and one.</p><ul><li><strong>Range:</strong> Outputs lie between zero and one.</li><li><strong>Use:</strong> Often converts a binary-classification score into a probability.</li><li><strong>Limitation:</strong> Very positive or negative inputs have small derivatives.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>sigmoid(x) = 1 / (1 + exp(-x))</code></p><p><strong>Remember:</strong> Sigmoid squashes a score into the zero-to-one range.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is the tanh activation function?",
+      "answer": "<p>Tanh maps a real-valued input to a number between minus one and one.</p><ul><li><strong>Range:</strong> Allows both negative and positive outputs.</li><li><strong>Center:</strong> Zero input gives zero output.</li><li><strong>Limitation:</strong> Large input magnitudes can saturate and give small derivatives.</li></ul><p><strong>Remember:</strong> Tanh is zero-centered but can still saturate.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is ReLU?",
+      "answer": "<p>ReLU returns the input when it is positive and zero otherwise.</p><ul><li><strong>Positive inputs:</strong> Pass through unchanged.</li><li><strong>Negative inputs:</strong> Become zero.</li><li><strong>Limitation:</strong> A unit that stays on the negative side can stop receiving useful gradients.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>ReLU(x) = max(0, x)</code></p><p><strong>Remember:</strong> ReLU keeps positives and zeros negatives.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is GELU?",
+      "answer": "<p>GELU smoothly scales an input using the cumulative probability of a standard normal distribution.</p><ul><li><strong>Near zero:</strong> Changes smoothly rather than using ReLU's sharp cutoff.</li><li><strong>Negative inputs:</strong> Small negative values can produce nonzero negative outputs.</li><li><strong>Use:</strong> Appears in the feed-forward layers of many transformers.</li></ul><p><strong>Remember:</strong> GELU smoothly weights an input instead of sharply clipping it.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is SwiGLU?",
+      "answer": "<p>SwiGLU is a gated feed-forward construction that multiplies two learned projections.</p><ul><li><strong>Branches:</strong> Compute two transformations of the same input.</li><li><strong>Gate:</strong> Apply SiLU to one branch, then multiply it element by element with the other.</li><li><strong>Role:</strong> Lets learned features modulate other features in a feed-forward block.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>SiLU(x) = x * sigmoid(x); gated_features = SiLU(branch_a) * branch_b</code></p><p><strong>Remember:</strong> SwiGLU combines non-linearity with learned feature gating.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 11,
+      "number": 11,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Forward pass - how information flows",
       "type": "conceptual",
       "question": "What is a forward pass, and how does information flow through a neural network?",
-      "answer": "<p>A forward pass computes predictions by sending inputs through the network's layers.</p><ol><li><strong>Input:</strong> Feed a batch of feature values into the first layer.</li><li><strong>Layers:</strong> Each layer transforms its inputs using weights, bias, and any activation.</li><li><strong>Output:</strong> The final layer produces values used for prediction or loss calculation.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>a_next = activation(W * a_previous + b)</code></p><p class=\"example\"><strong>Example:</strong> Image pixels pass through hidden layers to produce class scores.</p><p><strong>Remember:</strong> Forward means inputs become predictions.</p>"
+      "answer": "<p>A forward pass computes predictions by sending inputs through the network's layers.</p><ol><li><strong>Input:</strong> Feed a batch of feature values into the first layer.</li><li><strong>Layers:</strong> Each layer transforms its inputs using weights, bias, and any activation.</li><li><strong>Output:</strong> The final layer produces values used for prediction or loss calculation.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>a_next = activation(W * a_previous + b)</code></p><p class=\"example\"><strong>Example:</strong> Image pixels pass through hidden layers to produce class scores.</p><p><strong>Remember:</strong> Forward means inputs become predictions.</p>",
+      "subtopic": "Forward pass - how information flows"
     },
     {
-      "id": 4,
+      "id": 12,
+      "number": 12,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Forward pass - how information flows",
+      "type": "conceptual",
+      "question": "Does a forward pass update the model's weights?",
+      "answer": "<p>A forward pass computes outputs; it does not normally update learned weights by itself.</p><ul><li><strong>Prediction:</strong> Evaluate the model using its current parameters.</li><li><strong>Training:</strong> Compare the prediction with a target to obtain a loss.</li><li><strong>Update:</strong> An optimizer changes parameters after gradients are computed; some layers can update non-parameter state during a training forward pass.</li></ul><p><strong>Remember:</strong> Forward predicts; the optimizer updates weights.</p>",
+      "subtopic": "Forward pass - how information flows"
+    },
+    {
+      "id": 13,
+      "number": 13,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Backpropagation - how gradients flow backward",
       "type": "conceptual",
       "question": "What is backpropagation, and how do gradients flow backward through a neural network?",
-      "answer": "<p>Backpropagation computes loss gradients by applying the chain rule backward through the network.</p><ol><li><strong>Start:</strong> Compute a loss from the forward-pass prediction and target.</li><li><strong>Chain rule:</strong> Combine local derivatives to find how each parameter affects the loss.</li><li><strong>Update:</strong> Backpropagation computes gradients; the optimizer uses them to change parameters.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>dL/dw = (dL/da) * (da/dz) * (dz/dw)</code></p><p><strong>Symbols:</strong> L is the loss, w is a weight, z is a pre-activation value, and a is its activated output.</p><p><strong>Remember:</strong> Backward finds gradients; the optimizer changes weights.</p>"
+      "answer": "<p>Backpropagation computes loss gradients by applying the chain rule backward through the network.</p><ol><li><strong>Start:</strong> Compute a loss from the forward-pass prediction and target.</li><li><strong>Chain rule:</strong> Combine local derivatives to find how each parameter affects the loss.</li><li><strong>Update:</strong> Backpropagation computes gradients; the optimizer uses them to change parameters.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>dL/dw = (dL/da) * (da/dz) * (dz/dw)</code></p><p><strong>Symbols:</strong> L is the loss, w is a weight, z is a pre-activation value, and a is its activated output.</p><p><strong>Remember:</strong> Backward finds gradients; the optimizer changes weights.</p>",
+      "subtopic": "Backpropagation - how gradients flow backward"
     },
     {
-      "id": 5,
+      "id": 14,
+      "number": 14,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Backpropagation - how gradients flow backward",
+      "type": "conceptual",
+      "question": "What is the difference between backpropagation and an optimizer?",
+      "answer": "<p>Backpropagation computes gradients; an optimizer uses them to update parameters.</p><ul><li><strong>Backpropagation:</strong> Find how changes in parameters affect the loss.</li><li><strong>Optimizer:</strong> Choose and apply an update using those gradients.</li><li><strong>Order:</strong> Compute the loss, backpropagate, then take the optimizer step.</li></ul><p><strong>Remember:</strong> Backward calculates the direction; the optimizer takes the step.</p>",
+      "subtopic": "Backpropagation - how gradients flow backward"
+    },
+    {
+      "id": 15,
+      "number": 15,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Weight initialization strategies",
       "type": "conceptual",
       "question": "What is weight initialization, and what are Xavier and He initialization?",
-      "answer": "<p>Weight initialization chooses starting parameter values before training.</p><ul><li><strong>Symmetry:</strong> Different random weights help hidden neurons learn different features; identical zero weights can keep them identical.</li><li><strong>Xavier:</strong> Balances signal scale using fan-in and fan-out; commonly suits tanh or roughly linear activations.</li><li><strong>He:</strong> Accounts for rectification and commonly suits ReLU-like activations.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Initialization</th><th scope=\"col\">Typical variance</th><th scope=\"col\">Typical match</th></tr></thead><tbody><tr><th scope=\"row\">Xavier / Glorot</th><td>2 / (fan_in + fan_out), before optional gain adjustments</td><td>Tanh or roughly linear activations</td></tr><tr><th scope=\"row\">He / Kaiming</th><td>2 / fan_in for ReLU, fan-in mode</td><td>ReLU-like activations</td></tr></tbody></table></div><p><strong>Symbols:</strong> fan_in counts incoming connections; fan_out counts outgoing connections. Exact scaling depends on the activation and initialization variant.</p><p><strong>Remember:</strong> Start with appropriately scaled random weights, not identical hidden weights.</p>"
+      "answer": "<p>Weight initialization chooses starting parameter values before training.</p><ul><li><strong>Symmetry:</strong> Different random weights help hidden neurons learn different features; identical zero weights can keep them identical.</li><li><strong>Xavier:</strong> Balances signal scale using fan-in and fan-out; commonly suits tanh or roughly linear activations.</li><li><strong>He:</strong> Accounts for rectification and commonly suits ReLU-like activations.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Initialization</th><th scope=\"col\">Typical variance</th><th scope=\"col\">Typical match</th></tr></thead><tbody><tr><th scope=\"row\">Xavier / Glorot</th><td>2 / (fan_in + fan_out), before optional gain adjustments</td><td>Tanh or roughly linear activations</td></tr><tr><th scope=\"row\">He / Kaiming</th><td>2 / fan_in for ReLU, fan-in mode</td><td>ReLU-like activations</td></tr></tbody></table></div><p><strong>Symbols:</strong> fan_in counts incoming connections; fan_out counts outgoing connections. Exact scaling depends on the activation and initialization variant.</p><p><strong>Remember:</strong> Start with appropriately scaled random weights, not identical hidden weights.</p>",
+      "subtopic": "Weight initialization strategies"
     },
     {
-      "id": 6,
+      "id": 16,
+      "number": 16,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Weight initialization strategies",
+      "type": "conceptual",
+      "question": "What is Xavier initialization?",
+      "answer": "<p>Xavier initialization chooses random weight scales based on the incoming and outgoing connections.</p><ul><li><strong>Goal:</strong> Keep signals from growing or shrinking too quickly across layers.</li><li><strong>Scale:</strong> Use fan-in and fan-out to set the initial variance.</li><li><strong>Match:</strong> Commonly used with tanh or roughly linear activations, with appropriate gain settings.</li></ul><p><strong>Remember:</strong> Xavier balances the connections entering and leaving a layer.</p>",
+      "subtopic": "Weight initialization strategies"
+    },
+    {
+      "id": 17,
+      "number": 17,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Weight initialization strategies",
+      "type": "conceptual",
+      "question": "What is He initialization?",
+      "answer": "<p>He initialization scales random weights to suit rectifying activations such as ReLU.</p><ul><li><strong>Reason:</strong> ReLU removes the negative part of its input.</li><li><strong>Scale:</strong> A common fan-in configuration uses weight variance 2 divided by fan-in.</li><li><strong>Purpose:</strong> Help maintain useful signal scales through many layers.</li></ul><p><strong>Remember:</strong> He initialization accounts for ReLU-like rectification.</p>",
+      "subtopic": "Weight initialization strategies"
+    },
+    {
+      "id": 18,
+      "number": 18,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Vanishing / exploding gradient problem",
       "type": "conceptual",
       "question": "What are vanishing and exploding gradients, and how do they affect learning?",
-      "answer": "<p>Vanishing gradients become too small to learn effectively; exploding gradients become excessively large.</p><ul><li><strong>Vanishing:</strong> Earlier layers may learn very slowly because their gradients are tiny.</li><li><strong>Exploding:</strong> Large gradients can cause unstable updates, huge losses, or non-finite values.</li><li><strong>Control:</strong> Suitable initialization and architecture help; clipping specifically limits large gradients.</li></ul><p><strong>Remember:</strong> Too small means weak learning; too large means unstable learning.</p>"
+      "answer": "<p>Vanishing gradients become too small to learn effectively; exploding gradients become excessively large.</p><ul><li><strong>Vanishing:</strong> Earlier layers may learn very slowly because their gradients are tiny.</li><li><strong>Exploding:</strong> Large gradients can cause unstable updates, huge losses, or non-finite values.</li><li><strong>Control:</strong> Suitable initialization and architecture help; clipping specifically limits large gradients.</li></ul><p><strong>Remember:</strong> Too small means weak learning; too large means unstable learning.</p>",
+      "subtopic": "Vanishing / exploding gradient problem"
     },
     {
-      "id": 7,
+      "id": 19,
+      "number": 19,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Vanishing / exploding gradient problem",
+      "type": "conceptual",
+      "question": "What is a vanishing gradient?",
+      "answer": "<p>A vanishing gradient is a backward learning signal that becomes very small.</p><ul><li><strong>Cause:</strong> Repeated derivative multiplications can shrink the signal.</li><li><strong>Effect:</strong> Earlier layers or distant sequence steps may learn slowly.</li><li><strong>Help:</strong> Suitable activations, initialization, shortcuts, or gated architectures can improve gradient flow.</li></ul><p><strong>Remember:</strong> A tiny gradient gives a weak learning signal.</p>",
+      "subtopic": "Vanishing / exploding gradient problem"
+    },
+    {
+      "id": 20,
+      "number": 20,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Vanishing / exploding gradient problem",
+      "type": "conceptual",
+      "question": "What is an exploding gradient?",
+      "answer": "<p>An exploding gradient is a backward learning signal that becomes excessively large.</p><ul><li><strong>Cause:</strong> Repeated transformations can amplify derivatives.</li><li><strong>Effect:</strong> Large updates can make loss unstable or non-finite.</li><li><strong>Help:</strong> Gradient clipping and suitable initialization or training settings can improve stability.</li></ul><p><strong>Remember:</strong> An oversized gradient can produce an unstable update.</p>",
+      "subtopic": "Vanishing / exploding gradient problem"
+    },
+    {
+      "id": 21,
+      "number": 1,
       "section": "4.2 Training Techniques",
       "bullet": "Batch normalization - stabilizing training",
       "type": "conceptual",
       "question": "What is batch normalization, and how does it help stabilize training?",
-      "answer": "<p>Batch normalization normalizes intermediate features using batch statistics and a learned scale and shift.</p><ul><li><strong>Statistics:</strong> During training, compute means and variances for each feature or channel; CNN versions also include spatial positions.</li><li><strong>Learned adjustment:</strong> Gamma scales and beta shifts the normalized values.</li><li><strong>Evaluation:</strong> Standard BatchNorm uses running statistics at inference; tiny effective sample counts can give noisy training estimates.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>x_normalized = (x - mean) / sqrt(variance + epsilon); y = gamma * x_normalized + beta</code></p><p><strong>Symbols:</strong> Epsilon is a small positive number for numerical stability; gamma and beta are learned parameters.</p><p><strong>Remember:</strong> BatchNorm normalizes features across the batch, then learns their scale and shift.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch BatchNorm</a></p>"
+      "answer": "<p>Batch normalization normalizes intermediate features using batch statistics and a learned scale and shift.</p><ul><li><strong>Statistics:</strong> During training, compute means and variances for each feature or channel; CNN versions also include spatial positions.</li><li><strong>Learned adjustment:</strong> Gamma scales and beta shifts the normalized values.</li><li><strong>Evaluation:</strong> Standard BatchNorm uses running statistics at inference; tiny effective sample counts can give noisy training estimates.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>x_normalized = (x - mean) / sqrt(variance + epsilon); y = gamma * x_normalized + beta</code></p><p><strong>Symbols:</strong> Epsilon is a small positive number for numerical stability; gamma and beta are learned parameters.</p><p><strong>Remember:</strong> BatchNorm normalizes features across the batch, then learns their scale and shift.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch BatchNorm</a></p>",
+      "subtopic": "Batch normalization - stabilizing training"
     },
     {
-      "id": 8,
+      "id": 22,
+      "number": 2,
+      "section": "4.2 Training Techniques",
+      "bullet": "Batch normalization - stabilizing training",
+      "type": "conceptual",
+      "question": "How does BatchNorm differ between training and evaluation?",
+      "answer": "<p>Standard BatchNorm uses current batch statistics during training and stored running statistics during evaluation.</p><ul><li><strong>Training:</strong> Normalize with batch-derived means and variances.</li><li><strong>Running estimates:</strong> Update estimates that summarize training statistics.</li><li><strong>Evaluation:</strong> Normally reuse those stored estimates instead of the current batch.</li></ul><p><strong>Remember:</strong> Batch statistics for training; running statistics for ordinary evaluation.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch BatchNorm</a></p>",
+      "subtopic": "Batch normalization - stabilizing training"
+    },
+    {
+      "id": 23,
+      "number": 3,
       "section": "4.2 Training Techniques",
       "bullet": "Layer normalization - used in transformers",
       "type": "conceptual",
       "question": "What is layer normalization, and why is it used in transformers?",
-      "answer": "<p>Layer normalization normalizes selected features within each example, independently of other batch examples.</p><ul><li><strong>Axes:</strong> In a typical transformer, normalize the hidden-feature dimension separately for each token.</li><li><strong>Consistency:</strong> Use input statistics during both training and inference; no batch running averages are needed.</li><li><strong>Sequences:</strong> Avoid dependence on batch size and other examples, which is useful for variable-length sequence work.</li></ul><p><strong>Remember:</strong> LayerNorm normalizes within a token; BatchNorm typically uses other batch examples.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch LayerNorm</a></p>"
+      "answer": "<p>Layer normalization normalizes selected features within each example, independently of other batch examples.</p><ul><li><strong>Axes:</strong> In a typical transformer, normalize the hidden-feature dimension separately for each token.</li><li><strong>Consistency:</strong> Use input statistics during both training and inference; no batch running averages are needed.</li><li><strong>Sequences:</strong> Avoid dependence on batch size and other examples, which is useful for variable-length sequence work.</li></ul><p><strong>Remember:</strong> LayerNorm normalizes within a token; BatchNorm typically uses other batch examples.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch LayerNorm</a></p>",
+      "subtopic": "Layer normalization - used in transformers"
     },
     {
-      "id": 9,
+      "id": 24,
+      "number": 4,
+      "section": "4.2 Training Techniques",
+      "bullet": "Layer normalization - used in transformers",
+      "type": "conceptual",
+      "question": "How is LayerNorm different from BatchNorm?",
+      "answer": "<p>LayerNorm normalizes features within an example; BatchNorm typically normalizes each feature across examples.</p><ul><li><strong>LayerNorm:</strong> In transformers, usually normalize each token's hidden features.</li><li><strong>BatchNorm:</strong> Use statistics across the batch and, for CNNs, relevant spatial positions.</li><li><strong>Dependence:</strong> LayerNorm does not depend on other examples in the batch.</li></ul><p><strong>Remember:</strong> LayerNorm works within an example; BatchNorm uses the batch.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch LayerNorm</a></p>",
+      "subtopic": "Layer normalization - used in transformers"
+    },
+    {
+      "id": 25,
+      "number": 5,
       "section": "4.2 Training Techniques",
       "bullet": "Dropout - stochastic regularization",
       "type": "conceptual",
       "question": "What is dropout, and how does it help reduce overfitting?",
-      "answer": "<p>Dropout randomly zeros some activations during training to reduce overfitting.</p><ul><li><strong>Training:</strong> Drop activations with probability p so the model cannot rely on exactly the same pathways every time.</li><li><strong>Scaling:</strong> Inverted dropout multiplies surviving activations by 1 divided by one minus p.</li><li><strong>Inference:</strong> Standard dropout is disabled; it does not guarantee better generalization.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>training_output = mask * x / (1 - p); inference_output = x</code></p><p class=\"example\"><strong>Example:</strong> With p = 0.5, each surviving activation is multiplied by 2 during training.</p><p><strong>Remember:</strong> Randomly drop during training; use all activations during ordinary inference.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Dropout</a></p>"
+      "answer": "<p>Dropout randomly zeros some activations during training to reduce overfitting.</p><ul><li><strong>Training:</strong> Drop activations with probability p so the model cannot rely on exactly the same pathways every time.</li><li><strong>Scaling:</strong> Inverted dropout multiplies surviving activations by 1 divided by one minus p.</li><li><strong>Inference:</strong> Standard dropout is disabled; it does not guarantee better generalization.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>training_output = mask * x / (1 - p); inference_output = x</code></p><p class=\"example\"><strong>Example:</strong> With p = 0.5, each surviving activation is multiplied by 2 during training.</p><p><strong>Remember:</strong> Randomly drop during training; use all activations during ordinary inference.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Dropout</a></p>",
+      "subtopic": "Dropout - stochastic regularization"
     },
     {
-      "id": 10,
+      "id": 26,
+      "number": 6,
+      "section": "4.2 Training Techniques",
+      "bullet": "Dropout - stochastic regularization",
+      "type": "conceptual",
+      "question": "How does dropout behave during training and inference?",
+      "answer": "<p>Standard dropout randomly masks activations during training and is disabled during ordinary inference.</p><ul><li><strong>Training:</strong> Set selected activations to zero.</li><li><strong>Scaling:</strong> Inverted dropout scales surviving values to preserve their expected value.</li><li><strong>Inference:</strong> Use activations without random dropout masking.</li></ul><p><strong>Remember:</strong> Mask while learning; disable the mask for ordinary prediction.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Dropout.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Dropout</a></p>",
+      "subtopic": "Dropout - stochastic regularization"
+    },
+    {
+      "id": 27,
+      "number": 7,
       "section": "4.2 Training Techniques",
       "bullet": "Residual connections (skip connections) - used in every modern model",
       "type": "conceptual",
       "question": "What is a residual or skip connection, and why is it useful?",
-      "answer": "<p>A residual connection adds a block's input to its transformed output.</p><ul><li><strong>Shortcut:</strong> The identity path carries information alongside the learned transformation.</li><li><strong>Optimization:</strong> The block can learn a correction to its input, with an additional path for gradient flow.</li><li><strong>Shapes:</strong> Input and output must match for addition; use a projection when needed.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>y = F(x) + x; with a projection: y = F(x) + P(x)</code></p><p><strong>Remember:</strong> Learn a correction and add it to the original input.</p>"
+      "answer": "<p>A residual connection adds a block's input to its transformed output.</p><ul><li><strong>Shortcut:</strong> The identity path carries information alongside the learned transformation.</li><li><strong>Optimization:</strong> The block can learn a correction to its input, with an additional path for gradient flow.</li><li><strong>Shapes:</strong> Input and output must match for addition; use a projection when needed.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>y = F(x) + x; with a projection: y = F(x) + P(x)</code></p><p><strong>Remember:</strong> Learn a correction and add it to the original input.</p>",
+      "subtopic": "Residual connections (skip connections) - used in every modern model"
     },
     {
-      "id": 11,
+      "id": 28,
+      "number": 8,
+      "section": "4.2 Training Techniques",
+      "bullet": "Residual connections (skip connections) - used in every modern model",
+      "type": "conceptual",
+      "question": "How do skip connections help gradients flow?",
+      "answer": "<p>A skip connection creates an additional path through which information and gradients can pass.</p><ul><li><strong>Identity path:</strong> Bypass the block's learned transformation.</li><li><strong>Correction:</strong> Let the block learn a change relative to its input.</li><li><strong>Optimization:</strong> Make deep networks easier to train without guaranteeing success.</li></ul><p><strong>Remember:</strong> A shortcut gives gradients another route through the network.</p>",
+      "subtopic": "Residual connections (skip connections) - used in every modern model"
+    },
+    {
+      "id": 29,
+      "number": 9,
       "section": "4.2 Training Techniques",
       "bullet": "Gradient clipping",
       "type": "conceptual",
       "question": "What is gradient clipping, and why is it used during training?",
-      "answer": "<p>Gradient clipping limits gradient magnitude before the optimizer update.</p><ul><li><strong>Norm clipping:</strong> Rescale a gradient vector when its norm exceeds a threshold, preserving its direction when uniformly scaled.</li><li><strong>Value clipping:</strong> Clamp individual gradient elements to a chosen range.</li><li><strong>Purpose:</strong> Reduce exploding-gradient updates; clipping does not solve vanishing gradients or every cause of instability.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>g_clipped = g * min(1, max_norm / norm(g))</code></p><p><strong>Symbols:</strong> For a zero gradient norm, leave the gradient unchanged.</p><p class=\"example\"><strong>Example:</strong> If the gradient norm is 10 and the allowed norm is 1, multiply the gradient by 0.1.</p><p><strong>Remember:</strong> Compute gradients, clip them, then update weights.</p>"
+      "answer": "<p>Gradient clipping limits gradient magnitude before the optimizer update.</p><ul><li><strong>Norm clipping:</strong> Rescale a gradient vector when its norm exceeds a threshold, preserving its direction when uniformly scaled.</li><li><strong>Value clipping:</strong> Clamp individual gradient elements to a chosen range.</li><li><strong>Purpose:</strong> Reduce exploding-gradient updates; clipping does not solve vanishing gradients or every cause of instability.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>g_clipped = g * min(1, max_norm / norm(g))</code></p><p><strong>Symbols:</strong> For a zero gradient norm, leave the gradient unchanged.</p><p class=\"example\"><strong>Example:</strong> If the gradient norm is 10 and the allowed norm is 1, multiply the gradient by 0.1.</p><p><strong>Remember:</strong> Compute gradients, clip them, then update weights.</p>",
+      "subtopic": "Gradient clipping"
     },
     {
-      "id": 12,
+      "id": 30,
+      "number": 10,
+      "section": "4.2 Training Techniques",
+      "bullet": "Gradient clipping",
+      "type": "conceptual",
+      "question": "Does gradient clipping fix vanishing gradients?",
+      "answer": "<p>Gradient clipping limits large gradients; it does not make tiny gradients larger.</p><ul><li><strong>Exploding gradients:</strong> Clipping can reduce unusually large gradient updates.</li><li><strong>Vanishing gradients:</strong> Better signal flow requires other architectural or initialization choices.</li><li><strong>Timing:</strong> Apply clipping after backpropagation and before the optimizer step.</li></ul><p><strong>Remember:</strong> Clipping caps oversized signals; it does not amplify weak ones.</p>",
+      "subtopic": "Gradient clipping"
+    },
+    {
+      "id": 31,
+      "number": 1,
       "section": "4.3 Convolutional Neural Networks (CNN)",
       "bullet": "Convolution operation - feature detection",
       "type": "conceptual",
       "question": "What is a convolution operation, and how does a CNN use it to detect features?",
-      "answer": "<p>A convolution applies learned filters to local input regions to produce feature maps.</p><ul><li><strong>Local pattern:</strong> Multiply filter weights by nearby input values and sum them, usually adding a bias.</li><li><strong>Weight sharing:</strong> Reuse the same filter across spatial positions.</li><li><strong>Hierarchy:</strong> Early layers often detect edges or textures; deeper layers combine them into task-relevant patterns.</li></ul><p class=\"example\"><strong>Example:</strong> An edge-sensitive filter responds strongly where an image changes sharply from dark to light.</p><p><strong>Remember:</strong> One shared filter scans many positions for a useful pattern.</p>"
+      "answer": "<p>A convolution applies learned filters to local input regions to produce feature maps.</p><ul><li><strong>Local pattern:</strong> Multiply filter weights by nearby input values and sum them, usually adding a bias.</li><li><strong>Weight sharing:</strong> Reuse the same filter across spatial positions.</li><li><strong>Hierarchy:</strong> Early layers often detect edges or textures; deeper layers combine them into task-relevant patterns.</li></ul><p class=\"example\"><strong>Example:</strong> An edge-sensitive filter responds strongly where an image changes sharply from dark to light.</p><p><strong>Remember:</strong> One shared filter scans many positions for a useful pattern.</p>",
+      "subtopic": "Convolution operation - feature detection"
     },
     {
-      "id": 13,
+      "id": 32,
+      "number": 2,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Convolution operation - feature detection",
+      "type": "conceptual",
+      "question": "What is a convolution filter or kernel?",
+      "answer": "<p>A convolution filter is a small set of learned weights applied across local input regions.</p><ul><li><strong>Locality:</strong> Inspect a small neighborhood at each position.</li><li><strong>Sharing:</strong> Reuse the same weights across spatial positions.</li><li><strong>Output:</strong> Produce a feature map that records the filter's responses.</li></ul><p><strong>Remember:</strong> One learned filter looks for a pattern in many locations.</p>",
+      "subtopic": "Convolution operation - feature detection"
+    },
+    {
+      "id": 33,
+      "number": 3,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Convolution operation - feature detection",
+      "type": "conceptual",
+      "question": "How do early and deeper CNN features differ?",
+      "answer": "<p>Early CNN layers often learn simple local patterns; deeper layers combine them into task-relevant features.</p><ul><li><strong>Early layers:</strong> Often respond to edges, colors, and textures.</li><li><strong>Deeper layers:</strong> Combine simpler features into more complex structures.</li><li><strong>Task dependence:</strong> The exact features depend on the data and objective.</li></ul><p><strong>Remember:</strong> Simple patterns combine into more useful representations.</p>",
+      "subtopic": "Convolution operation - feature detection"
+    },
+    {
+      "id": 34,
+      "number": 4,
       "section": "4.3 Convolutional Neural Networks (CNN)",
       "bullet": "Pooling layers - spatial downsampling",
       "type": "conceptual",
       "question": "What is pooling, and how do max pooling and average pooling reduce spatial size?",
-      "answer": "<p>Pooling summarizes local feature-map regions, usually reducing their spatial dimensions.</p><ul><li><strong>Max pooling:</strong> Keep the largest value, emphasizing a strong local response.</li><li><strong>Average pooling:</strong> Keep the mean value, summarizing the region's overall response.</li><li><strong>Tradeoff:</strong> Downsampling reduces computation but loses spatial detail; output size depends on the window and stride.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Method</th><th scope=\"col\">Local summary</th><th scope=\"col\">Typical purpose</th></tr></thead><tbody><tr><th scope=\"row\">Max pooling</th><td>Largest value in each window</td><td>Keep a strong local feature response</td></tr><tr><th scope=\"row\">Average pooling</th><td>Mean of values in each window</td><td>Summarize overall activity; global averaging summarizes each feature map</td></tr></tbody></table></div><p class=\"example\"><strong>Example:</strong> For a region [1, 3, 2, 4], max pooling gives 4 and average pooling gives 2.5.</p><p><strong>Remember:</strong> Max keeps the strongest response; average keeps the local mean.</p>"
+      "answer": "<p>Pooling summarizes local feature-map regions, usually reducing their spatial dimensions.</p><ul><li><strong>Max pooling:</strong> Keep the largest value, emphasizing a strong local response.</li><li><strong>Average pooling:</strong> Keep the mean value, summarizing the region's overall response.</li><li><strong>Tradeoff:</strong> Downsampling reduces computation but loses spatial detail; output size depends on the window and stride.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Method</th><th scope=\"col\">Local summary</th><th scope=\"col\">Typical purpose</th></tr></thead><tbody><tr><th scope=\"row\">Max pooling</th><td>Largest value in each window</td><td>Keep a strong local feature response</td></tr><tr><th scope=\"row\">Average pooling</th><td>Mean of values in each window</td><td>Summarize overall activity; global averaging summarizes each feature map</td></tr></tbody></table></div><p class=\"example\"><strong>Example:</strong> For a region [1, 3, 2, 4], max pooling gives 4 and average pooling gives 2.5.</p><p><strong>Remember:</strong> Max keeps the strongest response; average keeps the local mean.</p>",
+      "subtopic": "Pooling layers - spatial downsampling"
     },
     {
-      "id": 14,
+      "id": 35,
+      "number": 5,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Pooling layers - spatial downsampling",
+      "type": "conceptual",
+      "question": "What is max pooling?",
+      "answer": "<p>Max pooling keeps the largest value in each local feature-map region.</p><ul><li><strong>Operation:</strong> Select the strongest activation in a window.</li><li><strong>Downsampling:</strong> A stride greater than one usually reduces spatial size.</li><li><strong>Tradeoff:</strong> Keep strong responses while discarding other local details.</li></ul><p><strong>Remember:</strong> Max pooling keeps the strongest local response.</p>",
+      "subtopic": "Pooling layers - spatial downsampling"
+    },
+    {
+      "id": 36,
+      "number": 6,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Pooling layers - spatial downsampling",
+      "type": "conceptual",
+      "question": "What is average pooling?",
+      "answer": "<p>Average pooling replaces each selected region with its mean value.</p><ul><li><strong>Operation:</strong> Average the values in a window.</li><li><strong>Summary:</strong> Represent overall local activity rather than only its strongest response.</li><li><strong>Global version:</strong> Average each entire feature map to obtain one value per channel.</li></ul><p><strong>Remember:</strong> Average pooling keeps the local mean.</p>",
+      "subtopic": "Pooling layers - spatial downsampling"
+    },
+    {
+      "id": 37,
+      "number": 7,
       "section": "4.3 Convolutional Neural Networks (CNN)",
       "bullet": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
       "type": "conceptual",
       "question": "What are LeNet, AlexNet, VGG, and ResNet, and what is the main idea of each?",
-      "answer": "<p>LeNet, AlexNet, VGG, and ResNet are CNN families with different approaches to learning visual features.</p><ul><li><strong>LeNet and AlexNet:</strong> LeNet is an early digit-recognition CNN; AlexNet popularized deeper CNN training with ReLU and GPUs.</li><li><strong>VGG:</strong> Builds deeper networks mainly by stacking small 3-by-3 convolutions.</li><li><strong>ResNet:</strong> Uses residual shortcuts to make very deep networks easier to optimize.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Architecture</th><th scope=\"col\">Main idea</th></tr></thead><tbody><tr><th scope=\"row\">LeNet</th><td>Early convolution-and-pooling network for digit recognition</td></tr><tr><th scope=\"row\">AlexNet</th><td>Large-scale deep CNN with ReLU, dropout, and GPU training</td></tr><tr><th scope=\"row\">VGG</th><td>Deep stacks of small 3-by-3 convolution filters</td></tr><tr><th scope=\"row\">ResNet</th><td>Residual shortcuts improve optimization of very deep networks</td></tr></tbody></table></div><p><strong>Remember:</strong> LeNet: early CNN; AlexNet: deep breakthrough; VGG: small filters; ResNet: shortcuts.</p>"
+      "answer": "<p>LeNet, AlexNet, VGG, and ResNet are CNN families with different approaches to learning visual features.</p><ul><li><strong>LeNet and AlexNet:</strong> LeNet is an early digit-recognition CNN; AlexNet popularized deeper CNN training with ReLU and GPUs.</li><li><strong>VGG:</strong> Builds deeper networks mainly by stacking small 3-by-3 convolutions.</li><li><strong>ResNet:</strong> Uses residual shortcuts to make very deep networks easier to optimize.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Architecture</th><th scope=\"col\">Main idea</th></tr></thead><tbody><tr><th scope=\"row\">LeNet</th><td>Early convolution-and-pooling network for digit recognition</td></tr><tr><th scope=\"row\">AlexNet</th><td>Large-scale deep CNN with ReLU, dropout, and GPU training</td></tr><tr><th scope=\"row\">VGG</th><td>Deep stacks of small 3-by-3 convolution filters</td></tr><tr><th scope=\"row\">ResNet</th><td>Residual shortcuts improve optimization of very deep networks</td></tr></tbody></table></div><p><strong>Remember:</strong> LeNet: early CNN; AlexNet: deep breakthrough; VGG: small filters; ResNet: shortcuts.</p>",
+      "subtopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet"
     },
     {
-      "id": 15,
+      "id": 38,
+      "number": 8,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "type": "conceptual",
+      "question": "What is LeNet?",
+      "answer": "<p>LeNet is an early convolutional neural-network family associated with handwritten digit recognition.</p><ul><li><strong>Convolutions:</strong> Detect local image patterns.</li><li><strong>Downsampling:</strong> Reduce the spatial representation between stages.</li><li><strong>Prediction:</strong> Combine learned features to classify the input.</li></ul><p><strong>Remember:</strong> LeNet is a foundational example of a CNN for digits.</p>",
+      "subtopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet"
+    },
+    {
+      "id": 39,
+      "number": 9,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "type": "conceptual",
+      "question": "What is AlexNet known for?",
+      "answer": "<p>AlexNet helped popularize deep CNNs through strong large-scale image-classification results.</p><ul><li><strong>Depth:</strong> Use multiple convolutional and fully connected layers.</li><li><strong>Training:</strong> Use ReLU activations and GPU computation.</li><li><strong>Regularization:</strong> Use techniques including dropout and data augmentation.</li></ul><p><strong>Remember:</strong> AlexNet demonstrated the practical power of deep CNN training.</p>",
+      "subtopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet"
+    },
+    {
+      "id": 40,
+      "number": 10,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "type": "conceptual",
+      "question": "What is VGG's main design idea?",
+      "answer": "<p>VGG builds deep CNNs mainly by stacking small 3-by-3 convolution filters.</p><ul><li><strong>Small filters:</strong> Reuse a simple convolutional building block.</li><li><strong>Depth:</strong> Stacked layers cover larger effective image regions.</li><li><strong>Non-linearity:</strong> Activations between convolutions enable richer transformations.</li></ul><p><strong>Remember:</strong> VGG favors simple small filters stacked deeply.</p>",
+      "subtopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet"
+    },
+    {
+      "id": 41,
+      "number": 11,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "type": "conceptual",
+      "question": "What is ResNet's main design idea?",
+      "answer": "<p>ResNet uses residual connections to make very deep networks easier to optimize.</p><ul><li><strong>Block:</strong> Add a learned transformation to a shortcut representation.</li><li><strong>Identity:</strong> The shortcut can carry the original input when shapes match.</li><li><strong>Benefit:</strong> Improve information and gradient flow through deep networks.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>output = F(input) + input</code></p><p><strong>Remember:</strong> ResNet learns corrections around shortcut paths.</p>",
+      "subtopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet"
+    },
+    {
+      "id": 42,
+      "number": 12,
       "section": "4.3 Convolutional Neural Networks (CNN)",
       "bullet": "Transfer learning with CNNs",
       "type": "conceptual",
       "question": "What is transfer learning with a pretrained CNN?",
-      "answer": "<p>CNN transfer learning reuses features learned on a source task for a new image task.</p><ol><li><strong>Reuse:</strong> Start with a pretrained feature extractor rather than random weights.</li><li><strong>Adapt:</strong> Replace the prediction head to match the new labels and train it.</li><li><strong>Fine-tune:</strong> Optionally unfreeze some pretrained layers with a smaller learning rate and validate the result.</li></ol><p class=\"example\"><strong>Example:</strong> For a small flower dataset, reuse a pretrained CNN and train a new flower-classification head.</p><p><strong>Remember:</strong> Reuse visual features, then adapt the task-specific head.</p>"
+      "answer": "<p>CNN transfer learning reuses features learned on a source task for a new image task.</p><ol><li><strong>Reuse:</strong> Start with a pretrained feature extractor rather than random weights.</li><li><strong>Adapt:</strong> Replace the prediction head to match the new labels and train it.</li><li><strong>Fine-tune:</strong> Optionally unfreeze some pretrained layers with a smaller learning rate and validate the result.</li></ol><p class=\"example\"><strong>Example:</strong> For a small flower dataset, reuse a pretrained CNN and train a new flower-classification head.</p><p><strong>Remember:</strong> Reuse visual features, then adapt the task-specific head.</p>",
+      "subtopic": "Transfer learning with CNNs"
     },
     {
-      "id": 16,
+      "id": 43,
+      "number": 13,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Transfer learning with CNNs",
+      "type": "conceptual",
+      "question": "What do you replace when adapting a pretrained CNN to new classes?",
+      "answer": "<p>Usually keep the pretrained feature extractor and replace the final prediction head.</p><ul><li><strong>Backbone:</strong> Reuse learned visual representations.</li><li><strong>New head:</strong> Set its output size to match the target labels.</li><li><strong>Training:</strong> Fit the head first and optionally fine-tune selected backbone layers.</li></ul><p><strong>Remember:</strong> Reuse the features; adapt the output layer.</p>",
+      "subtopic": "Transfer learning with CNNs"
+    },
+    {
+      "id": 44,
+      "number": 14,
       "section": "4.3 Convolutional Neural Networks (CNN)",
       "bullet": "Applications: image classification, object detection",
       "type": "conceptual",
       "question": "What are image classification and object detection, and how do their outputs differ?",
-      "answer": "<p>Image classification labels an image; object detection identifies individual objects and their locations.</p><ul><li><strong>Classification:</strong> Usually returns image-level labels or scores without object locations.</li><li><strong>Detection:</strong> Returns a class, location such as a bounding box, and confidence for each detected object.</li><li><strong>Use:</strong> Detection supports locating and counting instances; classification alone usually does not.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Task</th><th scope=\"col\">Typical output</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><th scope=\"row\">Classification</th><td>Image-level class scores or labels</td><td>This image contains a dog</td></tr><tr><th scope=\"row\">Detection</th><td>One class, location, and confidence per detected object</td><td>Two dogs with two bounding boxes</td></tr></tbody></table></div><p><strong>Remember:</strong> Classification says what is present; detection also says where.</p>"
+      "answer": "<p>Image classification labels an image; object detection identifies individual objects and their locations.</p><ul><li><strong>Classification:</strong> Usually returns image-level labels or scores without object locations.</li><li><strong>Detection:</strong> Returns a class, location such as a bounding box, and confidence for each detected object.</li><li><strong>Use:</strong> Detection supports locating and counting instances; classification alone usually does not.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Task</th><th scope=\"col\">Typical output</th><th scope=\"col\">Example</th></tr></thead><tbody><tr><th scope=\"row\">Classification</th><td>Image-level class scores or labels</td><td>This image contains a dog</td></tr><tr><th scope=\"row\">Detection</th><td>One class, location, and confidence per detected object</td><td>Two dogs with two bounding boxes</td></tr></tbody></table></div><p><strong>Remember:</strong> Classification says what is present; detection also says where.</p>",
+      "subtopic": "Applications: image classification, object detection"
     },
     {
-      "id": 17,
+      "id": 45,
+      "number": 15,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Applications: image classification, object detection",
+      "type": "conceptual",
+      "question": "What is image classification?",
+      "answer": "<p>Image classification assigns image-level labels or scores to an input image.</p><ul><li><strong>Input:</strong> Receive an entire image.</li><li><strong>Output:</strong> Predict the category or categories associated with it.</li><li><strong>Limit:</strong> A label alone does not locate each object instance.</li></ul><p><strong>Remember:</strong> Classification answers what is in the image.</p>",
+      "subtopic": "Applications: image classification, object detection"
+    },
+    {
+      "id": 46,
+      "number": 16,
+      "section": "4.3 Convolutional Neural Networks (CNN)",
+      "bullet": "Applications: image classification, object detection",
+      "type": "conceptual",
+      "question": "What is object detection?",
+      "answer": "<p>Object detection predicts the classes and locations of individual objects in an image.</p><ul><li><strong>Class:</strong> Identify what each detected object is.</li><li><strong>Location:</strong> Commonly return a bounding box for each object.</li><li><strong>Confidence:</strong> Report a score for each detection.</li></ul><p><strong>Remember:</strong> Detection answers what objects are present and where they are.</p>",
+      "subtopic": "Applications: image classification, object detection"
+    },
+    {
+      "id": 47,
+      "number": 1,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "RNN - processing sequences one step at a time",
       "type": "conceptual",
       "question": "What is an RNN, and how does it process a sequence one step at a time?",
-      "answer": "<p>An RNN processes ordered inputs while updating a hidden state at each step.</p><ol><li><strong>Read:</strong> Take the current input and the previous hidden state.</li><li><strong>Update:</strong> Apply the same learned recurrent transformation at each time step.</li><li><strong>Output:</strong> Use the new state for a prediction or pass it to the next step.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>h_t = tanh(W_x * x_t + W_h * h_previous + b)</code></p><p><strong>Symbols:</strong> x_t is the current input, h_t is the new hidden state, and W_x, W_h, b are shared across time steps.</p><p class=\"example\"><strong>Example:</strong> Read a sentence word by word, updating a summary after each word.</p><p><strong>Remember:</strong> Current input plus previous state produces the next state.</p>"
+      "answer": "<p>An RNN processes ordered inputs while updating a hidden state at each step.</p><ol><li><strong>Read:</strong> Take the current input and the previous hidden state.</li><li><strong>Update:</strong> Apply the same learned recurrent transformation at each time step.</li><li><strong>Output:</strong> Use the new state for a prediction or pass it to the next step.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>h_t = tanh(W_x * x_t + W_h * h_previous + b)</code></p><p><strong>Symbols:</strong> x_t is the current input, h_t is the new hidden state, and W_x, W_h, b are shared across time steps.</p><p class=\"example\"><strong>Example:</strong> Read a sentence word by word, updating a summary after each word.</p><p><strong>Remember:</strong> Current input plus previous state produces the next state.</p>",
+      "subtopic": "RNN - processing sequences one step at a time"
     },
     {
-      "id": 18,
+      "id": 48,
+      "number": 2,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "RNN - processing sequences one step at a time",
+      "type": "conceptual",
+      "question": "Why does an RNN reuse the same weights at every time step?",
+      "answer": "<p>Shared weights apply the same sequence-processing rule at each position.</p><ul><li><strong>Consistency:</strong> Process each new input using the same learned transformation.</li><li><strong>Parameters:</strong> Avoid learning a separate parameter set for every position.</li><li><strong>Lengths:</strong> Apply that rule to sequences of different lengths, within practical constraints.</li></ul><p><strong>Remember:</strong> Same update rule, different time steps.</p>",
+      "subtopic": "RNN - processing sequences one step at a time"
+    },
+    {
+      "id": 49,
+      "number": 3,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "Hidden state - memory across time steps",
       "type": "conceptual",
       "question": "What is a hidden state, and how does it carry information across time steps?",
-      "answer": "<p>A hidden state is a learned numerical summary of the sequence processed so far.</p><ul><li><strong>Carry:</strong> Pass the state from one time step to the next.</li><li><strong>Combine:</strong> Update it using the previous summary and the current input.</li><li><strong>Limit:</strong> Its finite size and training dynamics can make distant details hard to preserve.</li></ul><p class=\"example\"><strong>Example:</strong> In next-word prediction, the state may carry subject information needed to choose a later verb.</p><p><strong>Remember:</strong> Hidden state is a changing summary, not a perfect transcript.</p>"
+      "answer": "<p>A hidden state is a learned numerical summary of the sequence processed so far.</p><ul><li><strong>Carry:</strong> Pass the state from one time step to the next.</li><li><strong>Combine:</strong> Update it using the previous summary and the current input.</li><li><strong>Limit:</strong> Its finite size and training dynamics can make distant details hard to preserve.</li></ul><p class=\"example\"><strong>Example:</strong> In next-word prediction, the state may carry subject information needed to choose a later verb.</p><p><strong>Remember:</strong> Hidden state is a changing summary, not a perfect transcript.</p>",
+      "subtopic": "Hidden state - memory across time steps"
     },
     {
-      "id": 19,
+      "id": 50,
+      "number": 4,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Hidden state - memory across time steps",
+      "type": "conceptual",
+      "question": "Is a hidden state a perfect memory of earlier inputs?",
+      "answer": "<p>A hidden state is a compressed learned summary, not an exact record of the full sequence.</p><ul><li><strong>Capacity:</strong> A fixed-size state cannot retain every possible detail.</li><li><strong>Learning:</strong> The objective determines which information is useful to preserve.</li><li><strong>Limits:</strong> Long sequences and weak gradients can make older details hard to retain.</li></ul><p><strong>Remember:</strong> A hidden state summarizes the past instead of storing it verbatim.</p>",
+      "subtopic": "Hidden state - memory across time steps"
+    },
+    {
+      "id": 51,
+      "number": 5,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "Vanishing gradient in RNNs",
       "type": "conceptual",
       "question": "Why do basic RNNs struggle with vanishing gradients and long-term dependencies?",
-      "answer": "<p>Basic RNN gradients can shrink through repeated backward multiplications across time steps.</p><ul><li><strong>Cause:</strong> Repeated small derivative factors can make gradients from distant steps tiny.</li><li><strong>Effect:</strong> Earlier inputs receive a weak learning signal, making long-range dependencies harder to learn.</li><li><strong>Alternatives:</strong> Gated models such as LSTMs and GRUs improve information flow but do not guarantee perfect memory.</li></ul><p><strong>Remember:</strong> A weak backward signal makes distant context hard to learn.</p>"
+      "answer": "<p>Basic RNN gradients can shrink through repeated backward multiplications across time steps.</p><ul><li><strong>Cause:</strong> Repeated small derivative factors can make gradients from distant steps tiny.</li><li><strong>Effect:</strong> Earlier inputs receive a weak learning signal, making long-range dependencies harder to learn.</li><li><strong>Alternatives:</strong> Gated models such as LSTMs and GRUs improve information flow but do not guarantee perfect memory.</li></ul><p><strong>Remember:</strong> A weak backward signal makes distant context hard to learn.</p>",
+      "subtopic": "Vanishing gradient in RNNs"
     },
     {
-      "id": 20,
+      "id": 52,
+      "number": 6,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Vanishing gradient in RNNs",
+      "type": "conceptual",
+      "question": "How do LSTMs and GRUs help with long-term dependencies?",
+      "answer": "<p>Gated recurrent models learn how to retain, replace, and expose state information.</p><ul><li><strong>Gates:</strong> Control information flow rather than replacing memory indiscriminately.</li><li><strong>LSTM:</strong> Provide an additive cell-state path that can preserve useful information.</li><li><strong>Limit:</strong> Gating helps learning but does not guarantee perfect long-term memory.</li></ul><p><strong>Remember:</strong> Gates help decide what to remember and what to change.</p>",
+      "subtopic": "Vanishing gradient in RNNs"
+    },
+    {
+      "id": 53,
+      "number": 7,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "LSTM - cell state, forget/input/output gates",
       "type": "conceptual",
       "question": "What is an LSTM, and what do its cell state, forget gate, input gate, and output gate do?",
-      "answer": "<p>An LSTM is a gated recurrent network with a cell state designed to preserve information over time.</p><ul><li><strong>Cell state:</strong> Carries memory through an additive update path; the hidden state is the exposed output at each step.</li><li><strong>Forget gate:</strong> Controls how much previous cell memory is retained.</li><li><strong>Input gate:</strong> Controls how much new candidate information is written.</li><li><strong>Output gate:</strong> Controls how much of the transformed cell state is exposed as the hidden state.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>cell_new = forget_gate * cell_previous + input_gate * candidate; hidden_new = output_gate * tanh(cell_new)</code></p><p><strong>Remember:</strong> Forget old information selectively; write new information; expose useful memory.</p>"
+      "answer": "<p>An LSTM is a gated recurrent network with a cell state designed to preserve information over time.</p><ul><li><strong>Cell state:</strong> Carries memory through an additive update path; the hidden state is the exposed output at each step.</li><li><strong>Forget gate:</strong> Controls how much previous cell memory is retained.</li><li><strong>Input gate:</strong> Controls how much new candidate information is written.</li><li><strong>Output gate:</strong> Controls how much of the transformed cell state is exposed as the hidden state.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>cell_new = forget_gate * cell_previous + input_gate * candidate; hidden_new = output_gate * tanh(cell_new)</code></p><p><strong>Remember:</strong> Forget old information selectively; write new information; expose useful memory.</p>",
+      "subtopic": "LSTM - cell state, forget/input/output gates"
     },
     {
-      "id": 21,
+      "id": 54,
+      "number": 8,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "LSTM - cell state, forget/input/output gates",
+      "type": "conceptual",
+      "question": "What is the cell state in an LSTM?",
+      "answer": "<p>The cell state is the LSTM's internal memory, updated through gated retention and addition.</p><ul><li><strong>Old memory:</strong> The forget gate scales the previous cell state.</li><li><strong>New memory:</strong> The input gate scales the new candidate information.</li><li><strong>Hidden state:</strong> The output gate controls the exposed, transformed memory.</li></ul><p><strong>Remember:</strong> Cell state carries memory; hidden state exposes information.</p>",
+      "subtopic": "LSTM - cell state, forget/input/output gates"
+    },
+    {
+      "id": 55,
+      "number": 9,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "LSTM - cell state, forget/input/output gates",
+      "type": "conceptual",
+      "question": "What does the forget gate do in an LSTM?",
+      "answer": "<p>The forget gate controls how much previous cell memory is retained.</p><ul><li><strong>Near one:</strong> Keep most of the corresponding old memory value.</li><li><strong>Near zero:</strong> Remove most of that old contribution.</li><li><strong>Learning:</strong> Gate values depend on the current input and previous hidden state.</li></ul><p><strong>Remember:</strong> The forget gate selects how much old memory survives.</p>",
+      "subtopic": "LSTM - cell state, forget/input/output gates"
+    },
+    {
+      "id": 56,
+      "number": 10,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "LSTM - cell state, forget/input/output gates",
+      "type": "conceptual",
+      "question": "What does the input gate do in an LSTM?",
+      "answer": "<p>The input gate controls how much new candidate information enters the cell state.</p><ul><li><strong>Candidate:</strong> Compute proposed new memory values.</li><li><strong>Gate:</strong> Scale those values before adding them.</li><li><strong>Update:</strong> Combine the selected new information with retained old memory.</li></ul><p><strong>Remember:</strong> The input gate controls what gets written.</p>",
+      "subtopic": "LSTM - cell state, forget/input/output gates"
+    },
+    {
+      "id": 57,
+      "number": 11,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "LSTM - cell state, forget/input/output gates",
+      "type": "conceptual",
+      "question": "What does the output gate do in an LSTM?",
+      "answer": "<p>The output gate controls how much transformed cell memory becomes the hidden state.</p><ul><li><strong>Cell memory:</strong> Holds the internal information.</li><li><strong>Transformation:</strong> Apply tanh to the current cell state.</li><li><strong>Exposure:</strong> Multiply by output-gate values to form the hidden state.</li></ul><p><strong>Remember:</strong> The output gate controls what memory is exposed.</p>",
+      "subtopic": "LSTM - cell state, forget/input/output gates"
+    },
+    {
+      "id": 58,
+      "number": 12,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "GRU - simpler LSTM alternative",
       "type": "conceptual",
       "question": "What is a GRU, and how is it a simpler alternative to an LSTM?",
-      "answer": "<p>A GRU is a gated recurrent network that uses one state and two main gates.</p><ul><li><strong>Update gate:</strong> Balances retaining previous state against using new candidate information.</li><li><strong>Reset gate:</strong> Controls how much previous state influences the candidate computation.</li><li><strong>Comparison:</strong> A standard GRU has fewer parameters than an LSTM of the same input and hidden sizes; neither always performs better.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Main gates</th><th scope=\"col\">State</th></tr></thead><tbody><tr><th scope=\"row\">LSTM</th><td>Forget, input, output</td><td>Cell state plus hidden state</td></tr><tr><th scope=\"row\">GRU</th><td>Reset, update</td><td>One hidden state</td></tr></tbody></table></div><p><strong>Remember:</strong> GRU combines memory and output in one gated state.</p>"
+      "answer": "<p>A GRU is a gated recurrent network that uses one state and two main gates.</p><ul><li><strong>Update gate:</strong> Balances retaining previous state against using new candidate information.</li><li><strong>Reset gate:</strong> Controls how much previous state influences the candidate computation.</li><li><strong>Comparison:</strong> A standard GRU has fewer parameters than an LSTM of the same input and hidden sizes; neither always performs better.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Model</th><th scope=\"col\">Main gates</th><th scope=\"col\">State</th></tr></thead><tbody><tr><th scope=\"row\">LSTM</th><td>Forget, input, output</td><td>Cell state plus hidden state</td></tr><tr><th scope=\"row\">GRU</th><td>Reset, update</td><td>One hidden state</td></tr></tbody></table></div><p><strong>Remember:</strong> GRU combines memory and output in one gated state.</p>",
+      "subtopic": "GRU - simpler LSTM alternative"
     },
     {
-      "id": 22,
+      "id": 59,
+      "number": 13,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "GRU - simpler LSTM alternative",
+      "type": "conceptual",
+      "question": "What does the update gate do in a GRU?",
+      "answer": "<p>The update gate balances retaining the previous hidden state against using a new candidate state.</p><ul><li><strong>Retention:</strong> Keep useful information from earlier steps.</li><li><strong>Replacement:</strong> Incorporate new candidate information.</li><li><strong>Convention:</strong> Equations may reverse which coefficient is called the update gate; the balancing role is the same.</li></ul><p><strong>Remember:</strong> The update gate decides how much state changes.</p>",
+      "subtopic": "GRU - simpler LSTM alternative"
+    },
+    {
+      "id": 60,
+      "number": 14,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "GRU - simpler LSTM alternative",
+      "type": "conceptual",
+      "question": "What does the reset gate do in a GRU?",
+      "answer": "<p>The reset gate controls how much previous state influences the new candidate computation.</p><ul><li><strong>Previous state:</strong> Supply context from earlier steps.</li><li><strong>Reset:</strong> Reduce selected old-state contributions when forming the candidate.</li><li><strong>Purpose:</strong> Let the candidate emphasize new information when old context is less useful.</li></ul><p><strong>Remember:</strong> Reset affects candidate construction, not a separate cell state.</p>",
+      "subtopic": "GRU - simpler LSTM alternative"
+    },
+    {
+      "id": 61,
+      "number": 15,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "Bidirectional RNNs",
       "type": "conceptual",
       "question": "What is a bidirectional RNN, and when is it useful?",
-      "answer": "<p>A bidirectional RNN processes an available sequence in both forward and backward directions.</p><ul><li><strong>Forward state:</strong> Encodes context from earlier positions.</li><li><strong>Backward state:</strong> Encodes context from later positions in the available sequence.</li><li><strong>Use:</strong> Useful when the full sequence is available; future tokens are unavailable in causal generation.</li></ul><p class=\"example\"><strong>Example:</strong> In named-entity recognition, surrounding words on both sides can help identify a person's name.</p><p><strong>Remember:</strong> Use both directions when both sides of the context are available.</p>"
+      "answer": "<p>A bidirectional RNN processes an available sequence in both forward and backward directions.</p><ul><li><strong>Forward state:</strong> Encodes context from earlier positions.</li><li><strong>Backward state:</strong> Encodes context from later positions in the available sequence.</li><li><strong>Use:</strong> Useful when the full sequence is available; future tokens are unavailable in causal generation.</li></ul><p class=\"example\"><strong>Example:</strong> In named-entity recognition, surrounding words on both sides can help identify a person's name.</p><p><strong>Remember:</strong> Use both directions when both sides of the context are available.</p>",
+      "subtopic": "Bidirectional RNNs"
     },
     {
-      "id": 23,
+      "id": 62,
+      "number": 16,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Bidirectional RNNs",
+      "type": "conceptual",
+      "question": "Why does a bidirectional RNN need the full input context?",
+      "answer": "<p>Its backward direction uses later inputs that are unavailable during causal generation.</p><ul><li><strong>Forward direction:</strong> Process preceding inputs.</li><li><strong>Backward direction:</strong> Process later inputs in the available sequence.</li><li><strong>Use:</strong> Suitable for full-sequence analysis, but not for reading unknown future tokens.</li></ul><p><strong>Remember:</strong> Both directions require both sides of the context.</p>",
+      "subtopic": "Bidirectional RNNs"
+    },
+    {
+      "id": 63,
+      "number": 17,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "Seq2Seq: encoder + decoder",
       "type": "conceptual",
       "question": "What is a Seq2Seq model, and what do its encoder and decoder do?",
-      "answer": "<p>A Seq2Seq model uses an encoder to represent an input sequence and a decoder to generate an output sequence.</p><ol><li><strong>Encode:</strong> Read the source sequence and form useful representations.</li><li><strong>Decode:</strong> Generate output tokens using the encoded information and previous output context.</li><li><strong>Attention:</strong> Let the decoder use different source positions instead of only one fixed-size summary.</li></ol><p class=\"example\"><strong>Example:</strong> A translation encoder reads an English sentence; its decoder generates the corresponding French sentence.</p><p><strong>Remember:</strong> Encoder reads the source; decoder writes the target.</p>"
+      "answer": "<p>A Seq2Seq model uses an encoder to represent an input sequence and a decoder to generate an output sequence.</p><ol><li><strong>Encode:</strong> Read the source sequence and form useful representations.</li><li><strong>Decode:</strong> Generate output tokens using the encoded information and previous output context.</li><li><strong>Attention:</strong> Let the decoder use different source positions instead of only one fixed-size summary.</li></ol><p class=\"example\"><strong>Example:</strong> A translation encoder reads an English sentence; its decoder generates the corresponding French sentence.</p><p><strong>Remember:</strong> Encoder reads the source; decoder writes the target.</p>",
+      "subtopic": "Seq2Seq: encoder + decoder"
     },
     {
-      "id": 24,
+      "id": 64,
+      "number": 18,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Seq2Seq: encoder + decoder",
+      "type": "conceptual",
+      "question": "What does a Seq2Seq encoder do?",
+      "answer": "<p>The encoder converts an input sequence into representations the decoder can use.</p><ul><li><strong>Read:</strong> Process the source tokens or observations.</li><li><strong>Represent:</strong> Encode useful information in hidden states.</li><li><strong>Transfer:</strong> Supply a summary or accessible encoder states to the decoder.</li></ul><p><strong>Remember:</strong> The encoder reads and represents the source.</p>",
+      "subtopic": "Seq2Seq: encoder + decoder"
+    },
+    {
+      "id": 65,
+      "number": 19,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Seq2Seq: encoder + decoder",
+      "type": "conceptual",
+      "question": "What does a Seq2Seq decoder do?",
+      "answer": "<p>The decoder generates the output sequence using source information and output context.</p><ul><li><strong>Conditioning:</strong> Receive encoded input information.</li><li><strong>Generation:</strong> Predict output tokens step by step.</li><li><strong>Attention:</strong> Optionally select a different weighted source context at each step.</li></ul><p><strong>Remember:</strong> The decoder writes the target from the encoded source.</p>",
+      "subtopic": "Seq2Seq: encoder + decoder"
+    },
+    {
+      "id": 66,
+      "number": 20,
       "section": "4.4 Recurrent Neural Networks (RNN)",
       "bullet": "Beam search decoding",
       "type": "conceptual",
       "question": "What is beam search, and how does it differ from choosing one word greedily at each step?",
-      "answer": "<p>Beam search keeps several promising partial output sequences instead of one greedy choice.</p><ul><li><strong>Greedy:</strong> At each step, keep only the highest-scoring next-token choice.</li><li><strong>Beam:</strong> Expand several partial sequences and keep a limited number of the best candidates.</li><li><strong>Tradeoff:</strong> A wider search costs more and may find higher-scoring outputs, but does not guarantee better text.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Decoding</th><th scope=\"col\">Candidates retained</th><th scope=\"col\">Tradeoff</th></tr></thead><tbody><tr><th scope=\"row\">Greedy</th><td>One partial sequence</td><td>Fast, but commits early</td></tr><tr><th scope=\"row\">Beam search</th><td>Several partial sequences</td><td>Broader search with more computation; quality is not guaranteed</td></tr></tbody></table></div><p><strong>Remember:</strong> Greedy follows one path; beam search keeps several paths open.</p>"
+      "answer": "<p>Beam search keeps several promising partial output sequences instead of one greedy choice.</p><ul><li><strong>Greedy:</strong> At each step, keep only the highest-scoring next-token choice.</li><li><strong>Beam:</strong> Expand several partial sequences and keep a limited number of the best candidates.</li><li><strong>Tradeoff:</strong> A wider search costs more and may find higher-scoring outputs, but does not guarantee better text.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Decoding</th><th scope=\"col\">Candidates retained</th><th scope=\"col\">Tradeoff</th></tr></thead><tbody><tr><th scope=\"row\">Greedy</th><td>One partial sequence</td><td>Fast, but commits early</td></tr><tr><th scope=\"row\">Beam search</th><td>Several partial sequences</td><td>Broader search with more computation; quality is not guaranteed</td></tr></tbody></table></div><p><strong>Remember:</strong> Greedy follows one path; beam search keeps several paths open.</p>",
+      "subtopic": "Beam search decoding"
     },
     {
-      "id": 25,
+      "id": 67,
+      "number": 21,
+      "section": "4.4 Recurrent Neural Networks (RNN)",
+      "bullet": "Beam search decoding",
+      "type": "conceptual",
+      "question": "What is greedy decoding?",
+      "answer": "<p>Greedy decoding chooses the highest-scoring next token at each generation step.</p><ul><li><strong>Choice:</strong> Keep a single continuation at each step.</li><li><strong>Speed:</strong> Avoid maintaining several alternative sequences.</li><li><strong>Limit:</strong> A locally best choice can prevent a better overall sequence.</li></ul><p><strong>Remember:</strong> Greedy decoding commits to one path immediately.</p>",
+      "subtopic": "Beam search decoding"
+    },
+    {
+      "id": 68,
+      "number": 1,
       "section": "4.5 Attention Mechanism (Pre-Transformer)",
-      "bullet": "Attention as 'soft' alignment",
+      "bullet": "Attention as \"soft\" alignment",
       "type": "conceptual",
       "question": "What is attention, and what does soft alignment mean?",
-      "answer": "<p>Soft attention forms a context by assigning continuous weights to relevant encoder states.</p><ol><li><strong>Scores:</strong> Compare the decoder's current needs with each encoder state.</li><li><strong>Weights:</strong> Softmax converts scores into non-negative weights that sum to one.</li><li><strong>Context:</strong> Take a weighted sum so several source positions can contribute and gradients can flow through the computation.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>attention_weights = softmax(scores); context = sum(weight_i * encoder_state_i)</code></p><p class=\"example\"><strong>Example:</strong> When translating a word, the decoder can emphasize the source words most relevant to that step.</p><p><strong>Remember:</strong> Soft alignment is a weighted mixture, not one forced position.</p>"
+      "answer": "<p>Soft attention forms a context by assigning continuous weights to relevant encoder states.</p><ol><li><strong>Scores:</strong> Compare the decoder's current needs with each encoder state.</li><li><strong>Weights:</strong> Softmax converts scores into non-negative weights that sum to one.</li><li><strong>Context:</strong> Take a weighted sum so several source positions can contribute and gradients can flow through the computation.</li></ol><p class=\"formula\"><strong>Formula:</strong> <code>attention_weights = softmax(scores); context = sum(weight_i * encoder_state_i)</code></p><p class=\"example\"><strong>Example:</strong> When translating a word, the decoder can emphasize the source words most relevant to that step.</p><p><strong>Remember:</strong> Soft alignment is a weighted mixture, not one forced position.</p>",
+      "subtopic": "Attention as \"soft\" alignment"
     },
     {
-      "id": 26,
+      "id": 69,
+      "number": 2,
+      "section": "4.5 Attention Mechanism (Pre-Transformer)",
+      "bullet": "Attention as \"soft\" alignment",
+      "type": "conceptual",
+      "question": "What are attention weights?",
+      "answer": "<p>Attention weights describe how much each source representation contributes to a context.</p><ul><li><strong>Scoring:</strong> Start with relevance scores for source positions.</li><li><strong>Softmax:</strong> Turn scores into non-negative weights that sum to one.</li><li><strong>Context:</strong> Use the weights to combine source representations.</li></ul><p><strong>Remember:</strong> Weights control contributions; they are not automatically explanations of causality.</p>",
+      "subtopic": "Attention as \"soft\" alignment"
+    },
+    {
+      "id": 70,
+      "number": 3,
       "section": "4.5 Attention Mechanism (Pre-Transformer)",
       "bullet": "Additive vs multiplicative attention",
       "type": "conceptual",
       "question": "What are additive and multiplicative attention, and how do they differ at a basic level?",
-      "answer": "<p>Additive and multiplicative attention differ in how they score the match between two representations.</p><ul><li><strong>Additive:</strong> Learn projections and combine them through a small non-linear scoring network.</li><li><strong>Multiplicative:</strong> Compare representations using a dot product or a learned bilinear transformation.</li><li><strong>Dimensions:</strong> Raw dot products require equal dimensions; learned projections can make unequal original dimensions compatible.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Attention</th><th scope=\"col\">Scoring idea</th></tr></thead><tbody><tr><th scope=\"row\">Additive</th><td>score = v^T * tanh(W_s * decoder_state + W_h * encoder_state + b)</td></tr><tr><th scope=\"row\">Multiplicative</th><td>score = decoder_state^T * W * encoder_state</td></tr></tbody></table></div><p><strong>Symbols:</strong> The matrices W_s and W_h project states into a shared space; v maps the combined features to a scalar. The multiplicative matrix W makes compatible projected dimensions.</p><p><strong>Remember:</strong> Additive learns a small scoring network; multiplicative compares through products.</p>"
+      "answer": "<p>Additive and multiplicative attention differ in how they score the match between two representations.</p><ul><li><strong>Additive:</strong> Learn projections and combine them through a small non-linear scoring network.</li><li><strong>Multiplicative:</strong> Compare representations using a dot product or a learned bilinear transformation.</li><li><strong>Dimensions:</strong> Raw dot products require equal dimensions; learned projections can make unequal original dimensions compatible.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Attention</th><th scope=\"col\">Scoring idea</th></tr></thead><tbody><tr><th scope=\"row\">Additive</th><td>score = v^T * tanh(W_s * decoder_state + W_h * encoder_state + b)</td></tr><tr><th scope=\"row\">Multiplicative</th><td>score = decoder_state^T * W * encoder_state</td></tr></tbody></table></div><p><strong>Symbols:</strong> The matrices W_s and W_h project states into a shared space; v maps the combined features to a scalar. The multiplicative matrix W makes compatible projected dimensions.</p><p><strong>Remember:</strong> Additive learns a small scoring network; multiplicative compares through products.</p>",
+      "subtopic": "Additive vs multiplicative attention"
     },
     {
-      "id": 27,
+      "id": 71,
+      "number": 4,
+      "section": "4.5 Attention Mechanism (Pre-Transformer)",
+      "bullet": "Additive vs multiplicative attention",
+      "type": "conceptual",
+      "question": "What is additive attention?",
+      "answer": "<p>Additive attention uses learned projections and a small non-linear network to score a query-source pair.</p><ul><li><strong>Projection:</strong> Map query and source representations into a shared scoring space.</li><li><strong>Combination:</strong> Add projected values and apply a non-linear transformation.</li><li><strong>Score:</strong> Reduce the result to one relevance value.</li></ul><p><strong>Remember:</strong> Additive attention learns a non-linear compatibility score.</p>",
+      "subtopic": "Additive vs multiplicative attention"
+    },
+    {
+      "id": 72,
+      "number": 5,
+      "section": "4.5 Attention Mechanism (Pre-Transformer)",
+      "bullet": "Additive vs multiplicative attention",
+      "type": "conceptual",
+      "question": "What is multiplicative attention?",
+      "answer": "<p>Multiplicative attention scores compatibility through a dot product or a bilinear product.</p><ul><li><strong>Dot product:</strong> Compare vectors with matching dimensions.</li><li><strong>Projection:</strong> A learned transformation can make different original dimensions compatible.</li><li><strong>Score:</strong> Larger compatibility scores receive more weight after normalization.</li></ul><p><strong>Remember:</strong> Multiplicative attention compares through products.</p>",
+      "subtopic": "Additive vs multiplicative attention"
+    },
+    {
+      "id": 73,
+      "number": 6,
       "section": "4.5 Attention Mechanism (Pre-Transformer)",
       "bullet": "Bahdanau attention for seq2seq",
       "type": "conceptual",
       "question": "What is Bahdanau attention, and how does it help a Seq2Seq decoder?",
-      "answer": "<p>Bahdanau attention gives a Seq2Seq decoder a newly weighted source context for each output step.</p><ol><li><strong>Score:</strong> Compare encoder states with a decoder state using additive attention.</li><li><strong>Normalize:</strong> Apply softmax across source positions to obtain attention weights.</li><li><strong>Combine:</strong> Form a weighted context and use it with decoder information to generate the next output.</li></ol><p><strong>Remember:</strong> Score, normalize, combine, then decode.</p>"
+      "answer": "<p>Bahdanau attention gives a Seq2Seq decoder a newly weighted source context for each output step.</p><ol><li><strong>Score:</strong> Compare encoder states with a decoder state using additive attention.</li><li><strong>Normalize:</strong> Apply softmax across source positions to obtain attention weights.</li><li><strong>Combine:</strong> Form a weighted context and use it with decoder information to generate the next output.</li></ol><p><strong>Remember:</strong> Score, normalize, combine, then decode.</p>",
+      "subtopic": "Bahdanau attention for seq2seq"
     },
     {
-      "id": 28,
+      "id": 74,
+      "number": 7,
+      "section": "4.5 Attention Mechanism (Pre-Transformer)",
+      "bullet": "Bahdanau attention for seq2seq",
+      "type": "conceptual",
+      "question": "What is the context vector in attention?",
+      "answer": "<p>The context vector is a weighted combination of source representations for a decoding step.</p><ul><li><strong>Inputs:</strong> Use the encoder states available to the decoder.</li><li><strong>Weights:</strong> Assign different contributions to different positions.</li><li><strong>Change:</strong> Recompute the context as the decoder generates different outputs.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>context = sum(attention_weight_i * encoder_state_i)</code></p><p><strong>Remember:</strong> The context is a source summary chosen for the current step.</p>",
+      "subtopic": "Bahdanau attention for seq2seq"
+    },
+    {
+      "id": 75,
+      "number": 8,
       "section": "4.5 Attention Mechanism (Pre-Transformer)",
       "bullet": "Why attention solved the bottleneck problem",
       "type": "conceptual",
       "question": "What is the fixed-context bottleneck in Seq2Seq, and how does attention address it?",
-      "answer": "<p>Attention relaxes the bottleneck of compressing an entire input into one fixed-size context vector.</p><ul><li><strong>Plain Seq2Seq:</strong> The decoder depends on a single summary that may lose details from long inputs.</li><li><strong>Attention:</strong> Keep encoder states available and build a new weighted context for each output step.</li><li><strong>Benefit:</strong> Provide more direct access to relevant positions; it does not remove every long-sequence difficulty.</li></ul><p><strong>Remember:</strong> Instead of remembering everything in one vector, revisit useful source states.</p>"
+      "answer": "<p>Attention relaxes the bottleneck of compressing an entire input into one fixed-size context vector.</p><ul><li><strong>Plain Seq2Seq:</strong> The decoder depends on a single summary that may lose details from long inputs.</li><li><strong>Attention:</strong> Keep encoder states available and build a new weighted context for each output step.</li><li><strong>Benefit:</strong> Provide more direct access to relevant positions; it does not remove every long-sequence difficulty.</li></ul><p><strong>Remember:</strong> Instead of remembering everything in one vector, revisit useful source states.</p>",
+      "subtopic": "Why attention solved the bottleneck problem"
     },
     {
-      "id": 29,
+      "id": 76,
+      "number": 9,
+      "section": "4.5 Attention Mechanism (Pre-Transformer)",
+      "bullet": "Why attention solved the bottleneck problem",
+      "type": "conceptual",
+      "question": "Why is one fixed-size context vector a bottleneck for long sequences?",
+      "answer": "<p>Compressing a long input into one vector can lose details needed for later outputs.</p><ul><li><strong>Compression:</strong> Many source details must share a limited representation.</li><li><strong>Access:</strong> A plain decoder cannot directly revisit individual encoder states.</li><li><strong>Attention:</strong> Keep those states accessible and combine relevant ones for each step.</li></ul><p><strong>Remember:</strong> One fixed summary can forget details; attention can revisit them.</p>",
+      "subtopic": "Why attention solved the bottleneck problem"
+    },
+    {
+      "id": 77,
+      "number": 1,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Tensors - creation, operations, GPU",
       "type": "conceptual",
       "question": "What is a PyTorch tensor, and how do you create it, perform basic operations, and move it to a GPU?",
-      "answer": "<p>A PyTorch tensor is a multidimensional array that supports numerical operations, devices, and automatic differentiation.</p><ul><li><strong>Create:</strong> Use tensor, zeros, or rand to construct values with a chosen shape and dtype.</li><li><strong>Operate:</strong> Use arithmetic for element-wise work and @ for matrix multiplication with compatible shapes.</li><li><strong>Device:</strong> Move tensors to an available GPU with .to(device), keeping interacting tensors on compatible devices.</li></ul><pre><code class=\"language-python\">import torch\n\nx = torch.tensor([[1., 2.], [3., 4.]], dtype=torch.float32)\nzeros = torch.zeros(3, 4)\nrandom_values = torch.rand(2, 2)\nelementwise = x * x\nmatrix_product = x @ x\n\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nx = x.to(device)\nprint(x.shape, x.dtype, x.device)</code></pre><p><strong>Remember:</strong> A tensor combines values, shape, dtype, and device.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch tensor tutorial</a></p>"
+      "answer": "<p>A PyTorch tensor is a multidimensional array that supports numerical operations, devices, and automatic differentiation.</p><ul><li><strong>Create:</strong> Use tensor, zeros, or rand to construct values with a chosen shape and dtype.</li><li><strong>Operate:</strong> Use arithmetic for element-wise work and @ for matrix multiplication with compatible shapes.</li><li><strong>Device:</strong> Move tensors to an available GPU with .to(device), keeping interacting tensors on compatible devices.</li></ul><pre><code class=\"language-python\">import torch\n\nx = torch.tensor([[1., 2.], [3., 4.]], dtype=torch.float32)\nzeros = torch.zeros(3, 4)\nrandom_values = torch.rand(2, 2)\nelementwise = x * x\nmatrix_product = x @ x\n\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nx = x.to(device)\nprint(x.shape, x.dtype, x.device)</code></pre><p><strong>Remember:</strong> A tensor combines values, shape, dtype, and device.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch tensor tutorial</a></p>",
+      "subtopic": "Tensors - creation, operations, GPU"
     },
     {
-      "id": 30,
+      "id": 78,
+      "number": 2,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Tensors - creation, operations, GPU",
+      "type": "conceptual",
+      "question": "What is the shape of a tensor?",
+      "answer": "<p>A tensor's shape describes the size of each of its dimensions.</p><ul><li><strong>Vector:</strong> Shape (4,) means four values along one dimension.</li><li><strong>Matrix:</strong> Shape (3, 4) means three rows and four columns.</li><li><strong>Batch:</strong> Shape (8, 4) can represent eight examples with four features each.</li></ul><p><strong>Remember:</strong> Shape tells you how the values are arranged.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch tensor tutorial</a></p>",
+      "subtopic": "Tensors - creation, operations, GPU"
+    },
+    {
+      "id": 79,
+      "number": 3,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "torch.nn.Module - building models",
       "type": "conceptual",
       "question": "What is torch.nn.Module, and what are the roles of __init__ and forward?",
-      "answer": "<p>torch.nn.Module is the base class used to define reusable PyTorch model components.</p><ul><li><strong>Initialize:</strong> Call super().__init__() and define learnable layers in __init__.</li><li><strong>Forward:</strong> Describe how inputs flow through those layers in forward.</li><li><strong>Call:</strong> Use model(x) so PyTorch's module call machinery and hooks run normally.</li></ul><pre><code class=\"language-python\">import torch\nfrom torch import nn\n\nclass MLP(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.hidden = nn.Linear(4, 8)\n        self.output = nn.Linear(8, 2)\n\n    def forward(self, x):\n        return self.output(torch.relu(self.hidden(x)))\n\nmodel = MLP()\nprint(model(torch.randn(3, 4)).shape)  # torch.Size([3, 2])</code></pre><p><strong>Remember:</strong> Define layers in __init__; connect them in forward.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Module</a></p>"
+      "answer": "<p>torch.nn.Module is the base class used to define reusable PyTorch model components.</p><ul><li><strong>Initialize:</strong> Call super().__init__() and define learnable layers in __init__.</li><li><strong>Forward:</strong> Describe how inputs flow through those layers in forward.</li><li><strong>Call:</strong> Use model(x) so PyTorch's module call machinery and hooks run normally.</li></ul><pre><code class=\"language-python\">import torch\nfrom torch import nn\n\nclass MLP(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.hidden = nn.Linear(4, 8)\n        self.output = nn.Linear(8, 2)\n\n    def forward(self, x):\n        return self.output(torch.relu(self.hidden(x)))\n\nmodel = MLP()\nprint(model(torch.randn(3, 4)).shape)  # torch.Size([3, 2])</code></pre><p><strong>Remember:</strong> Define layers in __init__; connect them in forward.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Module</a></p>",
+      "subtopic": "torch.nn.Module - building models"
     },
     {
-      "id": 31,
+      "id": 80,
+      "number": 4,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "torch.nn.Module - building models",
+      "type": "conceptual",
+      "question": "What is the difference between __init__ and forward in nn.Module?",
+      "answer": "<p>__init__ defines the model's components; forward describes the input-to-output computation.</p><ul><li><strong>Initialization:</strong> Register layers and parameters after calling the parent initializer.</li><li><strong>Forward:</strong> Apply those components to input tensors.</li><li><strong>Usage:</strong> Call model(x) to run the module through PyTorch's normal call machinery.</li></ul><p><strong>Remember:</strong> Build components in __init__; use them in forward.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.nn.Module.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch Module</a></p>",
+      "subtopic": "torch.nn.Module - building models"
+    },
+    {
+      "id": 81,
+      "number": 5,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "torch.optim - Adam, SGD, etc.",
       "type": "conceptual",
       "question": "What is torch.optim, and what do optimizers such as SGD and Adam do?",
-      "answer": "<p>torch.optim provides algorithms that update model parameters using computed gradients.</p><ul><li><strong>SGD:</strong> Uses gradients directly, optionally with momentum to smooth updates.</li><li><strong>Adam:</strong> Uses running gradient moments to adapt update scales for individual parameters.</li><li><strong>Usage:</strong> Pass model parameters and optimizer settings; call step after computing gradients.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Optimizer</th><th scope=\"col\">Basic update idea</th></tr></thead><tbody><tr><th scope=\"row\">SGD with momentum</th><td>Follow gradients while accumulating a moving update direction</td></tr><tr><th scope=\"row\">Adam</th><td>Adapt updates using running first and second gradient moments</td></tr></tbody></table></div><pre><code class=\"language-python\">import torch\n\nmodel = torch.nn.Linear(4, 2)\noptimizer = torch.optim.Adam(model.parameters(), lr=0.001)\n# Alternative: torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)</code></pre><p><strong>Remember:</strong> Backward computes gradients; the optimizer applies an update.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimizers</a></p>"
+      "answer": "<p>torch.optim provides algorithms that update model parameters using computed gradients.</p><ul><li><strong>SGD:</strong> Uses gradients directly, optionally with momentum to smooth updates.</li><li><strong>Adam:</strong> Uses running gradient moments to adapt update scales for individual parameters.</li><li><strong>Usage:</strong> Pass model parameters and optimizer settings; call step after computing gradients.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Optimizer</th><th scope=\"col\">Basic update idea</th></tr></thead><tbody><tr><th scope=\"row\">SGD with momentum</th><td>Follow gradients while accumulating a moving update direction</td></tr><tr><th scope=\"row\">Adam</th><td>Adapt updates using running first and second gradient moments</td></tr></tbody></table></div><pre><code class=\"language-python\">import torch\n\nmodel = torch.nn.Linear(4, 2)\noptimizer = torch.optim.Adam(model.parameters(), lr=0.001)\n# Alternative: torch.optim.SGD(model.parameters(), lr=0.01, momentum=0.9)</code></pre><p><strong>Remember:</strong> Backward computes gradients; the optimizer applies an update.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimizers</a></p>",
+      "subtopic": "torch.optim - Adam, SGD, etc."
     },
     {
-      "id": 32,
+      "id": 82,
+      "number": 6,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "torch.optim - Adam, SGD, etc.",
+      "type": "conceptual",
+      "question": "What is the basic difference between SGD and Adam?",
+      "answer": "<p>SGD follows gradients directly, while Adam adapts update scales using running gradient moments.</p><ul><li><strong>SGD:</strong> Optionally use momentum to smooth the update direction.</li><li><strong>Adam:</strong> Track running first and second moments of gradients.</li><li><strong>Choice:</strong> Tune and validate; neither optimizer always generalizes better.</li></ul><p><strong>Remember:</strong> SGD uses a shared rate; Adam adapts parameter update scales.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimizers</a></p>",
+      "subtopic": "torch.optim - Adam, SGD, etc."
+    },
+    {
+      "id": 83,
+      "number": 7,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Custom datasets with torch.utils.data.Dataset",
       "type": "conceptual",
       "question": "What is a custom PyTorch Dataset, and what do __len__ and __getitem__ do?",
-      "answer": "<p>A custom map-style Dataset defines how to retrieve individual examples and targets.</p><ul><li><strong>Length:</strong> __len__ returns the number of examples.</li><li><strong>Indexing:</strong> __getitem__(index) loads or returns the indexed example and its target.</li><li><strong>Scope:</strong> IterableDataset is a different interface, so these two methods describe the usual map-style case.</li></ul><pre><code class=\"language-python\">import torch\nfrom torch.utils.data import Dataset\n\nclass Examples(Dataset):\n    def __init__(self):\n        self.x = torch.tensor([[1., 2.], [3., 4.]])\n        self.y = torch.tensor([0, 1])\n\n    def __len__(self):\n        return len(self.y)\n\n    def __getitem__(self, index):\n        return self.x[index], self.y[index]\n\nsamples = Examples()\nprint(len(samples), samples[0])</code></pre><p><strong>Remember:</strong> Dataset defines one example; DataLoader organizes many examples.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch datasets</a></p>"
+      "answer": "<p>A custom map-style Dataset defines how to retrieve individual examples and targets.</p><ul><li><strong>Length:</strong> __len__ returns the number of examples.</li><li><strong>Indexing:</strong> __getitem__(index) loads or returns the indexed example and its target.</li><li><strong>Scope:</strong> IterableDataset is a different interface, so these two methods describe the usual map-style case.</li></ul><pre><code class=\"language-python\">import torch\nfrom torch.utils.data import Dataset\n\nclass Examples(Dataset):\n    def __init__(self):\n        self.x = torch.tensor([[1., 2.], [3., 4.]])\n        self.y = torch.tensor([0, 1])\n\n    def __len__(self):\n        return len(self.y)\n\n    def __getitem__(self, index):\n        return self.x[index], self.y[index]\n\nsamples = Examples()\nprint(len(samples), samples[0])</code></pre><p><strong>Remember:</strong> Dataset defines one example; DataLoader organizes many examples.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch datasets</a></p>",
+      "subtopic": "Custom datasets with torch.utils.data.Dataset"
     },
     {
-      "id": 33,
+      "id": 84,
+      "number": 8,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Custom datasets with torch.utils.data.Dataset",
+      "type": "conceptual",
+      "question": "What is the difference between __len__ and __getitem__ in a Dataset?",
+      "answer": "<p>For a map-style Dataset, __len__ reports size and __getitem__ retrieves one indexed item.</p><ul><li><strong>Length:</strong> Return the number of available examples.</li><li><strong>Item:</strong> Return data and usually a target for the requested index.</li><li><strong>DataLoader:</strong> Use these methods to select and combine examples into batches.</li></ul><p><strong>Remember:</strong> Length counts examples; indexing retrieves an example.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch datasets</a></p>",
+      "subtopic": "Custom datasets with torch.utils.data.Dataset"
+    },
+    {
+      "id": 85,
+      "number": 9,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "DataLoader - batching and shuffling",
       "type": "conceptual",
       "question": "What is a DataLoader, and what are batching and shuffling?",
-      "answer": "<p>A DataLoader turns a dataset into an iterable of batches and can randomize sample order.</p><ul><li><strong>batch_size:</strong> Set how many examples appear in a batch.</li><li><strong>shuffle:</strong> Randomize the order, usually for training; validation commonly keeps a stable order.</li><li><strong>num_workers:</strong> Set the number of loading subprocesses; zero loads in the main process.</li></ul><p><strong>Remember:</strong> Dataset provides samples; DataLoader batches and delivers them.</p><p><a href=\"https://docs.pytorch.org/docs/stable/data.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch DataLoader</a></p>"
+      "answer": "<p>A DataLoader turns a dataset into an iterable of batches and can randomize sample order.</p><ul><li><strong>batch_size:</strong> Set how many examples appear in a batch.</li><li><strong>shuffle:</strong> Randomize the order, usually for training; validation commonly keeps a stable order.</li><li><strong>num_workers:</strong> Set the number of loading subprocesses; zero loads in the main process.</li></ul><p><strong>Remember:</strong> Dataset provides samples; DataLoader batches and delivers them.</p><p><a href=\"https://docs.pytorch.org/docs/stable/data.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch DataLoader</a></p>",
+      "subtopic": "DataLoader - batching and shuffling"
     },
     {
-      "id": 34,
+      "id": 86,
+      "number": 10,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "DataLoader - batching and shuffling",
+      "type": "conceptual",
+      "question": "What is the difference between a Dataset and a DataLoader?",
+      "answer": "<p>A Dataset defines individual examples; a DataLoader organizes how those examples are delivered.</p><ul><li><strong>Dataset:</strong> Load or provide one sample at a time.</li><li><strong>DataLoader:</strong> Combine samples into batches.</li><li><strong>Options:</strong> Configure shuffling and loading workers without rewriting the dataset.</li></ul><p><strong>Remember:</strong> Dataset supplies samples; DataLoader supplies batches.</p><p><a href=\"https://docs.pytorch.org/docs/stable/data.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch DataLoader</a></p>",
+      "subtopic": "DataLoader - batching and shuffling"
+    },
+    {
+      "id": 87,
+      "number": 11,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Training loop: forward → loss → backward → step",
       "type": "conceptual",
       "question": "What are the main steps in a PyTorch training loop: forward pass, loss, backward pass, and optimizer step?",
-      "answer": "<p>A training loop repeatedly predicts, measures error, computes gradients, and updates parameters.</p><ol><li><strong>Prepare:</strong> Enable training mode and clear old gradients for the batch.</li><li><strong>Forward and loss:</strong> Compute predictions and compare them with the targets using a loss function.</li><li><strong>Backward and step:</strong> Backpropagate the loss, then let the optimizer update weights.</li></ol><pre><code class=\"language-python\">import torch\nfrom torch import nn\nfrom torch.utils.data import DataLoader, TensorDataset\n\ntorch.manual_seed(0)\nx = torch.randn(32, 4)\ny = (x.sum(dim=1) &gt; 0).long()\nloader = DataLoader(TensorDataset(x, y), batch_size=8, shuffle=True)\nmodel = nn.Linear(4, 2)\nloss_fn = nn.CrossEntropyLoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.1)\n\nfor epoch in range(5):\n    model.train()\n    for inputs, targets in loader:\n        optimizer.zero_grad()\n        logits = model(inputs)\n        loss = loss_fn(logits, targets)\n        loss.backward()\n        optimizer.step()\n\n# This toy training example does not measure generalization.</code></pre><p><strong>Remember:</strong> Clear gradients, predict, measure loss, backpropagate, update.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimization tutorial</a></p>"
+      "answer": "<p>A training loop repeatedly predicts, measures error, computes gradients, and updates parameters.</p><ol><li><strong>Prepare:</strong> Enable training mode and clear old gradients for the batch.</li><li><strong>Forward and loss:</strong> Compute predictions and compare them with the targets using a loss function.</li><li><strong>Backward and step:</strong> Backpropagate the loss, then let the optimizer update weights.</li></ol><pre><code class=\"language-python\">import torch\nfrom torch import nn\nfrom torch.utils.data import DataLoader, TensorDataset\n\ntorch.manual_seed(0)\nx = torch.randn(32, 4)\ny = (x.sum(dim=1) &gt; 0).long()\nloader = DataLoader(TensorDataset(x, y), batch_size=8, shuffle=True)\nmodel = nn.Linear(4, 2)\nloss_fn = nn.CrossEntropyLoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.1)\n\nfor epoch in range(5):\n    model.train()\n    for inputs, targets in loader:\n        optimizer.zero_grad()\n        logits = model(inputs)\n        loss = loss_fn(logits, targets)\n        loss.backward()\n        optimizer.step()\n\n# This toy training example does not measure generalization.</code></pre><p><strong>Remember:</strong> Clear gradients, predict, measure loss, backpropagate, update.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimization tutorial</a></p>",
+      "subtopic": "Training loop: forward → loss → backward → step"
     },
     {
-      "id": 35,
+      "id": 88,
+      "number": 12,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Training loop: forward → loss → backward → step",
+      "type": "conceptual",
+      "question": "Why do we call optimizer.zero_grad() before backpropagation?",
+      "answer": "<p>PyTorch accumulates gradients, so ordinary batch training clears previous gradients before computing new ones.</p><ul><li><strong>Clear:</strong> Remove or reset gradients left by earlier updates.</li><li><strong>Backward:</strong> Add gradients from the current loss.</li><li><strong>Exception:</strong> Intentionally keep gradients when implementing gradient accumulation.</li></ul><p><strong>Remember:</strong> Clear old gradients unless accumulation is deliberate.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimization tutorial</a></p>",
+      "subtopic": "Training loop: forward → loss → backward → step"
+    },
+    {
+      "id": 89,
+      "number": 13,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Training loop: forward → loss → backward → step",
+      "type": "conceptual",
+      "question": "What does optimizer.step() do?",
+      "answer": "<p>optimizer.step() updates the optimizer's parameters using their current gradients and update rule.</p><ul><li><strong>Prerequisite:</strong> Compute the relevant gradients first.</li><li><strong>Update:</strong> Apply the selected algorithm, such as SGD or Adam.</li><li><strong>Separation:</strong> It does not perform the forward pass or compute gradients itself.</li></ul><p><strong>Remember:</strong> Backward fills gradients; step changes parameters.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch optimization tutorial</a></p>",
+      "subtopic": "Training loop: forward → loss → backward → step"
+    },
+    {
+      "id": 90,
+      "number": 14,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "model.eval() vs model.train()",
       "type": "conceptual",
       "question": "What is the difference between model.train() and model.eval()?",
-      "answer": "<p>model.train() enables training behavior; model.eval() selects evaluation behavior in affected layers.</p><ul><li><strong>Dropout:</strong> Randomly masks activations in training and is disabled during ordinary evaluation.</li><li><strong>BatchNorm:</strong> Standard settings use batch statistics in training and running statistics during evaluation.</li><li><strong>Gradients:</strong> Neither method disables autograd; use no_grad separately when appropriate.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Mode</th><th scope=\"col\">Dropout</th><th scope=\"col\">Standard BatchNorm</th><th scope=\"col\">Autograd</th></tr></thead><tbody><tr><th scope=\"row\">train()</th><td>Active</td><td>Current batch statistics; update running estimates</td><td>Unchanged</td></tr><tr><th scope=\"row\">eval()</th><td>Disabled</td><td>Stored running statistics</td><td>Unchanged</td></tr></tbody></table></div><p><strong>Remember:</strong> Mode controls layer behavior; gradient mode controls tracking.</p><p><a href=\"https://docs.pytorch.org/docs/stable/notes/autograd.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch autograd and evaluation modes</a></p>"
+      "answer": "<p>model.train() enables training behavior; model.eval() selects evaluation behavior in affected layers.</p><ul><li><strong>Dropout:</strong> Randomly masks activations in training and is disabled during ordinary evaluation.</li><li><strong>BatchNorm:</strong> Standard settings use batch statistics in training and running statistics during evaluation.</li><li><strong>Gradients:</strong> Neither method disables autograd; use no_grad separately when appropriate.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Mode</th><th scope=\"col\">Dropout</th><th scope=\"col\">Standard BatchNorm</th><th scope=\"col\">Autograd</th></tr></thead><tbody><tr><th scope=\"row\">train()</th><td>Active</td><td>Current batch statistics; update running estimates</td><td>Unchanged</td></tr><tr><th scope=\"row\">eval()</th><td>Disabled</td><td>Stored running statistics</td><td>Unchanged</td></tr></tbody></table></div><p><strong>Remember:</strong> Mode controls layer behavior; gradient mode controls tracking.</p><p><a href=\"https://docs.pytorch.org/docs/stable/notes/autograd.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch autograd and evaluation modes</a></p>",
+      "subtopic": "model.eval() vs model.train()"
     },
     {
-      "id": 36,
+      "id": 91,
+      "number": 15,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "model.eval() vs model.train()",
+      "type": "conceptual",
+      "question": "Does model.eval() disable gradient computation?",
+      "answer": "<p>model.eval() changes affected layer behavior but does not disable autograd.</p><ul><li><strong>Layer behavior:</strong> Dropout and standard BatchNorm use evaluation behavior.</li><li><strong>Tracking:</strong> Operations can still be recorded for differentiation.</li><li><strong>Inference:</strong> Combine eval with no_grad when gradient tracking is unnecessary.</li></ul><p><strong>Remember:</strong> Evaluation mode and gradient tracking are separate controls.</p><p><a href=\"https://docs.pytorch.org/docs/stable/notes/autograd.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch autograd and evaluation modes</a></p>",
+      "subtopic": "model.eval() vs model.train()"
+    },
+    {
+      "id": 92,
+      "number": 16,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Saving/loading: torch.save(), torch.load()",
       "type": "conceptual",
       "question": "How do you save and load model weights with torch.save(), torch.load(), and state_dict()?",
-      "answer": "<p>Save a state_dict to store model weights and buffers, then load it into a matching model architecture.</p><ol><li><strong>Save:</strong> Pass model.state_dict() to torch.save.</li><li><strong>Load:</strong> Construct the same architecture and pass loaded weights to load_state_dict.</li><li><strong>Inference:</strong> Use map_location for the destination device and call eval after loading.</li></ol><pre><code class=\"language-python\">import torch\nfrom torch import nn\n\nmodel = nn.Linear(4, 2)  # Replace with your trained model.\ntorch.save(model.state_dict(), 'model_weights.pth')\n\nrestored = nn.Linear(4, 2)  # The architecture must match.\nweights = torch.load('model_weights.pth', map_location='cpu', weights_only=True)\nrestored.load_state_dict(weights)\nrestored.eval()</code></pre><p><strong>Remember:</strong> Recreate the architecture, load the weights, then set evaluation mode.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch saving and loading</a></p>"
+      "answer": "<p>Save a state_dict to store model weights and buffers, then load it into a matching model architecture.</p><ol><li><strong>Save:</strong> Pass model.state_dict() to torch.save.</li><li><strong>Load:</strong> Construct the same architecture and pass loaded weights to load_state_dict.</li><li><strong>Inference:</strong> Use map_location for the destination device and call eval after loading.</li></ol><pre><code class=\"language-python\">import torch\nfrom torch import nn\n\nmodel = nn.Linear(4, 2)  # Replace with your trained model.\ntorch.save(model.state_dict(), 'model_weights.pth')\n\nrestored = nn.Linear(4, 2)  # The architecture must match.\nweights = torch.load('model_weights.pth', map_location='cpu', weights_only=True)\nrestored.load_state_dict(weights)\nrestored.eval()</code></pre><p><strong>Remember:</strong> Recreate the architecture, load the weights, then set evaluation mode.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch saving and loading</a></p>",
+      "subtopic": "Saving/loading: torch.save(), torch.load()"
     },
     {
-      "id": 37,
+      "id": 93,
+      "number": 17,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Saving/loading: torch.save(), torch.load()",
+      "type": "conceptual",
+      "question": "What is a model state_dict?",
+      "answer": "<p>A model state_dict maps parameter and persistent-buffer names to their tensor values.</p><ul><li><strong>Contents:</strong> Include learned weights and relevant buffers, such as BatchNorm running statistics.</li><li><strong>Saving:</strong> Serialize these values rather than relying on the whole model object.</li><li><strong>Loading:</strong> Recreate a compatible architecture before restoring the dictionary.</li></ul><p><strong>Remember:</strong> A state_dict stores model state, not the model's Python architecture.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch saving and loading</a></p>",
+      "subtopic": "Saving/loading: torch.save(), torch.load()"
+    },
+    {
+      "id": 94,
+      "number": 18,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Moving to GPU: .to(device)",
       "type": "conceptual",
       "question": "What does .to(device) do, and why must the model and its data be on the same device?",
-      "answer": "<p>.to(device) places model parameters or tensor data on a chosen device for compatible computation.</p><ul><li><strong>Model:</strong> Move the model before creating the optimizer.</li><li><strong>Data:</strong> Assign the returned tensors, such as x = x.to(device); a tensor call is not generally in-place.</li><li><strong>Consistency:</strong> Move inputs, targets, and any extra tensors used in the computation to compatible devices.</li></ul><pre><code class=\"language-python\">import torch\n\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nmodel = torch.nn.Linear(4, 2).to(device)\ninputs = torch.randn(8, 4).to(device)\ntargets = torch.zeros(8, dtype=torch.long).to(device)\noptimizer = torch.optim.Adam(model.parameters(), lr=0.001)\nlogits = model(inputs)</code></pre><p><strong>Remember:</strong> Move the model and its data together.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch device workflow</a></p>"
+      "answer": "<p>.to(device) places model parameters or tensor data on a chosen device for compatible computation.</p><ul><li><strong>Model:</strong> Move the model before creating the optimizer.</li><li><strong>Data:</strong> Assign the returned tensors, such as x = x.to(device); a tensor call is not generally in-place.</li><li><strong>Consistency:</strong> Move inputs, targets, and any extra tensors used in the computation to compatible devices.</li></ul><pre><code class=\"language-python\">import torch\n\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nmodel = torch.nn.Linear(4, 2).to(device)\ninputs = torch.randn(8, 4).to(device)\ntargets = torch.zeros(8, dtype=torch.long).to(device)\noptimizer = torch.optim.Adam(model.parameters(), lr=0.001)\nlogits = model(inputs)</code></pre><p><strong>Remember:</strong> Move the model and its data together.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch device workflow</a></p>",
+      "subtopic": "Moving to GPU: .to(device)"
     },
     {
-      "id": 38,
+      "id": 95,
+      "number": 19,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Moving to GPU: .to(device)",
+      "type": "conceptual",
+      "question": "Why must a model and its input tensors use compatible devices?",
+      "answer": "<p>An operation cannot normally combine CPU and GPU operands directly in one computation.</p><ul><li><strong>Parameters:</strong> Place model weights on the intended compute device.</li><li><strong>Inputs:</strong> Move batches to the compatible device before the forward pass.</li><li><strong>Targets:</strong> Keep loss-function targets compatible with the model outputs.</li></ul><p><strong>Remember:</strong> Move the data as well as the model.</p><p><a href=\"https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch device workflow</a></p>",
+      "subtopic": "Moving to GPU: .to(device)"
+    },
+    {
+      "id": 96,
+      "number": 20,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Gradient computation: .requires_grad, torch.no_grad()",
       "type": "conceptual",
       "question": "What do requires_grad and torch.no_grad() do?",
-      "answer": "<p>requires_grad controls gradient tracking for tensors; no_grad temporarily disables recording of operations.</p><ul><li><strong>Tracking:</strong> A parameter with requires_grad=True can receive gradients during backpropagation.</li><li><strong>Freezing:</strong> Set a parameter's requires_grad to False to stop computing its parameter gradient; clear stale gradients if changing an active training setup.</li><li><strong>Inference:</strong> Use no_grad to reduce graph-tracking overhead, separately from setting eval mode.</li></ul><pre><code class=\"language-python\">import torch\n\nmodel = torch.nn.Linear(4, 2)\nfor parameter in model.parameters():\n    parameter.requires_grad_(False)\n    parameter.grad = None\n\nmodel.eval()\nwith torch.no_grad():\n    predictions = model(torch.randn(3, 4))</code></pre><p><strong>Remember:</strong> requires_grad selects trainable values; no_grad selects an untracked computation.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch no_grad</a></p>"
+      "answer": "<p>requires_grad controls gradient tracking for tensors; no_grad temporarily disables recording of operations.</p><ul><li><strong>Tracking:</strong> A parameter with requires_grad=True can receive gradients during backpropagation.</li><li><strong>Freezing:</strong> Set a parameter's requires_grad to False to stop computing its parameter gradient; clear stale gradients if changing an active training setup.</li><li><strong>Inference:</strong> Use no_grad to reduce graph-tracking overhead, separately from setting eval mode.</li></ul><pre><code class=\"language-python\">import torch\n\nmodel = torch.nn.Linear(4, 2)\nfor parameter in model.parameters():\n    parameter.requires_grad_(False)\n    parameter.grad = None\n\nmodel.eval()\nwith torch.no_grad():\n    predictions = model(torch.randn(3, 4))</code></pre><p><strong>Remember:</strong> requires_grad selects trainable values; no_grad selects an untracked computation.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch no_grad</a></p>",
+      "subtopic": "Gradient computation: .requires_grad, torch.no_grad()"
     },
     {
-      "id": 39,
+      "id": 97,
+      "number": 21,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Gradient computation: .requires_grad, torch.no_grad()",
+      "type": "conceptual",
+      "question": "How is requires_grad different from torch.no_grad()?",
+      "answer": "<p>requires_grad is a tensor tracking setting; no_grad disables operation recording within a context.</p><ul><li><strong>Tensor setting:</strong> requires_grad determines whether a value participates in tracked differentiation.</li><li><strong>Context:</strong> no_grad applies temporarily to operations executed inside it.</li><li><strong>Inference:</strong> Use no_grad separately from model.eval for ordinary prediction.</li></ul><p><strong>Remember:</strong> One selects tracked tensors; the other disables tracking for a block.</p><p><a href=\"https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch no_grad</a></p>",
+      "subtopic": "Gradient computation: .requires_grad, torch.no_grad()"
+    },
+    {
+      "id": 98,
+      "number": 22,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Custom loss functions",
       "type": "conceptual",
       "question": "What is a custom loss function, and why should it use PyTorch tensor operations?",
-      "answer": "<p>A custom loss is a scalar training objective built to measure task-specific prediction errors.</p><ul><li><strong>Differentiability:</strong> Use supported PyTorch tensor operations so autograd can follow the computation.</li><li><strong>Graph:</strong> Converting to NumPy or using detached numerical results in the loss breaks its connection to model parameters.</li><li><strong>Reduction:</strong> Usually combine per-example errors into one scalar with mean or sum.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>MSE = mean((prediction - target)^2)</code></p><pre><code class=\"language-python\">import torch\n\ndef mse_loss(prediction, target):\n    return ((prediction - target) ** 2).mean()\n\nprediction = torch.tensor([2., 4.], requires_grad=True)\ntarget = torch.tensor([1., 3.])\nloss = mse_loss(prediction, target)\nloss.backward()\nprint(prediction.grad)  # tensor([1., 1.])</code></pre><p><strong>Remember:</strong> A trainable loss must keep a differentiable path back to predictions.</p>"
+      "answer": "<p>A custom loss is a scalar training objective built to measure task-specific prediction errors.</p><ul><li><strong>Differentiability:</strong> Use supported PyTorch tensor operations so autograd can follow the computation.</li><li><strong>Graph:</strong> Converting to NumPy or using detached numerical results in the loss breaks its connection to model parameters.</li><li><strong>Reduction:</strong> Usually combine per-example errors into one scalar with mean or sum.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>MSE = mean((prediction - target)^2)</code></p><pre><code class=\"language-python\">import torch\n\ndef mse_loss(prediction, target):\n    return ((prediction - target) ** 2).mean()\n\nprediction = torch.tensor([2., 4.], requires_grad=True)\ntarget = torch.tensor([1., 3.])\nloss = mse_loss(prediction, target)\nloss.backward()\nprint(prediction.grad)  # tensor([1., 1.])</code></pre><p><strong>Remember:</strong> A trainable loss must keep a differentiable path back to predictions.</p>",
+      "subtopic": "Custom loss functions"
     },
     {
-      "id": 40,
+      "id": 99,
+      "number": 23,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Custom loss functions",
+      "type": "conceptual",
+      "question": "Why should a custom loss use differentiable tensor operations?",
+      "answer": "<p>Autograd needs a connected computation graph from the scalar loss back to model predictions.</p><ul><li><strong>Connection:</strong> Build the loss from predictions using supported PyTorch operations.</li><li><strong>Breaks:</strong> NumPy conversion or detached results can disconnect the loss.</li><li><strong>Reduction:</strong> Usually average or sum per-example errors to obtain a scalar.</li></ul><p><strong>Remember:</strong> The loss must keep a differentiable path back to the model.</p>",
+      "subtopic": "Custom loss functions"
+    },
+    {
+      "id": 100,
+      "number": 24,
       "section": "4.6 PyTorch (Master This)",
       "bullet": "Learning rate schedulers",
       "type": "conceptual",
       "question": "What is a learning rate scheduler, and why change the learning rate during training?",
-      "answer": "<p>A learning-rate scheduler changes the optimizer's learning rate according to a schedule or monitored result.</p><ul><li><strong>StepLR:</strong> Reduce the rate after a fixed number of scheduler steps.</li><li><strong>CosineAnnealingLR:</strong> Vary the rate along a cosine schedule over a configured period.</li><li><strong>ReduceLROnPlateau:</strong> Reduce the rate when a monitored metric stops improving sufficiently.</li><li><strong>Timing:</strong> For a per-epoch StepLR or cosine schedule, step after the epoch's optimizer updates; pass the monitored validation metric to ReduceLROnPlateau after validation.</li></ul><p><strong>Remember:</strong> The optimizer changes weights; the scheduler changes the update rate.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch learning-rate scheduling</a></p>"
+      "answer": "<p>A learning-rate scheduler changes the optimizer's learning rate according to a schedule or monitored result.</p><ul><li><strong>StepLR:</strong> Reduce the rate after a fixed number of scheduler steps.</li><li><strong>CosineAnnealingLR:</strong> Vary the rate along a cosine schedule over a configured period.</li><li><strong>ReduceLROnPlateau:</strong> Reduce the rate when a monitored metric stops improving sufficiently.</li><li><strong>Timing:</strong> For a per-epoch StepLR or cosine schedule, step after the epoch's optimizer updates; pass the monitored validation metric to ReduceLROnPlateau after validation.</li></ul><p><strong>Remember:</strong> The optimizer changes weights; the scheduler changes the update rate.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch learning-rate scheduling</a></p>",
+      "subtopic": "Learning rate schedulers"
     },
     {
-      "id": 41,
+      "id": 101,
+      "number": 25,
+      "section": "4.6 PyTorch (Master This)",
+      "bullet": "Learning rate schedulers",
+      "type": "conceptual",
+      "question": "What is the difference between an optimizer and a learning-rate scheduler?",
+      "answer": "<p>An optimizer updates parameters; a scheduler changes the learning rate used for updates.</p><ul><li><strong>Optimizer:</strong> Use gradients to adjust model parameters.</li><li><strong>Scheduler:</strong> Adjust the step-size setting over time or from a monitored result.</li><li><strong>Order:</strong> Follow the scheduler's expected timing; metric-based schedulers receive the monitored metric.</li></ul><p><strong>Remember:</strong> The optimizer changes weights; the scheduler changes the rate.</p><p><a href=\"https://docs.pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate\" target=\"_blank\" rel=\"noopener noreferrer\">PyTorch learning-rate scheduling</a></p>",
+      "subtopic": "Learning rate schedulers"
+    },
+    {
+      "id": 102,
+      "number": 1,
       "section": "4.7 Transfer Learning",
       "bullet": "What is pretraining and why it matters",
       "type": "conceptual",
       "question": "What is pretraining, and why is it useful for downstream tasks?",
-      "answer": "<p>Pretraining learns reusable model parameters on a source dataset before adapting to a downstream task.</p><ul><li><strong>Knowledge:</strong> The model learns representations useful beyond its original training objective.</li><li><strong>Adaptation:</strong> Reuse it as a feature extractor or fine-tune selected parameters.</li><li><strong>Limits:</strong> Transfer depends on task and data similarity; a pretrained model does not always beat training from scratch.</li></ul><p class=\"example\"><strong>Example:</strong> A model trained on large image data provides visual features for a smaller flower-classification dataset.</p><p><strong>Remember:</strong> Learn reusable patterns first, then adapt them to the task.</p>"
+      "answer": "<p>Pretraining learns reusable model parameters on a source dataset before adapting to a downstream task.</p><ul><li><strong>Knowledge:</strong> The model learns representations useful beyond its original training objective.</li><li><strong>Adaptation:</strong> Reuse it as a feature extractor or fine-tune selected parameters.</li><li><strong>Limits:</strong> Transfer depends on task and data similarity; a pretrained model does not always beat training from scratch.</li></ul><p class=\"example\"><strong>Example:</strong> A model trained on large image data provides visual features for a smaller flower-classification dataset.</p><p><strong>Remember:</strong> Learn reusable patterns first, then adapt them to the task.</p>",
+      "subtopic": "What is pretraining and why it matters"
     },
     {
-      "id": 42,
+      "id": 103,
+      "number": 2,
+      "section": "4.7 Transfer Learning",
+      "bullet": "What is pretraining and why it matters",
+      "type": "conceptual",
+      "question": "Does a pretrained model always outperform training from scratch?",
+      "answer": "<p>No; pretraining is useful only when its transferred representations and adaptation suit the target task.</p><ul><li><strong>Similarity:</strong> Source-task features may or may not match the new domain.</li><li><strong>Data:</strong> Available target data and training resources affect the comparison.</li><li><strong>Evaluation:</strong> Compare suitable baselines on held-out target examples.</li></ul><p><strong>Remember:</strong> Transfer is a useful starting point, not a guarantee.</p>",
+      "subtopic": "What is pretraining and why it matters"
+    },
+    {
+      "id": 104,
+      "number": 3,
       "section": "4.7 Transfer Learning",
       "bullet": "Fine-tuning vs feature extraction",
       "type": "conceptual",
       "question": "What is the difference between fine-tuning and feature extraction?",
-      "answer": "<p>Feature extraction freezes a pretrained backbone; fine-tuning updates some or all of its parameters.</p><ul><li><strong>Feature extraction:</strong> Train a new head while keeping backbone weights fixed.</li><li><strong>Fine-tuning:</strong> Continue training selected pretrained layers along with the task head.</li><li><strong>Choice:</strong> Frozen features are a useful small-data baseline; fine-tuning offers more adaptation but can overfit.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Strategy</th><th scope=\"col\">Backbone weights</th><th scope=\"col\">Typical use</th></tr></thead><tbody><tr><th scope=\"row\">Feature extraction</th><td>Frozen</td><td>Fast baseline with limited labeled data</td></tr><tr><th scope=\"row\">Fine-tuning</th><td>Some or all trainable</td><td>Adapt representations when validation supports it</td></tr></tbody></table></div><p><strong>Remember:</strong> Feature extraction reuses fixed features; fine-tuning adapts them.</p>"
+      "answer": "<p>Feature extraction freezes a pretrained backbone; fine-tuning updates some or all of its parameters.</p><ul><li><strong>Feature extraction:</strong> Train a new head while keeping backbone weights fixed.</li><li><strong>Fine-tuning:</strong> Continue training selected pretrained layers along with the task head.</li><li><strong>Choice:</strong> Frozen features are a useful small-data baseline; fine-tuning offers more adaptation but can overfit.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Strategy</th><th scope=\"col\">Backbone weights</th><th scope=\"col\">Typical use</th></tr></thead><tbody><tr><th scope=\"row\">Feature extraction</th><td>Frozen</td><td>Fast baseline with limited labeled data</td></tr><tr><th scope=\"row\">Fine-tuning</th><td>Some or all trainable</td><td>Adapt representations when validation supports it</td></tr></tbody></table></div><p><strong>Remember:</strong> Feature extraction reuses fixed features; fine-tuning adapts them.</p>",
+      "subtopic": "Fine-tuning vs feature extraction"
     },
     {
-      "id": 43,
+      "id": 105,
+      "number": 4,
+      "section": "4.7 Transfer Learning",
+      "bullet": "Fine-tuning vs feature extraction",
+      "type": "conceptual",
+      "question": "What is feature extraction with a pretrained model?",
+      "answer": "<p>Feature extraction uses a frozen pretrained backbone to produce representations for a new task.</p><ul><li><strong>Backbone:</strong> Keep its learned parameters fixed.</li><li><strong>Head:</strong> Train a new predictor using its features.</li><li><strong>Benefit:</strong> Provide a simple baseline with fewer trainable parameters.</li></ul><p><strong>Remember:</strong> Reuse fixed features and train the task head.</p>",
+      "subtopic": "Fine-tuning vs feature extraction"
+    },
+    {
+      "id": 106,
+      "number": 5,
+      "section": "4.7 Transfer Learning",
+      "bullet": "Fine-tuning vs feature extraction",
+      "type": "conceptual",
+      "question": "What is fine-tuning?",
+      "answer": "<p>Fine-tuning continues training some or all pretrained parameters for a target task.</p><ul><li><strong>Starting point:</strong> Begin with existing learned weights.</li><li><strong>Adaptation:</strong> Update selected layers using target-task data.</li><li><strong>Control:</strong> Use validation and suitable learning rates to limit overfitting or loss of useful features.</li></ul><p><strong>Remember:</strong> Fine-tuning adapts previously learned representations.</p>",
+      "subtopic": "Fine-tuning vs feature extraction"
+    },
+    {
+      "id": 107,
+      "number": 6,
       "section": "4.7 Transfer Learning",
       "bullet": "Freezing layers",
       "type": "conceptual",
       "question": "What does freezing a layer mean, and why do we freeze pretrained layers?",
-      "answer": "<p>Freezing a layer prevents its parameters from being updated while other layers learn.</p><ul><li><strong>Purpose:</strong> Preserve useful pretrained features and reduce trainable parameter count.</li><li><strong>Adaptation:</strong> Train a new head first, then optionally unfreeze selected layers with a smaller learning rate.</li><li><strong>Caution:</strong> Freezing parameters does not automatically set BatchNorm or dropout to evaluation mode.</li></ul><pre><code class=\"language-python\">import torch\n\nbackbone = torch.nn.Linear(4, 8)  # Substitute your pretrained backbone.\nfor parameter in backbone.parameters():\n    parameter.requires_grad_(False)\n\nhead = torch.nn.Linear(8, 2)\nmodel = torch.nn.Sequential(backbone, torch.nn.ReLU(), head)\noptimizer = torch.optim.Adam(head.parameters(), lr=0.001)</code></pre><p><strong>Remember:</strong> Frozen weights stay fixed; model mode is a separate decision.</p>"
+      "answer": "<p>Freezing a layer prevents its parameters from being updated while other layers learn.</p><ul><li><strong>Purpose:</strong> Preserve useful pretrained features and reduce trainable parameter count.</li><li><strong>Adaptation:</strong> Train a new head first, then optionally unfreeze selected layers with a smaller learning rate.</li><li><strong>Caution:</strong> Freezing parameters does not automatically set BatchNorm or dropout to evaluation mode.</li></ul><pre><code class=\"language-python\">import torch\n\nbackbone = torch.nn.Linear(4, 8)  # Substitute your pretrained backbone.\nfor parameter in backbone.parameters():\n    parameter.requires_grad_(False)\n\nhead = torch.nn.Linear(8, 2)\nmodel = torch.nn.Sequential(backbone, torch.nn.ReLU(), head)\noptimizer = torch.optim.Adam(head.parameters(), lr=0.001)</code></pre><p><strong>Remember:</strong> Frozen weights stay fixed; model mode is a separate decision.</p>",
+      "subtopic": "Freezing layers"
     },
     {
-      "id": 44,
+      "id": 108,
+      "number": 7,
+      "section": "4.7 Transfer Learning",
+      "bullet": "Freezing layers",
+      "type": "conceptual",
+      "question": "Why use a smaller learning rate for pretrained layers?",
+      "answer": "<p>Smaller updates can adapt pretrained features while reducing the risk of disrupting useful representations.</p><ul><li><strong>Existing knowledge:</strong> The weights already encode reusable patterns.</li><li><strong>Update size:</strong> Large changes may overwrite those patterns unnecessarily.</li><li><strong>Validation:</strong> Choose learning rates based on target performance rather than a fixed universal rule.</li></ul><p><strong>Remember:</strong> Adapt useful weights gently, then validate.</p>",
+      "subtopic": "Freezing layers"
+    },
+    {
+      "id": 109,
+      "number": 8,
       "section": "4.7 Transfer Learning",
       "bullet": "ImageNet moment for NLP",
       "type": "conceptual",
       "question": "What does the ImageNet moment for NLP refer to, and which models helped establish it?",
-      "answer": "<p>The ImageNet moment for NLP refers to the rise of broadly reusable pretrained language representations.</p><ul><li><strong>ELMo:</strong> Made contextual word representations from a pretrained language model useful across tasks.</li><li><strong>ULMFiT and GPT:</strong> Helped establish language-model pretraining followed by task adaptation.</li><li><strong>BERT:</strong> Made bidirectional transformer pretraining and fine-tuning widely influential; the phrase describes a transition, not one official event.</li></ul><p><strong>Remember:</strong> Large-scale pretraining became a reusable starting point for language tasks.</p><p><a href=\"https://arxiv.org/abs/1802.05365\" target=\"_blank\" rel=\"noopener noreferrer\">ELMo paper</a> / <a href=\"https://arxiv.org/abs/1801.06146\" target=\"_blank\" rel=\"noopener noreferrer\">ULMFiT paper</a> / <a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>"
+      "answer": "<p>The ImageNet moment for NLP refers to the rise of broadly reusable pretrained language representations.</p><ul><li><strong>ELMo:</strong> Made contextual word representations from a pretrained language model useful across tasks.</li><li><strong>ULMFiT and GPT:</strong> Helped establish language-model pretraining followed by task adaptation.</li><li><strong>BERT:</strong> Made bidirectional transformer pretraining and fine-tuning widely influential; the phrase describes a transition, not one official event.</li></ul><p><strong>Remember:</strong> Large-scale pretraining became a reusable starting point for language tasks.</p><p><a href=\"https://arxiv.org/abs/1802.05365\" target=\"_blank\" rel=\"noopener noreferrer\">ELMo paper</a> / <a href=\"https://arxiv.org/abs/1801.06146\" target=\"_blank\" rel=\"noopener noreferrer\">ULMFiT paper</a> / <a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>",
+      "subtopic": "ImageNet moment for NLP"
     },
     {
-      "id": 45,
+      "id": 110,
+      "number": 9,
+      "section": "4.7 Transfer Learning",
+      "bullet": "ImageNet moment for NLP",
+      "type": "conceptual",
+      "question": "What do ELMo and BERT have in common at a basic level?",
+      "answer": "<p>Both reuse language representations learned from large text collections to help downstream tasks.</p><ul><li><strong>Pretraining:</strong> Learn reusable patterns from text before the target task.</li><li><strong>Context:</strong> Represent words using their surrounding context.</li><li><strong>Difference:</strong> ELMo uses a bidirectional language-model representation; BERT uses a pretrained transformer encoder.</li></ul><p><strong>Remember:</strong> Both transfer contextual language knowledge, through different architectures.</p><p><a href=\"https://arxiv.org/abs/1802.05365\" target=\"_blank\" rel=\"noopener noreferrer\">ELMo paper</a> / <a href=\"https://arxiv.org/abs/1801.06146\" target=\"_blank\" rel=\"noopener noreferrer\">ULMFiT paper</a> / <a href=\"https://arxiv.org/abs/1810.04805\" target=\"_blank\" rel=\"noopener noreferrer\">BERT paper</a></p>",
+      "subtopic": "ImageNet moment for NLP"
+    },
+    {
+      "id": 111,
+      "number": 10,
       "section": "4.7 Transfer Learning",
       "bullet": "Using HuggingFace pretrained models",
       "type": "conceptual",
       "question": "How do you use a pretrained HuggingFace model and tokenizer for a downstream task?",
-      "answer": "<p>Use a tokenizer matched to a pretrained checkpoint and a model head suited to the downstream task.</p><ol><li><strong>Load:</strong> Select a compatible tokenizer and a task-specific model or pipeline.</li><li><strong>Prepare:</strong> Tokenize text into the input tensors expected by the checkpoint.</li><li><strong>Adapt:</strong> A task-tuned checkpoint can predict directly; a new or changed task head needs training on labeled data.</li></ol><pre><code class=\"language-python\"># Requires torch, transformers, and a first-time checkpoint download.\nfrom transformers import pipeline\n\nclassifier = pipeline(\n    'sentiment-analysis',\n    model='distilbert/distilbert-base-uncased-finetuned-sst-2-english',\n    device=-1,\n)\nprint(classifier('This course is useful.'))\n# This checkpoint is already fine-tuned for English sentiment classification.\n# A new label set requires training an appropriate task head.</code></pre><p><strong>Remember:</strong> Match tokenizer, checkpoint, and task head before making predictions.</p><p><a href=\"https://huggingface.co/docs/transformers/tasks/sequence_classification\" target=\"_blank\" rel=\"noopener noreferrer\">Hugging Face text classification</a></p>"
+      "answer": "<p>Use a tokenizer matched to a pretrained checkpoint and a model head suited to the downstream task.</p><ol><li><strong>Load:</strong> Select a compatible tokenizer and a task-specific model or pipeline.</li><li><strong>Prepare:</strong> Tokenize text into the input tensors expected by the checkpoint.</li><li><strong>Adapt:</strong> A task-tuned checkpoint can predict directly; a new or changed task head needs training on labeled data.</li></ol><pre><code class=\"language-python\"># Requires torch, transformers, and a first-time checkpoint download.\nfrom transformers import pipeline\n\nclassifier = pipeline(\n    'sentiment-analysis',\n    model='distilbert/distilbert-base-uncased-finetuned-sst-2-english',\n    device=-1,\n)\nprint(classifier('This course is useful.'))\n# This checkpoint is already fine-tuned for English sentiment classification.\n# A new label set requires training an appropriate task head.</code></pre><p><strong>Remember:</strong> Match tokenizer, checkpoint, and task head before making predictions.</p><p><a href=\"https://huggingface.co/docs/transformers/tasks/sequence_classification\" target=\"_blank\" rel=\"noopener noreferrer\">Hugging Face text classification</a></p>",
+      "subtopic": "Using HuggingFace pretrained models"
+    },
+    {
+      "id": 112,
+      "number": 11,
+      "section": "4.7 Transfer Learning",
+      "bullet": "Using HuggingFace pretrained models",
+      "type": "conceptual",
+      "question": "Why must a tokenizer match the pretrained model?",
+      "answer": "<p>A pretrained model expects token IDs and input conventions compatible with its training vocabulary.</p><ul><li><strong>Vocabulary:</strong> The tokenizer maps text pieces to the IDs the model understands.</li><li><strong>Formatting:</strong> Special tokens and other input conventions must match.</li><li><strong>Loading:</strong> Use the tokenizer associated with the checkpoint unless compatibility is established.</li></ul><p><strong>Remember:</strong> Correct model weights need compatible tokenization.</p><p><a href=\"https://huggingface.co/docs/transformers/tasks/sequence_classification\" target=\"_blank\" rel=\"noopener noreferrer\">Hugging Face text classification</a></p>",
+      "subtopic": "Using HuggingFace pretrained models"
     }
   ]
 }
