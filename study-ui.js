@@ -36,7 +36,9 @@
       menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
       search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',
       check: '<path d="m5 12 4 4L19 6"/>',
-      arrow: '<path d="M4 12h15m-6-6 6 6-6 6"/>'
+      arrow: '<path d="M4 12h15m-6-6 6 6-6 6"/>',
+      sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',
+      moon: '<path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/>'
     };
     const element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     for (const [key, value] of Object.entries({width: 19, height: 19, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true', focusable: 'false'})) element.setAttribute(key, value);
@@ -130,6 +132,21 @@
   mark.append(icon('book'));
   brand.append(mark, create('span', '', 'Recall'), create('small', '', 'AI ENGINEERING NOTES'));
   const headerActions = create('div', 'header-actions');
+  if (window.RecallTheme) {
+    const themeToggle = create('button', 'theme-toggle');
+    themeToggle.type = 'button';
+    themeToggle.setAttribute('aria-label', 'Dark theme');
+    const refreshTheme = () => {
+      const dark = window.RecallTheme.current === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+      themeToggle.replaceChildren(icon(dark ? 'sun' : 'moon'));
+    };
+    themeToggle.addEventListener('click', () => window.RecallTheme.set(window.RecallTheme.current === 'dark' ? 'light' : 'dark'));
+    window.addEventListener('recall:theme', refreshTheme);
+    refreshTheme();
+    headerActions.append(themeToggle);
+  }
   if (isChapter) {
     headerActions.append(link('Library', homeURL, 'study-exit'));
   }
