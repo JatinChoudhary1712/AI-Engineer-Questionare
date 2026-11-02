@@ -233,5 +233,113 @@ window.STUDY_CHAPTERS = [
     "count": 6,
     "topics": 6,
     "description": "Protect credentials, enforce user budgets, and monitor backend AI requests."
+  },
+  {
+    "id": "7.1",
+    "phase": 7,
+    "title": "Why Multi-LLM Architecture",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html",
+    "count": 6,
+    "topics": 6,
+    "description": "Choose models using task evaluations, cost, reliability, context, and tenant policy."
+  },
+  {
+    "id": "7.2",
+    "phase": 7,
+    "title": "Routing Strategies",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html",
+    "count": 9,
+    "topics": 9,
+    "description": "Build task, cost, and performance policies that respect quality and deadlines."
+  },
+  {
+    "id": "7.3",
+    "phase": 7,
+    "title": "Fallback Architecture",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html",
+    "count": 5,
+    "topics": 5,
+    "description": "Design bounded failover and circuit breakers with safe recovery behavior."
+  },
+  {
+    "id": "7.4",
+    "phase": 7,
+    "title": "Model Context Protocol (MCP)",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html",
+    "count": 9,
+    "topics": 9,
+    "description": "Understand MCP architecture, server development, connectors, and trust boundaries."
+  },
+  {
+    "id": "7.5",
+    "phase": 7,
+    "title": "LLM Orchestration Frameworks",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html",
+    "count": 29,
+    "topics": 29,
+    "description": "Compare chains, graphs, retrieval workflows, and multi-agent orchestration patterns."
+  },
+  {
+    "id": "7.6",
+    "phase": 7,
+    "title": "Building PrinceSinghAI / PrinceSinghDev Style Systems",
+    "href": "PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html",
+    "count": 9,
+    "topics": 9,
+    "description": "Connect routing, validation, caching, usage controls, and observability in a gateway."
+  },
+  {
+    "id": "8.1",
+    "phase": 8,
+    "title": "Why RAG Exists",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html",
+    "count": 5,
+    "topics": 5,
+    "description": "Connect changing private knowledge to generation without treating retrieval as a guarantee of truth."
+  },
+  {
+    "id": "8.2",
+    "phase": 8,
+    "title": "Embeddings Deep Dive",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html",
+    "count": 7,
+    "topics": 7,
+    "description": "Compare embedding spaces, model configuration, batching, dimensions, and similarity metrics."
+  },
+  {
+    "id": "8.3",
+    "phase": 8,
+    "title": "Chunking Strategies",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html",
+    "count": 7,
+    "topics": 7,
+    "description": "Create meaningful retrieval units with useful boundaries, overlap, and provenance."
+  },
+  {
+    "id": "8.4",
+    "phase": 8,
+    "title": "Vector Databases",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html",
+    "count": 15,
+    "topics": 15,
+    "description": "Compare vector search tools and learn indexing, filters, hybrid retrieval, isolation, and HNSW."
+  },
+  {
+    "id": "8.5",
+    "phase": 8,
+    "title": "RAG Pipeline Implementation",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html",
+    "count": 14,
+    "topics": 14,
+    "description": "Build and evaluate basic and advanced retrieval-augmented generation workflows."
+  },
+  {
+    "id": "8.6",
+    "phase": 8,
+    "title": "Production RAG Considerations",
+    "href": "PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html",
+    "count": 6,
+    "topics": 6,
+    "description": "Operate retrieval with safe updates, tenant isolation, caching, monitoring, and abstention."
   }
 ];

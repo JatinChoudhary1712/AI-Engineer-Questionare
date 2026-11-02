@@ -2,6 +2,10 @@
 
 > **Goal:** Design and build production-grade multi-LLM systems. This is what separates good AI engineers from great ones.
 
+## Study questions
+
+[Open the Phase 7 study index](index.html) — 67 answered questions across six chapters, using the same Reading, Index, Focus, search, and review-progress interface as Phases 4–6. Original notes and projects remain available below. Framework names in the roadmap include legacy APIs; answers provide version context and official references.
+
 ## Topics
 
 - [7.1 Why Multi-LLM Architecture](7.1%20Why%20Multi-LLM%20Architecture/Notes.md)

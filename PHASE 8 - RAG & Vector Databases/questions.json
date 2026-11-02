@@ -1,0 +1,492 @@
+{
+  "phase": "Phase 8 - RAG & Vector Databases",
+  "total_questions": 54,
+  "questions": [
+    {
+      "id": 1,
+      "number": 1,
+      "section": "8.1 Why RAG Exists",
+      "bullet": "LLMs have knowledge cutoffs",
+      "type": "conceptual",
+      "question": "How does retrieval help with an LLM's knowledge cutoff?",
+      "answer": "<p>Retrieval can supply current documents at request time without changing the model's weights.</p><ul><li><strong>Freshness:</strong> Ingest and refresh authoritative sources before expecting the system to know about a change.</li><li><strong>Separation:</strong> Distinguish retrieved evidence from the model's pretrained associations.</li><li><strong>Limits:</strong> A recent document can still be irrelevant, incorrect, or too incomplete to answer the question.</li></ul><p><strong>Remember:</strong> RAG supplies external evidence; it does not automatically keep that evidence current.</p>"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "section": "8.1 Why RAG Exists",
+      "bullet": "LLMs can't access private/proprietary data",
+      "type": "conceptual",
+      "question": "How can an LLM answer questions about private company documents?",
+      "answer": "<p>An authorized retrieval service selects relevant private content and includes it in the model's request context.</p><ul><li><strong>Ingestion:</strong> Extract, chunk, and index documents while retaining source identity and access rules.</li><li><strong>Authorization:</strong> Filter by the caller's permissions before returning content to the generation step.</li><li><strong>Data handling:</strong> Choose approved model services and avoid leaking private content through prompts, logs, or caches.</li></ul><p><strong>Remember:</strong> A model does not gain access to your private data unless an application supplies it or grants tools access.</p>"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "section": "8.1 Why RAG Exists",
+      "bullet": "LLMs hallucinate when they don't know",
+      "type": "conceptual",
+      "question": "Does RAG eliminate hallucinations?",
+      "answer": "<p>No; RAG can improve grounding, but the generator can still invent claims or misread retrieved evidence.</p><ul><li><strong>Retrieval failures:</strong> Missing or irrelevant chunks can leave the request unsupported.</li><li><strong>Generation failures:</strong> A model may ignore qualifications, merge conflicting sources, or fabricate citations.</li><li><strong>Controls:</strong> Check evidence support, preserve provenance, and allow a clear insufficient-evidence response.</li></ul><p><strong>Remember:</strong> Retrieved text is useful evidence, not a guarantee of a correct answer.</p>"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "section": "8.1 Why RAG Exists",
+      "bullet": "RAG = Embedding-based search + Prompt-based generation",
+      "type": "conceptual",
+      "question": "What are the retrieval and generation stages of RAG?",
+      "answer": "<p>Retrieval finds relevant external evidence, and generation uses it to answer the user's request.</p><ul><li><strong>Search:</strong> Dense embeddings are common, but keyword, hybrid, and other retrieval methods can also support RAG.</li><li><strong>Context:</strong> Select a bounded set of authorized passages and identify their sources.</li><li><strong>Generation:</strong> Ask the model to answer from that evidence and handle missing support explicitly.</li></ul><p><strong>Remember:</strong> RAG is broader than one particular vector database or embedding model.</p>"
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "section": "8.1 Why RAG Exists",
+      "bullet": "RAG vs Fine-tuning - when to use which",
+      "type": "conceptual",
+      "question": "When should you use RAG, fine-tuning, or both?",
+      "answer": "<p>Use retrieval for external knowledge access and fine-tuning to adapt model behavior when training data and evaluation justify it.</p><ul><li><strong>RAG:</strong> Useful for changing documents, source citations, and user-specific information.</li><li><strong>Fine-tuning:</strong> Useful for recurring output style, task behavior, or specialized patterns; it does not guarantee exact recall of training facts.</li><li><strong>Combined:</strong> A tuned model can still retrieve up-to-date authorized evidence at inference time.</li></ul><p><strong>Remember:</strong> Choose based on the failure you need to solve rather than treating these techniques as substitutes.</p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Need</th><th scope=\"col\">Starting approach</th></tr></thead><tbody><tr><th scope=\"row\">Changing private policies with citations</th><td>Authorized retrieval plus generation</td></tr><tr><th scope=\"row\">Repeatable output behavior or style</th><td>Prompting and evaluation, then fine-tuning if justified</td></tr><tr><th scope=\"row\">Both knowledge access and adapted behavior</th><td>Evaluate a combined approach</td></tr></tbody></table></div>"
+    },
+    {
+      "id": 6,
+      "number": 1,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "What are embeddings - dense, semantic vector representations",
+      "type": "conceptual",
+      "question": "What does a text embedding represent?",
+      "answer": "<p>A text embedding is a learned numeric vector that can make useful relationships measurable in a vector space.</p><ul><li><strong>Meaning:</strong> Similar texts often have similar vectors under the model's intended task and metric.</li><li><strong>Dependence:</strong> The representation reflects training data, pooling, normalization, and any query/document instructions.</li><li><strong>Limits:</strong> Negation, exact identifiers, domain-specific terms, or rare languages may not behave as you expect.</li></ul><p><strong>Remember:</strong> Embedding similarity is a learned signal, not a verified measure of factual equivalence.</p>"
+    },
+    {
+      "id": 7,
+      "number": 2,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "Embedding models: text-embedding-3-small, text-embedding-3-large (OpenAI)",
+      "type": "conceptual",
+      "question": "How should you compare OpenAI's text-embedding-3-small and text-embedding-3-large?",
+      "answer": "<p>Compare retrieval quality, cost, dimensions, and latency on a representative corpus rather than selecting by name alone.</p><ul><li><strong>Compatibility:</strong> Keep query and stored document vectors in the same model/configuration space.</li><li><strong>Dimensions:</strong> These embedding families support a dimensions setting; the chosen output size must match the index configuration.</li><li><strong>Migration:</strong> Re-embed and evaluate when changing models or settings instead of mixing incompatible vectors.</li></ul><p><strong>Remember:</strong> A larger embedding model is worthwhile only when its measured benefit justifies its resource use.</p><p><a href=\"https://developers.openai.com/api/docs/guides/embeddings\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI embedding documentation</a></p>"
+    },
+    {
+      "id": 8,
+      "number": 3,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "all-MiniLM-L6-v2, bge-large (open source, HuggingFace)",
+      "type": "conceptual",
+      "question": "How do all-MiniLM-L6-v2 and BGE fit into a retrieval system?",
+      "answer": "<p>They illustrate locally deployable embedding-model choices with different model sizes, training, and retrieval conventions.</p><ul><li><strong>Artifact:</strong> all-MiniLM-L6-v2 is a specific model; bge-large is a family shorthand, so select a precise checkpoint such as bge-large-en-v1.5.</li><li><strong>Instructions:</strong> Follow the checkpoint's query formatting, normalization, and length limits.</li><li><strong>Evaluation:</strong> Test your language and domain with the actual model version, hardware, and serving configuration.</li></ul><p><strong>Remember:</strong> Open model hosting still requires compatible preprocessing and good retrieval evaluation.</p><p><a href=\"https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2\" target=\"_blank\" rel=\"noopener noreferrer\">all-MiniLM-L6-v2 model card</a></p><p><a href=\"https://huggingface.co/BAAI/bge-large-en-v1.5\" target=\"_blank\" rel=\"noopener noreferrer\">BGE large English v1.5 model card</a></p>"
+    },
+    {
+      "id": 9,
+      "number": 4,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "embed-english-v3 (Cohere) - tuned for RAG",
+      "type": "conceptual",
+      "question": "What should you know about Cohere's Embed v3 naming and retrieval modes?",
+      "answer": "<p>The roadmap's embed-english-v3 refers to the versioned Embed family; use the exact supported model ID from its documentation.</p><ul><li><strong>Identifier:</strong> Versioned examples use embed-english-v3.0 rather than assuming the shorthand is an API model ID.</li><li><strong>Purpose:</strong> Use the documented search-query and search-document input types for their respective roles when required.</li><li><strong>Compatibility:</strong> Keep model, dimensions, and preprocessing consistent across indexing and query embedding.</li></ul><p><strong>Remember:</strong> Query and document modes can be different parts of the same compatible retrieval model.</p><p><a href=\"https://docs.cohere.com/docs/models\" target=\"_blank\" rel=\"noopener noreferrer\">Cohere model identifiers and embedding guidance</a></p>"
+    },
+    {
+      "id": 10,
+      "number": 5,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "Embedding dimensions - tradeoff between quality and storage",
+      "type": "conceptual",
+      "question": "How do embedding dimensions affect storage and quality?",
+      "answer": "<p>More dimensions increase vector storage and distance-computation work, but do not universally improve your retrieval task.</p><ul><li><strong>Estimate:</strong> Raw storage is approximately vector count times dimensions times bytes per component, before metadata and index overhead.</li><li><strong>Compression:</strong> Reduced dimensions or quantization can save space but may change recall and require an index rebuild.</li><li><strong>Evaluation:</strong> Compare quality, memory, latency, and total cost using the actual corpus.</li></ul><p><strong>Remember:</strong> Dimension count is one design parameter rather than a standalone quality score.</p><p class=\"formula\"><strong>Raw vector bytes:</strong> <code>N × d × b</code>. One million 768-dimensional float32 vectors use about 3.07 GB before index, metadata, replication, and other overhead.</p>"
+    },
+    {
+      "id": 11,
+      "number": 6,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "Batch embedding for efficiency",
+      "type": "conceptual",
+      "question": "How do you batch document embeddings safely?",
+      "answer": "<p>Group compatible inputs within provider or runtime limits while preserving each chunk's identity and failure state.</p><ul><li><strong>Limits:</strong> Budget tokens, item count, concurrency, and payload size instead of sending an unbounded batch.</li><li><strong>Mapping:</strong> Associate each returned vector with its source chunk and model version.</li><li><strong>Recovery:</strong> Retry only failed work where possible and make upserts idempotent to avoid duplicate records.</li></ul><p><strong>Remember:</strong> Batching improves throughput when limits, attribution, and partial failures are handled deliberately.</p>"
+    },
+    {
+      "id": 12,
+      "number": 7,
+      "section": "8.2 Embeddings Deep Dive",
+      "bullet": "Embedding similarity: cosine, dot product, Euclidean",
+      "type": "conceptual",
+      "question": "How do cosine similarity, dot product, and Euclidean distance differ?",
+      "answer": "<p>They compare vector direction, alignment with magnitude, and geometric separation respectively.</p><ul><li><strong>Cosine:</strong> Divide the dot product by both vector lengths; zero vectors need explicit handling.</li><li><strong>Dot product:</strong> Magnitude affects scores unless vectors are normalized.</li><li><strong>Euclidean:</strong> Smaller distance means closer vectors; for unit vectors, squared distance equals two minus twice their dot product.</li></ul><p><strong>Remember:</strong> Select the metric and normalization expected by the embedding model and index.</p><pre><code class=\"language-python\">from math import sqrt\n\ndef cosine(a, b):\n    if len(a) != len(b) or not a:\n        raise ValueError(&quot;Vectors need the same nonzero dimension&quot;)\n    dot = sum(x * y for x, y in zip(a, b))\n    norm_a = sqrt(sum(x * x for x in a))\n    norm_b = sqrt(sum(y * y for y in b))\n    if norm_a == 0 or norm_b == 0:\n        raise ValueError(&quot;Cosine is undefined for a zero vector&quot;)\n    return dot / (norm_a * norm_b)\n\nassert abs(cosine([1, 0], [1, 0]) - 1) &lt; 1e-9</code></pre>"
+    },
+    {
+      "id": 13,
+      "number": 1,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Fixed-size chunking - simple but naive",
+      "type": "conceptual",
+      "question": "What are the advantages and risks of fixed-size chunking?",
+      "answer": "<p>It divides text into units of a chosen size, giving a simple and predictable baseline.</p><ul><li><strong>Units:</strong> Define whether size means characters, words, or model tokens.</li><li><strong>Risk:</strong> Boundaries can split definitions, sentences, tables, or code needed to interpret a passage.</li><li><strong>Baseline:</strong> Measure retrieval and answer quality before adding more elaborate splitting logic.</li></ul><p><strong>Remember:</strong> A predictable chunk length does not guarantee a meaningful evidence unit.</p>"
+    },
+    {
+      "id": 14,
+      "number": 2,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Sentence-based chunking - respects natural boundaries",
+      "type": "conceptual",
+      "question": "When is sentence-based chunking useful?",
+      "answer": "<p>It groups complete sentences so retrieval units are less likely to cut natural prose mid-thought.</p><ul><li><strong>Segmentation:</strong> Use a language-appropriate sentence splitter that handles abbreviations and punctuation.</li><li><strong>Packing:</strong> Combine sentences within a target budget and handle unusually long sentences explicitly.</li><li><strong>Limitation:</strong> Sentence boundaries alone do not preserve sections, tables, or relationships across paragraphs.</li></ul><p><strong>Remember:</strong> Natural boundaries help readability but still need size and context controls.</p>"
+    },
+    {
+      "id": 15,
+      "number": 3,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Recursive character text splitting - LangChain default",
+      "type": "conceptual",
+      "question": "How does recursive character splitting work?",
+      "answer": "<p>It tries a hierarchy of separators, using smaller boundaries when larger text units exceed the target size.</p><ul><li><strong>Hierarchy:</strong> Prefer paragraphs or line breaks before falling back to finer separators.</li><li><strong>Measurement:</strong> Configure the length function; a character-counting splitter does not automatically enforce a model-token budget.</li><li><strong>Scope:</strong> It is a common LangChain text-splitting option, not a universal default for every loader, framework, or document.</li></ul><p><strong>Remember:</strong> Configure the splitter for the actual document structure and tokenizer.</p>"
+    },
+    {
+      "id": 16,
+      "number": 4,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Semantic chunking - split on topic change",
+      "type": "conceptual",
+      "question": "How does semantic chunking identify topic changes?",
+      "answer": "<p>It uses a semantic signal, often sentence embeddings, to detect boundaries between related groups of text.</p><ul><li><strong>Method:</strong> Compare neighboring segments or windows and split where their relationship changes sufficiently.</li><li><strong>Cost:</strong> Additional embedding calls and threshold tuning increase ingestion work.</li><li><strong>Evaluation:</strong> Check whether the boundaries improve retrieval and answer support on your documents.</li></ul><p><strong>Remember:</strong> A semantic boundary detector can make mistakes and should be tested against simpler baselines.</p>"
+    },
+    {
+      "id": 17,
+      "number": 5,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Document-based chunking - by headers, sections",
+      "type": "conceptual",
+      "question": "How should document structure influence chunk boundaries?",
+      "answer": "<p>Use headings, sections, paragraphs, tables, and other structural units when they carry useful meaning.</p><ul><li><strong>Hierarchy:</strong> Retain the heading path so a chunk can be interpreted within its parent section.</li><li><strong>Exceptions:</strong> Split oversized sections while keeping labels, table headers, and code context where needed.</li><li><strong>Extraction:</strong> Preserve source order and handle noisy PDF or OCR output before trusting detected structure.</li></ul><p><strong>Remember:</strong> The best structural splitter depends on the quality of the extracted document.</p>"
+    },
+    {
+      "id": 18,
+      "number": 6,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Chunk size vs overlap tradeoff",
+      "type": "conceptual",
+      "question": "How do chunk size and overlap affect retrieval?",
+      "answer": "<p>Size controls how much context each result contains; overlap reduces boundary loss while increasing duplication.</p><ul><li><strong>Small chunks:</strong> Can retrieve precise passages but may omit necessary surrounding context.</li><li><strong>Large chunks:</strong> Preserve more context but can dilute similarity and consume more generation tokens.</li><li><strong>Overlap:</strong> Improves continuity at boundaries but adds indexing cost and repeated evidence that should be deduplicated.</li></ul><p><strong>Remember:</strong> Tune size and overlap jointly using retrieval and answer-level evaluation.</p><p class=\"example\"><strong>Example:</strong> If the only refund exception lies across a split boundary, some overlap or a parent-section lookup may recover it. Excessive overlap can return the same paragraph repeatedly.</p>"
+    },
+    {
+      "id": 19,
+      "number": 7,
+      "section": "8.3 Chunking Strategies",
+      "bullet": "Chunk metadata - source, page, section",
+      "type": "conceptual",
+      "question": "Which metadata should accompany a chunk?",
+      "answer": "<p>Store enough provenance and access information to retrieve, cite, refresh, and authorize the chunk.</p><ul><li><strong>Identity:</strong> Include document ID, chunk ID, source version, and model/index version where relevant.</li><li><strong>Location:</strong> Record page, section, heading path, or source offsets appropriate to the document.</li><li><strong>Access:</strong> Preserve tenant and permission scope and enforce them at retrieval time.</li></ul><p><strong>Remember:</strong> Metadata is operational infrastructure, not just a citation label.</p>"
+    },
+    {
+      "id": 20,
+      "number": 1,
+      "section": "8.4 Vector Databases",
+      "bullet": "FAISS",
+      "type": "conceptual",
+      "question": "What does FAISS provide, and what must an application add around it?",
+      "answer": "<p>FAISS is a library for efficient vector similarity search and clustering rather than a complete managed database service.</p><ul><li><strong>Indexes:</strong> Choose exact or approximate search structures for the accuracy, memory, and latency you need.</li><li><strong>Integration:</strong> Maintain vector-to-document mappings, metadata, persistence, and update workflows around the index.</li><li><strong>Operations:</strong> Implement authorization, backups, concurrency handling, and service access if your deployment needs them.</li></ul><p><strong>Remember:</strong> Distinguish a vector-search engine from the database and service responsibilities around it.</p><p><a href=\"https://faiss.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">FAISS documentation</a></p>"
+    },
+    {
+      "id": 21,
+      "number": 2,
+      "section": "8.4 Vector Databases",
+      "bullet": "Chroma",
+      "type": "conceptual",
+      "question": "What should you evaluate when using Chroma for RAG?",
+      "answer": "<p>Evaluate its document, embedding, metadata, and query workflows against your required deployment and workload.</p><ul><li><strong>Data:</strong> Keep stable document IDs, embeddings, source text, and useful metadata together.</li><li><strong>Retrieval:</strong> Test filtering and relevance using your embedding configuration and chosen search features.</li><li><strong>Deployment:</strong> Choose the appropriate supported deployment mode and verify persistence, access control, and capacity.</li></ul><p><strong>Remember:</strong> A local prototype and a production service require different operating checks.</p><p><a href=\"https://docs.trychroma.com/docs/overview/introduction\" target=\"_blank\" rel=\"noopener noreferrer\">Chroma documentation</a></p>"
+    },
+    {
+      "id": 22,
+      "number": 3,
+      "section": "8.4 Vector Databases",
+      "bullet": "Pinecone",
+      "type": "conceptual",
+      "question": "What changes when vector search is handled by a managed service such as Pinecone?",
+      "answer": "<p>The service operates the vector-search infrastructure while your application still owns ingestion, authorization, and result quality.</p><ul><li><strong>Configuration:</strong> Select compatible vector dimensions, metrics, and index settings.</li><li><strong>Isolation:</strong> Apply the documented namespace and metadata policies for the authenticated tenant.</li><li><strong>Operations:</strong> Measure query costs, ingestion behavior, latency, deletion, and recovery requirements.</li></ul><p><strong>Remember:</strong> Managed infrastructure does not remove application-level responsibilities.</p><p><a href=\"https://docs.pinecone.io/guides/get-started/overview\" target=\"_blank\" rel=\"noopener noreferrer\">Pinecone documentation</a></p>"
+    },
+    {
+      "id": 23,
+      "number": 4,
+      "section": "8.4 Vector Databases",
+      "bullet": "Weaviate",
+      "type": "conceptual",
+      "question": "How should you assess Weaviate for a retrieval application?",
+      "answer": "<p>Evaluate its data model, retrieval features, filtering, and deployment options on the actual task.</p><ul><li><strong>Modeling:</strong> Design collections and properties so content and access metadata remain connected.</li><li><strong>Search:</strong> Test the desired vector, keyword, or hybrid workflow and its filtering behavior.</li><li><strong>Deployment:</strong> Consider supported self-managed or cloud options rather than treating it as self-hosted only.</li></ul><p><strong>Remember:</strong> The roadmap's category is a starting point, not an exclusive deployment limit.</p><p><a href=\"https://docs.weaviate.io/weaviate\" target=\"_blank\" rel=\"noopener noreferrer\">Weaviate documentation</a></p>"
+    },
+    {
+      "id": 24,
+      "number": 5,
+      "section": "8.4 Vector Databases",
+      "bullet": "Qdrant",
+      "type": "conceptual",
+      "question": "What matters when choosing Qdrant for filtered vector search?",
+      "answer": "<p>Measure relevance and latency together with payload filtering and tenant-isolation requirements.</p><ul><li><strong>Records:</strong> Store vectors and payload fields needed for source lookup, filters, and permissions.</li><li><strong>Indexes:</strong> Configure vector and relevant payload indexes based on measured query behavior.</li><li><strong>Deployment:</strong> Check supported local, self-managed, or managed options and their operational limits.</li></ul><p><strong>Remember:</strong> High performance is workload-dependent and must be tested with real filters and updates.</p><p><a href=\"https://qdrant.tech/documentation/manage-data/multitenancy/\" target=\"_blank\" rel=\"noopener noreferrer\">Qdrant multitenancy</a></p>"
+    },
+    {
+      "id": 25,
+      "number": 6,
+      "section": "8.4 Vector Databases",
+      "bullet": "LanceDB",
+      "type": "conceptual",
+      "question": "Where can LanceDB fit into a retrieval system?",
+      "answer": "<p>It provides vector-oriented data storage and retrieval options that can suit embedded or service-based applications.</p><ul><li><strong>Data:</strong> Store vectors alongside the data and metadata needed to interpret results.</li><li><strong>Operations:</strong> Evaluate index creation, updates, storage access, and concurrency for the chosen deployment.</li><li><strong>Serverless:</strong> Verify persistence and startup behavior rather than assuming local files survive an ephemeral runtime.</li></ul><p><strong>Remember:</strong> Embedded deployment simplifies some operations but still needs a durable storage plan.</p><p><a href=\"https://docs.lancedb.com/\" target=\"_blank\" rel=\"noopener noreferrer\">LanceDB documentation</a></p>"
+    },
+    {
+      "id": 26,
+      "number": 7,
+      "section": "8.4 Vector Databases",
+      "bullet": "pgvector",
+      "type": "conceptual",
+      "question": "When is pgvector a useful choice for vector search?",
+      "answer": "<p>It adds vector storage and similarity search to PostgreSQL so retrieval can work alongside existing relational data.</p><ul><li><strong>Integration:</strong> Combine vectors with document IDs, metadata, transactions, and application permissions.</li><li><strong>Indexes:</strong> Compare exact scans and supported approximate indexes using your dimensions, filters, and workload.</li><li><strong>Capacity:</strong> Monitor query plans, maintenance, memory, and write load rather than assuming existing database resources are sufficient.</li></ul><p><strong>Remember:</strong> Keeping vectors in Postgres can simplify integration without eliminating performance design.</p><p><a href=\"https://github.com/pgvector/pgvector\" target=\"_blank\" rel=\"noopener noreferrer\">pgvector documentation</a></p>"
+    },
+    {
+      "id": 27,
+      "number": 8,
+      "section": "8.4 Vector Databases",
+      "bullet": "MongoDB Atlas",
+      "type": "conceptual",
+      "question": "How does MongoDB Vector Search relate to document data?",
+      "answer": "<p>It supports indexing and searching vectors alongside fields in MongoDB documents.</p><ul><li><strong>Modeling:</strong> Retain embedding configuration, source text or references, and metadata on related records.</li><li><strong>Queries:</strong> Combine supported vector retrieval with suitable filters and evaluate any hybrid-search workflow.</li><li><strong>Operations:</strong> Check index configuration, freshness, capacity, and permissions for the chosen deployment.</li></ul><p><strong>Remember:</strong> Reusing a document database is useful when its search and operational contracts fit the application.</p><p><a href=\"https://www.mongodb.com/docs/vector-search/\" target=\"_blank\" rel=\"noopener noreferrer\">MongoDB Vector Search</a></p>"
+    },
+    {
+      "id": 28,
+      "number": 9,
+      "section": "8.4 Vector Databases",
+      "bullet": "Supabase",
+      "type": "conceptual",
+      "question": "How does Supabase support Postgres-backed vector retrieval?",
+      "answer": "<p>Supabase exposes Postgres-based workflows where pgvector can store and search embeddings alongside application data.</p><ul><li><strong>Schema:</strong> Match the vector column's dimensions and metric to the embedding configuration.</li><li><strong>Access:</strong> Enforce row-level or application-level permissions consistently through the retrieval query.</li><li><strong>Integration:</strong> Connect ingestion, database functions, and authentication without exposing privileged service credentials to clients.</li></ul><p><strong>Remember:</strong> A managed Postgres platform still needs a carefully authorized retrieval path.</p><p><a href=\"https://supabase.com/docs/guides/ai/vector-columns\" target=\"_blank\" rel=\"noopener noreferrer\">Supabase vector columns</a></p>"
+    },
+    {
+      "id": 29,
+      "number": 10,
+      "section": "8.4 Vector Databases",
+      "bullet": "Indexing - storing embeddings with metadata",
+      "type": "conceptual",
+      "question": "What should an indexing operation store besides a vector?",
+      "answer": "<p>Index a stable record that connects each embedding to its content, provenance, configuration, and access rules.</p><ul><li><strong>Identity:</strong> Use repeatable document/chunk IDs so retries update the intended record.</li><li><strong>Compatibility:</strong> Record the embedding model and relevant preprocessing or index versions.</li><li><strong>Lifecycle:</strong> Plan for updates, deletions, and failures that occur after only part of a document is written.</li></ul><p><strong>Remember:</strong> An embedding without its source and lifecycle metadata is hard to operate reliably.</p>"
+    },
+    {
+      "id": 30,
+      "number": 11,
+      "section": "8.4 Vector Databases",
+      "bullet": "Similarity search - finding nearest neighbors",
+      "type": "conceptual",
+      "question": "What does a top-K nearest-neighbor search return?",
+      "answer": "<p>It returns the index's K closest candidates under the configured metric and search policy.</p><ul><li><strong>Ranking:</strong> Interpret score direction and scale correctly for similarity versus distance.</li><li><strong>Approximation:</strong> An approximate index trades exact-neighbor recall for resource or latency benefits.</li><li><strong>Evidence:</strong> Rerank or reject weak candidates rather than treating the top result as an answer.</li></ul><p><strong>Remember:</strong> Top-K is a retrieval budget, not a guarantee that K relevant passages exist.</p>"
+    },
+    {
+      "id": 31,
+      "number": 12,
+      "section": "8.4 Vector Databases",
+      "bullet": "Filtered search - metadata + vector similarity",
+      "type": "conceptual",
+      "question": "Why must metadata filtering be part of retrieval design?",
+      "answer": "<p>Filters restrict the eligible search set according to business criteria and the caller's permissions.</p><ul><li><strong>Authorization:</strong> Derive tenant and access constraints from trusted identity data.</li><li><strong>Search behavior:</strong> Test how restrictive filters interact with approximate search and candidate counts.</li><li><strong>Enforcement:</strong> Ensure excluded content never reaches generation, reranking, logs, or caches through an alternate path.</li></ul><p><strong>Remember:</strong> A user-requested filter and a mandatory access-control filter serve different roles.</p><p class=\"example\"><strong>Example:</strong> Every query includes a tenant constraint derived from the signed-in user. A model-generated date filter may narrow that scope, but must never replace or remove it.</p>"
+    },
+    {
+      "id": 32,
+      "number": 13,
+      "section": "8.4 Vector Databases",
+      "bullet": "Hybrid search - keyword + vector (BM25 + embeddings)",
+      "type": "conceptual",
+      "question": "How does hybrid search combine BM25 and vector retrieval?",
+      "answer": "<p>It combines lexical matching with semantic similarity to cover different kinds of relevance signals.</p><ul><li><strong>Lexical:</strong> Useful for exact names, identifiers, and important terms that embeddings may blur.</li><li><strong>Dense:</strong> Useful for paraphrases and meaning-based matches.</li><li><strong>Fusion:</strong> Use a tested rank-fusion or score-calibration method rather than adding incompatible raw scores blindly.</li></ul><p><strong>Remember:</strong> Hybrid retrieval is valuable when the signals complement each other on your data.</p>"
+    },
+    {
+      "id": 33,
+      "number": 14,
+      "section": "8.4 Vector Databases",
+      "bullet": "Namespace/collection isolation - multi-tenant",
+      "type": "conceptual",
+      "question": "Do namespaces or collections automatically guarantee tenant isolation?",
+      "answer": "<p>No; isolation depends on how the application selects, authorizes, and accesses those storage boundaries.</p><ul><li><strong>Scope:</strong> Bind the namespace, collection, shard, or mandatory filter to authenticated tenant policy.</li><li><strong>Coverage:</strong> Apply the boundary to ingestion, retrieval, reranking, caching, exports, and deletion.</li><li><strong>Validation:</strong> Test cross-tenant access attempts, including empty filters and administrative credentials.</li></ul><p><strong>Remember:</strong> Naming conventions are not an authorization mechanism.</p>"
+    },
+    {
+      "id": 34,
+      "number": 15,
+      "section": "8.4 Vector Databases",
+      "bullet": "HNSW index - Hierarchical Navigable Small World (algorithm behind most vector DBs)",
+      "type": "conceptual",
+      "question": "How does HNSW accelerate vector retrieval?",
+      "answer": "<p>HNSW builds a layered proximity graph that guides approximate nearest-neighbor exploration.</p><ul><li><strong>Navigation:</strong> Start with coarse graph connections and refine the search through nearer candidates.</li><li><strong>Tuning:</strong> Graph connectivity and construction/search exploration parameters trade memory, build time, recall, and latency.</li><li><strong>Alternatives:</strong> Exact scans, inverted-file methods, and other indexes may fit different workloads; not every database uses HNSW for every query.</li></ul><p><strong>Remember:</strong> HNSW is a useful index choice, not a universal or exact-search guarantee.</p>"
+    },
+    {
+      "id": 35,
+      "number": 1,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Basic RAG",
+      "type": "conceptual",
+      "question": "What are the indexing and query-time stages of a basic RAG pipeline?",
+      "answer": "<p>Indexing prepares searchable evidence; query-time retrieval selects it for generation.</p><ul><li><strong>Ingestion:</strong> Load documents, preserve metadata, chunk, embed, and store records using a consistent model configuration.</li><li><strong>Retrieval:</strong> Authorize the caller, embed or otherwise formulate the query, and retrieve a bounded candidate set.</li><li><strong>Generation:</strong> Build a context with source references, ask for a grounded answer, and validate support before returning it.</li></ul><p><strong>Remember:</strong> Index quality, access control, retrieval, and generation are separate failure points.</p><pre><code>Document → Chunk → Embed → Store in Vector DB\n                                    ↓\nUser Query → Embed → Retrieve Top-K Chunks\n                                    ↓\n            Chunks + Query → LLM → Answer</code></pre>"
+    },
+    {
+      "id": 36,
+      "number": 2,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Hypothetical Document Embeddings (HyDE) - generate hypothetical answer, embed it for retrieval",
+      "type": "conceptual",
+      "question": "How does HyDE use a hypothetical document for retrieval?",
+      "answer": "<p>It generates a hypothetical answer-like document and embeds that text to retrieve real source documents.</p><ul><li><strong>Purpose:</strong> Bridge differences between a brief query and the kind of passage that could answer it.</li><li><strong>Evidence:</strong> Use retrieved real documents as evidence; the generated hypothetical text may contain false facts.</li><li><strong>Tradeoff:</strong> Measure added model latency and query drift against retrieval improvements.</li></ul><p><strong>Remember:</strong> A hypothetical document is a retrieval aid, not a trustworthy answer source.</p><p><a href=\"https://arxiv.org/abs/2212.10496\" target=\"_blank\" rel=\"noopener noreferrer\">HyDE original paper</a></p>"
+    },
+    {
+      "id": 37,
+      "number": 3,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Query expansion - generate multiple query variants",
+      "type": "conceptual",
+      "question": "What does query expansion add to retrieval?",
+      "answer": "<p>It introduces alternative terms or formulations that may retrieve evidence missed by the original wording.</p><ul><li><strong>Variants:</strong> Include useful synonyms, acronyms, or related formulations while retaining the user's intent.</li><li><strong>Control:</strong> Limit expansion count and reject invented entities or scope changes.</li><li><strong>Merge:</strong> Deduplicate and rank the combined candidates before allocating the context budget.</li></ul><p><strong>Remember:</strong> More query variants can increase recall while also introducing noise.</p>"
+    },
+    {
+      "id": 38,
+      "number": 4,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Reranking - use a cross-encoder to rerank retrieved chunks (Cohere Rerank, BGE Reranker)",
+      "type": "conceptual",
+      "question": "Why rerank candidates after first-stage retrieval?",
+      "answer": "<p>A reranker can score query-passage relevance more precisely on a smaller candidate set.</p><ul><li><strong>Cross-encoder:</strong> Jointly processes the query and candidate text rather than comparing only independent vectors.</li><li><strong>Pipeline:</strong> Retrieve broadly, rerank permitted candidates, then select the evidence that fits the generation budget.</li><li><strong>Cost:</strong> Evaluate latency, candidate count, truncation, and model quality on your actual task.</li></ul><p><strong>Remember:</strong> Reranking improves ordering but cannot recover evidence the first stage never retrieved.</p>"
+    },
+    {
+      "id": 39,
+      "number": 5,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Multi-query retrieval - decompose complex question into sub-queries",
+      "type": "conceptual",
+      "question": "How does multi-query retrieval differ from decomposing a complex question?",
+      "answer": "<p>Multiple query variants target the same information need; decomposition separates distinct information needs.</p><ul><li><strong>Variants:</strong> Search paraphrases of one question and merge overlapping candidates.</li><li><strong>Sub-questions:</strong> Retrieve separate evidence for each part of a comparison or multi-step request.</li><li><strong>Synthesis:</strong> Keep provenance and reconcile missing or conflicting evidence before producing a combined answer.</li></ul><p><strong>Remember:</strong> The roadmap groups related ideas; choose the strategy that matches the question's structure.</p>"
+    },
+    {
+      "id": 40,
+      "number": 6,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Self-querying - LLM generates structured filter from natural language",
+      "type": "conceptual",
+      "question": "How can self-querying produce safe structured filters?",
+      "answer": "<p>A model proposes a query and structured metadata constraints that the application validates before execution.</p><ul><li><strong>Schema:</strong> Restrict fields, operators, types, and allowable values.</li><li><strong>Authorization:</strong> Add mandatory tenant/access filters independently of any model-generated filter.</li><li><strong>Ambiguity:</strong> Ask for clarification or apply an explicit default when the user's natural-language condition is unclear.</li></ul><p><strong>Remember:</strong> A generated filter must never be allowed to weaken access policy.</p>"
+    },
+    {
+      "id": 41,
+      "number": 7,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Contextual compression - compress retrieved context before sending to LLM",
+      "type": "conceptual",
+      "question": "What is contextual compression in a RAG workflow?",
+      "answer": "<p>It reduces retrieved material to the portions useful for answering the question.</p><ul><li><strong>Selection:</strong> Remove irrelevant spans and duplicate evidence before using generation tokens.</li><li><strong>Fidelity:</strong> Preserve negation, dates, qualifiers, and source references needed to interpret the passage.</li><li><strong>Evaluation:</strong> Compare the compressed evidence with originals because summarization can remove or alter essential facts.</li></ul><p><strong>Remember:</strong> Saving tokens is useful only when the evidence remains faithful.</p>"
+    },
+    {
+      "id": 42,
+      "number": 8,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Parent document retriever - retrieve small chunks, return parent document",
+      "type": "conceptual",
+      "question": "Why retrieve small chunks but return a parent section?",
+      "answer": "<p>Small chunks can improve matching precision while their parent content restores useful context.</p><ul><li><strong>Mapping:</strong> Store stable child-to-parent references during ingestion.</li><li><strong>Retrieval:</strong> Rank child matches, then fetch and deduplicate authorized parent sections.</li><li><strong>Budget:</strong> Select or trim oversized parents so expansion does not overwhelm the context window.</li></ul><p><strong>Remember:</strong> Returning a whole document is optional; the right parent may be a bounded section.</p>"
+    },
+    {
+      "id": 43,
+      "number": 9,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Multi-vector retriever - multiple embeddings per document (summary + full text)",
+      "type": "conceptual",
+      "question": "How does a multi-vector retriever represent one document?",
+      "answer": "<p>It stores several searchable representations that map back to the same source document or parent unit.</p><ul><li><strong>Representations:</strong> Use passage vectors, summaries, or question-like representations where evaluation supports them.</li><li><strong>Mapping:</strong> Keep stable parent IDs and retrieve the permitted source content after matching a representation.</li><li><strong>Ranking:</strong> Aggregate and deduplicate results so a document with many vectors does not dominate merely by count.</li></ul><p><strong>Remember:</strong> Multiple vectors create more retrieval opportunities and more lifecycle work.</p>"
+    },
+    {
+      "id": 44,
+      "number": 10,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Faithfulness - is the answer grounded in retrieved context?",
+      "type": "conceptual",
+      "question": "What does faithfulness measure in a generated answer?",
+      "answer": "<p>It assesses whether the answer's claims are supported by the retrieved context.</p><ul><li><strong>Claim level:</strong> Check individual statements rather than only the overall tone or fluency.</li><li><strong>Limitation:</strong> A faithful answer can repeat an incorrect source or fail to answer the actual question.</li><li><strong>Evaluation:</strong> Calibrate automated judges with human-reviewed examples and inspect important failures.</li></ul><p><strong>Remember:</strong> Grounded in context is different from correct in the world.</p>"
+    },
+    {
+      "id": 45,
+      "number": 11,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Answer relevance - does the answer address the question?",
+      "type": "conceptual",
+      "question": "How is answer relevance different from faithfulness?",
+      "answer": "<p>Relevance asks whether the response addresses the user's request; faithfulness asks whether its claims are supported.</p><ul><li><strong>Example:</strong> A supported paragraph about refunds is unhelpful if the question asks about shipping deadlines.</li><li><strong>Coverage:</strong> Check requested subparts, scope, and required format.</li><li><strong>Evaluation:</strong> Use task-specific criteria and human review where generic similarity scores miss the user's intent.</li></ul><p><strong>Remember:</strong> An answer needs both useful relevance and adequate evidence support.</p>"
+    },
+    {
+      "id": 46,
+      "number": 12,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Context precision - are the retrieved chunks relevant?",
+      "type": "conceptual",
+      "question": "What does context precision tell you about retrieval?",
+      "answer": "<p>It measures how much of the retrieved context is relevant, with some metric variants also considering rank.</p><ul><li><strong>Noise:</strong> Irrelevant passages waste context and may distract the generator.</li><li><strong>Definitions:</strong> Document-level precision, ID-based precision, and judge-based rank-aware metrics are not interchangeable.</li><li><strong>Diagnosis:</strong> Inspect false positives and adjust ranking, filters, deduplication, or chunking using the chosen metric.</li></ul><p><strong>Remember:</strong> State the exact metric and reference data before comparing scores.</p><p><a href=\"https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/\" target=\"_blank\" rel=\"noopener noreferrer\">Ragas metric definitions and variants</a></p>"
+    },
+    {
+      "id": 47,
+      "number": 13,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Context recall - did we retrieve all necessary information?",
+      "type": "conceptual",
+      "question": "What does context recall tell you about retrieval?",
+      "answer": "<p>It measures how much of the required reference evidence or information the retrieved set covers.</p><ul><li><strong>Missing evidence:</strong> A precise but narrow result set can still omit a key fact needed for the answer.</li><li><strong>References:</strong> The metric needs a definition of what evidence or reference information should have been found.</li><li><strong>Tradeoff:</strong> Increasing candidate count may improve recall while adding latency and irrelevant context.</li></ul><p><strong>Remember:</strong> Precision and recall reveal different retrieval failures.</p>"
+    },
+    {
+      "id": 48,
+      "number": 14,
+      "section": "8.5 RAG Pipeline Implementation",
+      "bullet": "Tools: RAGAs framework, LangSmith, TRULENS",
+      "type": "conceptual",
+      "question": "How should Ragas, LangSmith, or TruLens fit into RAG evaluation?",
+      "answer": "<p>Use evaluation and tracing tools to run a repeatable dataset and inspect failures across the pipeline.</p><ul><li><strong>Dataset:</strong> Include representative questions, permitted source scope, expected evidence, and task-specific acceptance criteria.</li><li><strong>Configuration:</strong> Version prompts, embeddings, chunking, retrieval settings, and judge models with each experiment.</li><li><strong>Diagnosis:</strong> Combine automated metrics, traces, and human checks rather than trusting one tool's aggregate score.</li></ul><p><strong>Remember:</strong> Evaluation software measures a defined experiment; it does not certify a system as correct.</p><p><a href=\"https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/\" target=\"_blank\" rel=\"noopener noreferrer\">Ragas evaluation metrics</a></p>"
+    },
+    {
+      "id": 49,
+      "number": 1,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Incremental indexing - adding new documents without reindexing",
+      "type": "conceptual",
+      "question": "How can documents be added without rebuilding the entire index?",
+      "answer": "<p>Incremental ingestion embeds and writes only new or changed records under a compatible index configuration.</p><ul><li><strong>Identity:</strong> Use stable IDs and content hashes to detect repeated or changed chunks.</li><li><strong>Compatibility:</strong> A model, dimension, or preprocessing change may require a larger migration rather than an incremental append.</li><li><strong>Reliability:</strong> Make writes idempotent and record job status so partial failures can resume safely.</li></ul><p><strong>Remember:</strong> Incremental indexing still needs change detection and deletion handling.</p>"
+    },
+    {
+      "id": 50,
+      "number": 2,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Document versioning - handling document updates",
+      "type": "conceptual",
+      "question": "How should a RAG index handle document updates and deletions?",
+      "answer": "<p>Track source versions and replace or retire all affected chunks consistently.</p><ul><li><strong>Versioning:</strong> Record document and chunk versions so results can be tied to the correct source state.</li><li><strong>Rollout:</strong> Use a staged replacement or version filter when partially updated documents must not appear together.</li><li><strong>Cleanup:</strong> Remove obsolete chunks and invalidate caches, citations, and derived summaries as required.</li></ul><p><strong>Remember:</strong> Updating one vector does not update every derived artifact of a document.</p>"
+    },
+    {
+      "id": 51,
+      "number": 3,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Multi-tenant isolation - per-user, per-org vector spaces",
+      "type": "conceptual",
+      "question": "Where must multi-tenant isolation be enforced in production RAG?",
+      "answer": "<p>Enforce it throughout the data path rather than only at the final model call.</p><ul><li><strong>Ingestion:</strong> Attribute documents and permissions to the correct tenant and prevent cross-tenant writes.</li><li><strong>Retrieval:</strong> Apply mandatory authorization before content is exposed to rerankers or generation.</li><li><strong>Derived data:</strong> Scope caches, traces, parent lookups, evaluations, and exports to the same access policy.</li></ul><p><strong>Remember:</strong> A tenant field is useful only when every relevant operation enforces it.</p>"
+    },
+    {
+      "id": 52,
+      "number": 4,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Caching - cache embeddings, cache query results",
+      "type": "conceptual",
+      "question": "Which parts of a RAG pipeline are suitable for caching?",
+      "answer": "<p>Cache reusable computations or results when their identity, authorization, and freshness can be checked.</p><ul><li><strong>Embeddings:</strong> Key by content plus model, dimensions, and preprocessing configuration.</li><li><strong>Retrieval:</strong> Include query, filters, tenant/access scope, index version, and search settings in the key.</li><li><strong>Answers:</strong> Include generation settings and evidence versions, and expire results when sources or permissions change.</li></ul><p><strong>Remember:</strong> Cache hits must preserve the same access and freshness guarantees as uncached work.</p><pre><code class=\"language-python\">import hashlib\nimport json\n\ndef retrieval_cache_key(query, tenant_id, access_version, index_version, filters):\n    payload = {\n        &quot;query&quot;: query,\n        &quot;tenant_id&quot;: tenant_id,\n        &quot;access_version&quot;: access_version,\n        &quot;index_version&quot;: index_version,\n        &quot;filters&quot;: filters,\n    }\n    raw = json.dumps(payload, sort_keys=True, separators=(&quot;,&quot;, &quot;:&quot;))\n    return hashlib.sha256(raw.encode(&quot;utf-8&quot;)).hexdigest()\n\n# Production keys also include embedding/search settings. Authorize before lookup.</code></pre>"
+    },
+    {
+      "id": 53,
+      "number": 5,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Monitoring - retrieval quality, latency, hit rates",
+      "type": "conceptual",
+      "question": "What should production RAG monitoring track?",
+      "answer": "<p>Measure quality and operational behavior across ingestion, retrieval, and generation.</p><ul><li><strong>Quality:</strong> Track relevance, evidence coverage, supported claims, abstentions, and user feedback on representative samples.</li><li><strong>Performance:</strong> Break down embedding, search, reranking, model latency, errors, and cost.</li><li><strong>Freshness:</strong> Monitor ingestion lag, failed updates, deleted-document leakage, and cache effectiveness.</li></ul><p><strong>Remember:</strong> Good service latency can hide a retrieval system that returns the wrong evidence.</p>"
+    },
+    {
+      "id": 54,
+      "number": 6,
+      "section": "8.6 Production RAG Considerations",
+      "bullet": "Fallback - \"I don't know\" when context is insufficient",
+      "type": "conceptual",
+      "question": "When should a RAG system say it does not have enough information?",
+      "answer": "<p>Abstain or ask a clarifying question when the authorized evidence does not adequately support the requested answer.</p><ul><li><strong>Signals:</strong> Use validated coverage and support checks rather than a universal similarity cutoff or the model's confidence alone.</li><li><strong>Response:</strong> Explain the missing information and cite any useful partial evidence without inventing a complete answer.</li><li><strong>Recovery:</strong> Offer a narrower question, another authorized source, or a human handoff where appropriate.</li></ul><p><strong>Remember:</strong> Returning fewer unsupported claims is better than forcing every query into an answer.</p>"
+    }
+  ]
+}

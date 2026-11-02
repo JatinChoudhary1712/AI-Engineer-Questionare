@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse AI engineering study notes by phase, chapter, and question.">
+  <title>RAG &amp; Vector Databases | Recall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;750;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../study-ui.css">
+  <script src="../study-data.js" defer></script>
+  <script src="../study-ui.js" defer></script>
+</head>
+<body class="library-page roadmap-page" data-phase="8">
+  <main id="study-content" class="roadmap-index">
+    <h1 class="sr-only">Phase 8 learning index</h1>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Library</a></li><li><span aria-current="page">Phase 8</span></li></ol></nav>
+    <section class="roadmap-phase" id="phase-8" aria-labelledby="phase-8-title">
+      <h2 id="phase-8-title">PHASE 8 - RAG &amp; Vector Databases</h2>
+      <p class="roadmap-goal">Goal: Build retrieval systems that give LLMs access to your private knowledge.</p>
+      <h3 id="chapter-8-1"><a href="8.1%20Why%20RAG%20Exists/index.html">8.1 Why RAG Exists</a></h3>
+      <ul>
+        <li><a href="8.1%20Why%20RAG%20Exists/index.html?view=reading#question-01">LLMs have knowledge cutoffs</a></li>
+        <li><a href="8.1%20Why%20RAG%20Exists/index.html?view=reading#question-02">LLMs can't access private/proprietary data</a></li>
+        <li><a href="8.1%20Why%20RAG%20Exists/index.html?view=reading#question-03">LLMs hallucinate when they don't know</a></li>
+        <li><a href="8.1%20Why%20RAG%20Exists/index.html?view=reading#question-04">RAG = Embedding-based search + Prompt-based generation</a></li>
+        <li><a href="8.1%20Why%20RAG%20Exists/index.html?view=reading#question-05">RAG vs Fine-tuning - when to use which</a></li>
+      </ul>
+      <h3 id="chapter-8-2"><a href="8.2%20Embeddings%20Deep%20Dive/index.html">8.2 Embeddings Deep Dive</a></h3>
+      <ul>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-01">What are embeddings - dense, semantic vector representations</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-02">Embedding models: <code>text-embedding-3-small</code>, <code>text-embedding-3-large</code> (OpenAI)</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-03"><code>all-MiniLM-L6-v2</code>, <code>bge-large</code> (open source, HuggingFace)</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-04"><code>embed-english-v3</code> (Cohere) - tuned for RAG</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-05">Embedding dimensions - tradeoff between quality and storage</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-06">Batch embedding for efficiency</a></li>
+        <li><a href="8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-07">Embedding similarity: cosine, dot product, Euclidean</a></li>
+      </ul>
+      <h3 id="chapter-8-3"><a href="8.3%20Chunking%20Strategies/index.html">8.3 Chunking Strategies</a></h3>
+      <ul>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-01">Fixed-size chunking - simple but naive</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-02">Sentence-based chunking - respects natural boundaries</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-03">Recursive character text splitting - LangChain default</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-04">Semantic chunking - split on topic change</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-05">Document-based chunking - by headers, sections</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-06">Chunk size vs overlap tradeoff</a></li>
+        <li><a href="8.3%20Chunking%20Strategies/index.html?view=reading#question-07">Chunk metadata - source, page, section</a></li>
+      </ul>
+      <h3 id="chapter-8-4"><a href="8.4%20Vector%20Databases/index.html">8.4 Vector Databases</a></h3>
+      <div class="table-wrap"><table><thead><tr><th scope="col">DB</th><th scope="col">Type (roadmap)</th><th scope="col">Use case (roadmap)</th></tr></thead><tbody>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-01"><strong>FAISS</strong></a></th><td>Local</td><td>Prototyping, research</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-02"><strong>Chroma</strong></a></th><td>Local / Cloud</td><td>Early production</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-03"><strong>Pinecone</strong></a></th><td>Managed</td><td>Production scale</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-04"><strong>Weaviate</strong></a></th><td>Self-hosted</td><td>Metadata filtering</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-05"><strong>Qdrant</strong></a></th><td>Self-hosted</td><td>High performance</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-06"><strong>LanceDB</strong></a></th><td>Embedded</td><td>Serverless apps</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-07"><strong>pgvector</strong></a></th><td>PostgreSQL ext</td><td>Existing Postgres users</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-08"><strong>MongoDB Atlas</strong></a></th><td>Managed</td><td>Full-stack apps</td></tr>
+        <tr><th scope="row"><a href="8.4%20Vector%20Databases/index.html?view=reading#question-09"><strong>Supabase</strong></a></th><td>Managed</td><td>Postgres + vectors</td></tr>
+      </tbody></table></div>
+      <h4>Vector DB Operations</h4>
+      <ul>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-10">Indexing - storing embeddings with metadata</a></li>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-11">Similarity search - finding nearest neighbors</a></li>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-12">Filtered search - metadata + vector similarity</a></li>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-13">Hybrid search - keyword + vector (BM25 + embeddings)</a></li>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-14">Namespace/collection isolation - multi-tenant</a></li>
+        <li><a href="8.4%20Vector%20Databases/index.html?view=reading#question-15">HNSW index - Hierarchical Navigable Small World (algorithm behind most vector DBs)</a></li>
+      </ul>
+      <h3 id="chapter-8-5"><a href="8.5%20RAG%20Pipeline%20Implementation/index.html">8.5 RAG Pipeline Implementation</a></h3>
+      <h4>Basic RAG</h4>
+<pre><code>Document → Chunk → Embed → Store in Vector DB
+                                    ↓
+User Query → Embed → Retrieve Top-K Chunks
+                                    ↓
+            Chunks + Query → LLM → Answer</code></pre>
+      <h4>Advanced RAG Techniques</h4>
+      <ul>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-02"><strong>Hypothetical Document Embeddings (HyDE)</strong> - generate hypothetical answer, embed it for retrieval</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-03"><strong>Query expansion</strong> - generate multiple query variants</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-04"><strong>Reranking</strong> - use a cross-encoder to rerank retrieved chunks (Cohere Rerank, BGE Reranker)</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-05"><strong>Multi-query retrieval</strong> - decompose complex question into sub-queries</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-06"><strong>Self-querying</strong> - LLM generates structured filter from natural language</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-07"><strong>Contextual compression</strong> - compress retrieved context before sending to LLM</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-08"><strong>Parent document retriever</strong> - retrieve small chunks, return parent document</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-09"><strong>Multi-vector retriever</strong> - multiple embeddings per document (summary + full text)</a></li>
+      </ul>
+      <h4>RAG Evaluation</h4>
+      <ul>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-10">Faithfulness - is the answer grounded in retrieved context?</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-11">Answer relevance - does the answer address the question?</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-12">Context precision - are the retrieved chunks relevant?</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-13">Context recall - did we retrieve all necessary information?</a></li>
+        <li><a href="8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-14">Tools: RAGAs framework, LangSmith, TRULENS</a></li>
+      </ul>
+      <h3 id="chapter-8-6"><a href="8.6%20Production%20RAG%20Considerations/index.html">8.6 Production RAG Considerations</a></h3>
+      <ul>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-01">Incremental indexing - adding new documents without reindexing</a></li>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-02">Document versioning - handling document updates</a></li>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-03">Multi-tenant isolation - per-user, per-org vector spaces</a></li>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-04">Caching - cache embeddings, cache query results</a></li>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-05">Monitoring - retrieval quality, latency, hit rates</a></li>
+        <li><a href="8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-06">Fallback - &quot;I don't know&quot; when context is insufficient</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

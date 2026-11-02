@@ -12,18 +12,171 @@
   <script src="../study-data.js" defer></script>
   <script src="../study-ui.js" defer></script>
 </head>
-<body class="library-page" data-phase="6">
-  <main id="study-content" class="library-main">
+<body class="library-page roadmap-page" data-phase="6">
+  <main id="study-content" class="roadmap-index">
+    <h1 class="sr-only">Phase 6 learning index</h1>
     <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Library</a></li><li><span aria-current="page">Phase 6</span></li></ol></nav>
-    <header class="library-heading"><p class="study-eyebrow">PHASE 6</p><h1>Large Language Models &amp; AI Engineering</h1><p>This is your core domain. Master LLM fundamentals, APIs, and production patterns.</p></header>
-    <section class="phase-chapters" aria-label="LLM and AI engineering chapters">
-      <a class="chapter-row" href="6.1%20LLM%20Fundamentals/index.html"><span class="card-number">6.1</span><div class="row-title"><h2>LLM Fundamentals</h2><p>14 questions &middot; 14 topics</p></div><span class="card-open">Open chapter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a>
-      <a class="chapter-row" href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html"><span class="card-number">6.2</span><div class="row-title"><h2>Prompt Engineering (Production-Grade)</h2><p>24 questions &middot; 24 topics</p></div><span class="card-open">Open chapter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a>
-      <a class="chapter-row" href="6.3%20Working%20with%20AI%20APIs/index.html"><span class="card-number">6.3</span><div class="row-title"><h2>Working with AI APIs</h2><p>32 questions &middot; 32 topics</p></div><span class="card-open">Open chapter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a>
-      <a class="chapter-row" href="6.4%20API%20Integration%20Patterns/index.html"><span class="card-number">6.4</span><div class="row-title"><h2>API Integration Patterns</h2><p>19 questions &middot; 19 topics</p></div><span class="card-open">Open chapter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a>
-      <a class="chapter-row" href="6.5%20Secure%20API%20Integration/index.html"><span class="card-number">6.5</span><div class="row-title"><h2>Secure API Integration</h2><p>6 questions &middot; 6 topics</p></div><span class="card-open">Open chapter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a>
+    <section class="roadmap-phase" id="phase-6" aria-labelledby="phase-6-title">
+      <h2 id="phase-6-title">PHASE 6 - Large Language Models &amp; AI Engineering</h2>
+      <p class="roadmap-goal">Goal: This is your core domain. Master LLM fundamentals, APIs, and production patterns.</p>
+      <h3 id="chapter-6-1"><a href="6.1%20LLM%20Fundamentals/index.html">6.1 LLM Fundamentals</a></h3>
+      <h4>Architecture Deep Dive</h4>
+      <ul>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-01">Transformer at scale - what changes going from 1B to 100B parameters</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-02">Context window - how it works and limitations</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-03">KV Cache - how it speeds up inference</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-04">Tokenization at scale</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-05">Positional encodings: Absolute, Relative, RoPE, ALiBi</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-06">Flash Attention - memory-efficient attention</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-07">Grouped Query Attention (GQA) - used in LLaMA 3</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-08">Sliding window attention - used in Mistral</a></li>
+      </ul>
+      <h4>Training LLMs</h4>
+      <ul>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-09">Pretraining - learning from internet-scale text</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-10">Instruction tuning - following user instructions</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-11">RLHF (Reinforcement Learning from Human Feedback)</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-12">Constitutional AI (Anthropic's approach)</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-13">DPO (Direct Preference Optimization) - alternative to RLHF</a></li>
+        <li><a href="6.1%20LLM%20Fundamentals/index.html?view=reading#question-14">Scaling laws - relationship between model size, data, compute</a></li>
+      </ul>
+      <h3 id="chapter-6-2"><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html">6.2 Prompt Engineering (Production-Grade)</a></h3>
+      <h4>Prompt Anatomy</h4>
+      <ul>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-01">System prompt - role and constraints</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-02">User prompt - the actual request</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-03">Assistant turn - model's response history</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-04">Few-shot examples in context</a></li>
+      </ul>
+      <h4>Prompting Techniques</h4>
+      <ul>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-05">Zero-shot prompting</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-06">One-shot and few-shot prompting</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-07">Chain-of-Thought (CoT) - &quot;think step by step&quot;</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-08">Self-consistency - generate multiple CoT paths, vote</a></li>
+        <li>ReAct prompting - Reasoning + Acting (for agents)</li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-10">Tree of Thought (ToT)</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-11">Structured output prompting - JSON, XML</a></li>
+        <li>Role prompting - &quot;You are a senior software engineer...&quot;</li>
+        <li>Prompt chaining - output of one prompt → input of next</li>
+      </ul>
+      <h4>Production Prompt Engineering</h4>
+      <ul>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-14">Giving clear instruction + format + boundaries</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-15">Always specifying what NOT to do</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-16">Using examples and output constraints</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-17">Prompt versioning and changelogs</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-18">A/B testing prompts</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-19">Prompt compression - reducing token count</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-20">Prompt injection defense</a></li>
+      </ul>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-21">PromptLayer - tracking prompt versions</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-22">LangSmith - LangChain observability</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-23">OpenAI Playground</a></li>
+        <li><a href="6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-24">Anthropic Console</a></li>
+      </ul>
+      <h3 id="chapter-6-3"><a href="6.3%20Working%20with%20AI%20APIs/index.html">6.3 Working with AI APIs</a></h3>
+      <h4>OpenAI API</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-01">Chat Completions API - <code>messages</code> array</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-02">Function calling / Tool use</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-03">JSON mode / Structured outputs</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-04">Streaming responses (SSE)</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-05">Embeddings API</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-06">Vision API (GPT-4V)</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-07">Assistants API with file search</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-08">Batch API for bulk processing</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-09">Token counting with <code>tiktoken</code></a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-10">Rate limits and quotas</a></li>
+      </ul>
+      <h4>Anthropic (Claude) API</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-11">Messages API structure</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-12">System prompts</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-13">Long context (200K tokens)</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-14">Vision support</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-15">Tool use</a></li>
+        <li>Streaming</li>
+      </ul>
+      <h4>Google AI (Gemini) API</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-17">Gemini Pro / Ultra</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-18">Multimodal inputs (text, image, video, audio)</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-19">Real-time search grounding</a></li>
+        <li>Context caching (cost reduction)</li>
+      </ul>
+      <h4>Mistral AI API</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-21">Mistral 7B, 8x7B (MoE), Large</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-22">Function calling</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-23">JSON mode</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-24">Open-source models via Ollama</a></li>
+      </ul>
+      <h4>Meta (LLaMA) via HuggingFace / Ollama</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-25">LLaMA 3 models</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-26">Running locally with Ollama</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-27">Fine-tuning LLaMA with PEFT</a></li>
+      </ul>
+      <h4>Other Key Providers</h4>
+      <ul>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-28">Cohere - enterprise embeddings, RAG</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-29">NVIDIA NIM - GPU-optimized inference</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-30">Groq - ultra-fast inference (LPU)</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-31">Together AI - open-source hosting</a></li>
+        <li><a href="6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-32">Replicate - model API hosting</a></li>
+      </ul>
+      <h3 id="chapter-6-4"><a href="6.4%20API%20Integration%20Patterns/index.html">6.4 API Integration Patterns</a></h3>
+      <h4>Handling Token Limits</h4>
+      <ul>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-01">Count tokens before sending (tiktoken, anthropic tokenizer)</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-02">Truncation strategies</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-03">Context window management</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-04">Summarization of old history</a></li>
+      </ul>
+      <h4>Streaming APIs</h4>
+      <ul>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-05">Server-Sent Events (SSE) - streaming text chunks</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-06">Handling partial responses</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-07">Client-side rendering of streaming output</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-08">Benefits: perceived latency reduction</a></li>
+      </ul>
+      <h4>Rate Limiting &amp; Retries</h4>
+      <ul>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-09">Exponential backoff with jitter</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-10">Respect provider quotas</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-11">Queue-based request management</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-12">Circuit breaker pattern</a></li>
+      </ul>
+      <h4>Cost Control</h4>
+      <ul>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-13">Log token usage per user/feature</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-14">GPT-3.5 vs GPT-4 routing by task complexity</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-15">Prompt compression (strip whitespace, summarize context)</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-16">Caching with SHA-256 fingerprinting</a></li>
+        <li><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-17">Async pipelines for non-realtime tasks</a></li>
+      </ul>
+      <h4><a href="6.4%20API%20Integration%20Patterns/index.html?view=reading#question-18">Error Handling &amp; Fallback</a></h4>
+      <pre><code class="language-python">try:
+    response = call_gpt4(prompt)
+except APIError:
+    response = call_gpt35(prompt)  # cheaper fallback
+except RateLimitError:
+    response = get_cached_response(prompt)
+except Exception:
+    response = DEFAULT_MESSAGE</code></pre>
+      <h3 id="chapter-6-5"><a href="6.5%20Secure%20API%20Integration/index.html">6.5 Secure API Integration</a></h3>
+      <ul>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-01"><strong>Never</strong> expose API keys to frontend</a></li>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-02"><code>.env</code> files locally, Secret Manager in production</a></li>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-03">Backend proxy pattern - frontend → your API → LLM provider</a></li>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-04">Per-user rate limiting with Redis</a></li>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-05">API key rotation strategy</a></li>
+        <li><a href="6.5%20Secure%20API%20Integration/index.html?view=reading#question-06">Logging and monitoring</a></li>
+      </ul>
     </section>
-    <a class="phase-parent-link" href="../index.html">Back to your library</a>
   </main>
 </body>
 </html>

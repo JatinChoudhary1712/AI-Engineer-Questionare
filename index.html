@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+e<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Browse AI engineering study notes by phase, chapter, and question.">
-  <title>Your learning library | Recall</title>
+  <title>Learning index | Recall</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;750;800&amp;display=swap" rel="stylesheet">
@@ -12,16 +12,715 @@
   <script src="study-data.js" defer></script>
   <script src="study-ui.js" defer></script>
 </head>
-<body class="library-page">
-  <main id="study-content" class="library-main">
-    <header class="library-heading"><p class="study-eyebrow">YOUR LIBRARY</p><h1>What would you like to learn?</h1><p>Choose a phase to explore its chapters. Take it one concept at a time.</p></header>
-    <section class="phase-grid" aria-label="Learning phases">
-      <a class="phase-card" href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/index.html"><p class="study-eyebrow">PHASE 3</p><h2>Machine Learning Fundamentals</h2><p>Start with how models learn from data, then explore regression, trees, clustering, and evaluation.</p><div class="card-bottom"><span>5 chapters</span><span class="card-open">Explore phase <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div></a>
-      <a class="phase-card" href="PHASE%204%20-%20Deep%20Learning/index.html"><p class="study-eyebrow">PHASE 4</p><h2>Deep Learning</h2><p>Build on the foundations with neural networks, training techniques, attention, and PyTorch.</p><div class="card-bottom"><span>7 chapters</span><span class="card-open">Explore phase <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div></a>
-      <a class="phase-card" href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/index.html"><p class="study-eyebrow">PHASE 5</p><h2>Natural Language Processing &amp; Transformers</h2><p>Explore text representations, tokenization, transformer architecture, and how to evaluate language models.</p><div class="card-bottom"><span>9 chapters</span><span class="card-open">Explore phase <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div></a>
-      <a class="phase-card" href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/index.html"><p class="study-eyebrow">PHASE 6</p><h2>Large Language Models &amp; AI Engineering</h2><p>Master LLM fundamentals, production prompts, AI APIs, and secure integration patterns.</p><div class="card-bottom"><span>5 chapters</span><span class="card-open">Explore phase <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div></a>
+<body class="library-page roadmap-page">
+  <main id="study-content" class="roadmap-index">
+    <h1 class="sr-only">Learning index</h1>
+    <section class="roadmap-phase" id="phase-3" aria-labelledby="phase-3-title">
+      <h2 id="phase-3-title">PHASE 3 - Machine Learning Fundamentals</h2>
+      <p class="roadmap-goal">Goal: Understand the classic ML algorithms that power AI feature engineering and evaluation.</p>
+      <h3 id="chapter-3-1"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.1%20Core%20ML%20Concepts/index.html">3.1 Core ML Concepts</a></h3>
+      <ul>
+        <li>Supervised vs Unsupervised vs Reinforcement Learning</li>
+        <li>Training set, validation set, test set</li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.1%20Core%20ML%20Concepts/index.html?view=reading#question-12">Overfitting and underfitting</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.1%20Core%20ML%20Concepts/index.html?view=reading#question-17">Bias-variance tradeoff</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.1%20Core%20ML%20Concepts/index.html?view=reading#question-21">Cross-validation (k-fold)</a></li>
+        <li>Evaluation metrics: Accuracy, Precision, Recall, F1, AUC-ROC</li>
+      </ul>
+      <h3 id="chapter-3-2"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html">3.2 Linear &amp; Logistic Regression</a></h3>
+      <ul>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html?view=reading#question-01">Linear regression - closed form and gradient descent</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html?view=reading#question-08">Logistic regression - sigmoid output, binary classification</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html?view=reading#question-13">Cost functions: MSE, Binary Cross-Entropy</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html?view=reading#question-19">Regularization: Ridge (L2), Lasso (L1)</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html?view=reading#question-26">Multi-class classification: One-vs-Rest</a></li>
+      </ul>
+      <h3 id="chapter-3-3"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html">3.3 Decision Trees &amp; Ensembles</a></h3>
+      <ul>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html?view=reading#question-01">Decision trees - splitting criteria (Gini, entropy)</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html?view=reading#question-08">Random forests - bagging of decision trees</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html?view=reading#question-15">Gradient boosting - XGBoost, LightGBM (used in ML features)</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html?view=reading#question-23">Feature importance</a></li>
+      </ul>
+      <h3 id="chapter-3-4"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.4%20Unsupervised%20Learning/index.html">3.4 Unsupervised Learning</a></h3>
+      <ul>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.4%20Unsupervised%20Learning/index.html?view=reading#question-01">K-Means clustering</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.4%20Unsupervised%20Learning/index.html?view=reading#question-08">DBSCAN</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.4%20Unsupervised%20Learning/index.html?view=reading#question-15">PCA - dimensionality reduction (connects to embeddings)</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.4%20Unsupervised%20Learning/index.html?view=reading#question-22">t-SNE / UMAP - visualization of high-dimensional data (embedding visualization)</a></li>
+      </ul>
+      <h3 id="chapter-3-5"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.5%20Hyperparameter%20Tuning/index.html">3.5 Hyperparameter Tuning</a></h3>
+      <ul>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.5%20Hyperparameter%20Tuning/index.html?view=reading#question-01">Grid search, random search</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.5%20Hyperparameter%20Tuning/index.html?view=reading#question-08">Bayesian optimization</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.5%20Hyperparameter%20Tuning/index.html?view=reading#question-14">Learning rate, batch size, epochs, layers</a></li>
+        <li><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.5%20Hyperparameter%20Tuning/index.html?view=reading#question-22">Early stopping</a></li>
+      </ul>
+      <h3 id="chapter-3-6"><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.6%20ML%20with%20Scikit-Learn/Notes.md">3.6 ML with Scikit-Learn</a></h3>
+      <ul>
+        <li>Pipelines: Pipeline() class</li>
+        <li>Preprocessors: StandardScaler, MinMaxScaler, OneHotEncoder</li>
+        <li>Model selection: GridSearchCV, cross_val_score</li>
+        <li>Saving models: joblib</li>
+        <li>Understanding the sklearn API pattern (fit/transform/predict)</li>
+      </ul>
+      <h3 class="roadmap-projects-title">Phase 3 Projects</h3>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/Phase%203%20Projects/Easy%20-%20Spam%20Classifier/README.md">Easy: Spam Classifier</a></h4>
+      <ul>
+        <li>Build a spam/not-spam email classifier with TF-IDF + Logistic Regression</li>
+        <li>Evaluate with precision, recall, F1</li>
+        <li>Stack: Scikit-learn, Pandas, NLTK</li>
+      </ul>
     </section>
-    <noscript>Enable JavaScript to track your progress. Navigation links work without it.</noscript>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/Phase%203%20Projects/Medium%20-%20Customer%20Churn%20Prediction%20System/README.md">Medium: Customer Churn Prediction System</a></h4>
+      <ul>
+        <li>Full pipeline: data cleaning → feature engineering → model training → evaluation</li>
+        <li>Try Logistic Regression vs Random Forest vs XGBoost</li>
+        <li>Add SHAP for explainability</li>
+        <li>Stack: Scikit-learn, XGBoost, SHAP, Pandas, Matplotlib</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%203%20-%20Machine%20Learning%20Fundamentals/Phase%203%20Projects/Hard%20-%20AutoML%20Mini-Framework/README.md">Hard: AutoML Mini-Framework</a></h4>
+      <ul>
+        <li>Build a framework that automatically tries multiple models and hyperparameters</li>
+        <li>Generate a full evaluation report</li>
+        <li>Add feature importance, confusion matrix, ROC curve</li>
+        <li>Stack: Scikit-learn, Optuna (Bayesian optimization), Pandas, Matplotlib</li>
+      </ul>
+    </section>
+    </section>
+    <section class="roadmap-phase" id="phase-4" aria-labelledby="phase-4-title">
+      <h2 id="phase-4-title">PHASE 4 - Deep Learning</h2>
+      <p class="roadmap-goal">Goal: Understand neural networks deeply enough to work with transformers.</p>
+      <h3 id="chapter-4-1"><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html">4.1 Neural Network Fundamentals</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-01">Neuron, Perceptron, MLP</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-05">Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-11">Forward pass - how information flows</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-13">Backpropagation - how gradients flow backward</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-15">Weight initialization strategies</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html?view=reading#question-18">Vanishing / exploding gradient problem</a></li>
+      </ul>
+      <h3 id="chapter-4-2"><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html">4.2 Training Techniques</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html?view=reading#question-01">Batch normalization - stabilizing training</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html?view=reading#question-03">Layer normalization - used in transformers</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html?view=reading#question-05">Dropout - stochastic regularization</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html?view=reading#question-07">Residual connections (skip connections) - used in every modern model</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.2%20Training%20Techniques/index.html?view=reading#question-09">Gradient clipping</a></li>
+      </ul>
+      <h3 id="chapter-4-3"><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html">4.3 Convolutional Neural Networks (CNN)</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html?view=reading#question-01">Convolution operation - feature detection</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html?view=reading#question-04">Pooling layers - spatial downsampling</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html?view=reading#question-07">CNN architectures: LeNet, AlexNet, VGG, ResNet</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html?view=reading#question-12">Transfer learning with CNNs</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.3%20Convolutional%20Neural%20Networks%20(CNN)/index.html?view=reading#question-14">Applications: image classification, object detection</a></li>
+      </ul>
+      <h3 id="chapter-4-4"><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html">4.4 Recurrent Neural Networks (RNN)</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-01">RNN - processing sequences one step at a time</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-03">Hidden state - memory across time steps</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-05">Vanishing gradient in RNNs</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-07">LSTM - cell state, forget/input/output gates</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-12">GRU - simpler LSTM alternative</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-15">Bidirectional RNNs</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-17">Seq2Seq: encoder + decoder</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.4%20Recurrent%20Neural%20Networks%20(RNN)/index.html?view=reading#question-20">Beam search decoding</a></li>
+      </ul>
+      <h3 id="chapter-4-5"><a href="PHASE%204%20-%20Deep%20Learning/4.5%20Attention%20Mechanism%20(Pre-Transformer)/index.html">4.5 Attention Mechanism (Pre-Transformer)</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.5%20Attention%20Mechanism%20(Pre-Transformer)/index.html?view=reading#question-01">Attention as &quot;soft&quot; alignment</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.5%20Attention%20Mechanism%20(Pre-Transformer)/index.html?view=reading#question-03">Additive vs multiplicative attention</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.5%20Attention%20Mechanism%20(Pre-Transformer)/index.html?view=reading#question-06">Bahdanau attention for seq2seq</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.5%20Attention%20Mechanism%20(Pre-Transformer)/index.html?view=reading#question-08">Why attention solved the bottleneck problem</a></li>
+      </ul>
+      <h3 id="chapter-4-6"><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html">4.6 PyTorch (Master This)</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-01">Tensors - creation, operations, GPU</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-03">torch.nn.Module - building models</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-05">torch.optim - Adam, SGD, etc.</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-07">Custom datasets with torch.utils.data.Dataset</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-09">DataLoader - batching and shuffling</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-11">Training loop: forward → loss → backward → step</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-14">model.eval() vs model.train()</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-16">Saving/loading: torch.save(), torch.load()</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-18">Moving to GPU: .to(device)</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-20">Gradient computation: .requires_grad, torch.no_grad()</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-22">Custom loss functions</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.6%20PyTorch%20(Master%20This)/index.html?view=reading#question-24">Learning rate schedulers</a></li>
+      </ul>
+      <h3 id="chapter-4-7"><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html">4.7 Transfer Learning</a></h3>
+      <ul>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html?view=reading#question-01">What is pretraining and why it matters</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html?view=reading#question-03">Fine-tuning vs feature extraction</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html?view=reading#question-06">Freezing layers</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html?view=reading#question-08">ImageNet moment for NLP</a></li>
+        <li><a href="PHASE%204%20-%20Deep%20Learning/4.7%20Transfer%20Learning/index.html?view=reading#question-10">Using HuggingFace pretrained models</a></li>
+      </ul>
+      <h3 class="roadmap-projects-title">Phase 4 Projects</h3>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%204%20-%20Deep%20Learning/Phase%204%20Projects/Easy%20-%20Image%20Classifier%20with%20Transfer%20Learning/README.md">Easy: Image Classifier with Transfer Learning</a></h4>
+      <ul>
+        <li>Fine-tune ResNet-18 on a custom image dataset (5 categories)</li>
+        <li>Track train/val accuracy, plot loss curves</li>
+        <li>Stack: PyTorch, torchvision, Matplotlib</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%204%20-%20Deep%20Learning/Phase%204%20Projects/Medium%20-%20Sentiment%20Analysis%20with%20LSTM%20vs%20BERT/README.md">Medium: Sentiment Analysis with LSTM vs BERT</a></h4>
+      <ul>
+        <li>Build LSTM from scratch, then use pretrained BERT</li>
+        <li>Compare performance on movie reviews dataset</li>
+        <li>Stack: PyTorch, HuggingFace Transformers</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%204%20-%20Deep%20Learning/Phase%204%20Projects/Hard%20-%20Build%20a%20Mini%20GPT%20from%20Scratch/README.md">Hard: Build a Mini GPT from Scratch</a></h4>
+      <ul>
+        <li>Implement the full transformer architecture: attention, multi-head attention, positional encoding, feed-forward, residual connections</li>
+        <li>Train on a small text corpus (Shakespeare/wiki)</li>
+        <li>Stack: PyTorch, NumPy (follow Andrej Karpathy's nanoGPT style)</li>
+      </ul>
+    </section>
+    </section>
+    <section class="roadmap-phase" id="phase-5" aria-labelledby="phase-5-title">
+      <h2 id="phase-5-title">PHASE 5 - Natural Language Processing &amp; Transformers</h2>
+      <p class="roadmap-goal">Goal: Deep NLP expertise for LLM-powered products.</p>
+      <h3 id="chapter-5-1"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html">5.1 Text Preprocessing</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-01">Tokenization - words, subwords, characters</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-03">Lowercasing, punctuation removal, whitespace normalization</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-05">Stopword removal - when to and when not to</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-07">Stemming vs Lemmatization</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-09">Sentence segmentation</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-11">Handling special tokens: URLs, emails, hashtags</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.1%20Text%20Preprocessing/index.html?view=reading#question-13">Unicode and encoding issues (<code>utf-8</code>)</a></li>
+      </ul>
+      <h3 id="chapter-5-2"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html">5.2 Classical Text Representation</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html?view=reading#question-01">Bag of Words (BoW)</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html?view=reading#question-03">TF-IDF - formula and intuition</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html?view=reading#question-05">N-grams - capturing context</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html?view=reading#question-07">One-hot encoding - and why it fails at scale</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.2%20Classical%20Text%20Representation/index.html?view=reading#question-09">Sparse vs dense representations</a></li>
+      </ul>
+      <h3 id="chapter-5-3"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html">5.3 Word Embeddings</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-01">Why embeddings - dense, semantic vectors</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-03">Word2Vec - CBOW vs Skip-gram</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-05">GloVe - global co-occurrence statistics</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-07">FastText - subword embeddings, handles OOV</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-09">Cosine similarity on embeddings</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-11">Analogy tasks: <code>king - man + woman = queen</code></a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.3%20Word%20Embeddings/index.html?view=reading#question-13">Static vs contextual embeddings</a></li>
+      </ul>
+      <h3 id="chapter-5-4"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html">5.4 Subword Tokenization (Modern)</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-01">Byte Pair Encoding (BPE) - used in GPT</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-03">WordPiece - used in BERT</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-05">SentencePiece - used in T5, LLaMA</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-07">Special tokens: <code>[CLS]</code>, <code>[SEP]</code>, <code>[PAD]</code>, <code>[MASK]</code>, <code>&lt;eos&gt;</code>, <code>&lt;bos&gt;</code></a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-09">Token IDs - how text maps to integers</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.4%20Subword%20Tokenization%20(Modern)/index.html?view=reading#question-11">Vocabulary size tradeoffs</a></li>
+      </ul>
+      <h3 id="chapter-5-5"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html">5.5 Transformer Architecture (Master This)</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-01">Why transformers replaced RNNs - parallelism and long-range attention</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-03">Self-attention - every token attending to every other</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-05">Query, Key, Value (Q, K, V) - intuition and matrix formulation</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-07">Attention score: <code>softmax(QKᵀ / √d_k) * V</code></a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-09">Multi-head attention - attending to different aspects</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-11">Positional encoding - injecting order</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-13">Feed-forward sublayer</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-15">Layer normalization and residual connections</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-17">Encoder-only (BERT-style) - understanding tasks</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-19">Decoder-only (GPT-style) - generation tasks</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-21">Encoder-Decoder (T5-style) - seq2seq tasks</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.5%20Transformer%20Architecture%20(Master%20This)/index.html?view=reading#question-23">Causal masking in decoders</a></li>
+      </ul>
+      <h3 id="chapter-5-6"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html">5.6 Language Modeling</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-01"><code>P(next token | previous tokens)</code></a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-03">Autoregressive language modeling</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-05">Masked language modeling (MLM)</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-07">Perplexity - evaluating language models</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-09">Temperature, Top-k, Top-p (nucleus) sampling</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.6%20Language%20Modeling/index.html?view=reading#question-11">Greedy vs sampling vs beam search</a></li>
+      </ul>
+      <h3 id="chapter-5-7"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.7%20Key%20Pretrained%20Models/index.html">5.7 Key Pretrained Models</a></h3>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Model</th><th scope="col">Type</th><th scope="col">Best For</th></tr></thead><tbody>
+        <tr><td>BERT</td><td>Encoder-only</td><td>Classification, NER, QA</td></tr>
+        <tr><td>GPT-4</td><td>Decoder-only</td><td>Generation, chat</td></tr>
+        <tr><td>Claude 3.5/4</td><td>Decoder-only</td><td>Long context, safety</td></tr>
+        <tr><td>Gemini</td><td>Encoder-Decoder</td><td>Multimodal</td></tr>
+        <tr><td>T5</td><td>Encoder-Decoder</td><td>Seq2seq tasks</td></tr>
+        <tr><td>LLaMA 3</td><td>Decoder-only</td><td>Open-source fine-tuning</td></tr>
+        <tr><td>Mistral 7B</td><td>Decoder-only</td><td>Efficient inference</td></tr>
+        <tr><td>Qwen 2.5</td><td>Decoder-only</td><td>Multilingual</td></tr>
+      </tbody></table></div>
+      <h3 id="chapter-5-8"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html">5.8 NLP Evaluation Metrics</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-01">Accuracy, Precision, Recall, F1</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-03">BLEU - machine translation</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-05">ROUGE - summarization</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-07">Perplexity - language models</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-09">BERTScore - semantic similarity</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-11">Human evaluation</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.8%20NLP%20Evaluation%20Metrics/index.html?view=reading#question-13">Exact Match (EM) - QA tasks</a></li>
+      </ul>
+      <h3 id="chapter-5-9"><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html">5.9 Key Python Libraries</a></h3>
+      <ul>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-01"><code>NLTK</code> - classic NLP</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-03"><code>spaCy</code> - production NLP: NER, parsing</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-05"><code>transformers</code> (HuggingFace) - pretrained models</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-07"><code>datasets</code> (HuggingFace) - loading datasets</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-09"><code>sentence-transformers</code> - sentence embeddings</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-11"><code>tiktoken</code> - OpenAI's tokenizer (BPE)</a></li>
+        <li><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/5.9%20Key%20Python%20Libraries/index.html?view=reading#question-13"><code>evaluate</code> - HuggingFace metrics</a></li>
+      </ul>
+      <h3 class="roadmap-projects-title">Phase 5 Projects</h3>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/Phase%205%20Projects/Easy%20-%20Named%20Entity%20Recognition%20(NER)%20Pipeline/README.md">Easy: Named Entity Recognition (NER) Pipeline</a></h4>
+      <ul>
+        <li>Use spaCy to extract entities from news articles</li>
+        <li>Build a simple web interface with Streamlit</li>
+        <li>Stack: spaCy, Streamlit</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/Phase%205%20Projects/Medium%20-%20Semantic%20Search%20Engine/README.md">Medium: Semantic Search Engine</a></h4>
+      <ul>
+        <li>Embed 10,000 Wikipedia paragraphs with BERT</li>
+        <li>Build a search interface that finds semantically similar passages</li>
+        <li>Stack: HuggingFace, sentence-transformers, FAISS, Streamlit</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%205%20-%20Natural%20Language%20Processing%20%26%20Transformers/Phase%205%20Projects/Hard%20-%20Fine-tune%20BERT%20for%20Multi-Label%20Classification/README.md">Hard: Fine-tune BERT for Multi-Label Classification</a></h4>
+      <ul>
+        <li>Fine-tune BERT on a multi-label text classification dataset</li>
+        <li>Handle class imbalance, custom evaluation metrics</li>
+        <li>Deploy as a REST API with FastAPI</li>
+        <li>Stack: PyTorch, HuggingFace Transformers, FastAPI, Docker</li>
+      </ul>
+    </section>
+    </section>
+    <section class="roadmap-phase" id="phase-6" aria-labelledby="phase-6-title">
+      <h2 id="phase-6-title">PHASE 6 - Large Language Models &amp; AI Engineering</h2>
+      <p class="roadmap-goal">Goal: This is your core domain. Master LLM fundamentals, APIs, and production patterns.</p>
+      <h3 id="chapter-6-1"><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html">6.1 LLM Fundamentals</a></h3>
+      <h4>Architecture Deep Dive</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-01">Transformer at scale - what changes going from 1B to 100B parameters</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-02">Context window - how it works and limitations</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-03">KV Cache - how it speeds up inference</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-04">Tokenization at scale</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-05">Positional encodings: Absolute, Relative, RoPE, ALiBi</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-06">Flash Attention - memory-efficient attention</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-07">Grouped Query Attention (GQA) - used in LLaMA 3</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-08">Sliding window attention - used in Mistral</a></li>
+      </ul>
+      <h4>Training LLMs</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-09">Pretraining - learning from internet-scale text</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-10">Instruction tuning - following user instructions</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-11">RLHF (Reinforcement Learning from Human Feedback)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-12">Constitutional AI (Anthropic's approach)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-13">DPO (Direct Preference Optimization) - alternative to RLHF</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.1%20LLM%20Fundamentals/index.html?view=reading#question-14">Scaling laws - relationship between model size, data, compute</a></li>
+      </ul>
+      <h3 id="chapter-6-2"><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html">6.2 Prompt Engineering (Production-Grade)</a></h3>
+      <h4>Prompt Anatomy</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-01">System prompt - role and constraints</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-02">User prompt - the actual request</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-03">Assistant turn - model's response history</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-04">Few-shot examples in context</a></li>
+      </ul>
+      <h4>Prompting Techniques</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-05">Zero-shot prompting</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-06">One-shot and few-shot prompting</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-07">Chain-of-Thought (CoT) - &quot;think step by step&quot;</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-08">Self-consistency - generate multiple CoT paths, vote</a></li>
+        <li>ReAct prompting - Reasoning + Acting (for agents)</li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-10">Tree of Thought (ToT)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-11">Structured output prompting - JSON, XML</a></li>
+        <li>Role prompting - &quot;You are a senior software engineer...&quot;</li>
+        <li>Prompt chaining - output of one prompt → input of next</li>
+      </ul>
+      <h4>Production Prompt Engineering</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-14">Giving clear instruction + format + boundaries</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-15">Always specifying what NOT to do</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-16">Using examples and output constraints</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-17">Prompt versioning and changelogs</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-18">A/B testing prompts</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-19">Prompt compression - reducing token count</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-20">Prompt injection defense</a></li>
+      </ul>
+      <h4>Tools</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-21">PromptLayer - tracking prompt versions</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-22">LangSmith - LangChain observability</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-23">OpenAI Playground</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.2%20Prompt%20Engineering%20(Production-Grade)/index.html?view=reading#question-24">Anthropic Console</a></li>
+      </ul>
+      <h3 id="chapter-6-3"><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html">6.3 Working with AI APIs</a></h3>
+      <h4>OpenAI API</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-01">Chat Completions API - <code>messages</code> array</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-02">Function calling / Tool use</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-03">JSON mode / Structured outputs</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-04">Streaming responses (SSE)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-05">Embeddings API</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-06">Vision API (GPT-4V)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-07">Assistants API with file search</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-08">Batch API for bulk processing</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-09">Token counting with <code>tiktoken</code></a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-10">Rate limits and quotas</a></li>
+      </ul>
+      <h4>Anthropic (Claude) API</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-11">Messages API structure</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-12">System prompts</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-13">Long context (200K tokens)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-14">Vision support</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-15">Tool use</a></li>
+        <li>Streaming</li>
+      </ul>
+      <h4>Google AI (Gemini) API</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-17">Gemini Pro / Ultra</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-18">Multimodal inputs (text, image, video, audio)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-19">Real-time search grounding</a></li>
+        <li>Context caching (cost reduction)</li>
+      </ul>
+      <h4>Mistral AI API</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-21">Mistral 7B, 8x7B (MoE), Large</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-22">Function calling</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-23">JSON mode</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-24">Open-source models via Ollama</a></li>
+      </ul>
+      <h4>Meta (LLaMA) via HuggingFace / Ollama</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-25">LLaMA 3 models</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-26">Running locally with Ollama</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-27">Fine-tuning LLaMA with PEFT</a></li>
+      </ul>
+      <h4>Other Key Providers</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-28">Cohere - enterprise embeddings, RAG</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-29">NVIDIA NIM - GPU-optimized inference</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-30">Groq - ultra-fast inference (LPU)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-31">Together AI - open-source hosting</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.3%20Working%20with%20AI%20APIs/index.html?view=reading#question-32">Replicate - model API hosting</a></li>
+      </ul>
+      <h3 id="chapter-6-4"><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html">6.4 API Integration Patterns</a></h3>
+      <h4>Handling Token Limits</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-01">Count tokens before sending (tiktoken, anthropic tokenizer)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-02">Truncation strategies</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-03">Context window management</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-04">Summarization of old history</a></li>
+      </ul>
+      <h4>Streaming APIs</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-05">Server-Sent Events (SSE) - streaming text chunks</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-06">Handling partial responses</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-07">Client-side rendering of streaming output</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-08">Benefits: perceived latency reduction</a></li>
+      </ul>
+      <h4>Rate Limiting &amp; Retries</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-09">Exponential backoff with jitter</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-10">Respect provider quotas</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-11">Queue-based request management</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-12">Circuit breaker pattern</a></li>
+      </ul>
+      <h4>Cost Control</h4>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-13">Log token usage per user/feature</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-14">GPT-3.5 vs GPT-4 routing by task complexity</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-15">Prompt compression (strip whitespace, summarize context)</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-16">Caching with SHA-256 fingerprinting</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-17">Async pipelines for non-realtime tasks</a></li>
+      </ul>
+      <h4><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.4%20API%20Integration%20Patterns/index.html?view=reading#question-18">Error Handling &amp; Fallback</a></h4>
+      <pre><code class="language-python">try:
+    response = call_gpt4(prompt)
+except APIError:
+    response = call_gpt35(prompt)  # cheaper fallback
+except RateLimitError:
+    response = get_cached_response(prompt)
+except Exception:
+    response = DEFAULT_MESSAGE</code></pre>
+      <h3 id="chapter-6-5"><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html">6.5 Secure API Integration</a></h3>
+      <ul>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-01"><strong>Never</strong> expose API keys to frontend</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-02"><code>.env</code> files locally, Secret Manager in production</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-03">Backend proxy pattern - frontend → your API → LLM provider</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-04">Per-user rate limiting with Redis</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-05">API key rotation strategy</a></li>
+        <li><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/6.5%20Secure%20API%20Integration/index.html?view=reading#question-06">Logging and monitoring</a></li>
+      </ul>
+      <h3 class="roadmap-projects-title">Phase 6 Projects</h3>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/Phase%206%20Projects/Easy%20-%20Multi-Provider%20AI%20Chatbot/README.md">Easy: Multi-Provider AI Chatbot</a></h4>
+      <ul>
+        <li>Build a chatbot that can switch between OpenAI / Claude / Gemini</li>
+        <li>Add streaming support with SSE</li>
+        <li>Store conversation history in Redis</li>
+        <li>Stack: FastAPI, OpenAI SDK, Anthropic SDK, Redis, React</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/Phase%206%20Projects/Medium%20-%20AI-Powered%20Resume%20Ranker/README.md">Medium: AI-Powered Resume Ranker</a></h4>
+      <ul>
+        <li>Upload a PDF resume → extract text → compare with job description</li>
+        <li>Return match score, missing skills, feedback</li>
+        <li>Add caching with Redis (SHA-256 fingerprinting)</li>
+        <li>Stack: FastAPI, OpenAI, pdf-parse, Redis, React</li>
+      </ul>
+    </section>
+      <section class="roadmap-project">
+        <h4><a href="PHASE%206%20-%20Large%20Language%20Models%20%26%20AI%20Engineering/Phase%206%20Projects/Hard%20-%20Production%20AI%20Middleware%20Service/README.md">Hard: Production AI Middleware Service</a></h4>
+      <ul>
+        <li>Build a middleware that sits between your app and multiple LLM providers</li>
+        <li>Features: intelligent routing, rate limiting, cost tracking, fallback chain, prompt logging, token counting, async batching</li>
+        <li>Stack: FastAPI, Redis, PostgreSQL, OpenAI + Anthropic + Gemini SDKs, Docker</li>
+      </ul>
+    </section>
+    </section>
+    <section class="roadmap-phase" id="phase-7" aria-labelledby="phase-7-title">
+      <h2 id="phase-7-title">PHASE 7 - Multi-LLM Orchestration (Your Specialty)</h2>
+      <p class="roadmap-goal">Goal: Design and build production-grade multi-LLM systems. This is what separates good AI engineers from great ones.</p>
+      <h3 id="chapter-7-1"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html">7.1 Why Multi-LLM Architecture</a></h3>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-01">No single model is best for all tasks</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-02">Cost optimization - use expensive models only when needed</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-03">Reliability - fallback when one provider is down</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-04">Latency - route to fastest model for simple queries</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-05">Compliance - some enterprise customers can't use certain providers</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-06">Context window - route to Claude for long docs, GPT-4 for reasoning</a></li>
+      </ul>
+      <h3 id="chapter-7-2"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html">7.2 Routing Strategies</a></h3>
+      <h4>Task-Based Routing</h4>
+      <pre><code>Simple query   → Mistral 7B / GPT-3.5    (cheap, fast)
+Reasoning      → GPT-4 / Claude 3 Opus   (expensive, accurate)
+Long context   → Claude 3.5 Sonnet       (200K context)
+Code           → GPT-4 / CodeLlama       (specialized)
+Multimodal     → Gemini Pro / GPT-4V     (vision)
+Embeddings     → text-embedding-3-small  (cost-effective)
+Fast inference → Groq (LLaMA 3)          (ultra-low latency)</code></pre>
+      <h4>Cost-Based Routing</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-02">User tier check: free → cheap models, premium → GPT-4</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-03">Token budget monitoring</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-04">Dynamic routing based on monthly spend</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-05">Cache hit rate optimization</a></li>
+      </ul>
+      <h4>Performance-Based Routing</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-06">Track response quality per model per task type</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-07">A/B testing models in production</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-08">Feedback loop - user ratings inform routing</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.2%20Routing%20Strategies/index.html?view=reading#question-09">Latency SLA enforcement</a></li>
+      </ul>
+      <h3 id="chapter-7-3"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html">7.3 Fallback Architecture</a></h3>
+      <pre><code>Primary:   GPT-4o           (preferred, best quality)
+    ↓ fail
+Secondary: Claude 3.5 Sonnet (similar quality)
+    ↓ fail
+Tertiary:  GPT-3.5 Turbo    (cheaper, still capable)
+    ↓ fail
+Cache:     Last known response (stale but something)
+    ↓ miss
+Default:   Static template response</code></pre>
+      <h4>Circuit Breaker Pattern</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html?view=reading#question-02">Track failure rate per provider</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html?view=reading#question-03">Open circuit after N failures in M seconds</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html?view=reading#question-04">Half-open state - test with single request</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.3%20Fallback%20Architecture/index.html?view=reading#question-05">Close circuit on success</a></li>
+      </ul>
+      <h3 id="chapter-7-4"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html">7.4 Model Context Protocol (MCP)</a></h3>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-01">What is MCP - Anthropic's open standard for AI-tool connectivity</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-02">MCP vs function calling vs tool use</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-03">MCP Servers - resources, tools, prompts</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-04">MCP Clients - Claude Desktop, IDEs, custom apps</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-05">Building an MCP server in Python</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-06">Building an MCP server in TypeScript</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-07">Connecting MCP to databases, APIs, file systems</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-08">MCP for multi-agent systems</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-09">Security considerations in MCP</a></li>
+      </ul>
+      <h3 id="chapter-7-5"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html">7.5 LLM Orchestration Frameworks</a></h3>
+      <h4>LangChain</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-01">Core concepts: Chains, Agents, Memory, Tools</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-02"><code>LLMChain</code> - basic prompt + LLM</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-03"><code>SequentialChain</code> - chaining multiple LLMs</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-04"><code>ConversationalChain</code> - with memory</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-05"><code>RetrievalQA</code> - RAG chain</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-06">Tool calling with LangChain agents</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-07">LCEL (LangChain Expression Language) - new composition syntax</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-08">LangSmith - observability and tracing</a></li>
+      </ul>
+      <h4>LangGraph</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-09">What LangGraph adds over LangChain - stateful, cyclical workflows</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-10">Nodes - units of work (LLM calls, tools, conditions)</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-11">Edges - connections between nodes (conditional, parallel)</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-12">State - shared state passed between nodes</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-13">Building multi-agent workflows with LangGraph</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-14">Human-in-the-loop patterns</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-15">Streaming from LangGraph</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-16">Persistence and checkpointing</a></li>
+      </ul>
+      <h4>LlamaIndex</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-17">Data connectors - loading documents</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-18">Index types: VectorStore, Summary, Knowledge Graph</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-19">Query engines</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-20">Sub-question decomposition</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-21">LlamaIndex vs LangChain - when to use which</a></li>
+      </ul>
+      <h4>CrewAI</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-22">Multi-agent task decomposition</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-23">Agents with roles, backstories, goals</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-24">Tasks and process flows</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-25">Tool integration</a></li>
+      </ul>
+      <h4>AutoGen (Microsoft)</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-26">Multi-agent conversation patterns</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-27">AssistantAgent vs UserProxy</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-28">Code execution agents</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-29">Group chat patterns</a></li>
+      </ul>
+      <h3 id="chapter-7-6"><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html">7.6 Building PrinceSinghAI / PrinceSinghDev Style Systems</a></h3>
+      <h4>Multi-LLM Gateway Architecture</h4>
+      <pre><code>Client Request
+    ↓
+API Gateway (Auth, Rate Limit, Logging)
+    ↓
+Router Service (Task Classification)
+    ↓ ↓ ↓
+OpenAI  Claude  Gemini  Mistral  (parallel or cascading)
+    ↓
+Response Aggregator
+    ↓
+Cache Layer (Redis)
+    ↓
+Client Response</code></pre>
+      <h4>Key Components to Build</h4>
+      <ul>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-02">Provider abstraction layer - unified interface for all LLMs</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-03">Intelligent router - classify task, select optimal model</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-04">Token counter - per-provider, per-user</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-05">Cost tracker - real-time spend monitoring</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-06">Response validator - schema validation, quality checks</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-07">Fallback manager - cascade through providers</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-08">Cache manager - semantic caching with embeddings</a></li>
+        <li><a href="PHASE%207%20-%20Multi-LLM%20Orchestration%20(Your%20Specialty)/7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-09">Observability - traces, metrics, logs</a></li>
+      </ul>
+    </section>
+    <section class="roadmap-phase" id="phase-8" aria-labelledby="phase-8-title">
+      <h2 id="phase-8-title">PHASE 8 - RAG &amp; Vector Databases</h2>
+      <p class="roadmap-goal">Goal: Build retrieval systems that give LLMs access to your private knowledge.</p>
+      <h3 id="chapter-8-1"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html">8.1 Why RAG Exists</a></h3>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html?view=reading#question-01">LLMs have knowledge cutoffs</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html?view=reading#question-02">LLMs can't access private/proprietary data</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html?view=reading#question-03">LLMs hallucinate when they don't know</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html?view=reading#question-04">RAG = Embedding-based search + Prompt-based generation</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.1%20Why%20RAG%20Exists/index.html?view=reading#question-05">RAG vs Fine-tuning - when to use which</a></li>
+      </ul>
+      <h3 id="chapter-8-2"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html">8.2 Embeddings Deep Dive</a></h3>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-01">What are embeddings - dense, semantic vector representations</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-02">Embedding models: <code>text-embedding-3-small</code>, <code>text-embedding-3-large</code> (OpenAI)</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-03"><code>all-MiniLM-L6-v2</code>, <code>bge-large</code> (open source, HuggingFace)</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-04"><code>embed-english-v3</code> (Cohere) - tuned for RAG</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-05">Embedding dimensions - tradeoff between quality and storage</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-06">Batch embedding for efficiency</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.2%20Embeddings%20Deep%20Dive/index.html?view=reading#question-07">Embedding similarity: cosine, dot product, Euclidean</a></li>
+      </ul>
+      <h3 id="chapter-8-3"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html">8.3 Chunking Strategies</a></h3>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-01">Fixed-size chunking - simple but naive</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-02">Sentence-based chunking - respects natural boundaries</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-03">Recursive character text splitting - LangChain default</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-04">Semantic chunking - split on topic change</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-05">Document-based chunking - by headers, sections</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-06">Chunk size vs overlap tradeoff</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.3%20Chunking%20Strategies/index.html?view=reading#question-07">Chunk metadata - source, page, section</a></li>
+      </ul>
+      <h3 id="chapter-8-4"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html">8.4 Vector Databases</a></h3>
+      <div class="table-wrap"><table><thead><tr><th scope="col">DB</th><th scope="col">Type (roadmap)</th><th scope="col">Use case (roadmap)</th></tr></thead><tbody>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-01"><strong>FAISS</strong></a></th><td>Local</td><td>Prototyping, research</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-02"><strong>Chroma</strong></a></th><td>Local / Cloud</td><td>Early production</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-03"><strong>Pinecone</strong></a></th><td>Managed</td><td>Production scale</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-04"><strong>Weaviate</strong></a></th><td>Self-hosted</td><td>Metadata filtering</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-05"><strong>Qdrant</strong></a></th><td>Self-hosted</td><td>High performance</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-06"><strong>LanceDB</strong></a></th><td>Embedded</td><td>Serverless apps</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-07"><strong>pgvector</strong></a></th><td>PostgreSQL ext</td><td>Existing Postgres users</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-08"><strong>MongoDB Atlas</strong></a></th><td>Managed</td><td>Full-stack apps</td></tr>
+        <tr><th scope="row"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-09"><strong>Supabase</strong></a></th><td>Managed</td><td>Postgres + vectors</td></tr>
+      </tbody></table></div>
+      <h4>Vector DB Operations</h4>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-10">Indexing - storing embeddings with metadata</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-11">Similarity search - finding nearest neighbors</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-12">Filtered search - metadata + vector similarity</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-13">Hybrid search - keyword + vector (BM25 + embeddings)</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-14">Namespace/collection isolation - multi-tenant</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.4%20Vector%20Databases/index.html?view=reading#question-15">HNSW index - Hierarchical Navigable Small World (algorithm behind most vector DBs)</a></li>
+      </ul>
+      <h3 id="chapter-8-5"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html">8.5 RAG Pipeline Implementation</a></h3>
+      <h4>Basic RAG</h4>
+<pre><code>Document → Chunk → Embed → Store in Vector DB
+                                    ↓
+User Query → Embed → Retrieve Top-K Chunks
+                                    ↓
+            Chunks + Query → LLM → Answer</code></pre>
+      <h4>Advanced RAG Techniques</h4>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-02"><strong>Hypothetical Document Embeddings (HyDE)</strong> - generate hypothetical answer, embed it for retrieval</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-03"><strong>Query expansion</strong> - generate multiple query variants</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-04"><strong>Reranking</strong> - use a cross-encoder to rerank retrieved chunks (Cohere Rerank, BGE Reranker)</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-05"><strong>Multi-query retrieval</strong> - decompose complex question into sub-queries</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-06"><strong>Self-querying</strong> - LLM generates structured filter from natural language</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-07"><strong>Contextual compression</strong> - compress retrieved context before sending to LLM</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-08"><strong>Parent document retriever</strong> - retrieve small chunks, return parent document</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-09"><strong>Multi-vector retriever</strong> - multiple embeddings per document (summary + full text)</a></li>
+      </ul>
+      <h4>RAG Evaluation</h4>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-10">Faithfulness - is the answer grounded in retrieved context?</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-11">Answer relevance - does the answer address the question?</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-12">Context precision - are the retrieved chunks relevant?</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-13">Context recall - did we retrieve all necessary information?</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.5%20RAG%20Pipeline%20Implementation/index.html?view=reading#question-14">Tools: RAGAs framework, LangSmith, TRULENS</a></li>
+      </ul>
+      <h3 id="chapter-8-6"><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html">8.6 Production RAG Considerations</a></h3>
+      <ul>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-01">Incremental indexing - adding new documents without reindexing</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-02">Document versioning - handling document updates</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-03">Multi-tenant isolation - per-user, per-org vector spaces</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-04">Caching - cache embeddings, cache query results</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-05">Monitoring - retrieval quality, latency, hit rates</a></li>
+        <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-06">Fallback - &quot;I don't know&quot; when context is insufficient</a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>

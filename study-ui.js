@@ -14,11 +14,14 @@
   const storageKey = 'recall.reviewed.v1';
   let reviewed = {};
   let lastChapter = null;
+  let lastPosition = null;
   let storageFailed = false;
   try {
     const stored = JSON.parse(localStorage.getItem(storageKey) || '{}');
     if (stored && typeof stored === 'object' && !Array.isArray(stored)) reviewed = stored;
     lastChapter = localStorage.getItem('recall.last-chapter');
+    const position = JSON.parse(localStorage.getItem('recall.position.v1') || 'null');
+    if (position && typeof position === 'object' && typeof position.chapterId === 'string' && /^question-\d+$/.test(position.questionId)) lastPosition = position;
   } catch { storageFailed = true; }
   const create = (tag, className, text) => {
     const element = document.createElement(tag);
@@ -44,6 +47,12 @@
     const element = create('a', className, text);
     element.href = url;
     return element;
+  };
+  const studyURL = (chapter, position) => {
+    const url = new URL(href(chapter));
+    url.searchParams.set('view', 'reading');
+    if (position && position.chapterId === chapter.id) url.hash = position.questionId;
+    return url.href;
   };
   const totalQuestions = chapters.reduce((sum, chapter) => sum + chapter.count, 0);
   const countReviewed = chapter => Object.keys(reviewed).filter(key => reviewed[key] === true && key.startsWith(chapter.id + ':')).length;
@@ -81,7 +90,7 @@
     overview.append(icon('grid'), create('span', '', 'Your library'));
     if (!activePhase) overview.setAttribute('aria-current', 'page');
     nav.append(overview);
-    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers', 6: 'LLMs & AI engineering'};
+    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers', 6: 'LLMs & AI engineering', 7: 'Multi-LLM orchestration', 8: 'RAG & vector databases'};
     for (const phase of [...new Set(chapters.map(chapter => chapter.phase))]) {
       const group = create('details', 'sidebar-phase');
       group.open = activePhase === phase;
@@ -105,7 +114,7 @@
     }
     return nav;
   }
-  document.body.classList.add(isChapter ? 'study-page' : 'library-page');
+  document.body.classList.add('guided-ui', isChapter ? 'study-page' : 'library-page');
   const main = document.querySelector('main');
   main.id = main.id || 'study-content';
   main.tabIndex = -1;
@@ -117,19 +126,7 @@
   brand.append(mark, create('span', '', 'Recall'), create('small', '', 'AI ENGINEERING NOTES'));
   const headerActions = create('div', 'header-actions');
   if (isChapter) {
-    headerActions.append(create('span', 'header-note', 'Make one concept stick.'));
-    const focus = create('button', 'focus-button', 'Focus mode');
-    focus.type = 'button';
-    focus.setAttribute('aria-pressed', 'false');
-    focus.addEventListener('click', () => {
-      const active = document.body.classList.toggle('focus-mode');
-      focus.setAttribute('aria-pressed', String(active));
-      focus.textContent = active ? 'Exit focus mode' : 'Focus mode';
-    });
-    headerActions.append(focus);
-  } else {
-    const resume = chapters.find(chapter => chapter.id === lastChapter);
-    if (resume) headerActions.append(link('Continue learning', href(resume), 'ui-button'));
+    headerActions.append(link('Library', homeURL, 'study-exit'));
   }
   const menu = create('button', 'menu-button');
   menu.type = 'button';
@@ -152,24 +149,47 @@
   close.addEventListener('click', () => dialog.close());
   dialogHeading.append(dialogTitle, close);
   dialog.append(dialogHeading, navigation());
+  dialog.append(progressBlock());
   dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close(); } });
   menu.addEventListener('click', () => dialog.showModal());
   document.body.prepend(skip, header, sidebar);
   document.body.append(dialog);
   if (!isChapter) {
+    if (document.body.classList.contains('roadmap-page')) {
+      refreshProgress();
+      return;
+    }
+    if (!activePhase) {
+      const resume = chapters.find(chapter => chapter.id === (lastPosition ? lastPosition.chapterId : lastChapter)) || chapters[0];
+      if (resume) {
+        const card = create('section', 'resume-card');
+        card.setAttribute('aria-labelledby', 'resume-title');
+        const content = create('div');
+        content.append(create('p', 'study-eyebrow', lastChapter || lastPosition ? 'PICK UP WHERE YOU LEFT OFF' : 'YOUR NEXT READ'));
+        const title = create('h2', '', resume.title);
+        title.id = 'resume-title';
+        content.append(title);
+        const saved = lastPosition && lastPosition.chapterId === resume.id ? lastPosition : null;
+        const number = saved ? Number(saved.questionId.split('-')[1]) : 1;
+        content.append(create('p', 'resume-location', `Phase ${resume.phase} · Chapter ${resume.id} · Question ${number} of ${resume.count}`));
+        if (saved && saved.question) content.append(create('p', 'resume-question', saved.question));
+        else content.append(create('p', 'resume-question', 'Read at your own pace, or focus on one question.'));
+        card.append(content, link('Continue learning', studyURL(resume, saved), 'ui-button ui-button-primary'));
+        main.querySelector('.library-heading').after(card);
+      }
+    } else {
+      for (const row of main.querySelectorAll('.chapter-row')) {
+        const chapter = chapters.find(c => c.id === row.querySelector('.card-number').textContent.trim());
+        if (!chapter) continue;
+        const progress = create('small', 'row-progress');
+        progress.dataset.chapterProgress = chapter.id;
+        row.querySelector('.row-title').append(progress);
+      }
+    }
     refreshProgress();
     return;
   }
-  try { localStorage.setItem('recall.last-chapter', current.id); } catch { storageFailed = true; }
   const hero = document.querySelector('.hero .container');
-  if (current.topics === 1) {
-    const chapterHeading = hero.querySelector('h1');
-    chapterHeading.id = 'chapter-heading';
-    for (const section of document.querySelectorAll('#questions .topic')) {
-      section.querySelector('h2').hidden = true;
-      section.setAttribute('aria-labelledby', chapterHeading.id);
-    }
-  }
   const breadcrumbs = create('nav', 'breadcrumbs');
   breadcrumbs.setAttribute('aria-label', 'Breadcrumb');
   const trail = create('ol');
@@ -206,7 +226,7 @@
   search.addEventListener('input', () => { clear.hidden = !search.value; shortcut.hidden = Boolean(search.value); });
   document.addEventListener('keydown', event => {
     const editing = event.target.matches('input, textarea, select, [contenteditable="true"]');
-    if (event.key === '/' && !editing && !event.ctrlKey && !event.metaKey && !event.altKey && !dialog.open) { event.preventDefault(); search.focus(); }
+    if (event.key === '/' && !editing && !event.ctrlKey && !event.metaKey && !event.altKey && !dialog.open && document.body.dataset.view === 'index') { event.preventDefault(); search.focus(); }
     if (event.key === 'Escape' && document.activeElement === search && search.value) { event.preventDefault(); resetSearch(); }
   });
   const filters = document.querySelector('#filters');
@@ -263,7 +283,7 @@
     });
     actions.append(button, link('Link to this question', `#${detail.id}`));
     detail.querySelector('.answer').append(actions);
-    reviewControls.push({key, button, badge});
+    reviewControls.push({key, button, badge, detail, number, question});
   }
   const pagination = create('nav', 'chapter-pagination');
   pagination.setAttribute('aria-label', 'Previous and next chapter');
@@ -278,21 +298,6 @@
   main.append(pagination);
   const empty = document.querySelector('#empty');
   empty.textContent = current.topics === 1 ? 'No matching questions. Try a shorter search.' : 'No matching questions. Try a shorter search or choose All topics.';
-  function openHash() {
-    const id = location.hash.slice(1);
-    if (!/^question-\d+$/.test(id)) return;
-    const target = document.getElementById(id);
-    if (!target) return;
-    select.value = '0';
-    filterButtons[0].click();
-    resetSearch();
-    target.open = true;
-    requestAnimationFrame(() => {
-      target.scrollIntoView({block: 'start'});
-      target.querySelector('summary').focus({preventScroll: true});
-    });
-  }
-  window.addEventListener('hashchange', openHash);
   window.addEventListener('storage', event => {
     if (event.key !== storageKey) return;
     try { const value = JSON.parse(event.newValue || '{}'); if (value && typeof value === 'object' && !Array.isArray(value)) { reviewed = value; syncReviewControls(); } } catch { /* Keep the current session state for malformed storage. */ }
@@ -307,5 +312,249 @@
     document.querySelectorAll('.table-wrap').forEach(table => resize.observe(table));
   }
   syncReviewControls();
-  openHash();
+  setupStudyMode();
+
+  function setupStudyMode() {
+    // The reader owns the original answer nodes. Focus temporarily borrows one;
+    // the index contains navigation links only and never duplicates answers.
+    const reader = create('section', 'chapter-reader');
+    reader.id = 'chapter-reader';
+    reader.setAttribute('aria-label', 'Reading mode');
+    const indexView = create('section', 'chapter-index');
+    indexView.id = 'chapter-index';
+    indexView.setAttribute('aria-label', 'Chapter content index');
+    const controls = main.querySelector('.controls');
+    const catalogue = main.querySelector('#questions');
+    const mathStatus = main.querySelector('#math-status');
+    for (const child of [...main.children]) if (child !== status && child !== controls && child !== empty) reader.append(child);
+    const indexIntro = create('p', 'index-intro', 'Find a question, then open it in Reading Mode.');
+    const indexTopics = create('div', 'index-topics');
+    indexView.append(indexIntro, controls, indexTopics, empty);
+    const readerTools = create('div', 'reading-tools');
+    readerTools.append(controls.querySelector('#toggle-all-sections'));
+    reader.prepend(readerTools);
+    const viewNav = create('nav', 'view-switcher');
+    viewNav.setAttribute('aria-label', 'Chapter views');
+    const viewLinks = new Map();
+    for (const [view, title] of [['index', 'Content / Index'], ['reading', 'Reading Mode'], ['focus', 'Focus Mode']]) {
+      const anchor = link(title, '?view=' + view);
+      viewLinks.set(view, anchor);
+      viewNav.append(anchor);
+    }
+    const records = reviewControls.map(item => ({...item, answer: item.detail.querySelector('.answer'), topic: item.detail.closest('.topic')}));
+    const groups = [];
+    for (const [topicIndex, section] of [...catalogue.querySelectorAll('.topic')].entries()) {
+      const heading = section.querySelector('h2');
+      const title = heading.textContent.replace(/^\d+\s*/, '').trim();
+      const group = create('section', 'index-topic');
+      const indexHeading = create('h2', '', title);
+      indexHeading.id = 'index-topic-' + topicIndex;
+      group.setAttribute('aria-labelledby', indexHeading.id);
+      group.append(indexHeading);
+      const list = create('ol', 'index-questions');
+      const items = records.filter(item => item.topic === section).map(item => {
+        const li = create('li');
+        const anchor = link('', '?view=reading#' + item.detail.id);
+        anchor.append(create('span', 'index-number', item.number), create('span', '', item.question));
+        li.append(anchor);
+        list.append(li);
+        return {li, item};
+      });
+      const count = create('span', 'index-topic-count', `${items.length} ${items.length === 1 ? 'question' : 'questions'}`);
+      group.append(count, list);
+      indexTopics.append(group);
+      groups.push({group, items});
+    }
+    function syncIndex() {
+      for (const {group, items} of groups) {
+        for (const {li, item} of items) li.hidden = item.detail.hidden;
+        group.hidden = items.every(({li}) => li.hidden);
+      }
+    }
+    search.addEventListener('input', syncIndex);
+    select.addEventListener('change', syncIndex);
+    for (const button of filterButtons) button.addEventListener('click', syncIndex);
+
+    const focusView = create('section', 'study-session');
+    focusView.id = 'focus-view';
+    focusView.setAttribute('aria-label', 'Focus mode');
+    const focusHeading = create('div', 'session-heading');
+    focusHeading.append(create('p', 'study-eyebrow', 'FOCUS MODE'), create('h1', '', current.title));
+    const position = create('p', 'session-position');
+    const focusProgress = create('progress');
+    focusProgress.max = records.length;
+    focusProgress.setAttribute('aria-label', 'Question position in chapter');
+    focusHeading.append(position, focusProgress);
+    const card = create('article', 'study-question');
+    const topic = create('p', 'session-topic');
+    const questionTitle = create('h2');
+    questionTitle.id = 'study-question-title';
+    questionTitle.tabIndex = -1;
+    card.setAttribute('aria-labelledby', questionTitle.id);
+    const answerSlot = create('div');
+    answerSlot.id = 'study-answer';
+    const review = create('button');
+    review.type = 'button';
+    const actions = create('div', 'study-question-actions');
+    actions.append(review);
+    card.append(topic, questionTitle, answerSlot, actions);
+    const questionNav = create('nav', 'study-navigation');
+    questionNav.setAttribute('aria-label', 'Focus questions');
+    const previous = create('button', '', 'Previous');
+    const next = create('button', '', 'Next');
+    previous.type = next.type = 'button';
+    questionNav.append(previous, next);
+    const returnLinks = create('div', 'focus-return');
+    returnLinks.append(link('Return to Reading Mode', '?view=reading', 'secondary-link'), link('Content / Index', '?view=index', 'secondary-link'));
+    focusView.append(focusHeading, card, questionNav, returnLinks);
+    main.append(viewNav, indexView, reader, focusView);
+
+    let mode = 'reading';
+    let index = Math.max(0, records.findIndex(item => lastPosition && lastPosition.chapterId === current.id && item.detail.id === lastPosition.questionId));
+    let borrowed = null;
+    // Reading starts expanded. Later view changes keep individual disclosure states.
+    for (const item of records) item.detail.open = true;
+    const savePosition = item => {
+      lastPosition = {chapterId: current.id, questionId: item.detail.id, question: item.question, topic: item.topic.querySelector('h2').textContent.replace(/^\d+\s*/, '').trim()};
+      try {
+        localStorage.setItem('recall.last-chapter', current.id);
+        localStorage.setItem('recall.position.v1', JSON.stringify(lastPosition));
+      } catch {
+        status.textContent = 'Your place could not be saved in this browser. Reading is still available.';
+      }
+    };
+    const restoreAnswer = () => {
+      if (borrowed) { borrowed.detail.append(borrowed.answer); borrowed = null; }
+    };
+    const syncReview = () => {
+      const done = reviewed[records[index].key] === true;
+      review.textContent = done ? 'Reviewed · Undo' : 'Mark as reviewed';
+      review.setAttribute('aria-pressed', String(done));
+    };
+    function renderFocus(focus) {
+      const item = records[index];
+      borrowed = item;
+      answerSlot.replaceChildren(item.answer);
+      questionTitle.textContent = item.question;
+      topic.textContent = item.topic.querySelector('h2').textContent.replace(/^\d+\s*/, '').trim();
+      topic.hidden = topic.textContent.toLowerCase() === item.question.toLowerCase();
+      position.textContent = `Question ${index + 1} of ${records.length}`;
+      focusProgress.value = index + 1;
+      previous.disabled = index === 0;
+      next.disabled = index === records.length - 1;
+      syncReview();
+      if (focus) { window.scrollTo(0, 0); questionTitle.focus({preventScroll: true}); }
+    }
+    function urlFor(view, at = null) {
+      const url = new URL(location.href);
+      url.searchParams.delete('question');
+      url.searchParams.set('view', view);
+      url.hash = at === null ? '' : records[at].detail.id;
+      return url;
+    }
+    function show(view, at = null, focus = false) {
+      restoreAnswer();
+      mode = view;
+      if (at !== null) index = at;
+      document.body.dataset.view = view;
+      document.querySelector('.hero').hidden = view === 'focus';
+      indexView.hidden = view !== 'index';
+      reader.hidden = view !== 'reading';
+      focusView.hidden = view !== 'focus';
+      for (const [name, anchor] of viewLinks) {
+        if (name === view) anchor.setAttribute('aria-current', 'page');
+        else anchor.removeAttribute('aria-current');
+        anchor.href = urlFor(name, name === 'index' ? null : index).href;
+      }
+      if (view === 'focus') {
+        renderFocus(focus);
+        if (mathStatus) focusHeading.after(mathStatus);
+        for (const anchor of returnLinks.querySelectorAll('a')) anchor.href = urlFor(anchor.search.includes('index') ? 'index' : 'reading', anchor.search.includes('index') ? null : index).href;
+      } else {
+        if (mathStatus) catalogue.before(mathStatus);
+        if (view === 'reading') {
+          // Index filters must never suppress questions in the continuous reader.
+          select.value = '0';
+          filterButtons[0].click();
+          resetSearch();
+          if (at !== null) {
+            const item = records[index];
+            item.detail.open = true;
+            requestAnimationFrame(() => {
+              if (mode !== 'reading') return;
+              item.detail.scrollIntoView({block: 'start'});
+              if (focus) item.detail.querySelector('summary').focus({preventScroll: true});
+            });
+          } else if (focus) { window.scrollTo(0, 0); main.focus({preventScroll: true}); }
+        } else {
+          syncIndex();
+          if (focus) { window.scrollTo(0, 0); search.focus({preventScroll: true}); }
+        }
+      }
+      if (view !== 'index') savePosition(records[index]);
+    }
+    function navigate(view, at = null) {
+      history.pushState({}, '', urlFor(view, at));
+      show(view, at, true);
+    }
+    // Native links still work with modifier clicks, copied URLs, and new tabs.
+    function handleViewLink(event) {
+      const anchor = event.target.closest('a');
+      if (!anchor || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || anchor.target) return;
+      const url = new URL(anchor.href);
+      if (url.origin !== location.origin || url.pathname !== location.pathname || !url.searchParams.has('view')) return;
+      const view = url.searchParams.get('view');
+      if (!['index', 'reading', 'focus'].includes(view)) return;
+      event.preventDefault();
+      const at = records.findIndex(item => '#' + item.detail.id === url.hash);
+      navigate(view, at < 0 ? null : at);
+    }
+    main.addEventListener('click', handleViewLink);
+    previous.addEventListener('click', () => { if (index > 0) navigate('focus', index - 1); });
+    next.addEventListener('click', () => { if (index + 1 < records.length) navigate('focus', index + 1); });
+    review.addEventListener('click', () => { records[index].button.click(); syncReview(); });
+    for (const [at, item] of records.entries()) {
+      item.detail.querySelector('.review-actions').prepend(link('Focus on this question', '?view=focus#' + item.detail.id, 'secondary-link'));
+      item.detail.querySelector('summary').addEventListener('click', () => {
+        if (mode === 'reading') { index = at; savePosition(item); }
+      });
+      item.button.addEventListener('click', () => { index = at; savePosition(item); });
+    }
+    // Save the question actually reached while scrolling a long-form reader.
+    let scrollPending = false;
+    function rememberVisibleQuestion() {
+      scrollPending = false;
+      if (mode !== 'reading') return;
+      let visible = null;
+      for (const item of records) {
+        const rect = item.detail.getBoundingClientRect();
+        if (rect.bottom > 110 && rect.top < innerHeight) {
+          visible = item;
+          break;
+        }
+      }
+      if (visible && (!lastPosition || lastPosition.chapterId !== current.id || lastPosition.questionId !== visible.detail.id)) {
+        index = records.indexOf(visible);
+        savePosition(visible);
+        viewLinks.get('focus').href = urlFor('focus', index).href;
+      }
+    }
+    window.addEventListener('scroll', () => {
+      if (!scrollPending && mode === 'reading') { scrollPending = true; requestAnimationFrame(rememberVisibleQuestion); }
+    }, {passive: true});
+    window.addEventListener('storage', event => { if (event.key === storageKey && mode === 'focus') syncReview(); });
+    function readLocation(initial = false) {
+      const params = new URL(location.href).searchParams;
+      const aliases = {study: 'focus', browse: 'reading', overview: 'index'};
+      const requested = params.get('view');
+      const view = aliases[requested] || (['index', 'reading', 'focus'].includes(requested) ? requested : 'reading');
+      const id = location.hash.slice(1) || params.get('question');
+      const at = records.findIndex(item => item.detail.id === id);
+      if (view === 'reading' && at < 0) index = 0;
+      show(view, at < 0 ? null : at, !initial);
+    }
+    window.addEventListener('hashchange', () => readLocation());
+    window.addEventListener('popstate', () => readLocation());
+    readLocation(true);
+  }
 })();

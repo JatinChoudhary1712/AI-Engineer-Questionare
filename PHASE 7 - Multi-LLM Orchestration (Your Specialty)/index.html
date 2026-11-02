@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse AI engineering study notes by phase, chapter, and question.">
+  <title>Multi-LLM Orchestration | Recall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;650;700;750;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../study-ui.css">
+  <script src="../study-data.js" defer></script>
+  <script src="../study-ui.js" defer></script>
+</head>
+<body class="library-page roadmap-page" data-phase="7">
+  <main id="study-content" class="roadmap-index">
+    <h1 class="sr-only">Phase 7 learning index</h1>
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Library</a></li><li><span aria-current="page">Phase 7</span></li></ol></nav>
+    <section class="roadmap-phase" id="phase-7" aria-labelledby="phase-7-title">
+      <h2 id="phase-7-title">PHASE 7 - Multi-LLM Orchestration (Your Specialty)</h2>
+      <p class="roadmap-goal">Goal: Design and build production-grade multi-LLM systems. This is what separates good AI engineers from great ones.</p>
+      <h3 id="chapter-7-1"><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html">7.1 Why Multi-LLM Architecture</a></h3>
+      <ul>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-01">No single model is best for all tasks</a></li>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-02">Cost optimization - use expensive models only when needed</a></li>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-03">Reliability - fallback when one provider is down</a></li>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-04">Latency - route to fastest model for simple queries</a></li>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-05">Compliance - some enterprise customers can't use certain providers</a></li>
+        <li><a href="7.1%20Why%20Multi-LLM%20Architecture/index.html?view=reading#question-06">Context window - route to Claude for long docs, GPT-4 for reasoning</a></li>
+      </ul>
+      <h3 id="chapter-7-2"><a href="7.2%20Routing%20Strategies/index.html">7.2 Routing Strategies</a></h3>
+      <h4>Task-Based Routing</h4>
+      <pre><code>Simple query   → Mistral 7B / GPT-3.5    (cheap, fast)
+Reasoning      → GPT-4 / Claude 3 Opus   (expensive, accurate)
+Long context   → Claude 3.5 Sonnet       (200K context)
+Code           → GPT-4 / CodeLlama       (specialized)
+Multimodal     → Gemini Pro / GPT-4V     (vision)
+Embeddings     → text-embedding-3-small  (cost-effective)
+Fast inference → Groq (LLaMA 3)          (ultra-low latency)</code></pre>
+      <h4>Cost-Based Routing</h4>
+      <ul>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-02">User tier check: free → cheap models, premium → GPT-4</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-03">Token budget monitoring</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-04">Dynamic routing based on monthly spend</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-05">Cache hit rate optimization</a></li>
+      </ul>
+      <h4>Performance-Based Routing</h4>
+      <ul>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-06">Track response quality per model per task type</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-07">A/B testing models in production</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-08">Feedback loop - user ratings inform routing</a></li>
+        <li><a href="7.2%20Routing%20Strategies/index.html?view=reading#question-09">Latency SLA enforcement</a></li>
+      </ul>
+      <h3 id="chapter-7-3"><a href="7.3%20Fallback%20Architecture/index.html">7.3 Fallback Architecture</a></h3>
+      <pre><code>Primary:   GPT-4o           (preferred, best quality)
+    ↓ fail
+Secondary: Claude 3.5 Sonnet (similar quality)
+    ↓ fail
+Tertiary:  GPT-3.5 Turbo    (cheaper, still capable)
+    ↓ fail
+Cache:     Last known response (stale but something)
+    ↓ miss
+Default:   Static template response</code></pre>
+      <h4>Circuit Breaker Pattern</h4>
+      <ul>
+        <li><a href="7.3%20Fallback%20Architecture/index.html?view=reading#question-02">Track failure rate per provider</a></li>
+        <li><a href="7.3%20Fallback%20Architecture/index.html?view=reading#question-03">Open circuit after N failures in M seconds</a></li>
+        <li><a href="7.3%20Fallback%20Architecture/index.html?view=reading#question-04">Half-open state - test with single request</a></li>
+        <li><a href="7.3%20Fallback%20Architecture/index.html?view=reading#question-05">Close circuit on success</a></li>
+      </ul>
+      <h3 id="chapter-7-4"><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html">7.4 Model Context Protocol (MCP)</a></h3>
+      <ul>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-01">What is MCP - Anthropic's open standard for AI-tool connectivity</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-02">MCP vs function calling vs tool use</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-03">MCP Servers - resources, tools, prompts</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-04">MCP Clients - Claude Desktop, IDEs, custom apps</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-05">Building an MCP server in Python</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-06">Building an MCP server in TypeScript</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-07">Connecting MCP to databases, APIs, file systems</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-08">MCP for multi-agent systems</a></li>
+        <li><a href="7.4%20Model%20Context%20Protocol%20(MCP)/index.html?view=reading#question-09">Security considerations in MCP</a></li>
+      </ul>
+      <h3 id="chapter-7-5"><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html">7.5 LLM Orchestration Frameworks</a></h3>
+      <h4>LangChain</h4>
+      <ul>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-01">Core concepts: Chains, Agents, Memory, Tools</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-02"><code>LLMChain</code> - basic prompt + LLM</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-03"><code>SequentialChain</code> - chaining multiple LLMs</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-04"><code>ConversationalChain</code> - with memory</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-05"><code>RetrievalQA</code> - RAG chain</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-06">Tool calling with LangChain agents</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-07">LCEL (LangChain Expression Language) - new composition syntax</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-08">LangSmith - observability and tracing</a></li>
+      </ul>
+      <h4>LangGraph</h4>
+      <ul>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-09">What LangGraph adds over LangChain - stateful, cyclical workflows</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-10">Nodes - units of work (LLM calls, tools, conditions)</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-11">Edges - connections between nodes (conditional, parallel)</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-12">State - shared state passed between nodes</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-13">Building multi-agent workflows with LangGraph</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-14">Human-in-the-loop patterns</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-15">Streaming from LangGraph</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-16">Persistence and checkpointing</a></li>
+      </ul>
+      <h4>LlamaIndex</h4>
+      <ul>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-17">Data connectors - loading documents</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-18">Index types: VectorStore, Summary, Knowledge Graph</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-19">Query engines</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-20">Sub-question decomposition</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-21">LlamaIndex vs LangChain - when to use which</a></li>
+      </ul>
+      <h4>CrewAI</h4>
+      <ul>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-22">Multi-agent task decomposition</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-23">Agents with roles, backstories, goals</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-24">Tasks and process flows</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-25">Tool integration</a></li>
+      </ul>
+      <h4>AutoGen (Microsoft)</h4>
+      <ul>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-26">Multi-agent conversation patterns</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-27">AssistantAgent vs UserProxy</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-28">Code execution agents</a></li>
+        <li><a href="7.5%20LLM%20Orchestration%20Frameworks/index.html?view=reading#question-29">Group chat patterns</a></li>
+      </ul>
+      <h3 id="chapter-7-6"><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html">7.6 Building PrinceSinghAI / PrinceSinghDev Style Systems</a></h3>
+      <h4>Multi-LLM Gateway Architecture</h4>
+      <pre><code>Client Request
+    ↓
+API Gateway (Auth, Rate Limit, Logging)
+    ↓
+Router Service (Task Classification)
+    ↓ ↓ ↓
+OpenAI  Claude  Gemini  Mistral  (parallel or cascading)
+    ↓
+Response Aggregator
+    ↓
+Cache Layer (Redis)
+    ↓
+Client Response</code></pre>
+      <h4>Key Components to Build</h4>
+      <ul>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-02">Provider abstraction layer - unified interface for all LLMs</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-03">Intelligent router - classify task, select optimal model</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-04">Token counter - per-provider, per-user</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-05">Cost tracker - real-time spend monitoring</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-06">Response validator - schema validation, quality checks</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-07">Fallback manager - cascade through providers</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-08">Cache manager - semantic caching with embeddings</a></li>
+        <li><a href="7.6%20Building%20PrinceSinghAI%20-%20PrinceSinghDev%20Style%20Systems/index.html?view=reading#question-09">Observability - traces, metrics, logs</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

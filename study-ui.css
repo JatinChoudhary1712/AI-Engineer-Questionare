@@ -273,3 +273,136 @@ body:has(.mobile-navigation[open]) { overflow: hidden; }
   .study-page #questions details { break-inside: avoid; box-shadow: none; }
   .study-page .answer pre { white-space: pre-wrap; }
 }
+
+/* Guided study reuses the existing tokens and answer styles. Full navigation is
+   available on demand; the catalogue remains intact in the secondary view. */
+body.guided-ui { padding-left: 0; }
+.guided-ui .app-sidebar { display: none; }
+.guided-ui .menu-button { display: inline-flex; align-items: center; justify-content: center; width: 44px; padding: 10px; }
+.guided-ui .library-main { max-width: 1060px; }
+.guided-ui .sidebar-progress { margin-top: 16px; border-top: 1px solid var(--ui-line); }
+.guided-ui .sidebar-progress strong { font-size: .75rem; font-weight: 600; color: var(--ui-muted); }
+.study-exit { display: none; align-items: center; min-height: 44px; color: var(--ui-muted); font-size: .85rem; text-underline-offset: 4px; }
+.guided-ui[data-view=focus] .study-exit { display: inline-flex; }
+.guided-ui[data-view=focus] .menu-button { display: none; }
+.resume-card { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 28px 30px; margin: 0 0 38px; background: var(--ui-surface); border: 1px solid var(--ui-line); border-left: 3px solid var(--ui-accent); border-radius: var(--ui-radius); }
+.resume-card > div { min-width: 0; }
+.resume-card h2 { font: 750 1.2rem/1.5 "Manrope",sans-serif; margin: 0 0 5px; letter-spacing: -.025em; }
+.resume-card .study-eyebrow { font-size: .65rem; margin-bottom: 9px; }
+.resume-card p.resume-location { color: var(--ui-muted); font-size: .76rem; margin: 0; }
+.resume-question { color: var(--ui-muted); font-size: .85rem; margin: 8px 0 0; overflow-wrap: anywhere; }
+.resume-card > a { flex-shrink: 0; }
+.library-section-title { font: 700 1rem/1.5 "Manrope",sans-serif; margin: 0 0 18px; color: var(--ui-ink); }
+.guided-ui .phase-card { padding: 24px; }
+.guided-ui .phase-card p { margin-bottom: 20px; }
+.row-progress { display: block; margin-top: 5px; color: var(--ui-muted); font-size: .72rem; }
+.guided-ui .chapter-overview > span { border: 0; background: transparent; padding: 0; }
+.guided-ui .chapter-progress progress { width: 75px; height: 4px; }
+.chapter-start { border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 30px; margin: 12px 0 32px; background: var(--ui-surface); }
+.chapter-start h2 { font: 700 1.2rem/1.5 "Manrope",sans-serif; margin: 0 0 10px; letter-spacing: -.025em; }
+.chapter-start p { color: var(--ui-muted); font-size: .9rem; margin: 0 0 24px; max-width: 62ch; }
+.study-start-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
+.secondary-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ui-muted); font-size: .82rem; text-underline-offset: 4px; }
+.secondary-link:hover, .study-exit:hover { color: var(--ui-accent); }
+.browse-back { margin-bottom: 8px; }
+.guided-ui[data-view=focus] main.container { width: min(calc(100% - 64px), 800px); padding-top: 42px; }
+.session-heading { margin-bottom: 24px; }
+.study-page .session-heading h1 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); margin: 8px 0 16px; letter-spacing: -.035em; }
+.session-position { font-size: .78rem; color: var(--ui-muted); margin: 0 0 10px; }
+.session-heading progress { display: block; height: 4px; width: 100%; }
+.study-question { min-width: 0; padding: 32px; background: var(--ui-surface); border: 1px solid var(--ui-line); border-radius: var(--ui-radius); }
+.session-topic { margin: 0 0 12px; color: var(--ui-muted); font-size: .78rem; overflow-wrap: anywhere; }
+.study-page .study-question h2 { margin: 0 0 28px; font-family: inherit; color: var(--ui-ink); font-size: clamp(1.2rem,2.8vw,1.5rem); line-height: 1.55; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.study-page .study-session .answer { padding: 0; margin: 0; min-width: 0; }
+.study-session .review-actions { display: none; }
+.study-question-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid var(--ui-line); margin-top: 24px; padding-top: 20px; }
+.study-question-actions button { font-size: .85rem; }
+.study-question-actions button[aria-pressed=true] { color: var(--ui-success); border-color: var(--ui-success); background: var(--ui-success-soft); }
+.study-navigation { display: flex; justify-content: space-between; gap: 16px; margin: 20px 0 8px; }
+.study-navigation button { min-width: 100px; }
+.session-browse { display: flex; width: fit-content; margin-inline: auto; font-size: .78rem; }
+.session-completion { padding: 38px 32px; border: 1px solid var(--ui-line); border-radius: var(--ui-radius); background: var(--ui-surface); }
+.session-completion h2 { margin: 0 0 12px; font: 750 1.5rem/1.5 "Manrope",sans-serif; letter-spacing: -.03em; }
+.session-completion p { margin: 0 0 26px; color: var(--ui-muted); font-size: .92rem; }
+.study-this-question { font-size: .76rem; }
+.guided-ui.study-page .container { max-width: 860px; }
+.guided-ui[data-view=index] .hero { padding: 24px 0 12px; }
+.guided-ui[data-view=index] .breadcrumbs { margin-bottom: 16px; }
+.guided-ui[data-view=index] .study-description { display: none; }
+.guided-ui[data-view=index] .chapter-overview { margin-top: 14px; }
+.view-switcher { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 4px 0 24px; border-bottom: 1px solid var(--ui-line); }
+.view-switcher a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0; border-bottom: 2px solid transparent; color: var(--ui-muted); font-size: .83rem; text-decoration: none; }
+.view-switcher a[aria-current] { color: var(--ui-accent); border-bottom-color: var(--ui-accent); font-weight: 700; }
+.guided-ui[data-view=focus] .view-switcher { display: none; }
+.reading-tools { display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin: 0 0 26px; }
+.reading-tools button { font-size: .78rem; }
+.study-page .chapter-reader .answer { font-size: 1rem; line-height: 1.85; padding-left: 28px; }
+.study-page .chapter-reader #questions .topic { margin-bottom: 38px; }
+.study-page .chapter-reader #questions .topic h2 { font-size: 1.03rem; color: var(--ui-ink); margin-bottom: 14px; }
+.study-page .chapter-reader #questions summary { min-height: 64px; font-size: 1rem; }
+.index-intro { color: var(--ui-muted); font-size: .88rem; margin: 0 0 18px; }
+.index-topics { display: grid; gap: 16px; }
+.index-topic { min-width: 0; padding: 18px 20px; border: 1px solid var(--ui-line); border-radius: var(--ui-radius); background: var(--ui-surface); }
+.index-topic h2 { font: 700 1rem/1.55 "Manrope",sans-serif; letter-spacing: -.015em; margin: 0 0 2px; overflow-wrap: anywhere; }
+.index-topic-count { display: block; font-size: .72rem; color: var(--ui-muted); margin-bottom: 10px; }
+.index-questions { list-style: none; padding: 0; margin: 0; }
+.index-questions li + li { border-top: 1px solid var(--ui-line); }
+.index-questions a { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; min-height: 44px; font-size: .9rem; color: var(--ui-ink); text-decoration: none; overflow-wrap: anywhere; }
+.index-questions a:hover { color: var(--ui-accent); text-decoration: underline; text-underline-offset: 4px; }
+.index-number { flex: 0 0 22px; color: var(--ui-muted); font-size: .72rem; font-variant-numeric: tabular-nums; }
+.focus-return { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+.study-page .study-session .answer { line-height: 1.85; }
+.chapter-reader, .chapter-index, .study-session { min-width: 0; }
+.roadmap-page { background: var(--ui-surface); }
+.roadmap-index { width: min(calc(100% - 48px), 860px); margin-inline: auto; padding: 36px 0 64px; }
+.roadmap-phase { margin: 0 0 48px; }
+.roadmap-phase + .roadmap-phase { padding-top: 32px; border-top: 1px solid var(--ui-line); }
+.roadmap-index h2 { font: 750 1.5rem/1.45 "Manrope",sans-serif; letter-spacing: -.03em; margin: 0 0 8px; }
+.roadmap-goal { color: var(--ui-muted); font-size: .94rem; margin: 0 0 26px; }
+.roadmap-index h3 { font: 750 1.08rem/1.6 "Manrope",sans-serif; margin: 26px 0 8px; }
+.roadmap-index h4 { font: 700 .95rem/1.6 "Manrope",sans-serif; margin: 16px 0 6px; }
+.roadmap-index a { text-decoration: none; text-underline-offset: 4px; }
+.roadmap-index a:hover { text-decoration: underline; }
+.roadmap-index h3 a, .roadmap-index h4 a { color: var(--ui-ink); }
+.roadmap-index ul { margin: 6px 0 18px; padding-left: 23px; }
+.roadmap-index li { padding-left: 2px; margin: 5px 0; font-size: .94rem; line-height: 1.75; overflow-wrap: anywhere; }
+.roadmap-index li::marker { color: var(--ui-muted); }
+.roadmap-index li a { color: inherit; }
+.roadmap-index li a:hover { color: var(--ui-accent); }
+.roadmap-index table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.roadmap-index th, .roadmap-index td { padding: 8px 10px; text-align: left; border: 1px solid var(--ui-line); }
+.roadmap-index .table-wrap { overflow-x: auto; }
+.roadmap-index pre { max-width: 100%; padding: 16px 18px; margin: 12px 0 22px; border: 1px solid var(--ui-line); border-radius: 8px; background: var(--ui-bg); overflow-x: auto; font-size: .82rem; line-height: 1.75; tab-size: 4; }
+@media(max-width:560px) {
+  .roadmap-index { width: calc(100% - 32px); padding-top: 26px; }
+  .roadmap-index h2 { font-size: 1.3rem; }
+  .roadmap-index h3 { font-size: 1.02rem; }
+}
+@media(max-width:560px) {
+  .view-switcher { gap: 8px 18px; }
+  .view-switcher a { font-size: .78rem; }
+  .index-topic { padding: 18px; }
+  .index-questions a { font-size: .87rem; }
+  .study-page .chapter-reader .answer { padding-inline: 17px; font-size: .95rem; }
+  .study-page .chapter-reader #questions .topic h2 { font-size: .95rem; }
+}
+@media(max-width:560px) {
+  .resume-card { flex-direction: column; align-items: stretch; padding: 22px; gap: 20px; margin-bottom: 30px; }
+  .resume-card > a { align-self: flex-start; }
+  .guided-ui .phase-card { padding: 22px; }
+  .chapter-start { padding: 24px 20px; }
+  .study-start-actions { gap: 10px 20px; }
+  .guided-ui[data-view=focus] main.container { width: calc(100% - 32px); padding-top: 28px; }
+  .study-question { padding: 24px 20px; }
+  .study-page .study-question h2 { font-size: 1.2rem; margin-bottom: 24px; }
+  .session-heading { margin-bottom: 20px; }
+  .session-position { font-size: .74rem; }
+  .study-question-actions { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .session-completion { padding: 28px 22px; }
+  .study-session pre { max-width: 100%; }
+}
+@media print {
+  .study-start-actions, .study-navigation, .study-question-actions, .session-browse, .study-exit, .browse-back, .view-switcher, .reading-tools, .focus-return { display: none !important; }
+  .guided-ui[data-view=focus] main.container { width: 100%; padding-top: 0; }
+  .study-question { border: 0; padding: 0; }
+}
