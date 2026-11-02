@@ -112,6 +112,9 @@
       group.append(children);
       nav.append(group);
     }
+    const upcoming = link('Phase 10 · Fine-tuning — Coming soon', new URL('PHASE%2010%20-%20Fine-Tuning%20%26%20Model%20Customization/index.html', siteRoot).href, 'sidebar-home');
+    if (activePhase === 10) upcoming.setAttribute('aria-current', 'page');
+    nav.append(upcoming);
     return nav;
   }
   document.body.classList.add('guided-ui', isChapter ? 'study-page' : 'library-page');

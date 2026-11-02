@@ -41,7 +41,7 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.roadmap-phase').count(),7);
+    assert.equal(await page.locator('.roadmap-phase').count(),8);
     assert.equal(await page.locator('.resume-card, .phase-card').count(),0);
     assert.equal(await page.locator('.app-sidebar').isVisible(),false);
     let total = 0;
