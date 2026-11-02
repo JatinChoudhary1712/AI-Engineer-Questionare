@@ -341,5 +341,50 @@ window.STUDY_CHAPTERS = [
     "count": 6,
     "topics": 6,
     "description": "Operate retrieval with safe updates, tenant isolation, caching, monitoring, and abstention."
+  },
+  {
+    "id": "9.1",
+    "phase": 9,
+    "title": "What Are AI Agents",
+    "href": "PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html",
+    "count": 5,
+    "topics": 5,
+    "description": "Distinguish agents from chains and design bounded decision-making loops."
+  },
+  {
+    "id": "9.2",
+    "phase": 9,
+    "title": "Agent Components",
+    "href": "PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html",
+    "count": 17,
+    "topics": 17,
+    "description": "Combine tools, memory, and planning with clear execution and trust boundaries."
+  },
+  {
+    "id": "9.3",
+    "phase": 9,
+    "title": "Function Calling / Tool Use",
+    "href": "PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html",
+    "count": 14,
+    "topics": 14,
+    "description": "Understand provider tool-call contracts, validation, authorization, errors, and timeouts."
+  },
+  {
+    "id": "9.4",
+    "phase": 9,
+    "title": "Multi-Agent Systems",
+    "href": "PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html",
+    "count": 13,
+    "topics": 13,
+    "description": "Coordinate specialist agents using explicit state, handoffs, verification, and limits."
+  },
+  {
+    "id": "9.5",
+    "phase": 9,
+    "title": "Agentic AI (AskAI Framework)",
+    "href": "PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html",
+    "count": 14,
+    "topics": 14,
+    "description": "Build goal-directed systems with persistence, recovery, escalation, and auditable actions."
   }
 ];

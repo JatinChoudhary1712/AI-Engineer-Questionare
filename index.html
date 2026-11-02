@@ -721,6 +721,116 @@ User Query → Embed → Retrieve Top-K Chunks
         <li><a href="PHASE%208%20-%20RAG%20%26%20Vector%20Databases/8.6%20Production%20RAG%20Considerations/index.html?view=reading#question-06">Fallback - &quot;I don't know&quot; when context is insufficient</a></li>
       </ul>
     </section>
+    <section class="roadmap-phase" id="phase-9" aria-labelledby="phase-9-title">
+      <h2 id="phase-9-title">PHASE 9 - AI Agents &amp; Agentic Systems</h2>
+      <p class="roadmap-goal">Goal: Build autonomous AI systems that can reason, plan, and take actions.</p>
+      <h3 id="chapter-9-1"><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html">9.1 What Are AI Agents</a></h3>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html?view=reading#question-01">Agent = LLM + Tools + Memory + Planning</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html?view=reading#question-02">Difference between chain and agent - agents decide dynamically</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html?view=reading#question-03">Types: ReAct, Plan-and-Execute, Multi-agent</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html?view=reading#question-04">When to use agents vs chains</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.1%20What%20Are%20AI%20Agents/index.html?view=reading#question-05">Risks: cost, hallucination, infinite loops</a></li>
+      </ul>
+      <h3 id="chapter-9-2"><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html">9.2 Agent Components</a></h3>
+      <h4>Tools / Functions</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-01">Web search tools (Tavily, SerpAPI, Bing)</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-02">Code interpreter / execution</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-03">Calculator</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-04">Database query tool</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-05">File read/write tool</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-06">API call tools</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-07">Web scraping tools</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-08">Calendar, email, calendar tools (via MCP)</a></li>
+      </ul>
+      <h4>Memory Systems</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-09">In-context memory - conversation history in prompt</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-10">External memory - vector store of past interactions</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-11">Entity memory - tracking mentioned entities</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-12">Summary memory - compress old conversation</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-13">Episodic memory - remember specific past events</a></li>
+      </ul>
+      <h4>Planning Strategies</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-14">ReAct (Reason + Act) - interleave thinking and action</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-15">Plan-and-execute - generate full plan first, then execute</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-16">Tree of Thoughts - explore multiple reasoning paths</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.2%20Agent%20Components/index.html?view=reading#question-17">MRKL (Modular Reasoning, Knowledge, Language)</a></li>
+      </ul>
+      <h3 id="chapter-9-3"><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html">9.3 Function Calling / Tool Use</a></h3>
+      <h4>OpenAI Tool Use</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-01">Define tools as JSON schemas</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-02">Attach to API call</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-03">Parse tool call responses</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-04">Execute tool, return result</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-05">Continue conversation with tool result</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-06">Parallel tool calls</a></li>
+      </ul>
+      <h4>Anthropic Tool Use</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-07">Tool definition format</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-08">Tool result format</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-09">Multi-tool usage</a></li>
+      </ul>
+      <h4>Building Robust Tool Systems</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-10">Tool validation - input schema validation</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-11">Tool error handling - graceful failure</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-12">Tool timeouts</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-13">Tool authorization - what can the agent do?</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.3%20Function%20Calling%20-%20Tool%20Use/index.html?view=reading#question-14">Sandboxed code execution</a></li>
+      </ul>
+      <h3 id="chapter-9-4"><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html">9.4 Multi-Agent Systems</a></h3>
+      <h4>Patterns</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-01">Supervisor → Worker agents (hierarchical)</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-02">Peer-to-peer agents (collaborative)</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-03">Pipeline agents (sequential specialists)</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-04">Adversarial agents (critic + generator)</a></li>
+      </ul>
+      <h4>LangGraph for Multi-Agent</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-05">Stateful graphs with shared state</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-06">Conditional edges - dynamic routing</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-07">Parallel execution of agents</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-08">Human-in-the-loop checkpoints</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-09">Agent communication protocols</a></li>
+      </ul>
+      <h4>Real-World Multi-Agent Use Cases</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-10">Code review system: Writer + Reviewer + Tester agents</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-11">Research system: Planner + Researcher + Synthesizer agents</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-12">Software development: PM + Engineer + QA agents (Devin-style)</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.4%20Multi-Agent%20Systems/index.html?view=reading#question-13">Customer support: Classifier + Specialist + Escalation agents</a></li>
+      </ul>
+      <h3 id="chapter-9-5"><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html">9.5 Agentic AI (AskAI Framework)</a></h3>
+      <h4>Agentic Principles</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-01">Autonomy - agents make decisions without human input per step</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-02">Goal-directedness - agents work toward specified objectives</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-03">Persistence - agents maintain state across interactions</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-04">Adaptability - agents adjust based on feedback</a></li>
+      </ul>
+      <h4>Production Agentic Systems</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-05">Task decomposition - breaking complex tasks into subtasks</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-06">Progress tracking - monitoring multi-step completion</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-07">Error recovery - retrying failed steps</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-08">Human escalation - when to pause and ask for input</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-09">Audit trails - logging every agent decision</a></li>
+      </ul>
+      <h4>Safety in Agents</h4>
+      <ul>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-10">Action confirmation for irreversible operations</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-11">Scope limitation - what agents can and cannot do</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-12">Cost controls - maximum spend per agent run</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-13">Sandboxing code execution</a></li>
+        <li><a href="PHASE%209%20-%20AI%20Agents%20%26%20Agentic%20Systems/9.5%20Agentic%20AI%20(AskAI%20Framework)/index.html?view=reading#question-14">Input/output validation</a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>

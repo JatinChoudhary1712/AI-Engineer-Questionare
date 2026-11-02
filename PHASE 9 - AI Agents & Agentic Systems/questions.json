@@ -1,0 +1,573 @@
+{
+  "phase": "Phase 9 - AI Agents & Agentic Systems",
+  "total_questions": 63,
+  "questions": [
+    {
+      "id": 1,
+      "number": 1,
+      "section": "9.1 What Are AI Agents",
+      "bullet": "Agent = LLM + Tools + Memory + Planning",
+      "type": "conceptual",
+      "question": "What makes an LLM application an agent?",
+      "answer": "<p>An agent uses a model to select actions or next steps toward an objective within an application-controlled loop.</p><ul><li><strong>Tools:</strong> Operations let it inspect data or affect an environment.</li><li><strong>State:</strong> Relevant observations, history, and plans can inform later decisions; not every agent needs a separate long-term memory store.</li><li><strong>Control:</strong> The application defines permissions, execution, budgets, and stopping rules.</li></ul><p><strong>Remember:</strong> LLM plus tools, memory, and planning is a useful design sketch rather than a strict definition every implementation must satisfy.</p>"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "section": "9.1 What Are AI Agents",
+      "bullet": "Difference between chain and agent - agents decide dynamically",
+      "type": "conceptual",
+      "question": "How does an agent differ from a fixed chain?",
+      "answer": "<p>A chain follows a predefined workflow, while an agent can choose subsequent steps based on current information.</p><ul><li><strong>Chain:</strong> A known extraction, validation, and formatting sequence can be explicit and predictable.</li><li><strong>Agent:</strong> A changing investigation may require selecting among tools or revising the next action after an observation.</li><li><strong>Hybrid:</strong> A deterministic workflow can contain an agent step without making every stage dynamic.</li></ul><p><strong>Remember:</strong> Dynamic decisions introduce flexibility and additional evaluation and control requirements.</p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Situation</th><th scope=\"col\">Starting design</th></tr></thead><tbody><tr><th scope=\"row\">Known extraction and formatting steps</th><td>Fixed chain with validation</td></tr><tr><th scope=\"row\">Next step depends on tool observations</th><td>Bounded agent loop</td></tr><tr><th scope=\"row\">Fixed process with one uncertain investigation</th><td>Workflow containing an agent step</td></tr></tbody></table></div>"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "section": "9.1 What Are AI Agents",
+      "bullet": "Types: ReAct, Plan-and-Execute, Multi-agent",
+      "type": "conceptual",
+      "question": "How do ReAct, plan-and-execute, and multi-agent designs differ?",
+      "answer": "<p>They organize decision-making and execution in different ways.</p><ul><li><strong>ReAct:</strong> Alternate action selection with observations from tools or the environment.</li><li><strong>Plan-and-execute:</strong> Produce a plan, carry out bounded steps, and revise it when new evidence requires changes.</li><li><strong>Multi-agent:</strong> Divide responsibilities among agents with explicit handoff and coordination rules.</li></ul><p><strong>Remember:</strong> These patterns can be combined, but extra components should solve a measured problem.</p>"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "section": "9.1 What Are AI Agents",
+      "bullet": "When to use agents vs chains",
+      "type": "conceptual",
+      "question": "When should you choose an agent instead of a chain?",
+      "answer": "<p>Use an agent when the path to a valid result needs meaningful decisions that cannot be captured simply in a fixed flow.</p><ul><li><strong>Fit:</strong> Open-ended research or diagnosis may need different tools depending on intermediate evidence.</li><li><strong>Baseline:</strong> Try a simpler workflow first and compare success, latency, cost, and operational complexity.</li><li><strong>Constraint:</strong> Prefer explicit code for predictable calculations, permissions, and fixed business rules.</li></ul><p><strong>Remember:</strong> Agent autonomy should address real uncertainty in the workflow.</p>"
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "section": "9.1 What Are AI Agents",
+      "bullet": "Risks: cost, hallucination, infinite loops",
+      "type": "conceptual",
+      "question": "What are the main failure risks in an agent loop?",
+      "answer": "<p>Agents can spend too much, accept incorrect information, or repeat actions without making progress.</p><ul><li><strong>Cost:</strong> Limit model calls, tool use, elapsed time, and total spending.</li><li><strong>Reliability:</strong> Validate observations and results instead of trusting plausible text or self-reported success.</li><li><strong>Loops:</strong> Detect repeated ineffective actions and stop, revise, or escalate within a bounded policy.</li></ul><p><strong>Remember:</strong> A model deciding what to do next is not enough to make a dependable system.</p><pre><code class=\"language-python\"># Illustrative control loop: all helpers are application-defined.\n# Tool authorization, deadlines, validation, and budgets must be enforced.\ndef run_agent(state, choose_step, execute_checked, verify_done, max_steps=8):\n    for _ in range(max_steps):\n        if verify_done(state):\n            return {&quot;status&quot;: &quot;completed&quot;, &quot;state&quot;: state}\n        step = choose_step(state)\n        if step[&quot;kind&quot;] == &quot;needs_input&quot;:\n            return {&quot;status&quot;: &quot;waiting_for_input&quot;, &quot;state&quot;: state}\n        state = execute_checked(step, state)\n    status = &quot;completed&quot; if verify_done(state) else &quot;step_limit&quot;\n    return {&quot;status&quot;: status, &quot;state&quot;: state}</code></pre>"
+    },
+    {
+      "id": 6,
+      "number": 1,
+      "section": "9.2 Agent Components",
+      "bullet": "Web search tools (Tavily, SerpAPI, Bing)",
+      "type": "conceptual",
+      "question": "What should an agent's web-search tool return?",
+      "answer": "<p>Return useful search results with source URLs and enough metadata to assess relevance and freshness.</p><ul><li><strong>Query:</strong> Validate the requested search and limit result count, response size, and spending.</li><li><strong>Sources:</strong> Distinguish snippets from fetched page content and inspect supporting pages before citing claims.</li><li><strong>Providers:</strong> Tavily, SerpAPI, and Bing are roadmap examples; verify the chosen provider's supported endpoints and access requirements.</li></ul><p><strong>Remember:</strong> Search supplies candidates for evidence, not automatically correct facts.</p>"
+    },
+    {
+      "id": 7,
+      "number": 2,
+      "section": "9.2 Agent Components",
+      "bullet": "Code interpreter / execution",
+      "type": "conceptual",
+      "question": "What responsibilities belong to a code-execution tool?",
+      "answer": "<p>Execute explicitly permitted code in a controlled environment and report concrete results.</p><ul><li><strong>Inputs:</strong> Define the runtime, permitted files, dependencies, and resource limits.</li><li><strong>Outputs:</strong> Return exit status, bounded stdout/stderr, and authorized artifact references.</li><li><strong>Isolation:</strong> Keep credentials and host resources outside the execution boundary unless deliberately granted.</li></ul><p><strong>Remember:</strong> Generated code is untrusted even when the model describes it confidently.</p>"
+    },
+    {
+      "id": 8,
+      "number": 3,
+      "section": "9.2 Agent Components",
+      "bullet": "Calculator",
+      "type": "conceptual",
+      "question": "Why give an agent a calculator instead of relying on generated arithmetic?",
+      "answer": "<p>A deterministic calculator can check numerical operations without depending on a language model's arithmetic accuracy.</p><ul><li><strong>Contract:</strong> Accept typed operands and an allowlisted operation rather than arbitrary code.</li><li><strong>Validation:</strong> Reject unsupported operations, non-finite inputs, invalid units, or division by zero as appropriate.</li><li><strong>Interpretation:</strong> The model still needs to choose the correct calculation and explain its units.</li></ul><p><strong>Remember:</strong> A correct numeric operation cannot fix an incorrectly formulated problem.</p><pre><code class=\"language-python\">from math import isfinite\nfrom operator import add, sub, mul, truediv\n\nOPERATIONS = {&quot;add&quot;: add, &quot;subtract&quot;: sub, &quot;multiply&quot;: mul, &quot;divide&quot;: truediv}\n\ndef calculate(operation, a, b):\n    if operation not in OPERATIONS:\n        raise ValueError(&quot;Unsupported operation&quot;)\n    for value in (a, b):\n        if isinstance(value, bool) or not isinstance(value, (int, float)):\n            raise ValueError(&quot;Operands must be numbers&quot;)\n        if not isfinite(value):\n            raise ValueError(&quot;Operands must be finite&quot;)\n    if operation == &quot;divide&quot; and b == 0:\n        raise ValueError(&quot;Division by zero&quot;)\n    result = OPERATIONS[operation](a, b)\n    if not isfinite(result):\n        raise ValueError(&quot;Result is not finite&quot;)\n    return result</code></pre>"
+    },
+    {
+      "id": 9,
+      "number": 4,
+      "section": "9.2 Agent Components",
+      "bullet": "Database query tool",
+      "type": "conceptual",
+      "question": "How should a database-query tool restrict agent access?",
+      "answer": "<p>Expose narrow authorized queries rather than unrestricted database credentials or arbitrary SQL execution.</p><ul><li><strong>Scope:</strong> Derive tenant and row-access restrictions from authenticated application state.</li><li><strong>Inputs:</strong> Prefer named operations with parameterized values and bounded result sizes.</li><li><strong>Operations:</strong> Use read-only permissions where possible and separate approved write workflows.</li></ul><p><strong>Remember:</strong> A model-generated query must not bypass the database's access policy.</p>"
+    },
+    {
+      "id": 10,
+      "number": 5,
+      "section": "9.2 Agent Components",
+      "bullet": "File read/write tool",
+      "type": "conceptual",
+      "question": "How should a file read/write tool handle paths and changes?",
+      "answer": "<p>Validate each operation against authorized roots and a defined write policy before touching the filesystem.</p><ul><li><strong>Paths:</strong> Resolve and check canonical targets, including traversal and symlink-related boundary cases.</li><li><strong>Reads:</strong> Limit file types, content size, and exposure of sensitive files.</li><li><strong>Writes:</strong> Distinguish creating, replacing, moving, and deleting; record results and use recoverable changes where practical.</li></ul><p><strong>Remember:</strong> An agent-supplied path is data to validate, not permission to access it.</p>"
+    },
+    {
+      "id": 11,
+      "number": 6,
+      "section": "9.2 Agent Components",
+      "bullet": "API call tools",
+      "type": "conceptual",
+      "question": "What should a general API-call tool allow?",
+      "answer": "<p>Offer specific permitted operations with explicit input and output contracts.</p><ul><li><strong>Destinations:</strong> Allowlist upstream services and prevent arbitrary internal-network or credential-bearing requests.</li><li><strong>Secrets:</strong> Inject scoped credentials on the server instead of accepting or exposing them in model text.</li><li><strong>Reliability:</strong> Bound retries, timeouts, payload size, and side effects using request identifiers where supported.</li></ul><p><strong>Remember:</strong> A tool should expose the needed capability rather than becoming an unrestricted HTTP proxy.</p>"
+    },
+    {
+      "id": 12,
+      "number": 7,
+      "section": "9.2 Agent Components",
+      "bullet": "Web scraping tools",
+      "type": "conceptual",
+      "question": "How should a web-scraping tool handle retrieved pages?",
+      "answer": "<p>Fetch permitted content with bounded requests and treat the returned page as untrusted data.</p><ul><li><strong>Fetching:</strong> Apply destination controls, request limits, and the application's site-access policy.</li><li><strong>Extraction:</strong> Return relevant text, provenance, and useful structural information rather than every page byte.</li><li><strong>Trust:</strong> Page instructions cannot change the user's goal or grant the agent additional permissions.</li></ul><p><strong>Remember:</strong> Scraped content is evidence to inspect, not an instruction source with authority over the application.</p>"
+    },
+    {
+      "id": 13,
+      "number": 8,
+      "section": "9.2 Agent Components",
+      "bullet": "Calendar, email, calendar tools (via MCP)",
+      "type": "conceptual",
+      "question": "How should calendar and email actions work through MCP?",
+      "answer": "<p>MCP can expose those integrations, while the application controls identity, access, and action authorization.</p><ul><li><strong>Separation:</strong> Distinguish reading availability or messages from creating events, sending mail, or deleting records.</li><li><strong>Validation:</strong> Check recipients, dates, time zones, resource ownership, and the concrete proposed change.</li><li><strong>Execution:</strong> Apply required confirmation rules and use idempotency or reconciliation to avoid duplicate sends and bookings.</li></ul><p><strong>Remember:</strong> Connecting an MCP server does not grant blanket authority to act for the user.</p>"
+    },
+    {
+      "id": 14,
+      "number": 9,
+      "section": "9.2 Agent Components",
+      "bullet": "In-context memory - conversation history in prompt",
+      "type": "conceptual",
+      "question": "What does in-context memory retain?",
+      "answer": "<p>It retains information included in the current model request, such as selected conversation history and tool observations.</p><ul><li><strong>Scope:</strong> A stateless model call only sees what the application sends.</li><li><strong>Budget:</strong> History competes with instructions, retrieved evidence, tools, and output space.</li><li><strong>Selection:</strong> Keep relevant decisions and constraints while removing redundant or obsolete material.</li></ul><p><strong>Remember:</strong> A larger context window is a capacity limit, not a guarantee of perfect recall.</p>"
+    },
+    {
+      "id": 15,
+      "number": 10,
+      "section": "9.2 Agent Components",
+      "bullet": "External memory - vector store of past interactions",
+      "type": "conceptual",
+      "question": "How does external memory differ from conversation history?",
+      "answer": "<p>External memory persists selected information outside a single model context and retrieves it when relevant.</p><ul><li><strong>Storage:</strong> A vector store is one retrieval option; structured databases can hold facts, preferences, and task state.</li><li><strong>Access:</strong> Scope memories to the correct user, tenant, and allowed purpose.</li><li><strong>Lifecycle:</strong> Track provenance, freshness, correction, deletion, and retention rather than keeping every interaction indefinitely.</li></ul><p><strong>Remember:</strong> Retrieved memories can be stale or wrong and must not override authoritative current input.</p>"
+    },
+    {
+      "id": 16,
+      "number": 11,
+      "section": "9.2 Agent Components",
+      "bullet": "Entity memory - tracking mentioned entities",
+      "type": "conceptual",
+      "question": "What should entity memory store about a mentioned person or object?",
+      "answer": "<p>Store explicit facts and relationships linked to a stable entity identity with provenance.</p><ul><li><strong>Resolution:</strong> Distinguish people or items with similar names instead of merging them automatically.</li><li><strong>Updates:</strong> Record when facts were observed and handle conflicting or corrected information.</li><li><strong>Privacy:</strong> Keep only necessary information and enforce access and retention rules.</li></ul><p><strong>Remember:</strong> Recognizing an entity is different from verifying every fact associated with it.</p>"
+    },
+    {
+      "id": 17,
+      "number": 12,
+      "section": "9.2 Agent Components",
+      "bullet": "Summary memory - compress old conversation",
+      "type": "conceptual",
+      "question": "What are the risks of summary memory?",
+      "answer": "<p>A summary saves context space by losing detail, so it can omit or distort information needed later.</p><ul><li><strong>Preserve:</strong> Keep decisions, constraints, identifiers, unresolved work, and important qualifiers.</li><li><strong>Provenance:</strong> Distinguish user facts, external evidence, and earlier assistant guesses.</li><li><strong>Recovery:</strong> Retain authorized source history or references when the summary needs verification.</li></ul><p><strong>Remember:</strong> A concise summary is a derived record rather than infallible memory.</p>"
+    },
+    {
+      "id": 18,
+      "number": 13,
+      "section": "9.2 Agent Components",
+      "bullet": "Episodic memory - remember specific past events",
+      "type": "conceptual",
+      "question": "What is episodic memory in an agent system?",
+      "answer": "<p>It records particular past events or task episodes so later work can retrieve relevant experience.</p><ul><li><strong>Structure:</strong> Store what happened, when, in what context, and the verified outcome.</li><li><strong>Reuse:</strong> Retrieve similar episodes as examples while checking whether their assumptions still apply.</li><li><strong>Boundaries:</strong> Isolate users and tenants and apply correction, deletion, and retention policies.</li></ul><p><strong>Remember:</strong> A past success is context for a decision, not proof that repeating it is appropriate.</p>"
+    },
+    {
+      "id": 19,
+      "number": 14,
+      "section": "9.2 Agent Components",
+      "bullet": "ReAct (Reason + Act) - interleave thinking and action",
+      "type": "conceptual",
+      "question": "How does a ReAct-style execution loop use observations?",
+      "answer": "<p>The workflow selects an action, receives an observation, and uses the updated state to decide its next step.</p><ul><li><strong>Grounding:</strong> Tools can supply evidence or results that change the next action.</li><li><strong>Verification:</strong> Check tool outcomes and progress rather than trusting a generated explanation.</li><li><strong>Bounds:</strong> Limit iterations, resources, permissions, and repeated failures in the application.</li></ul><p><strong>Remember:</strong> Evaluate actions and outcomes; visible reasoning prose alone does not establish correctness.</p><p><a href=\"https://arxiv.org/abs/2210.03629\" target=\"_blank\" rel=\"noopener noreferrer\">ReAct original paper</a></p>"
+    },
+    {
+      "id": 20,
+      "number": 15,
+      "section": "9.2 Agent Components",
+      "bullet": "Plan-and-execute - generate full plan first, then execute",
+      "type": "conceptual",
+      "question": "When is plan-and-execute helpful?",
+      "answer": "<p>It helps organize a task whose main dependencies can be described before execution starts.</p><ul><li><strong>Plan:</strong> Define bounded steps, expected outputs, and completion checks.</li><li><strong>Execute:</strong> Validate each result before dependent work begins.</li><li><strong>Revise:</strong> Replan when evidence changes instead of mechanically following assumptions that are no longer true.</li></ul><p><strong>Remember:</strong> A plan guides execution but does not authorize every action it mentions.</p>"
+    },
+    {
+      "id": 21,
+      "number": 16,
+      "section": "9.2 Agent Components",
+      "bullet": "Tree of Thoughts - explore multiple reasoning paths",
+      "type": "conceptual",
+      "question": "What does Tree of Thoughts add to simple sequential generation?",
+      "answer": "<p>It explores multiple candidate reasoning steps and evaluates which branches to continue.</p><ul><li><strong>Search:</strong> Generate alternatives and use task criteria to retain promising paths.</li><li><strong>Backtracking:</strong> Revisit earlier choices when a branch fails or a better option appears.</li><li><strong>Cost:</strong> Limit branching and evaluate whether the extra calls improve final task outcomes.</li></ul><p><strong>Remember:</strong> Search and verification matter more than producing a longer explanation.</p><p><a href=\"https://arxiv.org/abs/2305.10601\" target=\"_blank\" rel=\"noopener noreferrer\">Tree of Thoughts original paper</a></p>"
+    },
+    {
+      "id": 22,
+      "number": 17,
+      "section": "9.2 Agent Components",
+      "bullet": "MRKL (Modular Reasoning, Knowledge, Language)",
+      "type": "conceptual",
+      "question": "What is the idea behind MRKL systems?",
+      "answer": "<p>MRKL combines language-model capabilities with specialized knowledge and reasoning modules in a modular architecture.</p><ul><li><strong>Routing:</strong> Direct different parts of a request to appropriate components.</li><li><strong>Specialization:</strong> Use a calculator, database, symbolic module, or model where its contract fits the task.</li><li><strong>Integration:</strong> Validate module inputs and outputs and handle failures explicitly.</li></ul><p><strong>Remember:</strong> Modular Reasoning, Knowledge and Language is an architectural idea, not a requirement to use multiple conversational agents.</p><p><a href=\"https://arxiv.org/abs/2205.00445\" target=\"_blank\" rel=\"noopener noreferrer\">MRKL original paper</a></p>"
+    },
+    {
+      "id": 23,
+      "number": 1,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Define tools as JSON schemas",
+      "type": "conceptual",
+      "question": "What should an OpenAI function-tool schema define?",
+      "answer": "<p>Describe a callable function's name, purpose, and argument structure using the selected API's supported tool schema.</p><ul><li><strong>Arguments:</strong> Specify types, required fields, and allowed values clearly.</li><li><strong>Constraints:</strong> Use supported strict-schema options where appropriate and validate business rules on the backend.</li><li><strong>Trust:</strong> A valid argument object does not establish permission to perform the operation.</li></ul><p><strong>Remember:</strong> A tool schema communicates a contract; the application still enforces it.</p><p><strong>Responses API definition example:</strong> The backend derives user identity separately and checks order access.</p><pre><code class=\"language-json\">{\n  &quot;type&quot;: &quot;function&quot;,\n  &quot;name&quot;: &quot;lookup_order&quot;,\n  &quot;description&quot;: &quot;Read the status of one order the authenticated user may access.&quot;,\n  &quot;parameters&quot;: {\n    &quot;type&quot;: &quot;object&quot;,\n    &quot;properties&quot;: {\n      &quot;order_id&quot;: {\n        &quot;type&quot;: &quot;string&quot;,\n        &quot;description&quot;: &quot;The order identifier.&quot;\n      }\n    },\n    &quot;required&quot;: [\n      &quot;order_id&quot;\n    ],\n    &quot;additionalProperties&quot;: false\n  },\n  &quot;strict&quot;: true\n}</code></pre><p><a href=\"https://developers.openai.com/api/docs/guides/function-calling\" target=\"_blank\" rel=\"noopener noreferrer\">Official OpenAI function-calling guide</a></p>"
+    },
+    {
+      "id": 24,
+      "number": 2,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Attach to API call",
+      "type": "conceptual",
+      "question": "How are tools made available to an OpenAI model call?",
+      "answer": "<p>Include the supported tool definitions in the request to the selected API and model.</p><ul><li><strong>Eligibility:</strong> Expose only operations permitted for this authenticated user and task.</li><li><strong>Compatibility:</strong> Follow the chosen API's request shape instead of mixing Responses and Chat Completions examples.</li><li><strong>Configuration:</strong> Set supported tool-selection options deliberately and reserve context for descriptions and results.</li></ul><p><strong>Remember:</strong> Attaching a tool allows the model to propose calls; it does not execute your function automatically.</p>"
+    },
+    {
+      "id": 25,
+      "number": 3,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Parse tool call responses",
+      "type": "conceptual",
+      "question": "How should an application parse OpenAI tool-call output?",
+      "answer": "<p>Inspect typed response items and collect each proposed call's identity, name, and completed arguments.</p><ul><li><strong>Dispatch:</strong> Reject unknown tool names rather than invoking arbitrary code from model output.</li><li><strong>Parsing:</strong> Decode and validate the argument payload before using any field.</li><li><strong>Streaming:</strong> Buffer partial arguments until a complete callable request is available.</li></ul><p><strong>Remember:</strong> Tool calls are structured proposals, not plain text to execute.</p>"
+    },
+    {
+      "id": 26,
+      "number": 4,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Execute tool, return result",
+      "type": "conceptual",
+      "question": "What must happen before executing a proposed tool call?",
+      "answer": "<p>Validate its contract and authorization, then invoke the allowlisted operation with runtime limits.</p><ul><li><strong>Identity:</strong> Derive user and tenant scope from trusted server state.</li><li><strong>Execution:</strong> Apply deadlines and protect non-idempotent operations from duplicate execution.</li><li><strong>Result:</strong> Return a bounded success or failure record tied to the original call.</li></ul><p><strong>Remember:</strong> Backend validation and permissions remain necessary even when schema enforcement is enabled.</p>"
+    },
+    {
+      "id": 27,
+      "number": 5,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Continue conversation with tool result",
+      "type": "conceptual",
+      "question": "How does an OpenAI tool result continue the model conversation?",
+      "answer": "<p>Return the completed operation's result using the selected API's matching call identifier and result structure.</p><ul><li><strong>Correlation:</strong> Associate every result with the call it answers.</li><li><strong>Context:</strong> Preserve required response or conversation items so the model can interpret the result.</li><li><strong>Loop:</strong> Continue until a final answer, a permitted next call, or a defined stopping condition is reached.</li></ul><p><strong>Remember:</strong> Producing a tool result is one step in a bounded application loop.</p><p><a href=\"https://developers.openai.com/api/docs/guides/function-calling\" target=\"_blank\" rel=\"noopener noreferrer\">Official OpenAI tool-call workflow</a></p>"
+    },
+    {
+      "id": 28,
+      "number": 6,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Parallel tool calls",
+      "type": "conceptual",
+      "question": "When can multiple tool calls run in parallel?",
+      "answer": "<p>Run them concurrently when their dependencies, permissions, and side effects allow independent execution.</p><ul><li><strong>Independence:</strong> Reading two unrelated sources can be parallel; a write that depends on a preceding lookup cannot.</li><li><strong>Limits:</strong> Bound concurrency, deadlines, and shared resource consumption.</li><li><strong>Results:</strong> Preserve call-to-result mapping and handle partial failure without duplicating successful actions.</li></ul><p><strong>Remember:</strong> A model proposing several calls does not prove they are safe to execute simultaneously.</p>"
+    },
+    {
+      "id": 29,
+      "number": 7,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool definition format",
+      "type": "conceptual",
+      "question": "What does an Anthropic Messages tool definition contain?",
+      "answer": "<p>A custom tool definition identifies a tool and describes its accepted input using an input_schema.</p><ul><li><strong>Description:</strong> Explain the operation and parameter meaning clearly.</li><li><strong>Schema:</strong> Define the supported JSON input structure and validate it when a tool_use block arrives.</li><li><strong>Permissions:</strong> Offer only the tools permitted for the request's authenticated scope.</li></ul><p><strong>Remember:</strong> Use the Messages API's own schema rather than copying another provider's tool wrapper.</p><p><a href=\"https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools\" target=\"_blank\" rel=\"noopener noreferrer\">Claude Messages: define tools</a></p>"
+    },
+    {
+      "id": 30,
+      "number": 8,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool result format",
+      "type": "conceptual",
+      "question": "How is a tool result returned to Claude's Messages API?",
+      "answer": "<p>Provide a tool_result content block correlated to the original tool_use identifier.</p><ul><li><strong>Identifier:</strong> Match tool_use_id to the request that was executed.</li><li><strong>Message structure:</strong> Return results in the supported user-message content structure while retaining the assistant's tool-use content.</li><li><strong>Errors:</strong> Mark failed execution appropriately and provide bounded useful details without leaking secrets.</li></ul><p><strong>Remember:</strong> A correctly correlated tool result is different from an unrelated user message containing similar text.</p><pre><code class=\"language-json\">{\n  &quot;type&quot;: &quot;tool_result&quot;,\n  &quot;tool_use_id&quot;: &quot;toolu_example&quot;,\n  &quot;content&quot;: &quot;{\\&quot;status\\&quot;:\\&quot;shipped\\&quot;}&quot;\n}</code></pre><p><a href=\"https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls\" target=\"_blank\" rel=\"noopener noreferrer\">Claude Messages: handle tool calls</a></p>"
+    },
+    {
+      "id": 31,
+      "number": 9,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Multi-tool usage",
+      "type": "conceptual",
+      "question": "How should a Claude workflow handle multiple tool-use blocks?",
+      "answer": "<p>Collect the requested operations, execute only permitted calls, and return their correlated results in the required structure.</p><ul><li><strong>Scheduling:</strong> Parallelize independent calls while respecting dependencies and runtime limits.</li><li><strong>Correlation:</strong> Produce a result for each handled tool-use identifier rather than losing failures silently.</li><li><strong>Continuation:</strong> Let the next model step inspect the combined outcomes before choosing further actions.</li></ul><p><strong>Remember:</strong> Multi-tool behavior still requires application-owned execution and failure policy.</p><p><a href=\"https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use\" target=\"_blank\" rel=\"noopener noreferrer\">Claude parallel tool use</a></p>"
+    },
+    {
+      "id": 32,
+      "number": 10,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool validation - input schema validation",
+      "type": "conceptual",
+      "question": "What should input validation check beyond JSON parsing?",
+      "answer": "<p>Check both the data structure and the operation-specific meaning before running a tool.</p><ul><li><strong>Schema:</strong> Reject missing fields, wrong types, unsupported properties, and invalid enum values.</li><li><strong>Semantics:</strong> Check ranges, units, paths, dates, identifiers, and relationships between fields.</li><li><strong>Authorization:</strong> Validate resource access separately; a syntactically valid account ID may belong to another user.</li></ul><p><strong>Remember:</strong> Parseable JSON is not necessarily valid or authorized input.</p>"
+    },
+    {
+      "id": 33,
+      "number": 11,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool error handling - graceful failure",
+      "type": "conceptual",
+      "question": "How should tool failures be communicated to an agent?",
+      "answer": "<p>Return structured, actionable failure information while keeping secrets and internal details out of model context.</p><ul><li><strong>Categories:</strong> Distinguish invalid input, forbidden access, timeout, transient dependency failure, and a completed-but-unconfirmed action.</li><li><strong>Recovery:</strong> Explain whether a bounded retry, corrected input, or human decision is appropriate.</li><li><strong>Honesty:</strong> Do not format an error as a successful result that later stages may trust.</li></ul><p><strong>Remember:</strong> Graceful failure preserves the distinction between an attempted and completed action.</p>"
+    },
+    {
+      "id": 34,
+      "number": 12,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool timeouts",
+      "type": "conceptual",
+      "question": "How should tool timeouts fit into the overall agent deadline?",
+      "answer": "<p>Assign each call a bounded time budget within the run's remaining deadline.</p><ul><li><strong>Allocation:</strong> Include queueing, retries, and follow-up work rather than restarting a full timeout at every step.</li><li><strong>Cancellation:</strong> Stop underlying work when possible and record tasks that may still be running.</li><li><strong>Ambiguity:</strong> A timed-out write may have succeeded, so reconcile its status before attempting it again.</li></ul><p><strong>Remember:</strong> A timeout describes observation of a call, not proof that its side effect did not happen.</p><p class=\"example\"><strong>Example:</strong> A booking request times out after the upstream service receives it. Check the booking or idempotency key before retrying; otherwise one requested appointment could become two.</p>"
+    },
+    {
+      "id": 35,
+      "number": 13,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Tool authorization - what can the agent do?",
+      "type": "conceptual",
+      "question": "Where should tool authorization be enforced?",
+      "answer": "<p>Enforce it in the application or tool service using trusted user identity, resource ownership, and policy.</p><ul><li><strong>Scope:</strong> Restrict tool availability and recheck access at execution time.</li><li><strong>Decisions:</strong> Treat model-selected resources and external instructions as untrusted inputs.</li><li><strong>Audit:</strong> Record which policy allowed or denied the concrete action.</li></ul><p><strong>Remember:</strong> Prompt instructions and agent role descriptions are not access-control mechanisms.</p>"
+    },
+    {
+      "id": 36,
+      "number": 14,
+      "section": "9.3 Function Calling - Tool Use",
+      "bullet": "Sandboxed code execution",
+      "type": "conceptual",
+      "question": "What should a sandboxed execution environment restrict?",
+      "answer": "<p>Limit the resources untrusted code can access and the effects it can create.</p><ul><li><strong>Isolation:</strong> Control filesystem mounts, network destinations, identities, secrets, and available commands.</li><li><strong>Quotas:</strong> Cap runtime, memory, CPU, process count, and result size.</li><li><strong>Operations:</strong> Patch and reset environments and verify that host credentials are not accidentally mounted inside.</li></ul><p><strong>Remember:</strong> A sandbox is an engineered boundary, not just a label applied to a process.</p>"
+    },
+    {
+      "id": 37,
+      "number": 1,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Supervisor → Worker agents (hierarchical)",
+      "type": "conceptual",
+      "question": "How does a supervisor-worker agent pattern coordinate work?",
+      "answer": "<p>A supervisor assigns bounded tasks to workers and decides how their results contribute to the goal.</p><ul><li><strong>Responsibilities:</strong> Define worker inputs, deliverables, tool scope, and completion checks.</li><li><strong>Aggregation:</strong> Validate returned evidence and reconcile conflicting results.</li><li><strong>Limits:</strong> Prevent recursive delegation or a supervisor bottleneck from consuming the run budget.</li></ul><p><strong>Remember:</strong> A central coordinator improves structure only when its authority and stopping rules are clear.</p>"
+    },
+    {
+      "id": 38,
+      "number": 2,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Peer-to-peer agents (collaborative)",
+      "type": "conceptual",
+      "question": "When is peer-to-peer agent collaboration appropriate?",
+      "answer": "<p>It can fit work where specialists need to exchange information without every message passing through one supervisor.</p><ul><li><strong>Protocol:</strong> Define who may ask whom for work and how responsibility transfers.</li><li><strong>Coordination:</strong> Prevent duplicate actions, circular delegation, and uncontrolled context sharing.</li><li><strong>Evaluation:</strong> Compare the communication cost and task outcome with a simpler centralized design.</li></ul><p><strong>Remember:</strong> Removing a supervisor does not remove the need for coordination rules.</p>"
+    },
+    {
+      "id": 39,
+      "number": 3,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Pipeline agents (sequential specialists)",
+      "type": "conceptual",
+      "question": "How do sequential specialist agents form a pipeline?",
+      "answer": "<p>Each specialist produces a defined artifact that the next stage validates and consumes.</p><ul><li><strong>Example:</strong> An extractor produces structured facts for an analyst, whose result feeds a writer.</li><li><strong>Contracts:</strong> Specify schemas, provenance, and acceptance criteria at each handoff.</li><li><strong>Recovery:</strong> Retry or repair the failed stage without repeating completed side effects.</li></ul><p><strong>Remember:</strong> A pipeline is useful when task dependencies and stage boundaries are explicit.</p>"
+    },
+    {
+      "id": 40,
+      "number": 4,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Adversarial agents (critic + generator)",
+      "type": "conceptual",
+      "question": "What can a critic-generator pattern improve, and what can it miss?",
+      "answer": "<p>A critic can identify issues in a draft and guide revision, but it can also share the generator's mistakes.</p><ul><li><strong>Criteria:</strong> Give the critic explicit checks and access to relevant evidence or executable tests.</li><li><strong>Iteration:</strong> Bound revisions and stop when the result passes validation or further progress stalls.</li><li><strong>Independence:</strong> Treat agreement between similar models as limited evidence rather than proof.</li></ul><p><strong>Remember:</strong> A critique is useful when it finds verifiable failures, not merely more polished wording.</p>"
+    },
+    {
+      "id": 41,
+      "number": 5,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Stateful graphs with shared state",
+      "type": "conceptual",
+      "question": "How should LangGraph shared state be designed for multiple agents?",
+      "answer": "<p>Define a state schema and explicit update behavior so agents can coordinate without corrupting one another's work.</p><ul><li><strong>Contents:</strong> Track task inputs, artifacts, evidence references, ownership, and run status.</li><li><strong>Updates:</strong> Specify how concurrent contributions merge and which fields may be replaced.</li><li><strong>Isolation:</strong> Scope state to the correct run and avoid distributing unnecessary private information to every node.</li></ul><p><strong>Remember:</strong> Shared state needs a contract rather than unrestricted writes by every agent.</p><p><a href=\"https://docs.langchain.com/oss/python/langgraph/graph-api\" target=\"_blank\" rel=\"noopener noreferrer\">LangGraph graph and state concepts</a></p>"
+    },
+    {
+      "id": 42,
+      "number": 6,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Conditional edges - dynamic routing",
+      "type": "conceptual",
+      "question": "How do conditional edges support dynamic routing?",
+      "answer": "<p>They choose subsequent workflow steps from the current validated state.</p><ul><li><strong>Conditions:</strong> Route on meaningful outcomes such as missing evidence, failed tests, or a required human decision.</li><li><strong>Outputs:</strong> Validate any model-generated route label against allowed destinations.</li><li><strong>Termination:</strong> Include success, failure, and budget-exhausted destinations so the graph can finish.</li></ul><p><strong>Remember:</strong> Dynamic routing should remain constrained by an explicit graph and policy.</p>"
+    },
+    {
+      "id": 43,
+      "number": 7,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Parallel execution of agents",
+      "type": "conceptual",
+      "question": "What must be coordinated when graph agents execute in parallel?",
+      "answer": "<p>Parallel branches need independent work, bounded resource use, and defined result-merging behavior.</p><ul><li><strong>Scheduling:</strong> Respect data dependencies and cap total concurrency and spending.</li><li><strong>Merging:</strong> Apply suitable reducers or aggregation rules rather than allowing accidental last-write wins.</li><li><strong>Side effects:</strong> Assign action ownership and deduplicate writes before combining results.</li></ul><p><strong>Remember:</strong> Parallel execution is beneficial only when coordination costs and races are controlled.</p>"
+    },
+    {
+      "id": 44,
+      "number": 8,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Human-in-the-loop checkpoints",
+      "type": "conceptual",
+      "question": "How do human-in-the-loop checkpoints support an agent workflow?",
+      "answer": "<p>They preserve state so execution can pause for a decision and resume with the right context.</p><ul><li><strong>Presentation:</strong> Show the concrete proposed action, expected effect, and relevant evidence.</li><li><strong>Resume:</strong> Correlate the decision with the correct run and revalidate stale permissions or assumptions.</li><li><strong>Replay:</strong> Design pre-interruption work and side effects so resumption does not unintentionally repeat them.</li></ul><p><strong>Remember:</strong> A stored checkpoint supports pausing; it does not itself authorize an action or guarantee exactly-once execution.</p><p><a href=\"https://docs.langchain.com/oss/python/langgraph/interrupts\" target=\"_blank\" rel=\"noopener noreferrer\">LangGraph interrupts and resumption</a></p>"
+    },
+    {
+      "id": 45,
+      "number": 9,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Agent communication protocols",
+      "type": "conceptual",
+      "question": "What should an agent-to-agent message protocol define?",
+      "answer": "<p>Define the meaning and structure of requests, results, errors, and responsibility transfers.</p><ul><li><strong>Identity:</strong> Include run/task identifiers, sender, recipient, and allowed data scope.</li><li><strong>Contracts:</strong> Specify artifact formats, evidence references, deadlines, and failure states.</li><li><strong>Trust:</strong> Validate incoming messages and separate another agent's claim from verified execution results.</li></ul><p><strong>Remember:</strong> A shared chat transcript is not a complete coordination protocol.</p>"
+    },
+    {
+      "id": 46,
+      "number": 10,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Code review system: Writer + Reviewer + Tester agents",
+      "type": "conceptual",
+      "question": "How should Writer, Reviewer, and Tester agents cooperate on code?",
+      "answer": "<p>Separate implementation, critique, and executable verification while keeping a clear owner for the final change.</p><ul><li><strong>Writer:</strong> Produce a bounded patch against the requested requirements.</li><li><strong>Reviewer:</strong> Check correctness, scope, maintainability, and risks using the actual diff.</li><li><strong>Tester:</strong> Run relevant checks and return reproducible evidence, including failures and limitations.</li></ul><p><strong>Remember:</strong> A model saying tests passed is not equivalent to recorded test execution.</p>"
+    },
+    {
+      "id": 47,
+      "number": 11,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Research system: Planner + Researcher + Synthesizer agents",
+      "type": "conceptual",
+      "question": "How should a research team of agents maintain evidence quality?",
+      "answer": "<p>Preserve source provenance and validate important claims as work moves from planning to synthesis.</p><ul><li><strong>Planner:</strong> Define answerable sub-questions and useful source criteria.</li><li><strong>Researcher:</strong> Retrieve relevant primary evidence, record references, and distinguish facts from inference.</li><li><strong>Synthesizer:</strong> Reconcile contradictions, cite support, and identify gaps instead of smoothing them over.</li></ul><p><strong>Remember:</strong> More researchers do not automatically create independent or trustworthy evidence.</p>"
+    },
+    {
+      "id": 48,
+      "number": 12,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Software development: PM + Engineer + QA agents (Devin-style)",
+      "type": "conceptual",
+      "question": "How should a PM-Engineer-QA agent workflow handle software delivery?",
+      "answer": "<p>Use explicit requirements, reviewable changes, and verified acceptance criteria rather than relying on role names.</p><ul><li><strong>Product role:</strong> Clarify user outcomes and constraints without inventing scope.</li><li><strong>Engineering role:</strong> Implement bounded changes and expose artifacts for review.</li><li><strong>Quality role:</strong> Check acceptance criteria and regressions and report what was actually verified.</li></ul><p><strong>Remember:</strong> Devin-style is a workflow analogy here, not a guarantee of any particular product's capabilities.</p>"
+    },
+    {
+      "id": 49,
+      "number": 13,
+      "section": "9.4 Multi-Agent Systems",
+      "bullet": "Customer support: Classifier + Specialist + Escalation agents",
+      "type": "conceptual",
+      "question": "How can a customer-support agent system route and escalate cases?",
+      "answer": "<p>Classify the request, direct it to an authorized specialist, and escalate when evidence or authority is insufficient.</p><ul><li><strong>Classification:</strong> Use tested categories and handle ambiguous requests explicitly.</li><li><strong>Specialist:</strong> Retrieve the customer's permitted data and apply policy consistently.</li><li><strong>Escalation:</strong> Preserve the case summary, actions already attempted, and the precise decision needed from a human.</li></ul><p><strong>Remember:</strong> An escalation handoff should reduce repetition without hiding uncertainty or prior actions.</p>"
+    },
+    {
+      "id": 50,
+      "number": 1,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Autonomy - agents make decisions without human input per step",
+      "type": "conceptual",
+      "question": "What does autonomy mean in a production agentic system?",
+      "answer": "<p>It means choosing some intermediate steps without requiring a human decision at every step, within an explicit scope.</p><ul><li><strong>Delegation:</strong> Define what the user has authorized and which actions the system may take independently.</li><li><strong>Boundaries:</strong> Enforce permissions and confirmation rules outside the model.</li><li><strong>Visibility:</strong> Provide status and a way to cancel or intervene as work proceeds.</li></ul><p><strong>Remember:</strong> Autonomy is bounded delegation rather than unrestricted authority.</p><p><strong>Chapter context:</strong> AskAI Framework is retained as the supplied roadmap heading. These questions explain the listed agentic principles and production patterns without assuming a particular AskAI package or undocumented API.</p>"
+    },
+    {
+      "id": 51,
+      "number": 2,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Goal-directedness - agents work toward specified objectives",
+      "type": "conceptual",
+      "question": "How should an agent's goal be defined?",
+      "answer": "<p>Specify the desired outcome, constraints, and evidence that will establish completion.</p><ul><li><strong>Outcome:</strong> Use concrete deliverables instead of a vague instruction such as improve everything.</li><li><strong>Constraints:</strong> State resource limits, permitted actions, and requirements that must remain true.</li><li><strong>Completion:</strong> Verify acceptance criteria against artifacts and observations rather than the agent's confidence.</li></ul><p><strong>Remember:</strong> Goal-directedness requires a testable definition of done.</p>"
+    },
+    {
+      "id": 52,
+      "number": 3,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Persistence - agents maintain state across interactions",
+      "type": "conceptual",
+      "question": "What state should persist across agent interactions?",
+      "answer": "<p>Persist the information necessary to resume authorized work and understand what has already happened.</p><ul><li><strong>Task state:</strong> Keep the goal, plan version, completed steps, pending decisions, and artifact references.</li><li><strong>Execution:</strong> Store tool outcomes and idempotency references for consequential actions.</li><li><strong>Lifecycle:</strong> Scope access, define retention, and revalidate stale data on resumption.</li></ul><p><strong>Remember:</strong> Persistence should preserve verified state without blindly preserving every generated statement.</p>"
+    },
+    {
+      "id": 53,
+      "number": 4,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Adaptability - agents adjust based on feedback",
+      "type": "conceptual",
+      "question": "How should an agent adapt when feedback contradicts its plan?",
+      "answer": "<p>Update the relevant assumptions and next steps while preserving the original authorized objective and constraints.</p><ul><li><strong>Feedback:</strong> Distinguish a user's correction, new evidence, and an unreliable external claim.</li><li><strong>Revision:</strong> Record what changed and reconsider dependent work that relied on the invalid assumption.</li><li><strong>Scope:</strong> Ask for a necessary decision when new requirements conflict or exceed the delegated authority.</li></ul><p><strong>Remember:</strong> Adaptability is controlled replanning rather than silent goal drift.</p>"
+    },
+    {
+      "id": 54,
+      "number": 5,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Task decomposition - breaking complex tasks into subtasks",
+      "type": "conceptual",
+      "question": "How should a complex agent task be decomposed?",
+      "answer": "<p>Break it into bounded steps with clear dependencies, outputs, and validation points.</p><ul><li><strong>Structure:</strong> Separate information gathering, decisions, and consequential actions.</li><li><strong>Ownership:</strong> Assign each deliverable or side effect to a specific stage or agent.</li><li><strong>Granularity:</strong> Keep steps small enough to inspect and recover without creating excessive coordination overhead.</li></ul><p><strong>Remember:</strong> A useful task breakdown makes progress and failure states observable.</p>"
+    },
+    {
+      "id": 55,
+      "number": 6,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Progress tracking - monitoring multi-step completion",
+      "type": "conceptual",
+      "question": "What should progress tracking show during a multi-step run?",
+      "answer": "<p>Track verified task states and concrete artifacts rather than presenting guesses as completed work.</p><ul><li><strong>States:</strong> Distinguish pending, running, waiting for input, failed, canceled, and completed.</li><li><strong>Evidence:</strong> Associate completion with a validated result or recorded tool outcome.</li><li><strong>Communication:</strong> Surface useful status updates and unresolved decisions without exposing private internal reasoning or secrets.</li></ul><p><strong>Remember:</strong> Attempted work and completed work must remain different states.</p><pre><code class=\"language-json\">{\n  &quot;run_id&quot;: &quot;run-42&quot;,\n  &quot;task_id&quot;: &quot;verify-report&quot;,\n  &quot;status&quot;: &quot;waiting_for_input&quot;,\n  &quot;completed_artifacts&quot;: [&quot;draft-report-v2&quot;],\n  &quot;pending_decision&quot;: &quot;Approve the exact publication target&quot;,\n  &quot;attempt_count&quot;: 1\n}</code></pre>"
+    },
+    {
+      "id": 56,
+      "number": 7,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Error recovery - retrying failed steps",
+      "type": "conceptual",
+      "question": "How should an agent recover from a failed step?",
+      "answer": "<p>Classify the failure, inspect prior effects, and choose a bounded retry, repair, replan, or escalation.</p><ul><li><strong>Transient failures:</strong> Retry with backoff and a remaining deadline when the operation permits it.</li><li><strong>Ambiguous effects:</strong> Reconcile whether a write or send already occurred before repeating it.</li><li><strong>Validation:</strong> Recheck the result and stop when repeated attempts no longer make progress.</li></ul><p><strong>Remember:</strong> Retrying an entire workflow can duplicate effects that already succeeded.</p>"
+    },
+    {
+      "id": 57,
+      "number": 8,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Human escalation - when to pause and ask for input",
+      "type": "conceptual",
+      "question": "When should an agent pause for human input?",
+      "answer": "<p>Pause when a required decision, missing authorization, or unresolved ambiguity prevents safe progress within the agreed task.</p><ul><li><strong>Information:</strong> Ask for the smallest missing detail rather than reopening settled decisions.</li><li><strong>Approval:</strong> Present the concrete action and expected consequences when confirmation is required.</li><li><strong>Continuity:</strong> Save the current state and continue independent authorized work where that remains useful.</li></ul><p><strong>Remember:</strong> Escalation should resolve a specific blocker, not substitute for routine agent judgment.</p>"
+    },
+    {
+      "id": 58,
+      "number": 9,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Audit trails - logging every agent decision",
+      "type": "conceptual",
+      "question": "What belongs in an audit trail for agent decisions and actions?",
+      "answer": "<p>Record observable decisions, inputs, policy outcomes, tool calls, and results with useful correlation identifiers.</p><ul><li><strong>Attribution:</strong> Link user, tenant, run, agent, task, tool, and artifact identities.</li><li><strong>Explanation:</strong> Store concise decision factors or policy reasons when useful, rather than assuming access to hidden model reasoning.</li><li><strong>Protection:</strong> Redact secrets, restrict access, define retention, and protect records against inappropriate modification.</li></ul><p><strong>Remember:</strong> An audit log should support reconstruction of events without becoming another sensitive-data leak.</p>"
+    },
+    {
+      "id": 59,
+      "number": 10,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Action confirmation for irreversible operations",
+      "type": "conceptual",
+      "question": "How should confirmation work for an irreversible operation?",
+      "answer": "<p>Ask for confirmation of the concrete action when the task's policy or delegated authority requires it.</p><ul><li><strong>Reviewability:</strong> Show the exact target, payload, timing, cost, and expected effect.</li><li><strong>Binding:</strong> Ensure approval applies to that proposed action and does not silently authorize materially changed parameters.</li><li><strong>Execution:</strong> Recheck permission and relevant state before performing the operation and record the result.</li></ul><p><strong>Remember:</strong> General willingness to use an agent is not blanket approval for every irreversible action.</p>"
+    },
+    {
+      "id": 60,
+      "number": 11,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Scope limitation - what agents can and cannot do",
+      "type": "conceptual",
+      "question": "How should an agent's scope be limited?",
+      "answer": "<p>Define allowlisted capabilities and resource boundaries and enforce them at runtime.</p><ul><li><strong>Tools:</strong> Grant only the operations and credentials needed for the current task.</li><li><strong>Data:</strong> Restrict tenants, accounts, destinations, files, and records independently of model-generated arguments.</li><li><strong>Evolution:</strong> Require a valid policy change or additional authorization before expanding scope.</li></ul><p><strong>Remember:</strong> A sentence in a system prompt is not a complete scope boundary.</p>"
+    },
+    {
+      "id": 61,
+      "number": 12,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Cost controls - maximum spend per agent run",
+      "type": "conceptual",
+      "question": "How can a maximum spending limit be enforced per run?",
+      "answer": "<p>Reserve and reconcile costs across model calls and tools before permitting more work.</p><ul><li><strong>Coverage:</strong> Include retries, parallel branches, search, embeddings, execution, and other billable operations.</li><li><strong>Concurrency:</strong> Use atomic shared budget checks so multiple workers cannot each spend the same remaining allowance.</li><li><strong>Exhaustion:</strong> Stop or return a clear partial result when the remaining budget cannot support the next required step.</li></ul><p><strong>Remember:</strong> Reporting spend afterward cannot enforce a hard limit by itself.</p>"
+    },
+    {
+      "id": 62,
+      "number": 13,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Sandboxing code execution",
+      "type": "conceptual",
+      "question": "Why is sandboxing still needed for an agent with good prompts?",
+      "answer": "<p>Prompt compliance does not guarantee that generated code or external content will behave safely.</p><ul><li><strong>Defense:</strong> Execute untrusted work within restricted resources and permissions.</li><li><strong>Secrets:</strong> Keep production credentials, sensitive host files, and privileged network access outside the sandbox.</li><li><strong>Verification:</strong> Test isolation, enforce limits, and reset execution state according to the workload.</li></ul><p><strong>Remember:</strong> Sandboxing limits consequences even when model instructions fail.</p>"
+    },
+    {
+      "id": 63,
+      "number": 14,
+      "section": "9.5 Agentic AI (AskAI Framework)",
+      "bullet": "Input/output validation",
+      "type": "conceptual",
+      "question": "What should be validated at an agent system's input and output boundaries?",
+      "answer": "<p>Validate requests, tool arguments, observations, and final results according to their structure and trust level.</p><ul><li><strong>Inputs:</strong> Check identity, scope, types, size, and operation-specific constraints.</li><li><strong>Observations:</strong> Treat retrieved documents, tool output, and other agents' messages as untrusted evidence.</li><li><strong>Outputs:</strong> Verify schemas, supported claims, requested artifacts, and action results before declaring success.</li></ul><p><strong>Remember:</strong> Validation is needed at every handoff, not just before the first model call.</p>"
+    }
+  ]
+}

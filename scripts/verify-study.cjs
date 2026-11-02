@@ -10,8 +10,8 @@ const root = path.resolve(__dirname, '..');
 const sandbox = {window: {}};
 vm.runInNewContext(fs.readFileSync(path.join(root, 'study-data.js'), 'utf8'), sandbox);
 const chapters = sandbox.window.STUDY_CHAPTERS;
-assert.equal(chapters.length, 38);
-assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 610);
+assert.equal(chapters.length, 43);
+assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 673);
 const server = http.createServer((req, res) => {
   const file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
   if (!file.startsWith(root + path.sep)) {res.writeHead(403); res.end(); return;}
@@ -41,7 +41,7 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.roadmap-phase').count(),6);
+    assert.equal(await page.locator('.roadmap-phase').count(),7);
     assert.equal(await page.locator('.resume-card, .phase-card').count(),0);
     assert.equal(await page.locator('.app-sidebar').isVisible(),false);
     let total = 0;
@@ -175,6 +175,15 @@ async function verify() {
         await page.goto(base+rag.href+`?view=${view}`+(view==='index'?'':'#question-01'));
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
         if (width!==320) await page.screenshot({path:path.join(snapshots,`phase8-study-${view}-${width}.png`),fullPage:false});
+      }
+    }
+    const agents = chapters.find(chapter => chapter.id === '9.3');
+    for (const width of [1440,390,320]) {
+      await page.setViewportSize({width,height:900});
+      for (const view of ['reading','index','focus']) {
+        await page.goto(base+agents.href+`?view=${view}`+(view==='index'?'':'#question-01'));
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+        if (width!==320) await page.screenshot({path:path.join(snapshots,`phase9-study-${view}-${width}.png`),fullPage:false});
       }
     }
     assert.deepEqual(errors,[]);

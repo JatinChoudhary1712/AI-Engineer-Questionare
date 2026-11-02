@@ -142,7 +142,7 @@ fs.writeFileSync(`${root}/questions.json`,JSON.stringify(bank,null,2)+'\n');
 for(const file of ['question-styles.css','study-interface.css'])fs.copyFileSync(`${templateRoot}/${file}`,`${root}/${file}`);
 const shared=fs.readFileSync(`${templateRoot}/study-interface.js`,'utf8').replace(/const chapters = \[[\s\S]*?\n\];/,'const chapters = '+JSON.stringify(chapters.map(c=>[c.folder,c.folder]),null,2)+';').replaceAll('LLM and AI engineering chapters','RAG and vector database chapters').replace("overview.textContent = 'Phase 6'","overview.textContent = 'Phase 8'");
 fs.writeFileSync(`${root}/study-interface.js`,shared);
-const state={window:{}};vm.runInNewContext(fs.readFileSync('study-data.js','utf8'),state);const previous=state.window.STUDY_CHAPTERS.filter(c=>c.phase!==8);assert.equal(previous.length,32);
+const state={window:{}};vm.runInNewContext(fs.readFileSync('study-data.js','utf8'),state);const previous=state.window.STUDY_CHAPTERS.filter(c=>c.phase!==8);assert.equal(previous.filter(chapter=>chapter.phase<=7).length,32);
 fs.writeFileSync('study-data.js','// Chapter metadata for the static study interface.\nwindow.STUDY_CHAPTERS = '+JSON.stringify([...previous,...metadata],null,2)+';\n');
 
 function outline(local){
