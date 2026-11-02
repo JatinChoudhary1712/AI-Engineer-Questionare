@@ -2,6 +2,10 @@
 
 
 
+## Study questions
+
+[Open the Phase 11 study index](index.html) — 40 answered questions across seven chapters, using Recall’s Reading, Index, Focus, search, and review-progress interface. Includes formulas, code, a latent-diffusion diagram, comparisons, and official references. Named products from the roadmap are retained as learning topics; answers include lifecycle context where APIs have retired. Phase 10 remains Coming soon. Original notes and projects remain below.
+
 ## Topics
 
 - [11.1 Variational Autoencoders (VAEs)](11.1%20Variational%20Autoencoders%20%28VAEs%29/Notes.md)

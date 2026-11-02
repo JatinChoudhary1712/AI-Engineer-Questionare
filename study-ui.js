@@ -90,9 +90,10 @@
     overview.append(icon('grid'), create('span', '', 'Your library'));
     if (!activePhase) overview.setAttribute('aria-current', 'page');
     nav.append(overview);
-    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers', 6: 'LLMs & AI engineering', 7: 'Multi-LLM orchestration', 8: 'RAG & vector databases', 9: 'AI agents & agentic systems'};
+    const phaseLabels = {3: 'Machine learning', 4: 'Deep learning', 5: 'NLP & transformers', 6: 'LLMs & AI engineering', 7: 'Multi-LLM orchestration', 8: 'RAG & vector databases', 9: 'AI agents & agentic systems', 11: 'Generative AI beyond text'};
     for (const phase of [...new Set(chapters.map(chapter => chapter.phase))]) {
       const group = create('details', 'sidebar-phase');
+      group.dataset.phase = String(phase);
       group.open = activePhase === phase;
       const parent = create('summary', 'sidebar-phase-parent');
       const title = create('span');
@@ -114,7 +115,8 @@
     }
     const upcoming = link('Phase 10 · Fine-tuning — Coming soon', new URL('PHASE%2010%20-%20Fine-Tuning%20%26%20Model%20Customization/index.html', siteRoot).href, 'sidebar-home');
     if (activePhase === 10) upcoming.setAttribute('aria-current', 'page');
-    nav.append(upcoming);
+    const laterPhase = [...nav.children].find(element => Number(element.dataset.phase) > 10);
+    nav.insertBefore(upcoming, laterPhase || null);
     return nav;
   }
   document.body.classList.add('guided-ui', isChapter ? 'study-page' : 'library-page');

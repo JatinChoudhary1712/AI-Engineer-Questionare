@@ -10,8 +10,8 @@ const root = path.resolve(__dirname, '..');
 const sandbox = {window: {}};
 vm.runInNewContext(fs.readFileSync(path.join(root, 'study-data.js'), 'utf8'), sandbox);
 const chapters = sandbox.window.STUDY_CHAPTERS;
-assert.equal(chapters.length, 43);
-assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 673);
+assert.equal(chapters.length, 50);
+assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 713);
 const server = http.createServer((req, res) => {
   const file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
   if (!file.startsWith(root + path.sep)) {res.writeHead(403); res.end(); return;}
@@ -41,7 +41,8 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.roadmap-phase').count(),8);
+    assert.equal(await page.locator('.roadmap-phase').count(),9);
+    assert((await page.locator('#phase-10').innerText()).toLowerCase().includes('coming soon'));
     assert.equal(await page.locator('.resume-card, .phase-card').count(),0);
     assert.equal(await page.locator('.app-sidebar').isVisible(),false);
     let total = 0;
@@ -186,6 +187,20 @@ async function verify() {
         if (width!==320) await page.screenshot({path:path.join(snapshots,`phase9-study-${view}-${width}.png`),fullPage:false});
       }
     }
+    const generative = chapters.find(chapter => chapter.id === '11.3');
+    for (const width of [1440,390,320]) {
+      await page.setViewportSize({width,height:900});
+      for (const view of ['reading','index','focus']) {
+        await page.goto(base+generative.href+`?view=${view}`+(view==='index'?'':'#question-06'));
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+        if (width!==320) await page.screenshot({path:path.join(snapshots,`phase11-study-${view}-${width}.png`),fullPage:false});
+      }
+    }
+    await page.goto(base+generative.href+'#question-06');
+    await page.getByRole('button',{name:'Open chapter navigation'}).click();
+    const phaseOrder = await page.locator('#mobile-navigation nav').evaluate(nav=>[...nav.children].map(node=>node.dataset.phase||(/Phase 10/.test(node.textContent)?'10':null)).filter(Boolean));
+    assert(phaseOrder.indexOf('10') < phaseOrder.indexOf('11'), 'Coming soon Phase 10 precedes Phase 11');
+    await page.keyboard.press('Escape');
     assert.deepEqual(errors,[]);
     console.log(`PASS: ${total} answer comparisons; ${selectedChapters.length} selected chapters (${chapters.length} registered), review persistence, resume, aliases, deep links, history, and responsive layouts.`);
   }finally{await browser.close();}

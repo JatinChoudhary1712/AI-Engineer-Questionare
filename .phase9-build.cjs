@@ -134,7 +134,7 @@ assert.equal(bank.total_questions,63);assert.equal(new Set(bank.questions.map(q=
 fs.writeFileSync(`${root}/questions.json`,JSON.stringify(bank,null,2)+'\n');
 for(const file of ['question-styles.css','study-interface.css'])fs.copyFileSync(`${templateRoot}/${file}`,`${root}/${file}`);
 fs.writeFileSync(`${root}/study-interface.js`,fs.readFileSync(`${templateRoot}/study-interface.js`,'utf8').replace(/const chapters = \[[\s\S]*?\n\];/,'const chapters = '+JSON.stringify(chapters.map(c=>[c.folder,c.folder]),null,2)+';').replaceAll('LLM and AI engineering chapters','AI agent chapters').replace("overview.textContent = 'Phase 6'","overview.textContent = 'Phase 9'"));
-const state={window:{}};vm.runInNewContext(fs.readFileSync('study-data.js','utf8'),state);const previous=state.window.STUDY_CHAPTERS.filter(c=>c.phase!==9);assert.equal(previous.length,38);
+const state={window:{}};vm.runInNewContext(fs.readFileSync('study-data.js','utf8'),state);const previous=state.window.STUDY_CHAPTERS.filter(c=>c.phase!==9);assert.equal(previous.filter(chapter=>chapter.phase<=8).length,38);
 fs.writeFileSync('study-data.js','// Chapter metadata for the static study interface.\nwindow.STUDY_CHAPTERS = '+JSON.stringify([...previous,...metadata],null,2)+';\n');
 function outline(local){
   const prefix=local?'':encodeURIComponent(root)+'/';

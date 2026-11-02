@@ -386,5 +386,68 @@ window.STUDY_CHAPTERS = [
     "count": 14,
     "topics": 14,
     "description": "Build goal-directed systems with persistence, recovery, escalation, and auditable actions."
+  },
+  {
+    "id": "11.1",
+    "phase": 11,
+    "title": "Variational Autoencoders (VAEs)",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.1%20Variational%20Autoencoders%20(VAEs)/index.html",
+    "count": 4,
+    "topics": 4,
+    "description": "Learn probabilistic latent representations, VAE objectives, sampling, and their limitations."
+  },
+  {
+    "id": "11.2",
+    "phase": 11,
+    "title": "Generative Adversarial Networks (GANs)",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.2%20Generative%20Adversarial%20Networks%20(GANs)/index.html",
+    "count": 6,
+    "topics": 6,
+    "description": "Understand adversarial training, diversity failures, conditioning, and image-generation architectures."
+  },
+  {
+    "id": "11.3",
+    "phase": 11,
+    "title": "Diffusion Models",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.3%20Diffusion%20Models/index.html",
+    "count": 8,
+    "topics": 8,
+    "description": "Connect noise schedules, denoising, sampling, guidance, latent diffusion, and spatial control."
+  },
+  {
+    "id": "11.4",
+    "phase": 11,
+    "title": "Text-to-Image APIs",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.4%20Text-to-Image%20APIs/index.html",
+    "count": 6,
+    "topics": 6,
+    "description": "Design reproducible image-generation integrations and interpret historical model names correctly."
+  },
+  {
+    "id": "11.5",
+    "phase": 11,
+    "title": "Multimodal AI",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.5%20Multimodal%20AI/index.html",
+    "count": 7,
+    "topics": 7,
+    "description": "Compare vision-language representations, multimodal tasks, and evidence checks."
+  },
+  {
+    "id": "11.6",
+    "phase": 11,
+    "title": "Audio AI",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.6%20Audio%20AI/index.html",
+    "count": 5,
+    "topics": 5,
+    "description": "Build speech, synthesis, and music workflows with clear latency and voice-use boundaries."
+  },
+  {
+    "id": "11.7",
+    "phase": 11,
+    "title": "Video AI",
+    "href": "PHASE%2011%20-%20Generative%20AI%20(Beyond%20Text)/11.7%20Video%20AI/index.html",
+    "count": 4,
+    "topics": 4,
+    "description": "Distinguish video generation from understanding and evaluate temporal evidence."
   }
 ];

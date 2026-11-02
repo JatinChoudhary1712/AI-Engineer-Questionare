@@ -1,0 +1,366 @@
+{
+  "phase": "Phase 11 - Generative AI (Beyond Text)",
+  "total_questions": 40,
+  "questions": [
+    {
+      "id": 1,
+      "number": 1,
+      "section": "11.1 Variational Autoencoders (VAEs)",
+      "bullet": "Encoder → latent space → decoder",
+      "type": "conceptual",
+      "question": "How does a variational autoencoder connect an encoder, latent space, and decoder?",
+      "answer": "<p>A VAE learns a probabilistic representation of data and a decoder that generates observations from latent variables.</p><ul><li><strong>Encoder:</strong> Maps an input to parameters of an approximate posterior, often a mean and variance.</li><li><strong>Latent sample:</strong> Draw a representation from that posterior during reconstruction training.</li><li><strong>Decoder:</strong> Maps the latent representation to a distribution over outputs; new generation usually starts from the prior.</li></ul><p><strong>Remember:</strong> A VAE learns distributions over representations and outputs rather than only a deterministic compressed code.</p><p><a href=\"https://arxiv.org/abs/1312.6114\" target=\"_blank\" rel=\"noopener noreferrer\">Auto-Encoding Variational Bayes</a></p>"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "section": "11.1 Variational Autoencoders (VAEs)",
+      "bullet": "KL divergence loss + reconstruction loss",
+      "type": "conceptual",
+      "question": "Why does a VAE combine reconstruction and KL-divergence terms?",
+      "answer": "<p>The objective balances explaining the observed data with keeping the approximate posterior related to a chosen prior.</p><ul><li><strong>Reconstruction:</strong> A negative log-likelihood encourages the decoder to explain the input; its form depends on the output distribution.</li><li><strong>Regularization:</strong> KL divergence penalizes deviation of the approximate posterior from the prior.</li><li><strong>Balance:</strong> Different weights and reductions change the tradeoff; too much pressure can make the latent code uninformative.</li></ul><p><strong>Remember:</strong> Reconstruction error alone does not provide a well-behaved latent space for sampling.</p><p class=\"formula\"><strong>Formula:</strong> <code>Loss = E_q[-log p(x | z)] + KL(q(z | x) || p(z))</code></p>"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "section": "11.1 Variational Autoencoders (VAEs)",
+      "bullet": "Reparameterization trick",
+      "type": "conceptual",
+      "question": "How does the reparameterization trick enable VAE training?",
+      "answer": "<p>Express a random latent sample as a differentiable transformation of encoder outputs and independent noise.</p><ul><li><strong>Gaussian example:</strong> Sample epsilon from a standard normal and compute z as mu plus sigma times epsilon.</li><li><strong>Gradients:</strong> Backpropagate through mu and sigma while the noise distribution itself does not depend on encoder parameters.</li><li><strong>Parameterization:</strong> Predicting log variance can help represent positive variance through exponentiation.</li></ul><p><strong>Remember:</strong> The trick separates the source of randomness from the parameters being optimized.</p><p class=\"formula\"><strong>Formula:</strong> <code>z = mu + exp(0.5 * log_variance) * epsilon, epsilon ~ N(0, I)</code></p><pre><code class=\"language-python\">from math import exp\n\ndef reparameterize(mu, log_variance, epsilon):\n    if not (len(mu) == len(log_variance) == len(epsilon)):\n        raise ValueError(&quot;Latent dimensions must match&quot;)\n    return [m + exp(0.5 * v) * noise\n            for m, v, noise in zip(mu, log_variance, epsilon)]\n\n# Offline illustration; training needs differentiable tensor operations.\nassert reparameterize([0.0], [0.0], [1.0]) == [1.0]</code></pre>"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "section": "11.1 Variational Autoencoders (VAEs)",
+      "bullet": "Applications: image generation, anomaly detection",
+      "type": "conceptual",
+      "question": "How can a VAE support image generation and anomaly detection?",
+      "answer": "<p>It can generate samples from its learned latent model and assign reconstruction-based or probabilistic signals to inputs.</p><ul><li><strong>Generation:</strong> Sample from the prior and decode, evaluating diversity and quality against the task.</li><li><strong>Detection:</strong> Inputs that are poorly explained may be anomaly candidates, subject to calibration.</li><li><strong>Limits:</strong> Reconstruction or likelihood is not a universal anomaly test; some unusual inputs can still be reconstructed well.</li></ul><p><strong>Remember:</strong> Evaluate anomaly thresholds and false positives on representative data rather than assuming errors identify every anomaly.</p>"
+    },
+    {
+      "id": 5,
+      "number": 1,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "Generator vs Discriminator",
+      "type": "conceptual",
+      "question": "What are the roles of a GAN generator and discriminator?",
+      "answer": "<p>A generator produces samples, while a discriminator learns to distinguish training examples from generated samples.</p><ul><li><strong>Generator:</strong> Transforms noise and any conditioning input into a candidate sample.</li><li><strong>Discriminator:</strong> Supplies a learned training signal about whether a sample resembles the training distribution.</li><li><strong>Interaction:</strong> Training alternates or coordinates their updates; the discriminator is not usually needed for generation afterward.</li></ul><p><strong>Remember:</strong> The discriminator is a training opponent, not a guaranteed detector of real-world authenticity.</p>"
+    },
+    {
+      "id": 6,
+      "number": 2,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "Minimax game",
+      "type": "conceptual",
+      "question": "What does the GAN minimax objective try to achieve?",
+      "answer": "<p>The original objective trains opposing models so generated samples become difficult to distinguish from training data.</p><ul><li><strong>Discriminator:</strong> Improve discrimination between real examples and generator outputs.</li><li><strong>Generator:</strong> Improve samples against the discriminator's changing signal.</li><li><strong>Practice:</strong> Non-saturating and other losses can change optimization behavior from the original minimax formulation.</li></ul><p><strong>Remember:</strong> A theoretically motivated game can still be unstable under finite data, models, and optimization.</p><p class=\"formula\"><strong>Formula:</strong> <code>min_G max_D E_x[log D(x)] + E_z[log(1 - D(G(z)))]</code></p><p><a href=\"https://arxiv.org/abs/1406.2661\" target=\"_blank\" rel=\"noopener noreferrer\">Original GAN paper</a></p>"
+    },
+    {
+      "id": 7,
+      "number": 3,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "Mode collapse - the main challenge",
+      "type": "conceptual",
+      "question": "What is mode collapse, and how can it be detected?",
+      "answer": "<p>Mode collapse occurs when a generator produces a limited range of outputs instead of covering the diversity of the data.</p><ul><li><strong>Symptom:</strong> Different latent inputs yield similar samples or omit important categories.</li><li><strong>Evaluation:</strong> Examine diversity and coverage as well as how realistic individual images look.</li><li><strong>Mitigation:</strong> Try appropriate objectives, regularization, architecture, and training balance, then test rather than assuming one fix always works.</li></ul><p><strong>Remember:</strong> Sharp-looking samples can hide poor distribution coverage.</p>"
+    },
+    {
+      "id": 8,
+      "number": 4,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "Conditional GANs (cGAN)",
+      "type": "conceptual",
+      "question": "How does a conditional GAN differ from an unconditional GAN?",
+      "answer": "<p>A conditional GAN uses additional information to guide what is generated and how outputs are judged during training.</p><ul><li><strong>Conditions:</strong> Labels, text, or source images can specify the desired output category or transformation.</li><li><strong>Training:</strong> Provide the relevant condition to the generator and discriminator in the chosen design.</li><li><strong>Validation:</strong> Measure whether samples satisfy the condition while retaining realism and diversity.</li></ul><p><strong>Remember:</strong> Conditioning works through the trained architecture and data, not merely by adding an arbitrary label at inference time.</p>"
+    },
+    {
+      "id": 9,
+      "number": 5,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "StyleGAN, DCGAN",
+      "type": "conceptual",
+      "question": "What architectural ideas distinguish DCGAN and StyleGAN?",
+      "answer": "<p>They illustrate different developments in GAN image synthesis rather than interchangeable model names.</p><ul><li><strong>DCGAN:</strong> Uses a convolutional generator/discriminator design and training conventions for image generation.</li><li><strong>StyleGAN:</strong> Uses a mapping network and style-based controls that influence generation across layers.</li><li><strong>Evaluation:</strong> Compare the exact model version, resolution, data, diversity, and controllability required by the task.</li></ul><p><strong>Remember:</strong> Model-family names identify design ideas, not a universal ranking for every dataset.</p>"
+    },
+    {
+      "id": 10,
+      "number": 6,
+      "section": "11.2 Generative Adversarial Networks (GANs)",
+      "bullet": "Applications: image synthesis, style transfer",
+      "type": "conceptual",
+      "question": "When are GANs useful for image synthesis or style transfer?",
+      "answer": "<p>They can learn to generate images or translate between visual domains when the training setup supports the intended transformation.</p><ul><li><strong>Synthesis:</strong> Learn a distribution of images and sample new examples.</li><li><strong>Translation:</strong> Train an appropriate conditional or image-to-image system for the desired source and target relationship.</li><li><strong>Limits:</strong> Not every GAN performs arbitrary style transfer, preserves identity, or maintains source geometry without additional design.</li></ul><p><strong>Remember:</strong> Choose the task-specific model and evaluate both visual quality and the information that must remain unchanged.</p>"
+    },
+    {
+      "id": 11,
+      "number": 1,
+      "section": "11.3 Diffusion Models",
+      "bullet": "Forward process - adding noise to data",
+      "type": "conceptual",
+      "question": "What happens during the forward process of a diffusion model?",
+      "answer": "<p>A defined noise process gradually corrupts training data according to a schedule.</p><ul><li><strong>Timesteps:</strong> Each noise level specifies how much signal remains and how much randomness is added.</li><li><strong>Training pairs:</strong> Sample a timestep and construct a noisy example from a clean sample and noise.</li><li><strong>Endpoint:</strong> The process is commonly designed to approach a simple distribution such as Gaussian noise.</li></ul><p><strong>Remember:</strong> The forward corruption process provides the supervised denoising problem used in training.</p><p class=\"formula\"><strong>Formula:</strong> <code>x_t = sqrt(alpha_bar_t) * x_0 + sqrt(1 - alpha_bar_t) * epsilon</code></p>"
+    },
+    {
+      "id": 12,
+      "number": 2,
+      "section": "11.3 Diffusion Models",
+      "bullet": "Reverse process - learning to denoise",
+      "type": "conceptual",
+      "question": "How does the reverse diffusion process generate a sample?",
+      "answer": "<p>A learned model guides a sequence of denoising or generative updates from an initial noisy state.</p><ul><li><strong>Prediction:</strong> Depending on the parameterization, predict noise, a clean sample, velocity, or another equivalent training target.</li><li><strong>Sampling:</strong> A scheduler or solver uses those predictions to move through noise levels.</li><li><strong>Output:</strong> In latent diffusion, decode the final latent representation into the image space.</li></ul><p><strong>Remember:</strong> The reverse process is learned generation, not exact recovery of the particular training image that supplied the noise.</p>"
+    },
+    {
+      "id": 13,
+      "number": 3,
+      "section": "11.3 Diffusion Models",
+      "bullet": "DDPM (Denoising Diffusion Probabilistic Models)",
+      "type": "conceptual",
+      "question": "What is the central training idea in DDPM?",
+      "answer": "<p>Denoising Diffusion Probabilistic Models learn a reverse generative process matched to a noise-corruption process.</p><ul><li><strong>Inputs:</strong> Train a denoiser on noisy data with timestep information.</li><li><strong>Objective:</strong> A commonly used simplified loss compares sampled noise with predicted noise.</li><li><strong>Inference:</strong> Generate by repeatedly applying the model through a chosen reverse sampling schedule.</li></ul><p><strong>Remember:</strong> Training objectives and inference schedulers are related choices but need not be the same implementation.</p><p><a href=\"https://arxiv.org/abs/2006.11239\" target=\"_blank\" rel=\"noopener noreferrer\">DDPM original paper</a></p>"
+    },
+    {
+      "id": 14,
+      "number": 4,
+      "section": "11.3 Diffusion Models",
+      "bullet": "Score matching",
+      "type": "conceptual",
+      "question": "What does score matching mean in diffusion modeling?",
+      "answer": "<p>The score is the gradient of the log density with respect to the data variable, not a classification confidence score.</p><ul><li><strong>Learning:</strong> Estimate score information for noisy data distributions.</li><li><strong>Denoising connection:</strong> Under Gaussian corruption, noise prediction and score estimation are related through the noise scale.</li><li><strong>Sampling:</strong> Use the learned direction field within a suitable stochastic or deterministic generation procedure.</li></ul><p><strong>Remember:</strong> A learned score describes local density structure; it is not an image-quality rating.</p>"
+    },
+    {
+      "id": 15,
+      "number": 5,
+      "section": "11.3 Diffusion Models",
+      "bullet": "DDIM - faster sampling",
+      "type": "conceptual",
+      "question": "How can DDIM sampling reduce diffusion generation time?",
+      "answer": "<p>DDIM introduces a family of sampling procedures that can use fewer steps with a compatible trained denoiser.</p><ul><li><strong>Reuse:</strong> Common DDPM-style training can support a DDIM sampling procedure.</li><li><strong>Determinism:</strong> A particular zero-stochasticity setting can make sampling deterministic for fixed inputs and configuration.</li><li><strong>Tradeoff:</strong> Fewer steps can reduce latency while changing fidelity, diversity, or prompt adherence.</li></ul><p><strong>Remember:</strong> Faster sampling is a measured quality-versus-compute choice rather than a promise that every reduced schedule works equally well.</p><p><a href=\"https://arxiv.org/abs/2010.02502\" target=\"_blank\" rel=\"noopener noreferrer\">DDIM original paper</a></p>"
+    },
+    {
+      "id": 16,
+      "number": 6,
+      "section": "11.3 Diffusion Models",
+      "bullet": "Classifier-free guidance",
+      "type": "conceptual",
+      "question": "How does classifier-free guidance steer a diffusion model?",
+      "answer": "<p>It combines conditioned and unconditioned predictions to change the strength of conditioning during sampling.</p><ul><li><strong>Training:</strong> A common setup teaches a model both conditional and unconditional predictions through condition dropping.</li><li><strong>Inference:</strong> Move the unconditional prediction toward the conditional one using a guidance scale.</li><li><strong>Tradeoff:</strong> Strong guidance can improve prompt adherence while reducing diversity or creating artifacts.</li></ul><p><strong>Remember:</strong> Guidance settings are model- and scheduler-dependent, and some modern pipelines expose different controls.</p><p class=\"formula\"><strong>Formula:</strong> <code>epsilon_guided = epsilon_uncond + s * (epsilon_cond - epsilon_uncond)</code></p><p><a href=\"https://arxiv.org/abs/2207.12598\" target=\"_blank\" rel=\"noopener noreferrer\">Classifier-free guidance paper</a></p>"
+    },
+    {
+      "id": 17,
+      "number": 7,
+      "section": "11.3 Diffusion Models",
+      "bullet": "Stable Diffusion architecture",
+      "type": "conceptual",
+      "question": "What are the main parts of a classic Stable Diffusion pipeline?",
+      "answer": "<p>Classic Stable Diffusion combines text conditioning, latent-space denoising, and an image autoencoder.</p><ul><li><strong>Conditioning:</strong> A text encoder produces a representation used to condition generation.</li><li><strong>Latent denoising:</strong> A denoiser, commonly a U-Net in classic versions, iteratively updates image latents with a scheduler.</li><li><strong>Decoding:</strong> The autoencoder's decoder converts final latents to pixels.</li></ul><p><strong>Remember:</strong> Stable Diffusion is a family; do not assume every later checkpoint has the same text encoders, denoiser, or latent configuration.</p><pre><code>Prompt -> Text encoder -> Conditioning\n                                  |\nNoise latents -> Denoiser + scheduler (repeat) -> Final latents\n                                                       |\n                                                 VAE decoder\n                                                       |\n                                                     Image</code></pre><p><a href=\"https://arxiv.org/abs/2112.10752\" target=\"_blank\" rel=\"noopener noreferrer\">Latent diffusion paper</a></p>"
+    },
+    {
+      "id": 18,
+      "number": 8,
+      "section": "11.3 Diffusion Models",
+      "bullet": "ControlNet - conditional generation",
+      "type": "conceptual",
+      "question": "What does ControlNet add to text-to-image diffusion?",
+      "answer": "<p>It adds a way to condition generation on structured controls such as edges, depth, or pose in a compatible pipeline.</p><ul><li><strong>Input:</strong> Prepare the control representation expected by the trained ControlNet model.</li><li><strong>Conditioning:</strong> Combine spatial guidance with the underlying generation model's other inputs.</li><li><strong>Tuning:</strong> Adjust control strength and schedule while checking preservation of required structure.</li></ul><p><strong>Remember:</strong> A control image guides generation but does not guarantee exact reconstruction or semantic correctness.</p><p><a href=\"https://arxiv.org/abs/2302.05543\" target=\"_blank\" rel=\"noopener noreferrer\">ControlNet original paper</a></p>"
+    },
+    {
+      "id": 19,
+      "number": 1,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "DALL-E 3 API - OpenAI",
+      "type": "conceptual",
+      "question": "How should a DALL-E 3 lesson be used in a current OpenAI image integration?",
+      "answer": "<p>Treat DALL-E 3 as a historical API topic and use the official migration and image-generation documentation before implementing a new integration.</p><ul><li><strong>Availability:</strong> OpenAI's deprecation page lists the DALL-E 3 API shutdown as May 12, 2026.</li><li><strong>Architecture:</strong> Keep provider credentials on the backend and validate image requests and outputs.</li><li><strong>Migration:</strong> Select a supported image model and recheck its parameters, capabilities, response format, and costs instead of only changing a model string.</li></ul><p><strong>Remember:</strong> A historical endpoint example should not be presented as a working current API recipe.</p><p><a href=\"https://developers.openai.com/api/docs/deprecations\" target=\"_blank\" rel=\"noopener noreferrer\">Official OpenAI deprecations</a></p><p><a href=\"https://developers.openai.com/api/docs/guides/image-generation\" target=\"_blank\" rel=\"noopener noreferrer\">Supported OpenAI image-generation workflows</a></p>"
+    },
+    {
+      "id": 20,
+      "number": 2,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "Stable Diffusion via Replicate / HuggingFace",
+      "type": "conceptual",
+      "question": "How do you integrate Stable Diffusion through Replicate or Hugging Face?",
+      "answer": "<p>Choose an exact supported model or checkpoint and follow the serving platform's input, output, and execution contract.</p><ul><li><strong>Configuration:</strong> Pin useful version and generation settings, including dimensions and seed where supported.</li><li><strong>Lifecycle:</strong> Handle synchronous results or asynchronous jobs, failures, cancellation, and artifact retention as the platform requires.</li><li><strong>Deployment:</strong> Distinguish hosted inference from running Diffusers locally, which makes you responsible for hardware, memory, and runtime setup.</li></ul><p><strong>Remember:</strong> A model family name is not a complete reproducible deployment configuration.</p><p><a href=\"https://huggingface.co/docs/diffusers/using-diffusers/conditional_image_generation\" target=\"_blank\" rel=\"noopener noreferrer\">Diffusers text-to-image guide</a></p><p><a href=\"https://replicate.com/docs/topics/predictions/create-a-prediction\" target=\"_blank\" rel=\"noopener noreferrer\">Replicate prediction lifecycle</a></p>"
+    },
+    {
+      "id": 21,
+      "number": 3,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "Midjourney (no API, UI-based)",
+      "type": "conceptual",
+      "question": "What should you check before treating Midjourney as an API provider?",
+      "answer": "<p>Verify official developer access rather than assuming that a third-party wrapper is an official supported interface.</p><ul><li><strong>Roadmap context:</strong> The official FAQ describes the service without a public API offering.</li><li><strong>Workflow:</strong> Use supported interfaces and current provider guidance for the intended integration.</li><li><strong>Alternatives:</strong> If the application requires programmatic generation, compare providers with documented suitable APIs.</li></ul><p><strong>Remember:</strong> A UI product and a supported developer API are different integration contracts.</p><p><a href=\"https://github.com/midjourney/docs/blob/main/data/faq.txt\" target=\"_blank\" rel=\"noopener noreferrer\">Official Midjourney FAQ</a></p>"
+    },
+    {
+      "id": 22,
+      "number": 4,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "Ideogram, Flux - newer models",
+      "type": "conceptual",
+      "question": "How should Ideogram and FLUX models be compared for a product?",
+      "answer": "<p>Compare exact model versions and integration contracts on the outputs your application needs.</p><ul><li><strong>Quality:</strong> Evaluate composition, text rendering, editing behavior, and consistency where relevant.</li><li><strong>Operations:</strong> Measure latency, output formats, supported inputs, and repeatability with your settings.</li><li><strong>Access:</strong> Check provider documentation and model licenses rather than assuming all checkpoints or hosted services have identical terms.</li></ul><p><strong>Remember:</strong> Newer is not a substitute for task-specific evaluation.</p><p><a href=\"https://developer.ideogram.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">Ideogram developer documentation</a></p><p><a href=\"https://docs.bfl.ai/\" target=\"_blank\" rel=\"noopener noreferrer\">Black Forest Labs documentation</a></p>"
+    },
+    {
+      "id": 23,
+      "number": 5,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "Prompt engineering for image generation",
+      "type": "conceptual",
+      "question": "What makes an image-generation prompt clear and testable?",
+      "answer": "<p>Describe the subject, composition, visual treatment, and required constraints in concrete terms.</p><ul><li><strong>Scene:</strong> State what should be present and the important relationships among elements.</li><li><strong>Appearance:</strong> Specify lighting, viewpoint, medium, palette, and framing when they matter.</li><li><strong>Evaluation:</strong> Change a small number of variables at a time and record the model and settings with each comparison.</li></ul><p><strong>Remember:</strong> Clear visual requirements are easier to assess than a long list of vague quality adjectives.</p><p class=\"example\"><strong>Example:</strong> A ceramic mug on a pale wooden table, side-lit by a window, close-up product photograph, neutral background, subject centered with space above for a headline. Review composition and lighting separately from whether the object looks plausible.</p>"
+    },
+    {
+      "id": 24,
+      "number": 6,
+      "section": "11.4 Text-to-Image APIs",
+      "bullet": "Negative prompts",
+      "type": "conceptual",
+      "question": "What does a negative prompt do, and when is it supported?",
+      "answer": "<p>It supplies undesired concepts through a pipeline-specific conditioning mechanism when that model and interface support it.</p><ul><li><strong>Mechanism:</strong> In common diffusion workflows, negative conditioning can affect the guidance prediction rather than acting as a guaranteed exclusion filter.</li><li><strong>Compatibility:</strong> Check the selected model and API; not every generator accepts a negative_prompt parameter.</li><li><strong>Limits:</strong> Negative wording can be ignored or have side effects, so inspect results against the actual requirements.</li></ul><p><strong>Remember:</strong> A negative prompt is a generation control, not a reliable safety or validation boundary.</p>"
+    },
+    {
+      "id": 25,
+      "number": 1,
+      "section": "11.5 Multimodal AI",
+      "bullet": "Vision-Language Models (VLMs)",
+      "type": "conceptual",
+      "question": "What is a vision-language model?",
+      "answer": "<p>It is a model that connects visual information and language for tasks such as describing, querying, or reasoning about images.</p><ul><li><strong>Representation:</strong> Visual features must be connected to a language representation or generation component.</li><li><strong>Inputs:</strong> Supported image formats, resolution, and media limits depend on the model and serving interface.</li><li><strong>Limits:</strong> Fine text, counting, spatial relationships, and unusual images can still cause mistakes.</li></ul><p><strong>Remember:</strong> Multimodal capability does not make every visual interpretation reliable.</p>"
+    },
+    {
+      "id": 26,
+      "number": 2,
+      "section": "11.5 Multimodal AI",
+      "bullet": "GPT-4V / GPT-4o - text + image input",
+      "type": "conceptual",
+      "question": "How should GPT-4V and GPT-4o image-input examples be interpreted?",
+      "answer": "<p>They illustrate vision-capable model interfaces from particular model generations, not permanent availability guarantees.</p><ul><li><strong>Request:</strong> Provide images using the supported typed input format with a clear task instruction.</li><li><strong>Budget:</strong> Account for image processing, context limits, latency, and privacy.</li><li><strong>Compatibility:</strong> Check the actual selected model's supported modalities and lifecycle before copying an older example.</li></ul><p><strong>Remember:</strong> Image understanding and image generation are separate capabilities to verify.</p>"
+    },
+    {
+      "id": 27,
+      "number": 3,
+      "section": "11.5 Multimodal AI",
+      "bullet": "Claude 3 Vision",
+      "type": "conceptual",
+      "question": "What should an application consider when using Claude vision?",
+      "answer": "<p>Match the chosen Claude model and API's image support to a concrete visual task.</p><ul><li><strong>Preparation:</strong> Supply supported image content with appropriate resolution and relevant surrounding instructions.</li><li><strong>Reasoning:</strong> Identify the image or region being discussed when multiple visual inputs are present.</li><li><strong>Verification:</strong> Check uncertain OCR, tiny details, charts, or consequential interpretations against source data.</li></ul><p><strong>Remember:</strong> Claude 3 Vision is a roadmap-era reference; deployment depends on the exact supported model and request format.</p>"
+    },
+    {
+      "id": 28,
+      "number": 4,
+      "section": "11.5 Multimodal AI",
+      "bullet": "Gemini (text + image + video + audio)",
+      "type": "conceptual",
+      "question": "How does a multimodal Gemini workflow differ from a text-only workflow?",
+      "answer": "<p>It must prepare supported media inputs and interpret outputs according to the selected model's modality capabilities.</p><ul><li><strong>Media:</strong> Text, images, video, and audio can have different upload, size, duration, and tokenization rules.</li><li><strong>Task:</strong> Decide whether the user needs understanding, transcription, generation, or a combination.</li><li><strong>Evaluation:</strong> Test cross-modal questions and timing or source alignment rather than only text fluency.</li></ul><p><strong>Remember:</strong> A provider's multimodal family does not imply identical capabilities across all model versions and endpoints.</p>"
+    },
+    {
+      "id": 29,
+      "number": 5,
+      "section": "11.5 Multimodal AI",
+      "bullet": "LLaVA - open-source VLM",
+      "type": "conceptual",
+      "question": "What is the main idea behind LLaVA-style visual instruction models?",
+      "answer": "<p>They connect visual representations to a language model and train the system to follow instructions involving images.</p><ul><li><strong>Components:</strong> A vision encoder and a learned connection to the language model support image-conditioned responses.</li><li><strong>Checkpoints:</strong> Architecture, training, context, licensing, and serving requirements vary across releases.</li><li><strong>Evaluation:</strong> Compare actual visual-task performance and hardware costs rather than assuming an open checkpoint is interchangeable with a hosted model.</li></ul><p><strong>Remember:</strong> Loading compatible weights, preprocessing, and conversation formatting is essential.</p>"
+    },
+    {
+      "id": 30,
+      "number": 6,
+      "section": "11.5 Multimodal AI",
+      "bullet": "CLIP - connecting text and images",
+      "type": "conceptual",
+      "question": "How does CLIP connect images and text?",
+      "answer": "<p>CLIP learns image and text representations that can be compared in a shared embedding space.</p><ul><li><strong>Training:</strong> Contrastive learning encourages matching image-text pairs to align relative to other pairs.</li><li><strong>Uses:</strong> Similarity supports retrieval or scoring candidate text labels for zero-shot classification.</li><li><strong>Distinction:</strong> CLIP itself is not a conversational text decoder or an image generator.</li></ul><p><strong>Remember:</strong> Shared embedding similarity is useful but can reflect dataset biases and wording choices.</p><p><a href=\"https://arxiv.org/abs/2103.00020\" target=\"_blank\" rel=\"noopener noreferrer\">CLIP original paper</a></p>"
+    },
+    {
+      "id": 31,
+      "number": 7,
+      "section": "11.5 Multimodal AI",
+      "bullet": "Applications: image captioning, visual QA, document understanding",
+      "type": "conceptual",
+      "question": "How do captioning, visual question answering, and document understanding differ?",
+      "answer": "<p>They ask different questions of visual content and need different evaluation criteria.</p><ul><li><strong>Captioning:</strong> Summarize important visible content without inventing unsupported details.</li><li><strong>Visual QA:</strong> Answer a specific question that may require localization, counting, or relating objects.</li><li><strong>Documents:</strong> Preserve text, layout, tables, reading order, and source references rather than relying on a generic image description.</li></ul><p><strong>Remember:</strong> Choose preprocessing and checks for the actual output, not just the presence of an image input.</p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Task</th><th scope=\"col\">Useful checks</th></tr></thead><tbody><tr><th scope=\"row\">Image captioning</th><td>Visible facts and important omissions</td></tr><tr><th scope=\"row\">Visual question answering</th><td>Question-specific correctness and evidence</td></tr><tr><th scope=\"row\">Document extraction</th><td>Text accuracy, layout, fields, tables, and source location</td></tr></tbody></table></div>"
+    },
+    {
+      "id": 32,
+      "number": 1,
+      "section": "11.6 Audio AI",
+      "bullet": "OpenAI Whisper - speech-to-text",
+      "type": "conceptual",
+      "question": "What does Whisper do, and what can go wrong in transcription?",
+      "answer": "<p>Whisper is a speech-recognition model family that maps audio to text and supports related speech tasks.</p><ul><li><strong>Inputs:</strong> Use the expected audio preprocessing and distinguish local model execution from a hosted transcription API.</li><li><strong>Evaluation:</strong> Test accents, noise, language, terminology, timestamps, and silence handling on your own recordings.</li><li><strong>Reliability:</strong> Check uncertain or hallucinated transcripts against the audio before using them for important decisions.</li></ul><p><strong>Remember:</strong> Speech-to-text produces an interpretation of audio rather than a perfect verbatim record.</p><p><a href=\"https://github.com/openai/whisper\" target=\"_blank\" rel=\"noopener noreferrer\">Whisper model code and documentation</a></p>"
+    },
+    {
+      "id": 33,
+      "number": 2,
+      "section": "11.6 Audio AI",
+      "bullet": "TTS: OpenAI TTS, ElevenLabs, Coqui",
+      "type": "conceptual",
+      "question": "How should OpenAI TTS, ElevenLabs, and Coqui-based TTS be compared?",
+      "answer": "<p>Compare the exact service or model for intelligibility, voice options, language, latency, and deployment needs.</p><ul><li><strong>Output:</strong> Choose supported formats and sample rates for the playback or downstream processing path.</li><li><strong>Operations:</strong> Hosted services and locally deployed software have different credential, scaling, and maintenance responsibilities.</li><li><strong>Compatibility:</strong> Check current model access, project status, voice permissions, and licensing before reusing a roadmap example.</li></ul><p><strong>Remember:</strong> Text-to-speech quality and operating constraints both matter for a usable voice product.</p><p><a href=\"https://developers.openai.com/api/docs/guides/text-to-speech\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI text-to-speech documentation</a></p><p><a href=\"https://elevenlabs.io/docs/overview/capabilities/voices\" target=\"_blank\" rel=\"noopener noreferrer\">ElevenLabs voice capabilities</a></p><p><a href=\"https://github.com/coqui-ai/TTS\" target=\"_blank\" rel=\"noopener noreferrer\">Coqui TTS project</a></p>"
+    },
+    {
+      "id": 34,
+      "number": 3,
+      "section": "11.6 Audio AI",
+      "bullet": "Music generation: Suno, Udio",
+      "type": "conceptual",
+      "question": "How is music generation different from ordinary text-to-speech?",
+      "answer": "<p>It models musical structure and sound rather than merely reading supplied text aloud.</p><ul><li><strong>Conditioning:</strong> A request may specify instrumentation, mood, tempo, structure, or lyrics depending on the product.</li><li><strong>Evaluation:</strong> Listen for coherence, timing, audio quality, and whether the output matches the creative brief.</li><li><strong>Integration:</strong> Suno and Udio are product examples; verify supported access, export behavior, and usage terms instead of assuming a public API.</li></ul><p><strong>Remember:</strong> A generated track is an audio artifact that needs listening and workflow checks, not just a text response.</p>"
+    },
+    {
+      "id": 35,
+      "number": 4,
+      "section": "11.6 Audio AI",
+      "bullet": "Voice cloning",
+      "type": "conceptual",
+      "question": "What is voice cloning, and what boundaries should a product establish?",
+      "answer": "<p>Voice cloning conditions synthesis on recordings or a representation of a particular speaker's vocal characteristics.</p><ul><li><strong>Permission:</strong> Use authorized recordings and obtain the required speaker consent for the intended use.</li><li><strong>Protection:</strong> Restrict enrollment, voice access, and retained recordings, and distinguish synthetic output where appropriate.</li><li><strong>Limits:</strong> A similar-sounding voice is not proof of identity or authority and should not be used as an authentication guarantee.</li></ul><p><strong>Remember:</strong> Voice similarity is a generation feature, not permission to impersonate a person.</p>"
+    },
+    {
+      "id": 36,
+      "number": 5,
+      "section": "11.6 Audio AI",
+      "bullet": "Real-time speech processing",
+      "type": "conceptual",
+      "question": "What makes real-time speech processing operationally different?",
+      "answer": "<p>The system must process changing audio incrementally while meeting interactive timing and turn-taking needs.</p><ul><li><strong>Pipeline:</strong> Coordinate capture, voice activity detection, transcription or speech-model processing, and playback.</li><li><strong>State:</strong> Distinguish partial and final transcripts and handle interruption or barge-in without replaying stale output.</li><li><strong>Latency:</strong> Measure buffering, networking, model processing, and output audio rather than only generation speed.</li></ul><p><strong>Remember:</strong> A responsive conversation needs correct streaming state as well as a fast model.</p>"
+    },
+    {
+      "id": 37,
+      "number": 1,
+      "section": "11.7 Video AI",
+      "bullet": "Sora (OpenAI) - text-to-video",
+      "type": "conceptual",
+      "question": "How should the roadmap's Sora text-to-video topic be studied now?",
+      "answer": "<p>Study the generation concept while checking the named product and API's lifecycle before planning an integration.</p><ul><li><strong>Historical capability:</strong> Text-to-video generation produces a temporally structured visual sequence from conditioning inputs.</li><li><strong>Availability:</strong> OpenAI's deprecation page lists the Videos API and Sora 2 shutdown as September 24, 2026.</li><li><strong>Integration lesson:</strong> Use supported documented services and evaluate motion, consistency, duration, and artifact handling rather than copying a retired endpoint.</li></ul><p><strong>Remember:</strong> A model's research or product history is different from current developer access.</p><p><a href=\"https://developers.openai.com/api/docs/deprecations\" target=\"_blank\" rel=\"noopener noreferrer\">Official OpenAI deprecations: Sora and Videos API</a></p>"
+    },
+    {
+      "id": 38,
+      "number": 2,
+      "section": "11.7 Video AI",
+      "bullet": "Runway ML, Pika Labs",
+      "type": "conceptual",
+      "question": "What should you evaluate when integrating Runway or Pika video generation?",
+      "answer": "<p>Evaluate the exact product, model, and supported integration path against the intended video workflow.</p><ul><li><strong>Inputs:</strong> Check prompt, reference image, clip, duration, and output requirements supported by the chosen model.</li><li><strong>Jobs:</strong> Handle asynchronous status, failures, cancellation, downloads, and retention where relevant.</li><li><strong>Quality:</strong> Inspect temporal consistency, motion, subject identity, and prompt adherence across the whole clip.</li></ul><p><strong>Remember:</strong> A convincing single frame is not enough to validate a generated video.</p><p><a href=\"https://docs.dev.runwayml.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Runway developer documentation</a></p><p><a href=\"https://pika.art/\" target=\"_blank\" rel=\"noopener noreferrer\">Pika official product and developer entry points</a></p>"
+    },
+    {
+      "id": 39,
+      "number": 3,
+      "section": "11.7 Video AI",
+      "bullet": "Video understanding with Gemini",
+      "type": "conceptual",
+      "question": "How can Gemini support video understanding?",
+      "answer": "<p>Supported Gemini workflows process video input to answer questions or extract information about its content.</p><ul><li><strong>Preparation:</strong> Follow the selected model's media-upload, duration, resolution, and context requirements.</li><li><strong>Time:</strong> Preserve timestamps and evaluate whether sampling captures the events the question depends on.</li><li><strong>Evidence:</strong> Verify important claims against the original clip and do not assume an understanding model also offers video generation.</li></ul><p><strong>Remember:</strong> Video input support does not guarantee that every brief event is observed or interpreted correctly.</p><p><a href=\"https://ai.google.dev/gemini-api/docs/video-understanding\" target=\"_blank\" rel=\"noopener noreferrer\">Gemini video-understanding documentation</a></p>"
+    },
+    {
+      "id": 40,
+      "number": 4,
+      "section": "11.7 Video AI",
+      "bullet": "Frame-by-frame analysis",
+      "type": "conceptual",
+      "question": "What are the strengths and limitations of frame-by-frame video analysis?",
+      "answer": "<p>It reduces video processing to selected images, making some tasks simpler while losing continuous temporal and audio information.</p><ul><li><strong>Sampling:</strong> Choose frames by time interval or events and retain their timestamps.</li><li><strong>Analysis:</strong> Use image tasks such as OCR, scene description, or object detection on the chosen frames.</li><li><strong>Limits:</strong> Brief actions, motion direction, continuity, and audio cues may be missed; avoid treating sparse frames as complete evidence.</li></ul><p><strong>Remember:</strong> Frame sampling is an explicit information tradeoff that must fit the question.</p><pre><code class=\"language-python\">from math import ceil, isfinite\n\ndef frame_times(duration_seconds, interval_seconds):\n    if not (isfinite(duration_seconds) and isfinite(interval_seconds)):\n        raise ValueError(&quot;Times must be finite&quot;)\n    if duration_seconds &lt; 0 or interval_seconds &lt;= 0:\n        raise ValueError(&quot;Duration must be nonnegative and interval positive&quot;)\n    count = ceil(duration_seconds / interval_seconds)\n    return [i * interval_seconds for i in range(count)]\n\nassert frame_times(2.5, 1.0) == [0.0, 1.0, 2.0]\n# Illustration only: decode frames at these times and retain their timestamps.</code></pre>"
+    }
+  ]
+}
