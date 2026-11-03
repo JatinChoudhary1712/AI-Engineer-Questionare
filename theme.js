@@ -7,7 +7,7 @@
   let selected = null;
   try { const stored = localStorage.getItem(key); if (valid(stored)) selected = stored; } catch { /* Use device preference when storage is unavailable. */ }
   const apply = () => {
-    document.documentElement.dataset.theme = selected || (preference.matches ? 'dark' : 'light');
+    document.documentElement.dataset.theme = selected || 'light';
     window.dispatchEvent(new Event('recall:theme'));
   };
   window.RecallTheme = {

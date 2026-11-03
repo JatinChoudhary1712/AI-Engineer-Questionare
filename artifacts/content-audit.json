@@ -1,0 +1,3948 @@
+{
+  "sheets": 50,
+  "questions": 713,
+  "phaseCounts": [
+    {
+      "phase": 0,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 3
+    },
+    {
+      "phase": 1,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 12
+    },
+    {
+      "phase": 2,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 5
+    },
+    {
+      "phase": 3,
+      "sheets": 5,
+      "questions": 151,
+      "officialChapters": 6
+    },
+    {
+      "phase": 4,
+      "sheets": 7,
+      "questions": 112,
+      "officialChapters": 7
+    },
+    {
+      "phase": 5,
+      "sheets": 9,
+      "questions": 131,
+      "officialChapters": 9
+    },
+    {
+      "phase": 6,
+      "sheets": 5,
+      "questions": 95,
+      "officialChapters": 5
+    },
+    {
+      "phase": 7,
+      "sheets": 6,
+      "questions": 67,
+      "officialChapters": 6
+    },
+    {
+      "phase": 8,
+      "sheets": 6,
+      "questions": 54,
+      "officialChapters": 6
+    },
+    {
+      "phase": 9,
+      "sheets": 5,
+      "questions": 63,
+      "officialChapters": 5
+    },
+    {
+      "phase": 10,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 6
+    },
+    {
+      "phase": 11,
+      "sheets": 7,
+      "questions": 40,
+      "officialChapters": 7
+    },
+    {
+      "phase": 12,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 10
+    },
+    {
+      "phase": 13,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 6
+    },
+    {
+      "phase": 14,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 5
+    },
+    {
+      "phase": 15,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 5
+    },
+    {
+      "phase": 16,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 5
+    },
+    {
+      "phase": 17,
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 6
+    },
+    {
+      "phase": "capstone",
+      "sheets": 0,
+      "questions": 0,
+      "officialChapters": 1
+    }
+  ],
+  "mappings": [
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Learning paradigms",
+      "canonicalTopic": "Supervised vs Unsupervised vs Reinforcement Learning",
+      "topicId": "3.1-point-0",
+      "questions": 6,
+      "review": false
+    },
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Data splits",
+      "canonicalTopic": "Training set, validation set, test set",
+      "topicId": "3.1-point-1",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Overfitting & underfitting",
+      "canonicalTopic": "Overfitting and underfitting",
+      "topicId": "3.1-point-2",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Bias–variance tradeoff",
+      "canonicalTopic": "Bias-variance tradeoff",
+      "topicId": "3.1-point-3",
+      "questions": 4,
+      "review": false
+    },
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Cross-validation",
+      "canonicalTopic": "Cross-validation (k-fold)",
+      "topicId": "3.1-point-4",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "3.1",
+      "sourceTopic": "Evaluation metrics",
+      "canonicalTopic": "Evaluation metrics: Accuracy, Precision, Recall, F1, AUC-ROC",
+      "topicId": "3.1-point-5",
+      "questions": 12,
+      "review": false
+    },
+    {
+      "sheet": "3.2",
+      "sourceTopic": "Linear regression - closed form and gradient descent",
+      "canonicalTopic": "Linear regression - closed form and gradient descent",
+      "topicId": "3.2-point-0",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.2",
+      "sourceTopic": "Logistic regression - sigmoid output and binary classification",
+      "canonicalTopic": "Logistic regression - sigmoid output, binary classification",
+      "topicId": "3.2-point-1",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "3.2",
+      "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
+      "canonicalTopic": "Cost functions: MSE, Binary Cross-Entropy",
+      "topicId": "3.2-point-2",
+      "questions": 6,
+      "review": false
+    },
+    {
+      "sheet": "3.2",
+      "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
+      "canonicalTopic": "Regularization: Ridge (L2), Lasso (L1)",
+      "topicId": "3.2-point-3",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.2",
+      "sourceTopic": "Multi-class classification - One-vs-Rest",
+      "canonicalTopic": "Multi-class classification: One-vs-Rest",
+      "topicId": "3.2-point-4",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "3.3",
+      "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
+      "canonicalTopic": "Decision trees - splitting criteria (Gini, entropy)",
+      "topicId": "3.3-point-0",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.3",
+      "sourceTopic": "Random forests - bagging of decision trees",
+      "canonicalTopic": "Random forests - bagging of decision trees",
+      "topicId": "3.3-point-1",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.3",
+      "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
+      "canonicalTopic": "Gradient boosting - XGBoost, LightGBM (used in ML features)",
+      "topicId": "3.3-point-2",
+      "questions": 8,
+      "review": false
+    },
+    {
+      "sheet": "3.3",
+      "sourceTopic": "Feature importance",
+      "canonicalTopic": "Feature importance",
+      "topicId": "3.3-point-3",
+      "questions": 6,
+      "review": false
+    },
+    {
+      "sheet": "3.4",
+      "sourceTopic": "K-Means clustering",
+      "canonicalTopic": "K-Means clustering",
+      "topicId": "3.4-point-0",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.4",
+      "sourceTopic": "DBSCAN",
+      "canonicalTopic": "DBSCAN",
+      "topicId": "3.4-point-1",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.4",
+      "sourceTopic": "PCA - dimensionality reduction and embeddings",
+      "canonicalTopic": "PCA - dimensionality reduction (connects to embeddings)",
+      "topicId": "3.4-point-2",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.4",
+      "sourceTopic": "t-SNE / UMAP - high-dimensional embedding visualization",
+      "canonicalTopic": "t-SNE / UMAP - visualization of high-dimensional data (embedding visualization)",
+      "topicId": "3.4-point-3",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.5",
+      "sourceTopic": "Grid search and random search",
+      "canonicalTopic": "Grid search, random search",
+      "topicId": "3.5-point-0",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "3.5",
+      "sourceTopic": "Bayesian optimization",
+      "canonicalTopic": "Bayesian optimization",
+      "topicId": "3.5-point-1",
+      "questions": 6,
+      "review": false
+    },
+    {
+      "sheet": "3.5",
+      "sourceTopic": "Learning rate, batch size, epochs, and layers",
+      "canonicalTopic": "Learning rate, batch size, epochs, layers",
+      "topicId": "3.5-point-2",
+      "questions": 8,
+      "review": false
+    },
+    {
+      "sheet": "3.5",
+      "sourceTopic": "Early stopping",
+      "canonicalTopic": "Early stopping",
+      "topicId": "3.5-point-3",
+      "questions": 7,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Neuron, Perceptron, MLP",
+      "canonicalTopic": "Neuron, Perceptron, MLP",
+      "topicId": "4.1-point-0",
+      "questions": 4,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "canonicalTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "topicId": "4.1-point-1",
+      "questions": 6,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Forward pass - how information flows",
+      "canonicalTopic": "Forward pass - how information flows",
+      "topicId": "4.1-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Backpropagation - how gradients flow backward",
+      "canonicalTopic": "Backpropagation - how gradients flow backward",
+      "topicId": "4.1-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Weight initialization strategies",
+      "canonicalTopic": "Weight initialization strategies",
+      "topicId": "4.1-point-4",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.1",
+      "sourceTopic": "Vanishing / exploding gradient problem",
+      "canonicalTopic": "Vanishing / exploding gradient problem",
+      "topicId": "4.1-point-5",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.2",
+      "sourceTopic": "Batch normalization - stabilizing training",
+      "canonicalTopic": "Batch normalization - stabilizing training",
+      "topicId": "4.2-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.2",
+      "sourceTopic": "Layer normalization - used in transformers",
+      "canonicalTopic": "Layer normalization - used in transformers",
+      "topicId": "4.2-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.2",
+      "sourceTopic": "Dropout - stochastic regularization",
+      "canonicalTopic": "Dropout - stochastic regularization",
+      "topicId": "4.2-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.2",
+      "sourceTopic": "Residual connections (skip connections) - used in every modern model",
+      "canonicalTopic": "Residual connections (skip connections) - used in every modern model",
+      "topicId": "4.2-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.2",
+      "sourceTopic": "Gradient clipping",
+      "canonicalTopic": "Gradient clipping",
+      "topicId": "4.2-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.3",
+      "sourceTopic": "Convolution operation - feature detection",
+      "canonicalTopic": "Convolution operation - feature detection",
+      "topicId": "4.3-point-0",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.3",
+      "sourceTopic": "Pooling layers - spatial downsampling",
+      "canonicalTopic": "Pooling layers - spatial downsampling",
+      "topicId": "4.3-point-1",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.3",
+      "sourceTopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "canonicalTopic": "CNN architectures: LeNet, AlexNet, VGG, ResNet",
+      "topicId": "4.3-point-2",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "4.3",
+      "sourceTopic": "Transfer learning with CNNs",
+      "canonicalTopic": "Transfer learning with CNNs",
+      "topicId": "4.3-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.3",
+      "sourceTopic": "Applications: image classification, object detection",
+      "canonicalTopic": "Applications: image classification, object detection",
+      "topicId": "4.3-point-4",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "RNN - processing sequences one step at a time",
+      "canonicalTopic": "RNN - processing sequences one step at a time",
+      "topicId": "4.4-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "Hidden state - memory across time steps",
+      "canonicalTopic": "Hidden state - memory across time steps",
+      "topicId": "4.4-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "Vanishing gradient in RNNs",
+      "canonicalTopic": "Vanishing gradient in RNNs",
+      "topicId": "4.4-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "LSTM - cell state, forget/input/output gates",
+      "canonicalTopic": "LSTM - cell state, forget/input/output gates",
+      "topicId": "4.4-point-3",
+      "questions": 5,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "GRU - simpler LSTM alternative",
+      "canonicalTopic": "GRU - simpler LSTM alternative",
+      "topicId": "4.4-point-4",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "Bidirectional RNNs",
+      "canonicalTopic": "Bidirectional RNNs",
+      "topicId": "4.4-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "Seq2Seq: encoder + decoder",
+      "canonicalTopic": "Seq2Seq: encoder + decoder",
+      "topicId": "4.4-point-6",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.4",
+      "sourceTopic": "Beam search decoding",
+      "canonicalTopic": "Beam search decoding",
+      "topicId": "4.4-point-7",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.5",
+      "sourceTopic": "Attention as \"soft\" alignment",
+      "canonicalTopic": "Attention as \"soft\" alignment",
+      "topicId": "4.5-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.5",
+      "sourceTopic": "Additive vs multiplicative attention",
+      "canonicalTopic": "Additive vs multiplicative attention",
+      "topicId": "4.5-point-1",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.5",
+      "sourceTopic": "Bahdanau attention for seq2seq",
+      "canonicalTopic": "Bahdanau attention for seq2seq",
+      "topicId": "4.5-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.5",
+      "sourceTopic": "Why attention solved the bottleneck problem",
+      "canonicalTopic": "Why attention solved the bottleneck problem",
+      "topicId": "4.5-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Tensors - creation, operations, GPU",
+      "canonicalTopic": "Tensors - creation, operations, GPU",
+      "topicId": "4.6-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "torch.nn.Module - building models",
+      "canonicalTopic": "torch.nn.Module - building models",
+      "topicId": "4.6-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "torch.optim - Adam, SGD, etc.",
+      "canonicalTopic": "torch.optim - Adam, SGD, etc.",
+      "topicId": "4.6-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Custom datasets with torch.utils.data.Dataset",
+      "canonicalTopic": "Custom datasets with torch.utils.data.Dataset",
+      "topicId": "4.6-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "DataLoader - batching and shuffling",
+      "canonicalTopic": "DataLoader - batching and shuffling",
+      "topicId": "4.6-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Training loop: forward → loss → backward → step",
+      "canonicalTopic": "Training loop: forward → loss → backward → step",
+      "topicId": "4.6-point-5",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "model.eval() vs model.train()",
+      "canonicalTopic": "model.eval() vs model.train()",
+      "topicId": "4.6-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Saving/loading: torch.save(), torch.load()",
+      "canonicalTopic": "Saving/loading: torch.save(), torch.load()",
+      "topicId": "4.6-point-7",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Moving to GPU: .to(device)",
+      "canonicalTopic": "Moving to GPU: .to(device)",
+      "topicId": "4.6-point-8",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Gradient computation: .requires_grad, torch.no_grad()",
+      "canonicalTopic": "Gradient computation: .requires_grad, torch.no_grad()",
+      "topicId": "4.6-point-9",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Custom loss functions",
+      "canonicalTopic": "Custom loss functions",
+      "topicId": "4.6-point-10",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.6",
+      "sourceTopic": "Learning rate schedulers",
+      "canonicalTopic": "Learning rate schedulers",
+      "topicId": "4.6-point-11",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.7",
+      "sourceTopic": "What is pretraining and why it matters",
+      "canonicalTopic": "What is pretraining and why it matters",
+      "topicId": "4.7-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.7",
+      "sourceTopic": "Fine-tuning vs feature extraction",
+      "canonicalTopic": "Fine-tuning vs feature extraction",
+      "topicId": "4.7-point-1",
+      "questions": 3,
+      "review": false
+    },
+    {
+      "sheet": "4.7",
+      "sourceTopic": "Freezing layers",
+      "canonicalTopic": "Freezing layers",
+      "topicId": "4.7-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.7",
+      "sourceTopic": "ImageNet moment for NLP",
+      "canonicalTopic": "ImageNet moment for NLP",
+      "topicId": "4.7-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "4.7",
+      "sourceTopic": "Using HuggingFace pretrained models",
+      "canonicalTopic": "Using HuggingFace pretrained models",
+      "topicId": "4.7-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Tokenization - words, subwords, characters",
+      "canonicalTopic": "Tokenization - words, subwords, characters",
+      "topicId": "5.1-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Lowercasing, punctuation removal, whitespace normalization",
+      "canonicalTopic": "Lowercasing, punctuation removal, whitespace normalization",
+      "topicId": "5.1-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Stopword removal - when to and when not to",
+      "canonicalTopic": "Stopword removal - when to and when not to",
+      "topicId": "5.1-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Stemming vs Lemmatization",
+      "canonicalTopic": "Stemming vs Lemmatization",
+      "topicId": "5.1-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Sentence segmentation",
+      "canonicalTopic": "Sentence segmentation",
+      "topicId": "5.1-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Handling special tokens: URLs, emails, hashtags",
+      "canonicalTopic": "Handling special tokens: URLs, emails, hashtags",
+      "topicId": "5.1-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.1",
+      "sourceTopic": "Unicode and encoding issues (utf-8)",
+      "canonicalTopic": "Unicode and encoding issues (utf-8)",
+      "topicId": "5.1-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.2",
+      "sourceTopic": "Bag of Words (BoW)",
+      "canonicalTopic": "Bag of Words (BoW)",
+      "topicId": "5.2-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.2",
+      "sourceTopic": "TF-IDF - formula and intuition",
+      "canonicalTopic": "TF-IDF - formula and intuition",
+      "topicId": "5.2-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.2",
+      "sourceTopic": "N-grams - capturing context",
+      "canonicalTopic": "N-grams - capturing context",
+      "topicId": "5.2-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.2",
+      "sourceTopic": "One-hot encoding - and why it fails at scale",
+      "canonicalTopic": "One-hot encoding - and why it fails at scale",
+      "topicId": "5.2-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.2",
+      "sourceTopic": "Sparse vs dense representations",
+      "canonicalTopic": "Sparse vs dense representations",
+      "topicId": "5.2-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "Why embeddings - dense, semantic vectors",
+      "canonicalTopic": "Why embeddings - dense, semantic vectors",
+      "topicId": "5.3-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "Word2Vec - CBOW vs Skip-gram",
+      "canonicalTopic": "Word2Vec - CBOW vs Skip-gram",
+      "topicId": "5.3-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "GloVe - global co-occurrence statistics",
+      "canonicalTopic": "GloVe - global co-occurrence statistics",
+      "topicId": "5.3-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "FastText - subword embeddings, handles OOV",
+      "canonicalTopic": "FastText - subword embeddings, handles OOV",
+      "topicId": "5.3-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "Cosine similarity on embeddings",
+      "canonicalTopic": "Cosine similarity on embeddings",
+      "topicId": "5.3-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "Analogy tasks: king - man + woman = queen",
+      "canonicalTopic": "Analogy tasks: king - man + woman = queen",
+      "topicId": "5.3-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.3",
+      "sourceTopic": "Static vs contextual embeddings",
+      "canonicalTopic": "Static vs contextual embeddings",
+      "topicId": "5.3-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "Byte Pair Encoding (BPE) - used in GPT",
+      "canonicalTopic": "Byte Pair Encoding (BPE) - used in GPT",
+      "topicId": "5.4-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "WordPiece - used in BERT",
+      "canonicalTopic": "WordPiece - used in BERT",
+      "topicId": "5.4-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "SentencePiece - used in T5, LLaMA",
+      "canonicalTopic": "SentencePiece - used in T5, LLaMA",
+      "topicId": "5.4-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "Special tokens: [CLS], [SEP], [PAD], [MASK], <eos>, <bos>",
+      "canonicalTopic": "Special tokens: [CLS], [SEP], [PAD], [MASK], <eos>, <bos>",
+      "topicId": "5.4-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "Token IDs - how text maps to integers",
+      "canonicalTopic": "Token IDs - how text maps to integers",
+      "topicId": "5.4-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.4",
+      "sourceTopic": "Vocabulary size tradeoffs",
+      "canonicalTopic": "Vocabulary size tradeoffs",
+      "topicId": "5.4-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Why transformers replaced RNNs - parallelism and long-range attention",
+      "canonicalTopic": "Why transformers replaced RNNs - parallelism and long-range attention",
+      "topicId": "5.5-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Self-attention - every token attending to every other",
+      "canonicalTopic": "Self-attention - every token attending to every other",
+      "topicId": "5.5-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Query, Key, Value (Q, K, V) - intuition and matrix formulation",
+      "canonicalTopic": "Query, Key, Value (Q, K, V) - intuition and matrix formulation",
+      "topicId": "5.5-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Attention score: softmax(QKᵀ / √d_k) * V",
+      "canonicalTopic": "Attention score: softmax(QKᵀ / √d_k) * V",
+      "topicId": "5.5-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Multi-head attention - attending to different aspects",
+      "canonicalTopic": "Multi-head attention - attending to different aspects",
+      "topicId": "5.5-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Positional encoding - injecting order",
+      "canonicalTopic": "Positional encoding - injecting order",
+      "topicId": "5.5-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Feed-forward sublayer",
+      "canonicalTopic": "Feed-forward sublayer",
+      "topicId": "5.5-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Layer normalization and residual connections",
+      "canonicalTopic": "Layer normalization and residual connections",
+      "topicId": "5.5-point-7",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Encoder-only (BERT-style) - understanding tasks",
+      "canonicalTopic": "Encoder-only (BERT-style) - understanding tasks",
+      "topicId": "5.5-point-8",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Decoder-only (GPT-style) - generation tasks",
+      "canonicalTopic": "Decoder-only (GPT-style) - generation tasks",
+      "topicId": "5.5-point-9",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Encoder-Decoder (T5-style) - seq2seq tasks",
+      "canonicalTopic": "Encoder-Decoder (T5-style) - seq2seq tasks",
+      "topicId": "5.5-point-10",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.5",
+      "sourceTopic": "Causal masking in decoders",
+      "canonicalTopic": "Causal masking in decoders",
+      "topicId": "5.5-point-11",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "P(next token | previous tokens)",
+      "canonicalTopic": "P(next token | previous tokens)",
+      "topicId": "5.6-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "Autoregressive language modeling",
+      "canonicalTopic": "Autoregressive language modeling",
+      "topicId": "5.6-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "Masked language modeling (MLM)",
+      "canonicalTopic": "Masked language modeling (MLM)",
+      "topicId": "5.6-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "Perplexity - evaluating language models",
+      "canonicalTopic": "Perplexity - evaluating language models",
+      "topicId": "5.6-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "Temperature, Top-k, Top-p (nucleus) sampling",
+      "canonicalTopic": "Temperature, Top-k, Top-p (nucleus) sampling",
+      "topicId": "5.6-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.6",
+      "sourceTopic": "Greedy vs sampling vs beam search",
+      "canonicalTopic": "Greedy vs sampling vs beam search",
+      "topicId": "5.6-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "Model comparison",
+      "canonicalTopic": null,
+      "topicId": "5.7-supplement-0",
+      "questions": 1,
+      "review": true
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "BERT",
+      "canonicalTopic": "BERT",
+      "topicId": "5.7-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "GPT-4",
+      "canonicalTopic": "GPT-4",
+      "topicId": "5.7-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "Claude 3.5/4",
+      "canonicalTopic": "Claude 3.5/4",
+      "topicId": "5.7-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "Gemini",
+      "canonicalTopic": "Gemini",
+      "topicId": "5.7-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "T5",
+      "canonicalTopic": "T5",
+      "topicId": "5.7-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "LLaMA 3",
+      "canonicalTopic": "LLaMA 3",
+      "topicId": "5.7-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "Mistral 7B",
+      "canonicalTopic": "Mistral 7B",
+      "topicId": "5.7-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.7",
+      "sourceTopic": "Qwen 2.5",
+      "canonicalTopic": "Qwen 2.5",
+      "topicId": "5.7-point-7",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "Accuracy, Precision, Recall, F1",
+      "canonicalTopic": "Accuracy, Precision, Recall, F1",
+      "topicId": "5.8-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "BLEU - machine translation",
+      "canonicalTopic": "BLEU - machine translation",
+      "topicId": "5.8-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "ROUGE - summarization",
+      "canonicalTopic": "ROUGE - summarization",
+      "topicId": "5.8-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "Perplexity - language models",
+      "canonicalTopic": "Perplexity - language models",
+      "topicId": "5.8-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "BERTScore - semantic similarity",
+      "canonicalTopic": "BERTScore - semantic similarity",
+      "topicId": "5.8-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "Human evaluation",
+      "canonicalTopic": "Human evaluation",
+      "topicId": "5.8-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.8",
+      "sourceTopic": "Exact Match (EM) - QA tasks",
+      "canonicalTopic": "Exact Match (EM) - QA tasks",
+      "topicId": "5.8-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "NLTK - classic NLP",
+      "canonicalTopic": "NLTK - classic NLP",
+      "topicId": "5.9-point-0",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "spaCy - production NLP: NER, parsing",
+      "canonicalTopic": "spaCy - production NLP: NER, parsing",
+      "topicId": "5.9-point-1",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "transformers (HuggingFace) - pretrained models",
+      "canonicalTopic": "transformers (HuggingFace) - pretrained models",
+      "topicId": "5.9-point-2",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "datasets (HuggingFace) - loading datasets",
+      "canonicalTopic": "datasets (HuggingFace) - loading datasets",
+      "topicId": "5.9-point-3",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "sentence-transformers - sentence embeddings",
+      "canonicalTopic": "sentence-transformers - sentence embeddings",
+      "topicId": "5.9-point-4",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "tiktoken - OpenAI tokenizer (BPE)",
+      "canonicalTopic": "tiktoken - OpenAI's tokenizer (BPE)",
+      "topicId": "5.9-point-5",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "5.9",
+      "sourceTopic": "evaluate - HuggingFace metrics",
+      "canonicalTopic": "evaluate - HuggingFace metrics",
+      "topicId": "5.9-point-6",
+      "questions": 2,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Transformer at scale - from 1B to 100B parameters",
+      "canonicalTopic": "Transformer at scale - what changes going from 1B to 100B parameters",
+      "topicId": "6.1-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Context window - how it works and limitations",
+      "canonicalTopic": "Context window - how it works and limitations",
+      "topicId": "6.1-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "KV Cache - how it speeds up inference",
+      "canonicalTopic": "KV Cache - how it speeds up inference",
+      "topicId": "6.1-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Tokenization at scale",
+      "canonicalTopic": "Tokenization at scale",
+      "topicId": "6.1-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Positional encodings: Absolute, Relative, RoPE, ALiBi",
+      "canonicalTopic": "Positional encodings: Absolute, Relative, RoPE, ALiBi",
+      "topicId": "6.1-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Flash Attention - memory-efficient attention",
+      "canonicalTopic": "Flash Attention - memory-efficient attention",
+      "topicId": "6.1-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Grouped Query Attention (GQA) - used in LLaMA 3",
+      "canonicalTopic": "Grouped Query Attention (GQA) - used in LLaMA 3",
+      "topicId": "6.1-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Sliding window attention - used in Mistral",
+      "canonicalTopic": "Sliding window attention - used in Mistral",
+      "topicId": "6.1-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Pretraining - learning from internet-scale text",
+      "canonicalTopic": "Pretraining - learning from internet-scale text",
+      "topicId": "6.1-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Instruction tuning - following user instructions",
+      "canonicalTopic": "Instruction tuning - following user instructions",
+      "topicId": "6.1-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "RLHF (Reinforcement Learning from Human Feedback)",
+      "canonicalTopic": "RLHF (Reinforcement Learning from Human Feedback)",
+      "topicId": "6.1-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Constitutional AI (Anthropic's approach)",
+      "canonicalTopic": "Constitutional AI (Anthropic's approach)",
+      "topicId": "6.1-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "DPO (Direct Preference Optimization)",
+      "canonicalTopic": "DPO (Direct Preference Optimization) - alternative to RLHF",
+      "topicId": "6.1-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.1",
+      "sourceTopic": "Scaling laws - model size, data, compute",
+      "canonicalTopic": "Scaling laws - relationship between model size, data, compute",
+      "topicId": "6.1-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "System prompt - role and constraints",
+      "canonicalTopic": "System prompt - role and constraints",
+      "topicId": "6.2-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "User prompt - the actual request",
+      "canonicalTopic": "User prompt - the actual request",
+      "topicId": "6.2-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Assistant turn - response history",
+      "canonicalTopic": "Assistant turn - model's response history",
+      "topicId": "6.2-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Few-shot examples in context",
+      "canonicalTopic": "Few-shot examples in context",
+      "topicId": "6.2-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Zero-shot prompting",
+      "canonicalTopic": "Zero-shot prompting",
+      "topicId": "6.2-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "One-shot and few-shot prompting",
+      "canonicalTopic": "One-shot and few-shot prompting",
+      "topicId": "6.2-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Chain-of-Thought (CoT) - think step by step",
+      "canonicalTopic": "Chain-of-Thought (CoT) - \"think step by step\"",
+      "topicId": "6.2-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Self-consistency - multiple paths and voting",
+      "canonicalTopic": "Self-consistency - generate multiple CoT paths, vote",
+      "topicId": "6.2-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "ReAct - Reasoning + Acting",
+      "canonicalTopic": "ReAct prompting - Reasoning + Acting (for agents)",
+      "topicId": "6.2-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Tree of Thought (ToT)",
+      "canonicalTopic": "Tree of Thought (ToT)",
+      "topicId": "6.2-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Structured output prompting - JSON, XML",
+      "canonicalTopic": "Structured output prompting - JSON, XML",
+      "topicId": "6.2-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Role prompting",
+      "canonicalTopic": "Role prompting - \"You are a senior software engineer...\"",
+      "topicId": "6.2-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Prompt chaining",
+      "canonicalTopic": "Prompt chaining - output of one prompt → input of next",
+      "topicId": "6.2-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Clear instruction + format + boundaries",
+      "canonicalTopic": "Giving clear instruction + format + boundaries",
+      "topicId": "6.2-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Specifying what NOT to do",
+      "canonicalTopic": "Always specifying what NOT to do",
+      "topicId": "6.2-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Examples and output constraints",
+      "canonicalTopic": "Using examples and output constraints",
+      "topicId": "6.2-point-15",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Prompt versioning and changelogs",
+      "canonicalTopic": "Prompt versioning and changelogs",
+      "topicId": "6.2-point-16",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "A/B testing prompts",
+      "canonicalTopic": "A/B testing prompts",
+      "topicId": "6.2-point-17",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Prompt compression - reducing token count",
+      "canonicalTopic": "Prompt compression - reducing token count",
+      "topicId": "6.2-point-18",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Prompt injection defense",
+      "canonicalTopic": "Prompt injection defense",
+      "topicId": "6.2-point-19",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "PromptLayer - prompt versions",
+      "canonicalTopic": "PromptLayer - tracking prompt versions",
+      "topicId": "6.2-point-20",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "LangSmith - observability",
+      "canonicalTopic": "LangSmith - LangChain observability",
+      "topicId": "6.2-point-21",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "OpenAI Playground",
+      "canonicalTopic": "OpenAI Playground",
+      "topicId": "6.2-point-22",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.2",
+      "sourceTopic": "Anthropic Console",
+      "canonicalTopic": "Anthropic Console",
+      "topicId": "6.2-point-23",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Chat Completions - messages array",
+      "canonicalTopic": "Chat Completions API - messages array",
+      "topicId": "6.3-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Function calling / Tool use",
+      "canonicalTopic": "Function calling / Tool use",
+      "topicId": "6.3-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: JSON mode / Structured outputs",
+      "canonicalTopic": "JSON mode / Structured outputs",
+      "topicId": "6.3-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Streaming responses (SSE)",
+      "canonicalTopic": "Streaming responses (SSE)",
+      "topicId": "6.3-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Embeddings API",
+      "canonicalTopic": "Embeddings API",
+      "topicId": "6.3-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Vision API (GPT-4V)",
+      "canonicalTopic": "Vision API (GPT-4V)",
+      "topicId": "6.3-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Assistants API with file search",
+      "canonicalTopic": "Assistants API with file search",
+      "topicId": "6.3-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Batch API for bulk processing",
+      "canonicalTopic": "Batch API for bulk processing",
+      "topicId": "6.3-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Token counting with tiktoken",
+      "canonicalTopic": "Token counting with tiktoken",
+      "topicId": "6.3-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "OpenAI: Rate limits and quotas",
+      "canonicalTopic": "Rate limits and quotas",
+      "topicId": "6.3-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: Messages API structure",
+      "canonicalTopic": "Messages API structure",
+      "topicId": "6.3-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: System prompts",
+      "canonicalTopic": "System prompts",
+      "topicId": "6.3-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: Long context (200K tokens)",
+      "canonicalTopic": "Long context (200K tokens)",
+      "topicId": "6.3-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: Vision support",
+      "canonicalTopic": "Vision support",
+      "topicId": "6.3-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: Tool use",
+      "canonicalTopic": "Tool use",
+      "topicId": "6.3-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Anthropic: Streaming",
+      "canonicalTopic": "Streaming",
+      "topicId": "6.3-point-15",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Gemini: Pro / Ultra model names",
+      "canonicalTopic": "Gemini Pro / Ultra",
+      "topicId": "6.3-point-16",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Gemini: Multimodal text, image, video, audio",
+      "canonicalTopic": "Multimodal inputs (text, image, video, audio)",
+      "topicId": "6.3-point-17",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Gemini: Real-time search grounding",
+      "canonicalTopic": "Real-time search grounding",
+      "topicId": "6.3-point-18",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Gemini: Context caching",
+      "canonicalTopic": "Context caching (cost reduction)",
+      "topicId": "6.3-point-19",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Mistral: 7B, Mixtral 8x7B (MoE), Large",
+      "canonicalTopic": "Mistral 7B, 8x7B (MoE), Large",
+      "topicId": "6.3-point-20",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Mistral: Function calling",
+      "canonicalTopic": "Function calling",
+      "topicId": "6.3-point-21",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Mistral: JSON mode",
+      "canonicalTopic": "JSON mode",
+      "topicId": "6.3-point-22",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Mistral: Open-weight models via Ollama",
+      "canonicalTopic": "Open-source models via Ollama",
+      "topicId": "6.3-point-23",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Meta: LLaMA 3 models",
+      "canonicalTopic": "LLaMA 3 models",
+      "topicId": "6.3-point-24",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Meta: Running locally with Ollama",
+      "canonicalTopic": "Running locally with Ollama",
+      "topicId": "6.3-point-25",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Meta: Fine-tuning LLaMA with PEFT",
+      "canonicalTopic": "Fine-tuning LLaMA with PEFT",
+      "topicId": "6.3-point-26",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Cohere - enterprise embeddings and RAG",
+      "canonicalTopic": "Cohere - enterprise embeddings, RAG",
+      "topicId": "6.3-point-27",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "NVIDIA NIM - GPU-optimized inference",
+      "canonicalTopic": "NVIDIA NIM - GPU-optimized inference",
+      "topicId": "6.3-point-28",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Groq - LPU inference",
+      "canonicalTopic": "Groq - ultra-fast inference (LPU)",
+      "topicId": "6.3-point-29",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Together AI - open-model hosting",
+      "canonicalTopic": "Together AI - open-source hosting",
+      "topicId": "6.3-point-30",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.3",
+      "sourceTopic": "Replicate - model API hosting",
+      "canonicalTopic": "Replicate - model API hosting",
+      "topicId": "6.3-point-31",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Count tokens before sending",
+      "canonicalTopic": "Count tokens before sending (tiktoken, anthropic tokenizer)",
+      "topicId": "6.4-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Truncation strategies",
+      "canonicalTopic": "Truncation strategies",
+      "topicId": "6.4-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Context window management",
+      "canonicalTopic": "Context window management",
+      "topicId": "6.4-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Summarization of old history",
+      "canonicalTopic": "Summarization of old history",
+      "topicId": "6.4-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "SSE - streaming text chunks",
+      "canonicalTopic": "Server-Sent Events (SSE) - streaming text chunks",
+      "topicId": "6.4-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Handling partial responses",
+      "canonicalTopic": "Handling partial responses",
+      "topicId": "6.4-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Client-side streaming rendering",
+      "canonicalTopic": "Client-side rendering of streaming output",
+      "topicId": "6.4-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Perceived latency reduction",
+      "canonicalTopic": "Benefits: perceived latency reduction",
+      "topicId": "6.4-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Exponential backoff with jitter",
+      "canonicalTopic": "Exponential backoff with jitter",
+      "topicId": "6.4-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Respect provider quotas",
+      "canonicalTopic": "Respect provider quotas",
+      "topicId": "6.4-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Queue-based request management",
+      "canonicalTopic": "Queue-based request management",
+      "topicId": "6.4-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Circuit breaker pattern",
+      "canonicalTopic": "Circuit breaker pattern",
+      "topicId": "6.4-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Log token usage per user/feature",
+      "canonicalTopic": "Log token usage per user/feature",
+      "topicId": "6.4-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "GPT-3.5 vs GPT-4 routing by task complexity",
+      "canonicalTopic": "GPT-3.5 vs GPT-4 routing by task complexity",
+      "topicId": "6.4-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Prompt compression - whitespace and summaries",
+      "canonicalTopic": "Prompt compression (strip whitespace, summarize context)",
+      "topicId": "6.4-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Caching with SHA-256 fingerprinting",
+      "canonicalTopic": "Caching with SHA-256 fingerprinting",
+      "topicId": "6.4-point-15",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Async pipelines for non-realtime tasks",
+      "canonicalTopic": "Async pipelines for non-realtime tasks",
+      "topicId": "6.4-point-16",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Error Handling & Fallback",
+      "canonicalTopic": "Error Handling & Fallback",
+      "topicId": "6.4-topic-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.4",
+      "sourceTopic": "Fallback safety and compatibility",
+      "canonicalTopic": "Error Handling & Fallback",
+      "topicId": "6.4-topic-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": "Never expose API keys to frontend",
+      "canonicalTopic": "Never expose API keys to frontend",
+      "topicId": "6.5-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": ".env locally, Secret Manager in production",
+      "canonicalTopic": ".env files locally, Secret Manager in production",
+      "topicId": "6.5-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": "Backend proxy - frontend to your API to provider",
+      "canonicalTopic": "Backend proxy pattern - frontend → your API → LLM provider",
+      "topicId": "6.5-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": "Per-user rate limiting with Redis",
+      "canonicalTopic": "Per-user rate limiting with Redis",
+      "topicId": "6.5-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": "API key rotation strategy",
+      "canonicalTopic": "API key rotation strategy",
+      "topicId": "6.5-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "6.5",
+      "sourceTopic": "Logging and monitoring",
+      "canonicalTopic": "Logging and monitoring",
+      "topicId": "6.5-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "No single model is best for all tasks",
+      "canonicalTopic": "No single model is best for all tasks",
+      "topicId": "7.1-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "Cost optimization - use expensive models only when needed",
+      "canonicalTopic": "Cost optimization - use expensive models only when needed",
+      "topicId": "7.1-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "Reliability - fallback when one provider is down",
+      "canonicalTopic": "Reliability - fallback when one provider is down",
+      "topicId": "7.1-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "Latency - route to fastest model for simple queries",
+      "canonicalTopic": "Latency - route to fastest model for simple queries",
+      "topicId": "7.1-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "Compliance - some enterprise customers can't use certain providers",
+      "canonicalTopic": "Compliance - some enterprise customers can't use certain providers",
+      "topicId": "7.1-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.1",
+      "sourceTopic": "Context window - route to Claude for long docs, GPT-4 for reasoning",
+      "canonicalTopic": "Context window - route to Claude for long docs, GPT-4 for reasoning",
+      "topicId": "7.1-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Task-Based Routing",
+      "canonicalTopic": "Task-Based Routing",
+      "topicId": "7.2-topic-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "User tier check: free → cheap models, premium → GPT-4",
+      "canonicalTopic": "User tier check: free → cheap models, premium → GPT-4",
+      "topicId": "7.2-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Token budget monitoring",
+      "canonicalTopic": "Token budget monitoring",
+      "topicId": "7.2-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Dynamic routing based on monthly spend",
+      "canonicalTopic": "Dynamic routing based on monthly spend",
+      "topicId": "7.2-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Cache hit rate optimization",
+      "canonicalTopic": "Cache hit rate optimization",
+      "topicId": "7.2-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Track response quality per model per task type",
+      "canonicalTopic": "Track response quality per model per task type",
+      "topicId": "7.2-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "A/B testing models in production",
+      "canonicalTopic": "A/B testing models in production",
+      "topicId": "7.2-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Feedback loop - user ratings inform routing",
+      "canonicalTopic": "Feedback loop - user ratings inform routing",
+      "topicId": "7.2-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.2",
+      "sourceTopic": "Latency SLA enforcement",
+      "canonicalTopic": "Latency SLA enforcement",
+      "topicId": "7.2-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.3",
+      "sourceTopic": "Fallback Architecture",
+      "canonicalTopic": null,
+      "topicId": "7.3-supplement-0",
+      "questions": 1,
+      "review": true
+    },
+    {
+      "sheet": "7.3",
+      "sourceTopic": "Track failure rate per provider",
+      "canonicalTopic": "Track failure rate per provider",
+      "topicId": "7.3-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.3",
+      "sourceTopic": "Open circuit after N failures in M seconds",
+      "canonicalTopic": "Open circuit after N failures in M seconds",
+      "topicId": "7.3-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.3",
+      "sourceTopic": "Half-open state - test with single request",
+      "canonicalTopic": "Half-open state - test with single request",
+      "topicId": "7.3-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.3",
+      "sourceTopic": "Close circuit on success",
+      "canonicalTopic": "Close circuit on success",
+      "topicId": "7.3-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "What is MCP - Anthropic's open standard for AI-tool connectivity",
+      "canonicalTopic": "What is MCP - Anthropic's open standard for AI-tool connectivity",
+      "topicId": "7.4-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "MCP vs function calling vs tool use",
+      "canonicalTopic": "MCP vs function calling vs tool use",
+      "topicId": "7.4-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "MCP Servers - resources, tools, prompts",
+      "canonicalTopic": "MCP Servers - resources, tools, prompts",
+      "topicId": "7.4-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "MCP Clients - Claude Desktop, IDEs, custom apps",
+      "canonicalTopic": "MCP Clients - Claude Desktop, IDEs, custom apps",
+      "topicId": "7.4-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "Building an MCP server in Python",
+      "canonicalTopic": "Building an MCP server in Python",
+      "topicId": "7.4-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "Building an MCP server in TypeScript",
+      "canonicalTopic": "Building an MCP server in TypeScript",
+      "topicId": "7.4-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "Connecting MCP to databases, APIs, file systems",
+      "canonicalTopic": "Connecting MCP to databases, APIs, file systems",
+      "topicId": "7.4-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "MCP for multi-agent systems",
+      "canonicalTopic": "MCP for multi-agent systems",
+      "topicId": "7.4-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.4",
+      "sourceTopic": "Security considerations in MCP",
+      "canonicalTopic": "Security considerations in MCP",
+      "topicId": "7.4-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Core concepts: Chains, Agents, Memory, Tools",
+      "canonicalTopic": "Core concepts: Chains, Agents, Memory, Tools",
+      "topicId": "7.5-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "LLMChain - basic prompt + LLM",
+      "canonicalTopic": "LLMChain - basic prompt + LLM",
+      "topicId": "7.5-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "SequentialChain - chaining multiple LLMs",
+      "canonicalTopic": "SequentialChain - chaining multiple LLMs",
+      "topicId": "7.5-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "ConversationalChain - with memory",
+      "canonicalTopic": "ConversationalChain - with memory",
+      "topicId": "7.5-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "RetrievalQA - RAG chain",
+      "canonicalTopic": "RetrievalQA - RAG chain",
+      "topicId": "7.5-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Tool calling with LangChain agents",
+      "canonicalTopic": "Tool calling with LangChain agents",
+      "topicId": "7.5-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "LCEL (LangChain Expression Language) - new composition syntax",
+      "canonicalTopic": "LCEL (LangChain Expression Language) - new composition syntax",
+      "topicId": "7.5-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "LangSmith - observability and tracing",
+      "canonicalTopic": "LangSmith - observability and tracing",
+      "topicId": "7.5-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "What LangGraph adds over LangChain - stateful, cyclical workflows",
+      "canonicalTopic": "What LangGraph adds over LangChain - stateful, cyclical workflows",
+      "topicId": "7.5-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Nodes - units of work (LLM calls, tools, conditions)",
+      "canonicalTopic": "Nodes - units of work (LLM calls, tools, conditions)",
+      "topicId": "7.5-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Edges - connections between nodes (conditional, parallel)",
+      "canonicalTopic": "Edges - connections between nodes (conditional, parallel)",
+      "topicId": "7.5-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "State - shared state passed between nodes",
+      "canonicalTopic": "State - shared state passed between nodes",
+      "topicId": "7.5-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Building multi-agent workflows with LangGraph",
+      "canonicalTopic": "Building multi-agent workflows with LangGraph",
+      "topicId": "7.5-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Human-in-the-loop patterns",
+      "canonicalTopic": "Human-in-the-loop patterns",
+      "topicId": "7.5-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Streaming from LangGraph",
+      "canonicalTopic": "Streaming from LangGraph",
+      "topicId": "7.5-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Persistence and checkpointing",
+      "canonicalTopic": "Persistence and checkpointing",
+      "topicId": "7.5-point-15",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Data connectors - loading documents",
+      "canonicalTopic": "Data connectors - loading documents",
+      "topicId": "7.5-point-16",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Index types: VectorStore, Summary, Knowledge Graph",
+      "canonicalTopic": "Index types: VectorStore, Summary, Knowledge Graph",
+      "topicId": "7.5-point-17",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Query engines",
+      "canonicalTopic": "Query engines",
+      "topicId": "7.5-point-18",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Sub-question decomposition",
+      "canonicalTopic": "Sub-question decomposition",
+      "topicId": "7.5-point-19",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "LlamaIndex vs LangChain - when to use which",
+      "canonicalTopic": "LlamaIndex vs LangChain - when to use which",
+      "topicId": "7.5-point-20",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Multi-agent task decomposition",
+      "canonicalTopic": "Multi-agent task decomposition",
+      "topicId": "7.5-point-21",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Agents with roles, backstories, goals",
+      "canonicalTopic": "Agents with roles, backstories, goals",
+      "topicId": "7.5-point-22",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Tasks and process flows",
+      "canonicalTopic": "Tasks and process flows",
+      "topicId": "7.5-point-23",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Tool integration",
+      "canonicalTopic": "Tool integration",
+      "topicId": "7.5-point-24",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Multi-agent conversation patterns",
+      "canonicalTopic": "Multi-agent conversation patterns",
+      "topicId": "7.5-point-25",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "AssistantAgent vs UserProxy",
+      "canonicalTopic": "AssistantAgent vs UserProxy",
+      "topicId": "7.5-point-26",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Code execution agents",
+      "canonicalTopic": "Code execution agents",
+      "topicId": "7.5-point-27",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.5",
+      "sourceTopic": "Group chat patterns",
+      "canonicalTopic": "Group chat patterns",
+      "topicId": "7.5-point-28",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Multi-LLM Gateway Architecture",
+      "canonicalTopic": "Multi-LLM Gateway Architecture",
+      "topicId": "7.6-topic-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Provider abstraction layer - unified interface for all LLMs",
+      "canonicalTopic": "Provider abstraction layer - unified interface for all LLMs",
+      "topicId": "7.6-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Intelligent router - classify task, select optimal model",
+      "canonicalTopic": "Intelligent router - classify task, select optimal model",
+      "topicId": "7.6-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Token counter - per-provider, per-user",
+      "canonicalTopic": "Token counter - per-provider, per-user",
+      "topicId": "7.6-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Cost tracker - real-time spend monitoring",
+      "canonicalTopic": "Cost tracker - real-time spend monitoring",
+      "topicId": "7.6-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Response validator - schema validation, quality checks",
+      "canonicalTopic": "Response validator - schema validation, quality checks",
+      "topicId": "7.6-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Fallback manager - cascade through providers",
+      "canonicalTopic": "Fallback manager - cascade through providers",
+      "topicId": "7.6-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Cache manager - semantic caching with embeddings",
+      "canonicalTopic": "Cache manager - semantic caching with embeddings",
+      "topicId": "7.6-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "7.6",
+      "sourceTopic": "Observability - traces, metrics, logs",
+      "canonicalTopic": "Observability - traces, metrics, logs",
+      "topicId": "7.6-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.1",
+      "sourceTopic": "LLMs have knowledge cutoffs",
+      "canonicalTopic": "LLMs have knowledge cutoffs",
+      "topicId": "8.1-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.1",
+      "sourceTopic": "LLMs can't access private/proprietary data",
+      "canonicalTopic": "LLMs can't access private/proprietary data",
+      "topicId": "8.1-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.1",
+      "sourceTopic": "LLMs hallucinate when they don't know",
+      "canonicalTopic": "LLMs hallucinate when they don't know",
+      "topicId": "8.1-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.1",
+      "sourceTopic": "RAG = Embedding-based search + Prompt-based generation",
+      "canonicalTopic": "RAG = Embedding-based search + Prompt-based generation",
+      "topicId": "8.1-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.1",
+      "sourceTopic": "RAG vs Fine-tuning - when to use which",
+      "canonicalTopic": "RAG vs Fine-tuning - when to use which",
+      "topicId": "8.1-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "What are embeddings - dense, semantic vector representations",
+      "canonicalTopic": "What are embeddings - dense, semantic vector representations",
+      "topicId": "8.2-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "Embedding models: text-embedding-3-small, text-embedding-3-large (OpenAI)",
+      "canonicalTopic": "Embedding models: text-embedding-3-small, text-embedding-3-large (OpenAI)",
+      "topicId": "8.2-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "all-MiniLM-L6-v2, bge-large (open source, HuggingFace)",
+      "canonicalTopic": "all-MiniLM-L6-v2, bge-large (open source, HuggingFace)",
+      "topicId": "8.2-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "embed-english-v3 (Cohere) - tuned for RAG",
+      "canonicalTopic": "embed-english-v3 (Cohere) - tuned for RAG",
+      "topicId": "8.2-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "Embedding dimensions - tradeoff between quality and storage",
+      "canonicalTopic": "Embedding dimensions - tradeoff between quality and storage",
+      "topicId": "8.2-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "Batch embedding for efficiency",
+      "canonicalTopic": "Batch embedding for efficiency",
+      "topicId": "8.2-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.2",
+      "sourceTopic": "Embedding similarity: cosine, dot product, Euclidean",
+      "canonicalTopic": "Embedding similarity: cosine, dot product, Euclidean",
+      "topicId": "8.2-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Fixed-size chunking - simple but naive",
+      "canonicalTopic": "Fixed-size chunking - simple but naive",
+      "topicId": "8.3-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Sentence-based chunking - respects natural boundaries",
+      "canonicalTopic": "Sentence-based chunking - respects natural boundaries",
+      "topicId": "8.3-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Recursive character text splitting - LangChain default",
+      "canonicalTopic": "Recursive character text splitting - LangChain default",
+      "topicId": "8.3-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Semantic chunking - split on topic change",
+      "canonicalTopic": "Semantic chunking - split on topic change",
+      "topicId": "8.3-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Document-based chunking - by headers, sections",
+      "canonicalTopic": "Document-based chunking - by headers, sections",
+      "topicId": "8.3-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Chunk size vs overlap tradeoff",
+      "canonicalTopic": "Chunk size vs overlap tradeoff",
+      "topicId": "8.3-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.3",
+      "sourceTopic": "Chunk metadata - source, page, section",
+      "canonicalTopic": "Chunk metadata - source, page, section",
+      "topicId": "8.3-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "FAISS",
+      "canonicalTopic": "FAISS",
+      "topicId": "8.4-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Chroma",
+      "canonicalTopic": "Chroma",
+      "topicId": "8.4-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Pinecone",
+      "canonicalTopic": "Pinecone",
+      "topicId": "8.4-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Weaviate",
+      "canonicalTopic": "Weaviate",
+      "topicId": "8.4-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Qdrant",
+      "canonicalTopic": "Qdrant",
+      "topicId": "8.4-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "LanceDB",
+      "canonicalTopic": "LanceDB",
+      "topicId": "8.4-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "pgvector",
+      "canonicalTopic": "pgvector",
+      "topicId": "8.4-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "MongoDB Atlas",
+      "canonicalTopic": "MongoDB Atlas",
+      "topicId": "8.4-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Supabase",
+      "canonicalTopic": "Supabase",
+      "topicId": "8.4-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Indexing - storing embeddings with metadata",
+      "canonicalTopic": "Indexing - storing embeddings with metadata",
+      "topicId": "8.4-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Similarity search - finding nearest neighbors",
+      "canonicalTopic": "Similarity search - finding nearest neighbors",
+      "topicId": "8.4-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Filtered search - metadata + vector similarity",
+      "canonicalTopic": "Filtered search - metadata + vector similarity",
+      "topicId": "8.4-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Hybrid search - keyword + vector (BM25 + embeddings)",
+      "canonicalTopic": "Hybrid search - keyword + vector (BM25 + embeddings)",
+      "topicId": "8.4-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "Namespace/collection isolation - multi-tenant",
+      "canonicalTopic": "Namespace/collection isolation - multi-tenant",
+      "topicId": "8.4-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.4",
+      "sourceTopic": "HNSW index - Hierarchical Navigable Small World (algorithm behind most vector DBs)",
+      "canonicalTopic": "HNSW index - Hierarchical Navigable Small World (algorithm behind most vector DBs)",
+      "topicId": "8.4-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Basic RAG",
+      "canonicalTopic": "Basic RAG",
+      "topicId": "8.5-topic-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Hypothetical Document Embeddings (HyDE) - generate hypothetical answer, embed it for retrieval",
+      "canonicalTopic": "Hypothetical Document Embeddings (HyDE) - generate hypothetical answer, embed it for retrieval",
+      "topicId": "8.5-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Query expansion - generate multiple query variants",
+      "canonicalTopic": "Query expansion - generate multiple query variants",
+      "topicId": "8.5-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Reranking - use a cross-encoder to rerank retrieved chunks (Cohere Rerank, BGE Reranker)",
+      "canonicalTopic": "Reranking - use a cross-encoder to rerank retrieved chunks (Cohere Rerank, BGE Reranker)",
+      "topicId": "8.5-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Multi-query retrieval - decompose complex question into sub-queries",
+      "canonicalTopic": "Multi-query retrieval - decompose complex question into sub-queries",
+      "topicId": "8.5-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Self-querying - LLM generates structured filter from natural language",
+      "canonicalTopic": "Self-querying - LLM generates structured filter from natural language",
+      "topicId": "8.5-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Contextual compression - compress retrieved context before sending to LLM",
+      "canonicalTopic": "Contextual compression - compress retrieved context before sending to LLM",
+      "topicId": "8.5-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Parent document retriever - retrieve small chunks, return parent document",
+      "canonicalTopic": "Parent document retriever - retrieve small chunks, return parent document",
+      "topicId": "8.5-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Multi-vector retriever - multiple embeddings per document (summary + full text)",
+      "canonicalTopic": "Multi-vector retriever - multiple embeddings per document (summary + full text)",
+      "topicId": "8.5-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Faithfulness - is the answer grounded in retrieved context?",
+      "canonicalTopic": "Faithfulness - is the answer grounded in retrieved context?",
+      "topicId": "8.5-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Answer relevance - does the answer address the question?",
+      "canonicalTopic": "Answer relevance - does the answer address the question?",
+      "topicId": "8.5-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Context precision - are the retrieved chunks relevant?",
+      "canonicalTopic": "Context precision - are the retrieved chunks relevant?",
+      "topicId": "8.5-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Context recall - did we retrieve all necessary information?",
+      "canonicalTopic": "Context recall - did we retrieve all necessary information?",
+      "topicId": "8.5-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.5",
+      "sourceTopic": "Tools: RAGAs framework, LangSmith, TRULENS",
+      "canonicalTopic": "Tools: RAGAs framework, LangSmith, TRULENS",
+      "topicId": "8.5-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Incremental indexing - adding new documents without reindexing",
+      "canonicalTopic": "Incremental indexing - adding new documents without reindexing",
+      "topicId": "8.6-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Document versioning - handling document updates",
+      "canonicalTopic": "Document versioning - handling document updates",
+      "topicId": "8.6-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Multi-tenant isolation - per-user, per-org vector spaces",
+      "canonicalTopic": "Multi-tenant isolation - per-user, per-org vector spaces",
+      "topicId": "8.6-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Caching - cache embeddings, cache query results",
+      "canonicalTopic": "Caching - cache embeddings, cache query results",
+      "topicId": "8.6-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Monitoring - retrieval quality, latency, hit rates",
+      "canonicalTopic": "Monitoring - retrieval quality, latency, hit rates",
+      "topicId": "8.6-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "8.6",
+      "sourceTopic": "Fallback - \"I don't know\" when context is insufficient",
+      "canonicalTopic": "Fallback - \"I don't know\" when context is insufficient",
+      "topicId": "8.6-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.1",
+      "sourceTopic": "Agent = LLM + Tools + Memory + Planning",
+      "canonicalTopic": "Agent = LLM + Tools + Memory + Planning",
+      "topicId": "9.1-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.1",
+      "sourceTopic": "Difference between chain and agent - agents decide dynamically",
+      "canonicalTopic": "Difference between chain and agent - agents decide dynamically",
+      "topicId": "9.1-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.1",
+      "sourceTopic": "Types: ReAct, Plan-and-Execute, Multi-agent",
+      "canonicalTopic": "Types: ReAct, Plan-and-Execute, Multi-agent",
+      "topicId": "9.1-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.1",
+      "sourceTopic": "When to use agents vs chains",
+      "canonicalTopic": "When to use agents vs chains",
+      "topicId": "9.1-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.1",
+      "sourceTopic": "Risks: cost, hallucination, infinite loops",
+      "canonicalTopic": "Risks: cost, hallucination, infinite loops",
+      "topicId": "9.1-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Web search tools (Tavily, SerpAPI, Bing)",
+      "canonicalTopic": "Web search tools (Tavily, SerpAPI, Bing)",
+      "topicId": "9.2-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Code interpreter / execution",
+      "canonicalTopic": "Code interpreter / execution",
+      "topicId": "9.2-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Calculator",
+      "canonicalTopic": "Calculator",
+      "topicId": "9.2-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Database query tool",
+      "canonicalTopic": "Database query tool",
+      "topicId": "9.2-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "File read/write tool",
+      "canonicalTopic": "File read/write tool",
+      "topicId": "9.2-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "API call tools",
+      "canonicalTopic": "API call tools",
+      "topicId": "9.2-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Web scraping tools",
+      "canonicalTopic": "Web scraping tools",
+      "topicId": "9.2-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Calendar, email, calendar tools (via MCP)",
+      "canonicalTopic": "Calendar, email, calendar tools (via MCP)",
+      "topicId": "9.2-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "In-context memory - conversation history in prompt",
+      "canonicalTopic": "In-context memory - conversation history in prompt",
+      "topicId": "9.2-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "External memory - vector store of past interactions",
+      "canonicalTopic": "External memory - vector store of past interactions",
+      "topicId": "9.2-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Entity memory - tracking mentioned entities",
+      "canonicalTopic": "Entity memory - tracking mentioned entities",
+      "topicId": "9.2-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Summary memory - compress old conversation",
+      "canonicalTopic": "Summary memory - compress old conversation",
+      "topicId": "9.2-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Episodic memory - remember specific past events",
+      "canonicalTopic": "Episodic memory - remember specific past events",
+      "topicId": "9.2-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "ReAct (Reason + Act) - interleave thinking and action",
+      "canonicalTopic": "ReAct (Reason + Act) - interleave thinking and action",
+      "topicId": "9.2-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Plan-and-execute - generate full plan first, then execute",
+      "canonicalTopic": "Plan-and-execute - generate full plan first, then execute",
+      "topicId": "9.2-point-14",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "Tree of Thoughts - explore multiple reasoning paths",
+      "canonicalTopic": "Tree of Thoughts - explore multiple reasoning paths",
+      "topicId": "9.2-point-15",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.2",
+      "sourceTopic": "MRKL (Modular Reasoning, Knowledge, Language)",
+      "canonicalTopic": "MRKL (Modular Reasoning, Knowledge, Language)",
+      "topicId": "9.2-point-16",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Define tools as JSON schemas",
+      "canonicalTopic": "Define tools as JSON schemas",
+      "topicId": "9.3-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Attach to API call",
+      "canonicalTopic": "Attach to API call",
+      "topicId": "9.3-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Parse tool call responses",
+      "canonicalTopic": "Parse tool call responses",
+      "topicId": "9.3-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Execute tool, return result",
+      "canonicalTopic": "Execute tool, return result",
+      "topicId": "9.3-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Continue conversation with tool result",
+      "canonicalTopic": "Continue conversation with tool result",
+      "topicId": "9.3-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Parallel tool calls",
+      "canonicalTopic": "Parallel tool calls",
+      "topicId": "9.3-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool definition format",
+      "canonicalTopic": "Tool definition format",
+      "topicId": "9.3-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool result format",
+      "canonicalTopic": "Tool result format",
+      "topicId": "9.3-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Multi-tool usage",
+      "canonicalTopic": "Multi-tool usage",
+      "topicId": "9.3-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool validation - input schema validation",
+      "canonicalTopic": "Tool validation - input schema validation",
+      "topicId": "9.3-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool error handling - graceful failure",
+      "canonicalTopic": "Tool error handling - graceful failure",
+      "topicId": "9.3-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool timeouts",
+      "canonicalTopic": "Tool timeouts",
+      "topicId": "9.3-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Tool authorization - what can the agent do?",
+      "canonicalTopic": "Tool authorization - what can the agent do?",
+      "topicId": "9.3-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.3",
+      "sourceTopic": "Sandboxed code execution",
+      "canonicalTopic": "Sandboxed code execution",
+      "topicId": "9.3-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Supervisor → Worker agents (hierarchical)",
+      "canonicalTopic": "Supervisor → Worker agents (hierarchical)",
+      "topicId": "9.4-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Peer-to-peer agents (collaborative)",
+      "canonicalTopic": "Peer-to-peer agents (collaborative)",
+      "topicId": "9.4-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Pipeline agents (sequential specialists)",
+      "canonicalTopic": "Pipeline agents (sequential specialists)",
+      "topicId": "9.4-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Adversarial agents (critic + generator)",
+      "canonicalTopic": "Adversarial agents (critic + generator)",
+      "topicId": "9.4-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Stateful graphs with shared state",
+      "canonicalTopic": "Stateful graphs with shared state",
+      "topicId": "9.4-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Conditional edges - dynamic routing",
+      "canonicalTopic": "Conditional edges - dynamic routing",
+      "topicId": "9.4-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Parallel execution of agents",
+      "canonicalTopic": "Parallel execution of agents",
+      "topicId": "9.4-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Human-in-the-loop checkpoints",
+      "canonicalTopic": "Human-in-the-loop checkpoints",
+      "topicId": "9.4-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Agent communication protocols",
+      "canonicalTopic": "Agent communication protocols",
+      "topicId": "9.4-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Code review system: Writer + Reviewer + Tester agents",
+      "canonicalTopic": "Code review system: Writer + Reviewer + Tester agents",
+      "topicId": "9.4-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Research system: Planner + Researcher + Synthesizer agents",
+      "canonicalTopic": "Research system: Planner + Researcher + Synthesizer agents",
+      "topicId": "9.4-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Software development: PM + Engineer + QA agents (Devin-style)",
+      "canonicalTopic": "Software development: PM + Engineer + QA agents (Devin-style)",
+      "topicId": "9.4-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.4",
+      "sourceTopic": "Customer support: Classifier + Specialist + Escalation agents",
+      "canonicalTopic": "Customer support: Classifier + Specialist + Escalation agents",
+      "topicId": "9.4-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Autonomy - agents make decisions without human input per step",
+      "canonicalTopic": "Autonomy - agents make decisions without human input per step",
+      "topicId": "9.5-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Goal-directedness - agents work toward specified objectives",
+      "canonicalTopic": "Goal-directedness - agents work toward specified objectives",
+      "topicId": "9.5-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Persistence - agents maintain state across interactions",
+      "canonicalTopic": "Persistence - agents maintain state across interactions",
+      "topicId": "9.5-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Adaptability - agents adjust based on feedback",
+      "canonicalTopic": "Adaptability - agents adjust based on feedback",
+      "topicId": "9.5-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Task decomposition - breaking complex tasks into subtasks",
+      "canonicalTopic": "Task decomposition - breaking complex tasks into subtasks",
+      "topicId": "9.5-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Progress tracking - monitoring multi-step completion",
+      "canonicalTopic": "Progress tracking - monitoring multi-step completion",
+      "topicId": "9.5-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Error recovery - retrying failed steps",
+      "canonicalTopic": "Error recovery - retrying failed steps",
+      "topicId": "9.5-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Human escalation - when to pause and ask for input",
+      "canonicalTopic": "Human escalation - when to pause and ask for input",
+      "topicId": "9.5-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Audit trails - logging every agent decision",
+      "canonicalTopic": "Audit trails - logging every agent decision",
+      "topicId": "9.5-point-8",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Action confirmation for irreversible operations",
+      "canonicalTopic": "Action confirmation for irreversible operations",
+      "topicId": "9.5-point-9",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Scope limitation - what agents can and cannot do",
+      "canonicalTopic": "Scope limitation - what agents can and cannot do",
+      "topicId": "9.5-point-10",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Cost controls - maximum spend per agent run",
+      "canonicalTopic": "Cost controls - maximum spend per agent run",
+      "topicId": "9.5-point-11",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Sandboxing code execution",
+      "canonicalTopic": "Sandboxing code execution",
+      "topicId": "9.5-point-12",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "9.5",
+      "sourceTopic": "Input/output validation",
+      "canonicalTopic": "Input/output validation",
+      "topicId": "9.5-point-13",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.1",
+      "sourceTopic": "Encoder → latent space → decoder",
+      "canonicalTopic": "Encoder → latent space → decoder",
+      "topicId": "11.1-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.1",
+      "sourceTopic": "KL divergence loss + reconstruction loss",
+      "canonicalTopic": "KL divergence loss + reconstruction loss",
+      "topicId": "11.1-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.1",
+      "sourceTopic": "Reparameterization trick",
+      "canonicalTopic": "Reparameterization trick",
+      "topicId": "11.1-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.1",
+      "sourceTopic": "Applications: image generation, anomaly detection",
+      "canonicalTopic": "Applications: image generation, anomaly detection",
+      "topicId": "11.1-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "Generator vs Discriminator",
+      "canonicalTopic": "Generator vs Discriminator",
+      "topicId": "11.2-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "Minimax game",
+      "canonicalTopic": "Minimax game",
+      "topicId": "11.2-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "Mode collapse - the main challenge",
+      "canonicalTopic": "Mode collapse - the main challenge",
+      "topicId": "11.2-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "Conditional GANs (cGAN)",
+      "canonicalTopic": "Conditional GANs (cGAN)",
+      "topicId": "11.2-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "StyleGAN, DCGAN",
+      "canonicalTopic": "StyleGAN, DCGAN",
+      "topicId": "11.2-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.2",
+      "sourceTopic": "Applications: image synthesis, style transfer",
+      "canonicalTopic": "Applications: image synthesis, style transfer",
+      "topicId": "11.2-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "Forward process - adding noise to data",
+      "canonicalTopic": "Forward process - adding noise to data",
+      "topicId": "11.3-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "Reverse process - learning to denoise",
+      "canonicalTopic": "Reverse process - learning to denoise",
+      "topicId": "11.3-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "DDPM (Denoising Diffusion Probabilistic Models)",
+      "canonicalTopic": "DDPM (Denoising Diffusion Probabilistic Models)",
+      "topicId": "11.3-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "Score matching",
+      "canonicalTopic": "Score matching",
+      "topicId": "11.3-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "DDIM - faster sampling",
+      "canonicalTopic": "DDIM - faster sampling",
+      "topicId": "11.3-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "Classifier-free guidance",
+      "canonicalTopic": "Classifier-free guidance",
+      "topicId": "11.3-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "Stable Diffusion architecture",
+      "canonicalTopic": "Stable Diffusion architecture",
+      "topicId": "11.3-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.3",
+      "sourceTopic": "ControlNet - conditional generation",
+      "canonicalTopic": "ControlNet - conditional generation",
+      "topicId": "11.3-point-7",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "DALL-E 3 API - OpenAI",
+      "canonicalTopic": "DALL-E 3 API - OpenAI",
+      "topicId": "11.4-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "Stable Diffusion via Replicate / HuggingFace",
+      "canonicalTopic": "Stable Diffusion via Replicate / HuggingFace",
+      "topicId": "11.4-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "Midjourney (no API, UI-based)",
+      "canonicalTopic": "Midjourney (no API, UI-based)",
+      "topicId": "11.4-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "Ideogram, Flux - newer models",
+      "canonicalTopic": "Ideogram, Flux - newer models",
+      "topicId": "11.4-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "Prompt engineering for image generation",
+      "canonicalTopic": "Prompt engineering for image generation",
+      "topicId": "11.4-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.4",
+      "sourceTopic": "Negative prompts",
+      "canonicalTopic": "Negative prompts",
+      "topicId": "11.4-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "Vision-Language Models (VLMs)",
+      "canonicalTopic": "Vision-Language Models (VLMs)",
+      "topicId": "11.5-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "GPT-4V / GPT-4o - text + image input",
+      "canonicalTopic": "GPT-4V / GPT-4o - text + image input",
+      "topicId": "11.5-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "Claude 3 Vision",
+      "canonicalTopic": "Claude 3 Vision",
+      "topicId": "11.5-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "Gemini (text + image + video + audio)",
+      "canonicalTopic": "Gemini (text + image + video + audio)",
+      "topicId": "11.5-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "LLaVA - open-source VLM",
+      "canonicalTopic": "LLaVA - open-source VLM",
+      "topicId": "11.5-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "CLIP - connecting text and images",
+      "canonicalTopic": "CLIP - connecting text and images",
+      "topicId": "11.5-point-5",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.5",
+      "sourceTopic": "Applications: image captioning, visual QA, document understanding",
+      "canonicalTopic": "Applications: image captioning, visual QA, document understanding",
+      "topicId": "11.5-point-6",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.6",
+      "sourceTopic": "OpenAI Whisper - speech-to-text",
+      "canonicalTopic": "OpenAI Whisper - speech-to-text",
+      "topicId": "11.6-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.6",
+      "sourceTopic": "TTS: OpenAI TTS, ElevenLabs, Coqui",
+      "canonicalTopic": "TTS: OpenAI TTS, ElevenLabs, Coqui",
+      "topicId": "11.6-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.6",
+      "sourceTopic": "Music generation: Suno, Udio",
+      "canonicalTopic": "Music generation: Suno, Udio",
+      "topicId": "11.6-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.6",
+      "sourceTopic": "Voice cloning",
+      "canonicalTopic": "Voice cloning",
+      "topicId": "11.6-point-3",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.6",
+      "sourceTopic": "Real-time speech processing",
+      "canonicalTopic": "Real-time speech processing",
+      "topicId": "11.6-point-4",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.7",
+      "sourceTopic": "Sora (OpenAI) - text-to-video",
+      "canonicalTopic": "Sora (OpenAI) - text-to-video",
+      "topicId": "11.7-point-0",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.7",
+      "sourceTopic": "Runway ML, Pika Labs",
+      "canonicalTopic": "Runway ML, Pika Labs",
+      "topicId": "11.7-point-1",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.7",
+      "sourceTopic": "Video understanding with Gemini",
+      "canonicalTopic": "Video understanding with Gemini",
+      "topicId": "11.7-point-2",
+      "questions": 1,
+      "review": false
+    },
+    {
+      "sheet": "11.7",
+      "sourceTopic": "Frame-by-frame analysis",
+      "canonicalTopic": "Frame-by-frame analysis",
+      "topicId": "11.7-point-3",
+      "questions": 1,
+      "review": false
+    }
+  ],
+  "fingerprints": [
+    {
+      "id": "3.1",
+      "sha256": "de7e95304b8fd45614b3387b41e2fdf64a880d4290c72faf4a9baed16c316586"
+    },
+    {
+      "id": "3.2",
+      "sha256": "bf849020f42d1b51fc917a4bf444232de6964f782a405e1b2d373375a92020f4"
+    },
+    {
+      "id": "3.3",
+      "sha256": "b85c6cb934c5a492705e877768b578dd5d2045809645a090e6e63f6137ef961e"
+    },
+    {
+      "id": "3.4",
+      "sha256": "330f403eb9711f42f69706e4360a12fbd3463eb0b13bd731b64dbe215a49b364"
+    },
+    {
+      "id": "3.5",
+      "sha256": "90de0faa91813e4c1d88bcc544d07cfbea1dd2d2f19610a2ed819b8abbcf0f88"
+    },
+    {
+      "id": "4.1",
+      "sha256": "ac19ecbae3ac772d4dea19c097638cbccd9a9ec2f0ac7dac181421b72f3407c8"
+    },
+    {
+      "id": "4.2",
+      "sha256": "aedf6330933760e90d94733391ac2df64e94afe80f267a598b4e71989313fd2d"
+    },
+    {
+      "id": "4.3",
+      "sha256": "06927698e29a2c93e58373c93abe2e1d21197f0959104c014850936dc8251cd3"
+    },
+    {
+      "id": "4.4",
+      "sha256": "bf3685a0165f5b0736074ee4a412bb5ec542d53cdf3b63ec8ad9c622787b80ac"
+    },
+    {
+      "id": "4.5",
+      "sha256": "c31734b1a9ed739c30e3262594baddd94194bd1dbf320cbf41508d7c2c14efd0"
+    },
+    {
+      "id": "4.6",
+      "sha256": "73ecce6e4e47f64b1d73f4e359c1356d7144d713bbcb7d77efa00ff0c5b9ebdf"
+    },
+    {
+      "id": "4.7",
+      "sha256": "03642c75dbcb3bb985a2a0f83537ab1b3e56039d08d0818393b1c86f25f93e17"
+    },
+    {
+      "id": "5.1",
+      "sha256": "7e845a4170fc1b8e5132b203435e529e68a21f760dcf553928bfb6138d70fc83"
+    },
+    {
+      "id": "5.2",
+      "sha256": "2d81c79da90efd952998f9fd67bedc3eb78a1b56aca05fab7dfeac9631b9ec4d"
+    },
+    {
+      "id": "5.3",
+      "sha256": "662079ed2fe466b0554a8f5cc7cfdc234f8ebbf4eeb1beb2979404d97e50b44f"
+    },
+    {
+      "id": "5.4",
+      "sha256": "ec52ac1026a805f7130491c4d818f59d63588722b1f3524cc05de73e33142630"
+    },
+    {
+      "id": "5.5",
+      "sha256": "d107901fcad3b6c14429f84089a183cc9b9f872c86b1fc95c18872f0d879652f"
+    },
+    {
+      "id": "5.6",
+      "sha256": "2086e8df4f144c33e71598614b25a7af572754f04a2751a7ae45e1f3e92ac765"
+    },
+    {
+      "id": "5.7",
+      "sha256": "3dc0b600dad586566792a576b127197d912fbc03291c4bc754538ed62f328187"
+    },
+    {
+      "id": "5.8",
+      "sha256": "6b90c57347122a2ba1502396ca23a1f2c2ba6e655725593a9c5c1a19ec5e01cf"
+    },
+    {
+      "id": "5.9",
+      "sha256": "ff41bb46c99c5d1372103b2fa6e46e9e1a559300c5ae96f8e836ff78d90cb8c8"
+    },
+    {
+      "id": "6.1",
+      "sha256": "a17078bb3e028289c8da28eb20cb4a2a4099aefa7a0dffb19eafc56eb2234d41"
+    },
+    {
+      "id": "6.2",
+      "sha256": "dd3b64295db4b0469c97e1f03a6e36cdc41bf32669ffcc5d89c96ebfb246fb7f"
+    },
+    {
+      "id": "6.3",
+      "sha256": "5802cec44ac9ff8144aea4422d0e288aa4512546a7537fc4926ed8603b17b3df"
+    },
+    {
+      "id": "6.4",
+      "sha256": "57bc3054ae45df93baf66353cdc377051dea73ea493fad451107471692a0a5e6"
+    },
+    {
+      "id": "6.5",
+      "sha256": "f8185a95888bb4c99064185b63b8ddfff6062e3a7e4031f46b87fb1c4bb0c5f9"
+    },
+    {
+      "id": "7.1",
+      "sha256": "2d79373919858c4fc8ce3a7d02dce6ed8ad1c1d8ce02121cc61fd386d9e61368"
+    },
+    {
+      "id": "7.2",
+      "sha256": "49ee20b5f0904b488daf8ebca35c204dbf149514219896849d5d53201a8dec3c"
+    },
+    {
+      "id": "7.3",
+      "sha256": "f6aa3680ffce3f7c70e32a6313e8e280e632c99e3133d3afdde3d65cbc89481d"
+    },
+    {
+      "id": "7.4",
+      "sha256": "5d776cadf12cc380722bd655c8dc4c3ca36c2d4e68f442cb874bd515774f0f37"
+    },
+    {
+      "id": "7.5",
+      "sha256": "87d499a14838f61d29a6efc274c788f98a94c1174c4b1f8a7f47e5c07b67992e"
+    },
+    {
+      "id": "7.6",
+      "sha256": "5b371004cb16403c0dc13d29e20ea30d179a0b3b94de546d58993f596cb573a0"
+    },
+    {
+      "id": "8.1",
+      "sha256": "194e9c73597bd61a3097cd2ebd868867534a12776c9198f22b539365c82c8148"
+    },
+    {
+      "id": "8.2",
+      "sha256": "2f0b4638b740e1f907720e313da7712596e851746314e2ce586443e73ea2180d"
+    },
+    {
+      "id": "8.3",
+      "sha256": "4ff4ba674820d1ad401ce3aed9229e574d160b15d7264a83f6810dc79ea03aaf"
+    },
+    {
+      "id": "8.4",
+      "sha256": "d9922505304b6f459e57a0d55535d6a2525caef4da861c7931213e64b90dcf2f"
+    },
+    {
+      "id": "8.5",
+      "sha256": "d920808ac7a40672f8f0ad86ac97c4fca1b82d64450489927e4e5344da214b2a"
+    },
+    {
+      "id": "8.6",
+      "sha256": "5cea7b77e3c9f545d298442ac545eaa73a0ccb4689d055c3bb0c872b77da3931"
+    },
+    {
+      "id": "9.1",
+      "sha256": "4ccda040befbafdad8bf50d8d3aa5d4c2af35e3396ee73f72dd6834d19d3d386"
+    },
+    {
+      "id": "9.2",
+      "sha256": "4c4a79c3191e22a6a5aefc6aa6143a80ca3544f528c8ec7a4a580f5c04d85795"
+    },
+    {
+      "id": "9.3",
+      "sha256": "d578c1e3cfbf70174fbb3bb6e666b2bf585123b6ac7447f8ce87a0ffa0a94456"
+    },
+    {
+      "id": "9.4",
+      "sha256": "e8a9723180c7f50e74d6edc76b086233b5b5035c094fe625bbb83095b40d7eab"
+    },
+    {
+      "id": "9.5",
+      "sha256": "24a494dd38efce8b067c5de518587157add602deea85835387467e15bebb2b1c"
+    },
+    {
+      "id": "11.1",
+      "sha256": "f9b67fda57e0cc6dc4a4a4ffd290a42502c020a7619e437a04236d59ddbc37d4"
+    },
+    {
+      "id": "11.2",
+      "sha256": "8042e4ecd30d58ff82dc1064f3ceb4557388e412dfb528c9257349007a08bea6"
+    },
+    {
+      "id": "11.3",
+      "sha256": "26c06ffd9955258aae8d2ed26ae760e19f392babbb20c823ed3e6196ba3c540c"
+    },
+    {
+      "id": "11.4",
+      "sha256": "d82b81af96d7e9844d86281f3be3d710421747534843d2e227ea996afdc9bb00"
+    },
+    {
+      "id": "11.5",
+      "sha256": "de06a2de1061d6922f999e92158216a459e2564d3a53f3a955be2228bd8e36ad"
+    },
+    {
+      "id": "11.6",
+      "sha256": "462a15df28187d61c46593e9c7c91f7dc30d6b1b3186dcca6ba0f814db7583ca"
+    },
+    {
+      "id": "11.7",
+      "sha256": "1c61edc9e561b89094574d744043332acef842986e9ee6acb17d785f4d1a59be"
+    }
+  ]
+}

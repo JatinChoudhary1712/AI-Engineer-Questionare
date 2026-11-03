@@ -26,7 +26,7 @@ const server = http.createServer((req,res) => {
     res.end(data);
   });
 });
-const rgb = value => value.startsWith('#') ? value.slice(1).match(/../g).map(x=>parseInt(x,16)) : value.match(/[\d.]+/g).slice(0,3).map(Number);
+const rgb = value => value.startsWith('#') ? (value.length===4?value.slice(1).split('').map(x=>x+x).join(''):value.slice(1)).match(/../g).map(x=>parseInt(x,16)) : value.match(/[\d.]+/g).slice(0,3).map(Number);
 const luminance = color => rgb(color).map(v=>v/255).map(v=>v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4).reduce((s,v,i)=>s+v*[.2126,.7152,.0722][i],0);
 const contrast = (a,b) => {const x=luminance(a), y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
 async function verify() {
@@ -40,10 +40,10 @@ async function verify() {
     await page.goto(base+'index.html');
     assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
     assert.equal(await page.evaluate(()=>document.compatMode),'CSS1Compat');
-    const toggle=page.getByRole('button',{name:'Dark theme',exact:true});
-    await toggle.click();assert.equal(await toggle.getAttribute('aria-pressed'),'true');
-    await toggle.focus();await page.keyboard.press('Enter');assert.equal(await toggle.getAttribute('aria-pressed'),'false');
-    await page.keyboard.press('Space');assert.equal(await toggle.getAttribute('aria-pressed'),'true');
+    const toggle=page.locator('#product-theme');
+    await toggle.selectOption('dark');assert.equal(await toggle.inputValue(),'dark');
+    await toggle.focus();await page.keyboard.press('ArrowUp');await page.keyboard.press('Enter');assert.equal(await toggle.inputValue(),'light');
+    await toggle.selectOption('dark');
     await page.reload();assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
     assert.equal(await page.evaluate(()=>localStorage.getItem('recall.theme.v1')),'dark');
     const snapshots=path.join(root,'artifacts','ui-review');fs.mkdirSync(snapshots,{recursive:true});
@@ -69,26 +69,26 @@ async function verify() {
       await page.screenshot({path:path.join(snapshots,`theme-dark-${view}-desktop.png`)});
       await page.setViewportSize({width:320,height:844});
       assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),view+' dark overflow');
-      assert(await toggle.isVisible());
+      await page.getByRole('button',{name:'Open navigation',exact:true}).click();assert(await toggle.isVisible());await page.keyboard.press('Escape');
       await page.screenshot({path:path.join(snapshots,`theme-dark-${view}-mobile.png`)});
       await page.setViewportSize({width:1440,height:1000});
     }
     await page.goto(base+current.href+'?view=index');await page.locator('#search').fill('zzzx-no-matching-concept');assert(await page.locator('#empty').isVisible());
     await page.locator('#search').fill('');await page.locator('#topic-select').selectOption('1');assert.equal(await page.locator('.index-topic:visible').count(),1);
     await page.locator('.index-questions a').first().click();
-    const review=page.locator('#question-01 .review-actions button');await review.click();assert.equal(await review.getAttribute('aria-pressed'),'true');
-    await toggle.click();assert.equal(await review.getAttribute('aria-pressed'),'true');await page.reload();assert.equal(await review.getAttribute('aria-pressed'),'true');
-    await page.getByRole('button',{name:'Open chapter navigation'}).click();assert(await page.locator('#mobile-navigation').isVisible());
-    await page.keyboard.press('Escape');
+    const review=page.locator('#question-01 .review-actions button').first();await review.click();assert.equal(await review.getAttribute('aria-pressed'),'true');
+    await toggle.selectOption('light');assert.equal(await review.getAttribute('aria-pressed'),'true');await page.reload();assert.equal(await review.getAttribute('aria-pressed'),'true');
+    await page.setViewportSize({width:375,height:812});await page.getByRole('button',{name:'Open navigation',exact:true}).click();assert(await page.locator('.product-nav').isVisible());
+    await page.keyboard.press('Escape');await page.setViewportSize({width:1440,height:1000});
     // Theme selections synchronize across tabs and survive page navigation.
-    const other=await context.newPage();await other.goto(base+'index.html');await other.getByRole('button',{name:'Dark theme',exact:true}).click();
+    const other=await context.newPage();await other.goto(base+'index.html');await other.locator('#product-theme').selectOption('dark');
     await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');await other.close();
     // Print remains light even when the selected screen theme is dark.
     await page.emulateMedia({media:'print'});assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--ui-surface').trim()),'#ffffff');await page.emulateMedia({media:'screen'});
-    const system=await browser.newContext({colorScheme:'dark'});await system.route('https://**',r=>r.abort());const auto=await system.newPage();await auto.goto(base+'index.html');assert.equal(await auto.locator('html').getAttribute('data-theme'),'dark');
+    const system=await browser.newContext({colorScheme:'dark'});await system.route('https://**',r=>r.abort());const auto=await system.newPage();await auto.goto(base+'index.html');assert.equal(await auto.locator('html').getAttribute('data-theme'),'light');
     await auto.emulateMedia({colorScheme:'light'});await auto.waitForFunction(()=>document.documentElement.dataset.theme==='light');
-    await auto.getByRole('button',{name:'Dark theme',exact:true}).click();await auto.emulateMedia({colorScheme:'dark'});await auto.emulateMedia({colorScheme:'light'});assert.equal(await auto.locator('html').getAttribute('data-theme'),'dark');await system.close();
-    const denied=await browser.newContext({colorScheme:'dark'});await denied.route('https://**',r=>r.abort());await denied.addInitScript(()=>{Storage.prototype.getItem=()=>{throw new Error('Storage disabled');};Storage.prototype.setItem=()=>{throw new Error('Storage disabled');};});const privatePage=await denied.newPage();await privatePage.goto(base+'index.html');assert.equal(await privatePage.locator('html').getAttribute('data-theme'),'dark');await privatePage.getByRole('button',{name:'Dark theme',exact:true}).click();assert.equal(await privatePage.locator('html').getAttribute('data-theme'),'light');await denied.close();
+    await auto.locator('#product-theme').selectOption('dark');await auto.emulateMedia({colorScheme:'dark'});await auto.emulateMedia({colorScheme:'light'});assert.equal(await auto.locator('html').getAttribute('data-theme'),'dark');await system.close();
+    const denied=await browser.newContext({colorScheme:'dark'});await denied.route('https://**',r=>r.abort());await denied.addInitScript(()=>{Storage.prototype.getItem=()=>{throw new Error('Storage disabled');};Storage.prototype.setItem=()=>{throw new Error('Storage disabled');};});const privatePage=await denied.newPage();await privatePage.goto(base+'index.html');assert.equal(await privatePage.locator('html').getAttribute('data-theme'),'light');await privatePage.locator('#product-theme').selectOption('dark');assert.equal(await privatePage.locator('html').getAttribute('data-theme'),'dark');await denied.close();
     assert.deepEqual(errors,[]);
     console.log(`PASS: ${pages.length} initializers, ${chapters.length} dark chapters, contrast, keyboard toggle, saved preference, system preference, cross-tab sync, storage fallback, print, and responsive views.`);
   } finally {await browser.close();}

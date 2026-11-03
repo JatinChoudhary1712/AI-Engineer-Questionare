@@ -41,10 +41,11 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.roadmap-phase').count(),9);
+    assert.equal(await page.locator('.stat strong').first().textContent(),'713');
+    await page.goto(base+'index.html?page=roadmap');
+    assert.equal(await page.locator('.phase-row').count(),19);
     assert((await page.locator('#phase-10').innerText()).toLowerCase().includes('coming soon'));
-    assert.equal(await page.locator('.resume-card, .phase-card').count(),0);
-    assert.equal(await page.locator('.app-sidebar').isVisible(),false);
+    assert(await page.locator('.recall-sidebar').isVisible());
     let total = 0;
     const phaseOption = process.argv.find(argument => /^--phase\d+$/.test(argument));
     const selectedChapters = phaseOption ? chapters.filter(chapter => chapter.phase === Number(phaseOption.slice(7))) : chapters;
@@ -114,7 +115,7 @@ async function verify() {
     const key=chapter.id+':'+hash(question);
     await page.evaluate(({key})=>localStorage.setItem('recall.reviewed.v1',JSON.stringify({[key]:true})),{key});
     await page.reload();
-    assert.equal(await page.locator('#question-03 .review-actions button').getAttribute('aria-pressed'),'true');
+    assert.equal(await page.locator('#question-03 .review-actions button').first().getAttribute('aria-pressed'),'true');
     await page.locator('#question-03').getByRole('link',{name:'Focus on this question'}).click();
     assert.equal(await page.locator('#study-question-title').textContent(),question);
     assert.equal(await page.getByRole('button',{name:'Reviewed · Undo',exact:true}).getAttribute('aria-pressed'),'true');
@@ -124,7 +125,7 @@ async function verify() {
     await page.getByRole('button',{name:'Previous',exact:true}).click();
     await page.reload();
     assert.equal(await page.locator('#study-question-title').textContent(),question);
-    await page.getByRole('link',{name:'Library',exact:true}).click();
+    await page.locator('.recall-brand').click();
     assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('recall.position.v1')).questionId),'question-03');
     await page.goto(base+chapter.href+'?view=reading#question-03');
     await page.waitForSelector('#chapter-reader');
@@ -153,10 +154,10 @@ async function verify() {
       }
     }
     await page.goto(base+chapter.href);
-    await page.getByRole('button',{name:'Open chapter navigation'}).click();
-    assert(await page.locator('#mobile-navigation').isVisible());
+    await page.getByRole('button',{name:'Open navigation',exact:true}).click();
+    assert(await page.locator('body').evaluate(n=>n.classList.contains('drawer-open')));
     await page.keyboard.press('Escape');
-    assert.equal(await page.locator('#mobile-navigation').isVisible(),false);
+    assert.equal(await page.locator('body').evaluate(n=>n.classList.contains('drawer-open')),false);
     // Scrolling the reader saves the reached question without requiring a review.
     await page.locator('#question-09').scrollIntoViewIfNeeded();
     await page.waitForFunction(()=>JSON.parse(localStorage.getItem('recall.position.v1')).questionId==='question-09');
@@ -197,8 +198,8 @@ async function verify() {
       }
     }
     await page.goto(base+generative.href+'#question-06');
-    await page.getByRole('button',{name:'Open chapter navigation'}).click();
-    const phaseOrder = await page.locator('#mobile-navigation nav').evaluate(nav=>[...nav.children].map(node=>node.dataset.phase||(/Phase 10/.test(node.textContent)?'10':null)).filter(Boolean));
+    await page.goto(base+'index.html?page=roadmap');
+    const phaseOrder = await page.locator('.phase-row').evaluateAll(nodes=>nodes.map(n=>n.id.replace('phase-','')));
     assert(phaseOrder.indexOf('10') < phaseOrder.indexOf('11'), 'Coming soon Phase 10 precedes Phase 11');
     await page.keyboard.press('Escape');
     assert.deepEqual(errors,[]);
