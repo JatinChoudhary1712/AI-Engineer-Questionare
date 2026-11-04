@@ -11,7 +11,7 @@ const sandbox = {window: {}};
 vm.runInNewContext(fs.readFileSync(path.join(root, 'study-data.js'), 'utf8'), sandbox);
 const chapters = sandbox.window.STUDY_CHAPTERS;
 assert.equal(chapters.length, 50);
-assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 713);
+assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 717);
 const server = http.createServer((req, res) => {
   const file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
   if (!file.startsWith(root + path.sep)) {res.writeHead(403); res.end(); return;}
@@ -41,7 +41,7 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.stat strong').first().textContent(),'713');
+    assert.equal(await page.locator('.stat strong').first().textContent(),'717');
     await page.goto(base+'index.html?page=roadmap');
     assert.equal(await page.locator('.phase-row').count(),19);
     assert((await page.locator('#phase-10').innerText()).toLowerCase().includes('coming soon'));
@@ -55,7 +55,7 @@ async function verify() {
       await page.waitForSelector('#chapter-reader');
       assert.equal(await page.locator('body').getAttribute('data-view'),'reading');
       assert.equal(await page.locator('#questions details').count(),chapter.count);
-      assert.equal(await page.locator('#questions details[open]').count(),chapter.count);
+      assert.equal(await page.locator('#questions details[open]').count(),0);
       assert.equal(await page.locator('#questions .topic h2:visible').count(),chapter.topics);
       const originals = await page.locator('#questions .answer').evaluateAll(nodes => nodes.map(node => {
         const copy=node.cloneNode(true);copy.querySelector('.review-actions').remove();
@@ -64,8 +64,8 @@ async function verify() {
       }));
       const first = page.locator('#questions details').first();
       await first.locator('summary').click();
-      assert.equal(await first.evaluate(node=>node.open),false);
-      assert.equal(await page.locator('#questions details').nth(1).evaluate(node=>node.open),true);
+      assert.equal(await first.evaluate(node=>node.open),true);
+      assert.equal(await page.locator('#questions details').nth(1).evaluate(node=>node.open),false);
       await page.locator('#toggle-all-sections').click();
       assert.equal(await page.locator('#questions details[open]').count(),chapter.count);
       await page.locator('#toggle-all-sections').click();
@@ -159,7 +159,9 @@ async function verify() {
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('body').evaluate(n=>n.classList.contains('drawer-open')),false);
     // Scrolling the reader saves the reached question without requiring a review.
-    await page.locator('#question-09').scrollIntoViewIfNeeded();
+    // Use a longer chapter so the compact collapsed list can align this question near the top.
+    await page.goto(base+chapters.find(c=>c.id==='3.1').href);
+    await page.locator('#question-09').evaluate(node=>{node.open=true;window.scrollTo(0,window.scrollY+node.getBoundingClientRect().top-110);});
     await page.waitForFunction(()=>JSON.parse(localStorage.getItem('recall.position.v1')).questionId==='question-09');
     const orchestration = chapters.find(chapter => chapter.id === '7.4');
     for (const width of [1440,390]) {

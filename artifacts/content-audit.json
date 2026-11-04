@@ -1,6 +1,6 @@
 {
   "sheets": 50,
-  "questions": 713,
+  "questions": 717,
   "phaseCounts": [
     {
       "phase": 0,
@@ -29,7 +29,7 @@
     {
       "phase": 4,
       "sheets": 7,
-      "questions": 112,
+      "questions": 116,
       "officialChapters": 7
     },
     {
@@ -315,7 +315,7 @@
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "canonicalTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1",
-      "questions": 6,
+      "questions": 10,
       "review": false
     },
     {
@@ -3766,7 +3766,7 @@
     },
     {
       "id": "4.1",
-      "sha256": "ac19ecbae3ac772d4dea19c097638cbccd9a9ec2f0ac7dac181421b72f3407c8"
+      "sha256": "f9b3018f480f900335fe57ef7068e4b953d4999f6573b35cacfc48efa0710c4d"
     },
     {
       "id": "4.2",

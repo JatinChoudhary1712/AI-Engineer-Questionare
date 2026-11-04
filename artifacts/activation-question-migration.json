@@ -1,0 +1,38 @@
+[
+  {
+    "oldQuestion": "What are activation functions, and what are the basic differences between Sigmoid, Tanh, ReLU, GELU, and SwiGLU?",
+    "newQuestion": "What are activation functions, and why are they needed in neural networks?",
+    "oldId": "question-05",
+    "newId": "question-05"
+  },
+  {
+    "oldQuestion": "What is the sigmoid activation function?",
+    "newQuestion": "What is the Sigmoid activation function, and what are its mathematical properties and limitations?",
+    "oldId": "question-06",
+    "newId": "question-07"
+  },
+  {
+    "oldQuestion": "What is the tanh activation function?",
+    "newQuestion": "What is the Tanh activation function, and how does it differ from Sigmoid?",
+    "oldId": "question-07",
+    "newId": "question-08"
+  },
+  {
+    "oldQuestion": "What is ReLU?",
+    "newQuestion": "What is the ReLU activation function, how does it work, and what is the Dying ReLU problem?",
+    "oldId": "question-08",
+    "newId": "question-09"
+  },
+  {
+    "oldQuestion": "What is GELU?",
+    "newQuestion": "What is GELU, and how does its behaviour differ from ReLU?",
+    "oldId": "question-09",
+    "newId": "question-10"
+  },
+  {
+    "oldQuestion": "What is SwiGLU?",
+    "newQuestion": "What is SwiGLU, and how does its gated mechanism work?",
+    "oldId": "question-10",
+    "newId": "question-11"
+  }
+]

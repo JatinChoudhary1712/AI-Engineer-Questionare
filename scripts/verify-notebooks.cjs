@@ -7,6 +7,8 @@ async function run(){
   const browser=await chromium.launch({headless:true,...(process.env.RECALL_CHROMIUM?{executablePath:process.env.RECALL_CHROMIUM}:{})});
   try {
     const context=await browser.newContext({viewport:{width:1536,height:1100}});await context.route('https://**',r=>r.abort());
+    // Exercise empty personal collections; bundled-resource imports have their own checks.
+    await context.addInitScript(()=>localStorage.setItem('recall.bundled-resources.v1',JSON.stringify({'linkedin-ai-interview-resources-7523388742007586817':true,'rag-interview-100-1nh2EyRFnIlD3S4s3mTeLWizVjFqzEun4aMDqJtI3l60':true})));
     const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.setDefaultTimeout(10000);
     await page.goto(base);
     assert.equal(await page.locator('.workspace-card').count(),4);assert.equal(await page.locator('.compact-phase').count(),5);
@@ -27,7 +29,7 @@ async function run(){
       await page.locator('.recall-brand').click();assert((await page.locator(`.workspace-card[data-collection=${category}]`).innerText()).includes(title));
     }
     await page.locator('#global-search').fill('notebook-check');await page.waitForSelector('.search-result');assert.equal(await page.locator('.search-result').count(),3);await page.keyboard.press('Escape');
-    await page.locator('.product-nav a[data-page=resources]').click();
+    await page.locator('.product-nav a[data-page=resources]').click();await page.getByRole('link',{name:'Edit item',exact:true}).click();
     await page.getByLabel('Search saved items',{exact:true}).fill('no match here');assert.equal(await page.locator('.notebook-list-item').count(),0);await page.getByLabel('Search saved items',{exact:true}).fill('Harness');assert.equal(await page.locator('.notebook-list-item').count(),1);
     await page.getByLabel('Filter saved items by status',{exact:true}).selectOption('Done');assert.equal(await page.locator('.notebook-list-item').count(),0);await page.getByLabel('Filter saved items by status',{exact:true}).selectOption('');
     const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export notes',exact:true}).click();const download=await downloadPromise;const backup=JSON.parse(fs.readFileSync(await download.path(),'utf8'));assert.equal(backup.items.length,3);assert(backup.items.every(item=>item.notes.includes('notebook-check')));
@@ -49,7 +51,7 @@ async function run(){
       }
     }
     await page.getByRole('button',{name:'Switch to dark theme',exact:true}).click();await page.screenshot({path:path.join(root,'artifacts/ui-review/personal-notes-dark.png'),fullPage:true});
-    await page.locator('.recall-brand').click();await page.waitForSelector('.stats-row');assert.deepEqual(await page.locator('.stat strong').allTextContents(),['713','50','0','0%']);
+    await page.locator('.recall-brand').click();await page.waitForSelector('.stats-row');assert.deepEqual(await page.locator('.stat strong').allTextContents(),['717','50','0','0%']);
     assert.deepEqual(errors,[]);console.log('PASS: four dashboard cards; all three collections; create/edit/delete/undo; independent drafts and reload persistence; personal notes; search/filter; backup export; escaped text and safe links; light/dark; 320–1536px layouts; learning totals unchanged.');
   }finally{await browser.close();}
 }

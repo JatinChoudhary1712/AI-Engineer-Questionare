@@ -30,7 +30,7 @@
     menu:'M3 6h18M3 12h18M3 18h18', arrow:'M4 12h16m-6-6 6 6-6 6',chevron:'m9 5 7 7-7 7'
   };
   const icon = name => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.book}"/></svg>`;
-  const url = (view, extra={}) => {const u=new URL(home);u.searchParams.set('page',view);for(const [k,v] of Object.entries(extra))u.searchParams.set(k,v);return u.href;};
+  const url = (view, extra={}) => {const separate=view==='phase'||(view==='resources'&&!extra.new&&!extra.edit);const u=separate?new URL(view==='phase'?'phase.html':'resources.html',root):new URL(home);if(!separate)u.searchParams.set('page',view);for(const [k,v] of Object.entries(extra))u.searchParams.set(k,v);return u.href;};
   const questionURL = q => new URL(sheets.find(s=>s.id===q.chapterId).href+'?view=reading#'+q.id,root).href;
   const sheetURL = s => new URL(s.href+'?view=reading',root).href;
   const load = (key,fallback) => {try {const value=JSON.parse(localStorage.getItem(key));return value&&typeof value==='object'&&!Array.isArray(value)?value:fallback;} catch{return fallback;}};
@@ -42,6 +42,63 @@
     interviews:{title:'Interview Prep',description:'Real interview questions, shared experiences, and your own preparation notes.',hint:'Keep real questions, interview rounds, and experiences from people who have been there.',example:'e.g. AI engineer interview — RAG system design',types:['Interview question','Interview experience','Question set'],detail:'Question or interview experience',statuses:['To prepare','Practising','Ready']},
     miscellaneous:{title:'Miscellaneous',description:'A place for career tasks, LinkedIn improvements, ideas, and everything in between.',hint:'Remember the small things: update LinkedIn, improve your portfolio, or follow up on an idea.',example:'e.g. Improve my LinkedIn About section',types:['Task','Career / profile','Idea','General note'],detail:'Details / next steps',statuses:['To do','In progress','Done']}
   };
+  // User-requested public resources. Import each once; keep subsequent edits and deletions.
+  const shirinResourceTable=[
+    {group:'RAG & Retrieval',info:'Diagnose a wrong RAG response when the relevant document is already indexed.',url:'https://lnkd.in/d-CxdyUR'},
+    {group:'RAG & Retrieval',info:'Select document chunk lengths and overlap settings.',url:'https://lnkd.in/di2emDTW'},
+    {group:'RAG & Retrieval',info:'Decide when to combine hybrid retrieval with a reranker.',url:'https://lnkd.in/d-Mrncn8'},
+    {group:'Agents',info:'Choose between an autonomous agent and a fixed workflow.',url:'https://lnkd.in/d-CxdyUR'},
+    {group:'Agents',info:'Plan a RAG-based insurance claims agent with a token budget.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'Agents',info:'Architect an AI agent for customer support.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'Evals',info:'Create evaluation cases and assess whether a release is ready.',url:'https://lnkd.in/d-CxdyUR'},
+    {group:'Evals',info:'Assess an agent’s execution, beyond its final response.',url:'https://lnkd.in/d-CxdyUR'},
+    {group:'LLM System Design',info:'Build a pipeline that batches requests to language models.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'LLM System Design',info:'Lower serving latency and inference spending at scale.',url:'https://lnkd.in/d__s7RAb'},
+    {group:'LLM System Design',info:'Handle large multimodal uploads in an AI chat product.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'LLM System Design',info:'Architect a low-latency conversational voice application.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'Production & Debugging',info:'Expose model behavior through a dependable application interface.',url:'https://lnkd.in/d-CxdyUR'},
+    {group:'Production & Debugging',info:'Investigate and stop an agent that repeatedly loops.',url:'https://lnkd.in/di2emDTW'},
+    {group:'Production & Debugging',info:'Address confidently incorrect model responses in a sensitive workflow.',url:'https://lnkd.in/d9ukGNiJ'},
+    {group:'Production & Debugging',info:'Discuss a deployed AI project, a failure, and evidence that the fix worked.',url:'https://lnkd.in/diqkiz9A'}
+  ];
+  const bundledResources=[
+    {
+      id:'linkedin-ai-interview-resources-7523388742007586817',category:'resources',
+      title:'AI Engineer interview questions and resources — Shirin Khosravi Jam',
+      source:'LinkedIn · Shirin Khosravi Jam',type:'Article / post',status:'To explore',
+      url:'https://www.linkedin.com/posts/shirin-khosravi-jam_ai-engineer-interview-questions-and-resources-activity-7523388742007586817-Vt52',
+      originalUrl:'https://lnkd.in/p/gPkEt-bj',
+      resourceTable:shirinResourceTable,
+      content:'A collection of 16 AI engineering interview practice prompts, grouped into five areas:\n\n• RAG & retrieval: diagnose incorrect answers, choose chunking settings, and combine retrieval methods.\n• Agents: choose between an agent and a fixed workflow; design claims-processing and customer-support systems.\n• Evaluations: build a test set, assess changes before release, and examine agent behavior.\n• LLM system design: batching, latency and cost, multimodal uploads, and voice applications.\n• Production & debugging: reliable application interfaces, looping agents, factual errors, and lessons from shipped systems.\n\nThe post includes links to supporting preparation resources. Open the source to explore those links.',
+      notes:''
+    },
+    {
+      id:'rag-interview-100-1nh2EyRFnIlD3S4s3mTeLWizVjFqzEun4aMDqJtI3l60',category:'interviews',
+      title:'100 RAG Interview Questions — With Detailed Answers',
+      source:'Google Docs · 2026 study guide',type:'Question set',status:'To prepare',
+      url:'https://docs.google.com/document/d/1nh2EyRFnIlD3S4s3mTeLWizVjFqzEun4aMDqJtI3l60/mobilebasic',
+      content:'A RAG interview study guide with 100 numbered questions and detailed answers, verified across five categories of 20 questions each:\n\n1. RAG Fundamentals — questions 1–20.\n2. Chunking & Embeddings — questions 21–40.\n3. Vector DBs & Retrieval — questions 41–60.\n4. Evaluation — questions 61–80.\n5. Production & Advanced RAG — questions 81–100.\n\nTopics include retrieval failures, embedding choices, vector indexes, hybrid retrieval, evaluation, citations, production architecture, and advanced retrieval patterns.\n\nThe guide suggests answering aloud before reading the explanation, identifying weak areas, and practising mock interviews. Use the source document for the complete questions and answers.',
+      notes:''
+    }
+  ];
+  const resourceIdentity=value=>{try{const u=new URL(value);const doc=u.pathname.match(/\/document\/d\/([^/]+)/);return doc?'google-doc:'+doc[1]:u.origin+u.pathname.replace(/\/$/,'');}catch{return value;}};
+  const bundledImportKey='recall.bundled-resources.v1',importedResources=load(bundledImportKey,{});
+  let importsChanged=false;
+  for(const item of bundledResources){
+    if(importedResources[item.id]===true)continue;
+    const identities=[resourceIdentity(item.url),resourceIdentity(item.originalUrl)];
+    const exists=Object.values(notebookEntries).some(saved=>saved&&(saved.id===item.id||(saved.url&&identities.includes(resourceIdentity(saved.url)))));
+    if(!exists){const now=new Date().toISOString();notebookEntries[item.id]={...item,createdAt:now,updatedAt:now};}
+    importedResources[item.id]=true;importsChanged=true;
+  }
+  // Enrich already-saved copies without replacing their personal fields or restoring deleted items.
+  const shirinResource=bundledResources[0];
+  for(const [id,item]of Object.entries(notebookEntries)){
+    if(item&&(item.id===shirinResource.id||[shirinResource.url,shirinResource.originalUrl].map(resourceIdentity).includes(resourceIdentity(item.url)))&&!Array.isArray(item.resourceTable)){
+      notebookEntries[id]={...item,resourceTable:shirinResourceTable};importsChanged=true;
+    }
+  }
+  if(importsChanged)try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));localStorage.setItem(bundledImportKey,JSON.stringify(importedResources));}catch{ /* Resources remain available for this visit when storage is unavailable. */ }
   const notebookItems=category=>Object.values(notebookEntries).filter(item=>item&&typeof item.id==='string'&&typeof item.title==='string'&&notebookTypes[item.category]&&(!category||item.category===category)).sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||''));
   const externalURL=value=>{try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:'';}catch{return '';}};
   const announce=el('p','sr-only');announce.setAttribute('role','status');announce.setAttribute('aria-live','polite');
@@ -82,9 +139,9 @@
   const results=el('section','search-results');results.id='search-results';results.hidden=true;results.setAttribute('aria-label','Search results');global.append(results);
   const searchIndex=[];
   for(const p of data.phases) {
-    searchIndex.push({title:`${phaseName(p)} — ${p.title}`,context:'Roadmap',href:url('roadmap',{phase:p.id}),count:questions.filter(q=>q.phase===p.id).length});
-    for(const c of p.chapters){searchIndex.push({title:c.title,context:`${phaseName(p)} · ${p.title}`,href:url('roadmap',{phase:p.id,chapter:c.id}),count:questions.filter(q=>q.chapterId===c.id).length});
-      for(const t of allNodes(c))searchIndex.push({title:t.title,context:c.title,href:url('roadmap',{phase:p.id,chapter:c.id,topic:t.id}),count:nodeQuestions(c,t).length});
+    searchIndex.push({title:`${phaseName(p)} — ${p.title}`,context:'Roadmap',href:url('phase',{phase:p.id}),count:questions.filter(q=>q.phase===p.id).length});
+    for(const c of p.chapters){searchIndex.push({title:c.title,context:`${phaseName(p)} · ${p.title}`,href:url('phase',{phase:p.id,chapter:c.id}),count:questions.filter(q=>q.chapterId===c.id).length});
+      for(const t of allNodes(c))searchIndex.push({title:t.title,context:c.title,href:url('phase',{phase:p.id,chapter:c.id,topic:t.id}),count:nodeQuestions(c,t).length});
     }
     for(const project of p.projects)searchIndex.push({title:project.title,context:`${phaseName(p)} · ${project.difficulty} project`,href:url('projects',{project:project.id}),project:true});
   }
@@ -123,7 +180,7 @@
     sidebar.insertBefore(chapterNav,theme);
     const toc=el('aside','reader-toc');toc.setAttribute('aria-label','On this page');toc.append(el('strong','','On this page'));
     document.querySelectorAll('#questions .topic').forEach((section,i)=>{section.id='reader-topic-'+i;const a=el('a','',section.querySelector('h2').textContent);a.href='#'+section.id;toc.append(a);});
-    const back=el('a','reader-back','← All chapters');back.href=url('roadmap',{phase:current.phase,chapter:current.id});toc.append(back);document.body.append(toc);
+    const back=el('a','reader-back','← All chapters');back.href=url('phase',{phase:current.phase,chapter:current.id});toc.append(back);document.body.append(toc);
     return;
   }
   document.querySelectorAll('.hero,.page-tools').forEach(n=>n.remove());
@@ -139,13 +196,14 @@
       const p=el('p');p.innerHTML=esc(line.replace(/^\s*- /,'')).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');block.append(p);
     }if(code)block.append(code);return block;
   }
-  function roadmapRow(p,expanded=false){
+  function roadmapRow(p){
     const qs=questions.filter(q=>q.phase===p.id),available=sheets.filter(s=>s.phase===p.id).length;
-    const detail=el('details','phase-row');detail.id='phase-'+p.id;detail.open=expanded;
-    const summary=el('summary');summary.innerHTML=`<span class="phase-number">${p.id==='capstone'?'C':p.id}</span><strong>${esc(phaseName(p))} — ${esc(p.title)}</strong><span class="phase-count">${available} chapters <span>·</span> ${qs.length} questions${qs.length&&countDone(qs)?` · ${percent(qs)}%`:''}</span>${badge(qs.length)}<span class="chevron">${icon('chevron')}</span>`;
-    detail.append(summary);
-    let built=false;const build=()=>{if(built)return;built=true;const body=el('div','phase-body');if(p.goal)body.append(el('p','phase-goal',p.goal));
-      body.append(el('p','structure-count',`${p.chapters.length} roadmap sections · ${available} learning sheets available`));if(!qs.length)body.append(placeholder());
+    const row=el('a','phase-row phase-page-link');row.id='phase-'+p.id;row.href=url('phase',{phase:p.id});
+    const summary=el('div','phase-link-content');summary.innerHTML=`<span class="phase-number">${p.id==='capstone'?'C':p.id}</span><strong>${esc(phaseName(p))} — ${esc(p.title)}</strong><span class="phase-count">${available} chapters <span>·</span> ${qs.length} questions${qs.length&&countDone(qs)?` · ${percent(qs)}%`:''}</span>${badge(qs.length)}<span class="chevron">${icon('chevron')}</span>`;
+    row.append(summary);return row;
+  }
+  function phaseChapters(p){
+    const body=el('div','phase-chapter-list');
       for(const c of p.chapters){const cq=questions.filter(q=>q.chapterId===c.id);const chapterDetail=el('details','chapter-row-detail');chapterDetail.id='chapter-'+c.id;
         const s=el('summary');s.innerHTML=`<strong>${esc(c.title)}</strong><span class="chapter-count">${cq.length?`${cq.length} questions · ${percent(cq)}% reviewed`:''}</span>${badge(cq.length)}<span class="chevron">${icon('chevron')}</span>`;chapterDetail.append(s);
         const content=el('div','chapter-topics');
@@ -154,8 +212,31 @@
         for(const t of c.topics)content.append(topicRow(c,t));
         if(c.supplements?.length){content.append(el('p','mapping-note','Additional sheet material · topic mapping needs review'));for(const t of c.supplements)content.append(topicRow(c,t));}
         chapterDetail.append(content);body.append(chapterDetail);
-      }detail.append(body);
-    };detail.addEventListener('toggle',()=>{if(detail.open)build();});if(expanded)build();return detail;
+      }return body;
+  }
+  function phasePage(params){
+    const p=data.phases.find(p=>String(p.id)===params.get('phase'));
+    if(!p){main.innerHTML=pageHeading('Phase not found','Choose a phase from the AI Engineering Roadmap.');const a=el('a','primary-button','Back to roadmap');a.href=url('roadmap');main.append(a);return;}
+    document.title=`${phaseName(p)} — ${p.title} | Recall`;
+    const qs=questions.filter(q=>q.phase===p.id),available=sheets.filter(s=>s.phase===p.id),done=countDone(qs);
+    const trail=el('nav','phase-breadcrumb');trail.setAttribute('aria-label','Breadcrumb');trail.innerHTML=`<a href="${url('roadmap')}">← All phases</a><span>/</span><span aria-current="page">${esc(phaseName(p))}</span>`;
+    main.append(trail);
+    const hero=el('section','phase-page-hero');hero.innerHTML=`<div class="phase-page-eyebrow"><span>${esc(phaseName(p).toUpperCase())}</span>${badge(qs.length)}</div><h1>${esc(p.title)}</h1><p>${esc(p.goal||'Explore the topics and learning points in this part of your AI engineering journey.')}</p><div class="phase-page-metrics"><span><strong>${p.chapters.length}</strong> roadmap sections</span><span><strong>${available.length}</strong> available sheets</span><span><strong>${qs.length}</strong> questions</span></div>`;main.append(hero);
+    const layout=el('div','phase-page-layout'),chaptersPanel=el('section','phase-chapters-panel');chaptersPanel.innerHTML=`<div class="phase-section-title"><h2>${p.id===0?'Orientation sections':'Chapters & topics'}</h2><span>${p.chapters.length} sections</span></div>`;
+    if(!qs.length)chaptersPanel.append(placeholder());chaptersPanel.append(phaseChapters(p));
+    const aside=el('aside','phase-learning-panel');aside.setAttribute('aria-label','Phase progress and navigation');
+    const progress=el('section','phase-progress-panel');progress.innerHTML='<h2>Your progress</h2>';
+    if(qs.length){progress.innerHTML+=`<strong class="phase-progress-value">${percent(qs)}%</strong><progress max="${qs.length}" value="${done}" aria-label="Phase questions reviewed"></progress><p>${done} of ${qs.length} questions reviewed</p>`;
+      let saved=load('recall.position.v1',{});const resume=available.find(s=>s.id===saved.chapterId)||available[0],question=questions.find(q=>q.chapterId===resume.id&&q.id===saved.questionId);
+      const start=el('a','primary-button',question?'Continue learning →':'Start learning →');start.href=question?questionURL(question):sheetURL(resume);progress.append(start);
+    }else progress.append(el('p','','Learning material for this phase is being prepared. Explore the chapter outlines below.'));
+    aside.append(progress);
+    const order=el('section','phase-order-panel');order.innerHTML='<h2>In this phase</h2>';
+    for(const c of p.chapters){const a=el('a','',c.title);a.href='#chapter-'+c.id;a.addEventListener('click',()=>{const target=document.getElementById('chapter-'+c.id);if(target)target.open=true;});order.append(a);}aside.append(order);
+    const idx=data.phases.indexOf(p),next=data.phases[idx+1];if(next){const a=el('a','phase-next-link');a.href=url('phase',{phase:next.id});a.innerHTML=`<small>Up next · ${esc(phaseName(next))}</small><strong>${esc(next.title)} →</strong>`;aside.append(a);}
+    layout.append(chaptersPanel,aside);main.append(layout);
+    const chapter=params.get('chapter');if(chapter){const target=document.getElementById('chapter-'+chapter);if(target)target.open=true;}
+    const topic=params.get('topic');if(topic){const target=document.getElementById('topic-'+topic);if(target){for(let node=target;node&&node!==main;node=node.parentElement)if(node.tagName==='DETAILS')node.open=true;target.scrollIntoView({block:'center'});}}
   }
   function topicRow(c,t){
     const tq=nodeQuestions(c,t);const detail=el('details','topic-row');detail.id='topic-'+t.id;
@@ -177,7 +258,7 @@
       <section class="dashboard-cards"><article class="progress-card"><h2>Your Progress</h2><div class="progress-line"><progress max="${questions.length}" value="${done}" aria-label="Overall progress"></progress><span>${pct}%</span></div><p>${done} of ${questions.length} questions reviewed</p></article><article class="continue-card"><div><p>Continue Learning</p><h2>${esc(resume.id+' '+resume.title)}</h2><p class="resume-phase">Phase ${p.id} · ${esc(p.title)}</p><a class="primary-button" href="${esc(q?questionURL(q):sheetURL(resume))}">Resume ${icon('arrow')}</a></div><svg class="contours" viewBox="0 0 260 150" fill="none" aria-hidden="true"><path d="M0 150c35-65 50 3 80-57s45 20 80-45 60-30 100-12M20 165c35-65 50 3 80-57s45 20 80-45 60-30 100-12M40 180c35-65 50 3 80-57s45 20 80-45 60-30 100-12" stroke="currentColor"/></svg></article></section>
       <section class="personal-dashboard-grid" aria-label="Your learning and personal collections"><article class="workspace-card roadmap-preview"><div class="workspace-card-heading"><span class="workspace-card-icon">${icon('roadmap')}</span><span class="workspace-eyebrow">YOUR LEARNING PATH</span></div><div class="section-heading"><div><h2>AI Engineering Roadmap</h2><p>From fundamentals to production-ready AI systems.</p></div></div><div id="roadmap-preview-list"></div><footer class="workspace-card-footer"><span>${data.phases.length-1} phases + Capstone</span><a href="${url('roadmap')}">View all ${icon('arrow')}</a></footer></article></section>`;
     for(const p of data.phases.slice(0,5)){
-      const row=el('a','compact-phase');row.href=url('roadmap',{phase:p.id});
+      const row=el('a','compact-phase');row.href=url('phase',{phase:p.id});
       const count=questions.filter(q=>q.phase===p.id).length;
       row.innerHTML=`<span class="phase-number">${p.id}</span><strong>${esc(phaseName(p)+' — '+p.title)}</strong><span class="phase-dot ${count?'has-content':''}" role="img" aria-label="${count?'Available':'Coming Soon'}"></span><span class="chevron">${icon('chevron')}</span>`;
       main.querySelector('#roadmap-preview-list').append(row);
@@ -194,7 +275,9 @@
       const link=el('a','notebook-preview-item');link.href=url(category,{item:item.id});link.innerHTML=`<span><strong>${esc(item.title)}</strong><small>${esc(item.source||item.type||'Personal note')}${item.notes?' · Has notes':''}</small></span><span class="notebook-status">${esc(config.statuses.includes(item.status)?item.status:config.statuses[0])}</span>`;preview.append(link);
     }
     const footer=el('footer','workspace-card-footer');footer.innerHTML=`<span>${items.length} saved ${items.length===1?'item':'items'}</span><a href="${url(category)}">View all ${icon('arrow')}</a>`;
-    card.append(preview,footer);return card;
+    card.append(preview,footer);
+    if(category==='resources'){const heading=card.querySelector('.section-heading h2'),a=el('a','resource-card-title',config.title);a.href=url(category);heading.replaceChildren(a);}
+    return card;
   }
   function notebookPage(category,params){
     const config=notebookTypes[category];
@@ -214,7 +297,7 @@
       const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),items=notebookItems(category).filter(item=>(!filter.value||item.status===filter.value)&&terms.every(term=>[item.title,item.content,item.notes,item.source,item.type].join(' ').toLowerCase().includes(term)));
       count.textContent=`${items.length} ${items.length===1?'item':'items'}`;list.replaceChildren();
       if(!items.length)list.append(el('p','notebook-list-empty',notebookItems(category).length?'No items match your search.':'Nothing saved yet. Add a link, question, or idea and make it your own.'));
-      for(const item of items){const a=el('a','notebook-list-item');a.href=url(category,{item:item.id});if(item.id===activeId)a.setAttribute('aria-current','true');a.innerHTML=`<small>${esc(item.source||item.type||'Personal note')}</small><strong>${esc(item.title)}</strong><span>${esc(item.status||config.statuses[0])}${item.notes?' · Has notes':''}</span>`;list.append(a);}
+      for(const item of items){const a=el('a','notebook-list-item');a.href=url(category,{item:item.id,...(category==='resources'?{edit:'1'}:{})});if(item.id===activeId)a.setAttribute('aria-current','true');a.innerHTML=`<small>${esc(item.source||item.type||'Personal note')}</small><strong>${esc(item.title)}</strong><span>${esc(item.status||config.statuses[0])}${item.notes?' · Has notes':''}</span>`;list.append(a);}
     }
     function edit(item,isNew=false){
       activeId=isNew?null:item.id;drawList();editor.replaceChildren();
@@ -234,6 +317,14 @@
       field('type','Type','select',config.types);field('status','Status','select',config.statuses);
       const content=field('content',config.detail,'textarea');content.rows=6;content.placeholder=category==='interviews'?'Paste the question, describe the interview rounds, or capture someone’s experience...':'Capture the idea, context, or what you want to do...';
       const personal=field('notes','Personal notes','textarea');personal.rows=15;personal.placeholder='Write your own notes here...';
+      if(Array.isArray(item.resourceTable)&&item.resourceTable.length){
+        form.classList.add('has-resource-table');
+        const tableSection=el('section','shared-resource-section');tableSection.setAttribute('aria-label','Resources shared in the post');
+        tableSection.innerHTML='<h3>Resources shared by Shirin</h3><div class="shared-resource-table-wrap"><table class="shared-resource-table"><caption>Interview practice topics and the resource links shared in the post</caption><thead><tr><th scope="col">Main info</th><th scope="col">Link</th></tr></thead><tbody></tbody></table></div>';
+        for(const resource of item.resourceTable){if(!resource||typeof resource.info!=='string'||!externalURL(resource.url))continue;const row=el('tr'),info=el('td'),linkCell=el('td');info.append(el('small','',resource.group||''),el('span','',resource.info));const a=el('a','',new URL(resource.url).host+new URL(resource.url).pathname+' ↗');a.href=externalURL(resource.url);a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Open resource: '+resource.info);linkCell.append(a);row.append(info,linkCell);tableSection.querySelector('tbody').append(row);}
+        const foldout=el('details','resource-item-details'),summary=el('summary','','Edit item details');foldout.append(summary);
+        while(fields.firstChild)foldout.append(fields.firstChild);fields.append(tableSection,foldout);
+      }
       const actions=el('div','notebook-form-actions'),submit=el('button','primary-button','Save item');submit.type='submit';
       const cancel=el('a','notebook-secondary','Back to overview');cancel.href=url('overview');actions.append(submit,cancel);
       if(!isNew){const remove=el('button','notebook-delete','Delete item');remove.type='button';remove.onclick=()=>{
@@ -248,9 +339,10 @@
         if(link.value&&!externalURL(link.value)){link.setCustomValidity('Use an http:// or https:// link.');link.reportValidity();return;}
         const now=new Date().toISOString(),id=item.id||((typeof crypto.randomUUID==='function')?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2));
         const entry={id,category,createdAt:item.createdAt||now,updatedAt:now,...Object.fromEntries(Object.entries(controls).map(([key,input])=>[key,input.value]))};
+        if(Array.isArray(item.resourceTable))entry.resourceTable=item.resourceTable;
         if(entry.url)entry.url=externalURL(entry.url);
         notebookEntries={...load(notebookKey,notebookEntries),[id]:entry};let persisted=true;try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));}catch{persisted=false;}
-        notebookDrafts={...load(draftKey,notebookDrafts)};delete notebookDrafts[draftId];delete notebookDrafts[category];save(draftKey,notebookDrafts);history.replaceState({},'',url(category,{item:id}));edit(entry);editor.querySelector('.draft-state').textContent=persisted?'Saved':'Saved for this visit · browser storage unavailable';announce.textContent=persisted?'Item and personal notes saved.':'Item saved for this visit. Browser storage is unavailable.';
+        notebookDrafts={...load(draftKey,notebookDrafts)};delete notebookDrafts[draftId];delete notebookDrafts[category];save(draftKey,notebookDrafts);history.replaceState({},'',url(category,{item:id,...(category==='resources'?{edit:'1'}:{})}));edit(entry);editor.querySelector('.draft-state').textContent=persisted?'Saved':'Saved for this visit · browser storage unavailable';announce.textContent=persisted?'Item and personal notes saved.':'Item saved for this visit. Browser storage is unavailable.';
       };
       title.addEventListener('input',()=>title.setCustomValidity(''));
       if(!isNew&&externalURL(value.url)){const open=el('a','notebook-source-link','Open source ↗');open.href=externalURL(value.url);open.target='_blank';open.rel='noopener noreferrer';form.querySelector('.notebook-editor-heading').append(open);}
@@ -259,11 +351,30 @@
     if(params.has('new'))edit({},true);else if(requested)edit(requested);else if(notebookDrafts[category+':new']||notebookDrafts[category]?.itemId==='new')edit({},true);else if(items.length)edit(items[0]);else edit({},true);
     search.oninput=drawList;filter.onchange=drawList;
   }
+  function resourcesPage(params){
+    const items=notebookItems('resources'),selected=items.find(item=>item.id===params.get('item'))||(items.length===1?items[0]:null);
+    main.classList.add('resources-table-page');
+    const back=el('a','resources-back','← Back to overview');back.href=url('overview');main.append(back);
+    const heading=el('div','resources-page-heading');heading.innerHTML=pageHeading(selected?selected.title:'Saved Resources','Explore your saved resources. Main information on the left, original links on the right.');
+    const actions=el('div','resources-page-actions');const add=el('a','primary-button','+ Add resource');add.href=url('resources',{new:'1'});actions.append(add);
+    if(selected){const edit=el('a','notebook-secondary','Edit item');edit.href=url('resources',{item:selected.id,edit:'1'});actions.append(edit);const notes=el('button','notebook-secondary','My notes');notes.type='button';notes.setAttribute('aria-expanded','false');notes.setAttribute('aria-controls','resource-personal-notes');notes.onclick=()=>{const panel=document.getElementById('resource-personal-notes');panel.hidden=!panel.hidden;notes.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden)panel.querySelector('textarea').focus();};actions.append(notes);}
+    if(!selected&&items.length){const manage=el('a','notebook-secondary','Manage items');manage.href=url('resources',{edit:'1'});actions.append(manage);}
+    heading.append(actions);main.append(heading);
+    const search=el('input','resources-table-search');search.type='search';search.placeholder='Search resources or topics...';search.setAttribute('aria-label','Search resource table');main.append(search);
+    if(selected&&externalURL(selected.url)){const source=el('a','resources-original-source','Open original post / source ↗');source.href=externalURL(selected.url);source.target='_blank';source.rel='noopener noreferrer';main.append(source);}
+    const wrap=el('div','resources-simple-table-wrap');wrap.innerHTML='<table class="resources-simple-table"><caption class="sr-only">Saved resources with main information and original links</caption><thead><tr><th scope="col">Main info</th><th scope="col">Link</th></tr></thead><tbody></tbody></table>';main.append(wrap);const count=el('p','resources-table-count');count.setAttribute('role','status');main.append(count);
+    const entries=(selected?[selected]:items).flatMap(item=>Array.isArray(item.resourceTable)&&item.resourceTable.length?item.resourceTable.filter(row=>row&&typeof row.info==='string').map(row=>({...row,item})): [{group:item.source||item.type||'Saved resource',info:item.title,url:item.url,item}]);
+    const draw=()=>{const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),found=entries.filter(row=>terms.every(term=>[row.info,row.group,row.item.title,row.url].join(' ').toLowerCase().includes(term)));const body=wrap.querySelector('tbody');body.replaceChildren();
+      for(const resource of found){const row=el('tr'),info=el('td'),linkCell=el('td');info.append(el('small','',resource.group||''),el('p','',resource.info));if(!Array.isArray(resource.item.resourceTable)){const view=el('a','resource-view-notes','View details & notes');view.href=url('resources',{item:resource.item.id});info.append(view);}if(externalURL(resource.url)){const a=el('a','resource-table-link',new URL(resource.url).host+new URL(resource.url).pathname+' ↗');a.href=externalURL(resource.url);a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Open resource: '+resource.info);linkCell.append(a);}else linkCell.append(el('span','resources-no-link','No source link added'));row.append(info,linkCell);body.append(row);}
+      if(!found.length){const row=el('tr'),cell=el('td','resources-empty',items.length?'No resources match your search.':'No resources yet. Add your first resource to keep it here.');cell.colSpan=2;row.append(cell);body.append(row);}count.textContent=`${found.length} ${found.length===1?'resource':'resources'}`;
+    };search.oninput=draw;draw();
+    if(selected){const panel=el('form','resource-personal-notes');panel.id='resource-personal-notes';panel.hidden=true;const label=el('label','','My notes'),textarea=el('textarea');textarea.id='resource-notes-text';textarea.rows=6;textarea.value=selected.notes||'';label.htmlFor=textarea.id;const saveButton=el('button','primary-button','Save notes');saveButton.type='submit';const state=el('p','resources-note-state');state.setAttribute('role','status');panel.append(label,textarea,saveButton,state);panel.onsubmit=e=>{e.preventDefault();notebookEntries={...load(notebookKey,notebookEntries)};const existing=notebookEntries[selected.id];if(!existing){state.textContent='This resource was deleted. Return to Saved Resources to choose another.';return;}notebookEntries[selected.id]={...existing,notes:textarea.value,updatedAt:new Date().toISOString()};try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));state.textContent='Notes saved.';}catch{state.textContent='Notes kept for this visit. Browser storage is unavailable.';}};main.append(panel);}
+  }
   function roadmap(params){
+    if(params.has('phase')){phasePage(params);return;}
     main.innerHTML=pageHeading('AI Engineering Roadmap','Your complete learning path, from first principles to production. Explore one phase at a time.')+`<p class="roadmap-meta">${data.phases.length-1} phases + Capstone <span>·</span> ${sheets.length} learning sheets <span>·</span> ${questions.length} questions</p>`;
-    const list=el('div','full-roadmap');for(const p of data.phases)list.append(roadmapRow(p,String(p.id)===params.get('phase')));main.append(list);
+    const list=el('div','full-roadmap');for(const p of data.phases)list.append(roadmapRow(p));main.append(list);
     const source=el('a','roadmap-source','Roadmap source · Ultimate AI Engineer Roadmap 2026 ↗');source.href=data.source;source.target='_blank';source.rel='noopener noreferrer';main.append(source);
-    const chapter=params.get('chapter'),topic=params.get('topic');if(chapter){const c=document.getElementById('chapter-'+chapter);if(c)c.open=true;}if(topic){const node=document.getElementById('topic-'+topic);if(node){let n=node;while(n&&n!==main){if(n.tagName==='DETAILS')n.open=true;n=n.parentElement;}node.scrollIntoView({block:'center'});}}
   }
   function collection(view){
     const titles={questions:['Question Bank','Every question, in one place. Find a concept and keep learning.'],revision:['Revision','A little recall goes a long way. Revisit questions you haven’t reviewed.'],bookmarks:['Bookmarks','Your saved questions, ready whenever you need them.']};
@@ -305,8 +416,8 @@
       }section.append(grid);main.append(section);
     }if(params.get('project'))document.getElementById('project-'+params.get('project'))?.scrollIntoView({block:'center'});
   }
-  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.phase?'roadmap':'overview';if(!navItems.some(([k])=>k===view))view='overview';updateNav(view);main.replaceChildren();document.title=navItems.find(([k])=>k===view)[1]+' | Recall';
-    if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(notebookTypes[view])notebookPage(view,params);else collection(view);
+  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.page||(document.body.dataset.phase?'roadmap':'overview');if(view!=='phase'&&!navItems.some(([k])=>k===view))view='overview';updateNav(view==='phase'?'roadmap':view);main.replaceChildren();main.classList.remove('resources-table-page');document.title=(view==='phase'?'Phase':navItems.find(([k])=>k===view)[1])+' | Recall';
+    if(view==='phase')phasePage(params);else if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(view==='resources'&&!params.has('new')&&!params.has('edit'))resourcesPage(params);else if(notebookTypes[view])notebookPage(view,params);else collection(view);
   }
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const dest=new URL(a.href);if(dest.origin===home.origin&&dest.pathname===home.pathname&&dest.searchParams.has('page')){e.preventDefault();history.pushState({},'',dest);closeDrawer();results.hidden=true;render();if(!dest.searchParams.has('topic')&&!dest.searchParams.has('project'))window.scrollTo(0,0);main.focus({preventScroll:true});}});
   window.addEventListener('popstate',render);

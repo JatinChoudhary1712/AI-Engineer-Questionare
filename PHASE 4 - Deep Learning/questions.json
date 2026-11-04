@@ -1,45 +1,45 @@
 {
   "phase": "Phase 4 - Deep Learning",
-  "total_questions": 112,
+  "total_questions": 116,
   "questions": [
     {
-      "id": 1,
+      "id": 2,
       "number": 1,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Neuron, Perceptron, MLP",
       "type": "conceptual",
-      "question": "What are a neuron, a perceptron, and a multilayer perceptron (MLP)?",
-      "answer": "<p>A neuron computes a weighted input; a perceptron makes a simple decision; an MLP connects neurons in multiple layers.</p><ul><li><strong>Neuron:</strong> Multiply inputs by weights, add a bias, then apply an activation.</li><li><strong>Perceptron:</strong> A classical single-layer perceptron uses a threshold and can separate linearly separable classes.</li><li><strong>MLP:</strong> Hidden layers with non-linear activations learn more complex input-output relationships.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>z = sum(w_i * x_i) + b; output = activation(z)</code></p><p class=\"example\"><strong>Example:</strong> A simple perceptron can separate some categories with a straight boundary; an MLP can learn more complex boundaries.</p><p><strong>Remember:</strong> Neuron computes; perceptron decides; MLP learns layered patterns.</p>",
-      "subtopic": "Neuron, Perceptron, MLP"
-    },
-    {
-      "id": 2,
-      "number": 2,
-      "section": "4.1 Neural Network Fundamentals",
-      "bullet": "Neuron, Perceptron, MLP",
-      "type": "conceptual",
       "question": "What is an artificial neuron?",
-      "answer": "<p>An artificial neuron transforms weighted inputs into an output.</p><ul><li><strong>Inputs:</strong> Receive feature values or outputs from earlier neurons.</li><li><strong>Weights and bias:</strong> Control each input's contribution and shift the combined value.</li><li><strong>Activation:</strong> Transform the combined value before passing it onward.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>output = activation(sum(weight_i * input_i) + bias)</code></p><p><strong>Remember:</strong> Multiply, add, then activate.</p>",
+      "answer": "<ul><li>Artificial neuron neural network ki basic building block hai.</li><li>Ye multiple inputs leta hai, unhe weights ke saath multiply karta hai aur bias add karta hai.</li><li>Uske baad activation function decide karta hai ki output kya hoga.</li><li>Biological neuron se inspired mathematical model hai.</li></ul><p><strong>Formula:</strong></p><math class=\"neuron-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"z equals the sum from i equals one to n of w i times x i, plus b\"><mrow><mi>z</mi><mo>=</mo><munderover><mo>&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>w</mi><mi>i</mi></msub><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mi>b</mi></mrow></math><math class=\"neuron-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"Output equals f of z\"><mrow><mi mathvariant=\"italic\">Output</mi><mo>=</mo><mi>f</mi><mo>(</mo><mi>z</mi><mo>)</mo></mrow></math><p><strong>Yaad rakho:</strong> Inputs + Weights + Bias + Activation = Artificial Neuron.</p>",
       "subtopic": "Neuron, Perceptron, MLP"
     },
     {
       "id": 3,
-      "number": 3,
+      "number": 2,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Neuron, Perceptron, MLP",
       "type": "conceptual",
       "question": "What is a perceptron?",
-      "answer": "<p>A classical perceptron is a simple binary classifier using a weighted sum and a threshold.</p><ul><li><strong>Score:</strong> Combine inputs with learned weights and a bias.</li><li><strong>Decision:</strong> Output one of two classes according to the threshold.</li><li><strong>Limit:</strong> A single perceptron can only separate linearly separable classes.</li></ul><p><strong>Remember:</strong> A perceptron makes a threshold-based decision.</p>",
+      "answer": "<ul><li>Perceptron artificial neuron ka simplest form hai.</li><li>Ye binary classification karta hai, jaise Yes/No, 0/1.</li><li>Isme generally step activation function use hota hai.</li><li>Ye sirf linearly separable data ko correctly classify kar sakta hai.</li></ul><p><strong>Example:</strong> Email spam hai ya not spam?</p><p><strong>Yaad rakho:</strong> Perceptron = Single-layer binary classifier.</p>",
       "subtopic": "Neuron, Perceptron, MLP"
     },
     {
       "id": 4,
+      "number": 3,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Neuron, Perceptron, MLP",
+      "type": "conceptual",
+      "question": "What is a multilayer perceptron (MLP)?",
+      "answer": "<ul><li>MLP ek feedforward neural network hai.</li><li>Isme input layer, one or more hidden layers aur output layer hoti hain.</li><li>Har layer neurons se bani hoti hai.</li><li>Non-linear activation functions ki help se complex patterns learn karta hai.</li></ul><p><strong>Example:</strong> Image mein cat hai ya dog?</p><p><strong>Yaad rakho:</strong> MLP = Multiple layers + Non-linearity + Complex pattern learning.</p>",
+      "subtopic": "Neuron, Perceptron, MLP"
+    },
+    {
+      "id": 1,
       "number": 4,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Neuron, Perceptron, MLP",
       "type": "conceptual",
-      "question": "What is an MLP, and what do hidden layers do?",
-      "answer": "<p>An MLP is a feed-forward network with learned layers between its input and output.</p><ul><li><strong>Input layer:</strong> Receives the features.</li><li><strong>Hidden layers:</strong> Transform features using weights and non-linear activations.</li><li><strong>Output layer:</strong> Produces task-specific predictions or scores.</li></ul><p><strong>Remember:</strong> Hidden layers learn useful intermediate representations.</p>",
+      "question": "What is the difference between an artificial neuron, a perceptron, and an MLP?",
+      "answer": "<p>An artificial neuron is a computational building block; a classical perceptron is a threshold-based neuron used for binary classification; an MLP is a network of neurons arranged in layers.</p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Aspect</th><th scope=\"col\">Artificial neuron</th><th scope=\"col\">Perceptron</th><th scope=\"col\">MLP</th></tr></thead><tbody><tr><th scope=\"row\">Structure</th><td>One unit: weighted inputs, bias, and activation</td><td>A single threshold-based unit in the classical model</td><td>Input, one or more hidden layers, and an output layer</td></tr><tr><th scope=\"row\">Activation</th><td>Depends on the design: for example, ReLU, sigmoid, or a threshold</td><td>Hard threshold or step function</td><td>Non-linear hidden activations; the output activation depends on the task</td></tr><tr><th scope=\"row\">What it can represent</th><td>A transformation of one weighted sum; capacity depends on its activation</td><td>A linear decision boundary for binary classification</td><td>Complex non-linear relationships through hidden layers</td></tr><tr><th scope=\"row\">Learning</th><td>Learned as part of a model; the training method depends on the activation</td><td>Classically trained with the perceptron learning rule</td><td>Usually trained with backpropagation and a gradient-based optimizer</td></tr><tr><th scope=\"row\">Example</th><td>A unit that detects a useful feature</td><td>A classifier for a linearly separable problem such as AND</td><td>A network that can learn XOR using a non-linear hidden layer</td></tr></tbody></table></div><p><strong>Remember:</strong> A perceptron is a specific kind of artificial neuron. An MLP combines many neurons into a layered network.</p>",
       "subtopic": "Neuron, Perceptron, MLP"
     },
     {
@@ -48,63 +48,103 @@
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What are activation functions, and what are the basic differences between Sigmoid, Tanh, ReLU, GELU, and SwiGLU?",
-      "answer": "<p>Activation functions transform neuron outputs and let networks learn non-linear patterns.</p><ul><li><strong>Non-linearity:</strong> Without it, stacked affine layers collapse into one affine transformation.</li><li><strong>Choice:</strong> Match the activation to the layer and task; no activation is always best.</li><li><strong>Gating:</strong> SwiGLU multiplies learned branches to control feature contributions, rather than applying only one scalar activation.</li></ul><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Function</th><th scope=\"col\">Basic behavior</th><th scope=\"col\">Common role</th></tr></thead><tbody><tr><th scope=\"row\">Sigmoid</th><td>Output between 0 and 1; can saturate</td><td>Binary probability outputs</td></tr><tr><th scope=\"row\">Tanh</th><td>Output between -1 and 1; zero-centered; can saturate</td><td>Some recurrent hidden states</td></tr><tr><th scope=\"row\">ReLU</th><td>max(0, x); zero for negative inputs</td><td>Hidden layers in many MLPs and CNNs</td></tr><tr><th scope=\"row\">GELU</th><td>Smoothly weights x using a Gaussian cumulative probability</td><td>Hidden activations in transformer feed-forward blocks</td></tr><tr><th scope=\"row\">SwiGLU</th><td>Multiply two learned projections, with SiLU (x * sigmoid(x)) applied to one branch</td><td>Gated transformer feed-forward blocks</td></tr></tbody></table></div><p><strong>Remember:</strong> Activations add non-linearity; gates control information flow.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What are activation functions, and why are they needed in neural networks?",
+      "answer": "<p><strong>Definition:</strong> Activation function ek mathematical function hai jo neuron ke weighted sum ko process karke final output generate karta hai.</p><p>Why do we need them?</p><ul><li>Neural network mein non-linearity introduce karte hain.</li><li>Complex patterns aur relationships learn karne mein help karte hain.</li><li>Without activation functions, multiple layers bhi ek single linear transformation ki tarah behave karengi.</li></ul><p><strong>Interview takeaway:</strong> Activation functions allow neural networks to learn complex, non-linear relationships.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 6,
+      "id": 113,
       "number": 6,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What is the sigmoid activation function?",
-      "answer": "<p>Sigmoid maps a real-valued input to a number between zero and one.</p><ul><li><strong>Range:</strong> Outputs lie between zero and one.</li><li><strong>Use:</strong> Often converts a binary-classification score into a probability.</li><li><strong>Limitation:</strong> Very positive or negative inputs have small derivatives.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>sigmoid(x) = 1 / (1 + exp(-x))</code></p><p><strong>Remember:</strong> Sigmoid squashes a score into the zero-to-one range.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What is the mathematical intuition behind an activation function, and how does it introduce non-linearity?",
+      "answer": "<p><strong>Ek neuron pehle inputs ka weighted sum calculate karta hai:</strong></p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"z = w_1x_1+w_2x_2+b\"><mrow><mi>z</mi><mo>=</mo><msub><mi>w</mi><mn>1</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><msub><mi>x</mi><mn>2</mn></msub><mo>+</mo><mi>b</mi></mrow></math><p><strong>Then activation function apply hota hai:</strong></p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"a = f(z)\"><mrow><mi>a</mi><mo>=</mo><mi>f</mi><mo>(</mo><mi>z</mi><mo>)</mo></mrow></math><p><strong>Simple intuition:</strong></p><ul><li>Weighted sum decide karta hai input ka combined influence.</li><li>Activation function decide karta hai output kaise transform hoga.</li><li>Is transformation se network complex patterns learn kar sakta hai.</li></ul><p><strong>Example:</strong> Agar hum sirf linear transformations use karein, toh network complex curved patterns learn nahi kar payega.</p><p><strong>Interview takeaway:</strong> Activation functions introduce non-linearity, allowing deep networks to learn beyond simple linear relationships.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 7,
+      "id": 6,
       "number": 7,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What is the tanh activation function?",
-      "answer": "<p>Tanh maps a real-valued input to a number between minus one and one.</p><ul><li><strong>Range:</strong> Allows both negative and positive outputs.</li><li><strong>Center:</strong> Zero input gives zero output.</li><li><strong>Limitation:</strong> Large input magnitudes can saturate and give small derivatives.</li></ul><p><strong>Remember:</strong> Tanh is zero-centered but can still saturate.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What is the Sigmoid activation function, and what are its mathematical properties and limitations?",
+      "answer": "<p>Sigmoid</p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"sigma(x)=frac{1}{1+e^{-x}}\"><mrow><mi>σ</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow></math><p><a href=\"https://images.openai.com/static-rsc-4/YFJBdDquttwOcH0SuzbxcEyUFJhB46g2fNiHfZWeLbZhu3fJQ0BdTh2CifyxXb80ta-MC8_jrUGjroCtNLk7b2cKDCX95JZqWmQ9yzc2wGGa5DzJz0XWn_hKCMvVMnwJFqNr7Yw9wHlavlbxrfdN0YBIs8F68C0uX-O6656xRsE?purpose=inline\" target=\"_blank\" rel=\"noopener noreferrer\">Medium ↗</a></p><p><strong>Properties:</strong></p><ul><li>Output range: 0 to 1.</li><li>S-shaped curve.</li><li>Large positive input → output approaches 1.</li><li>Large negative input → output approaches 0.</li></ul><p><strong>Limitations:</strong></p><ul><li>Vanishing gradient problem.</li><li>Not zero-centered.</li><li>Computationally expensive due to exponential calculation.</li></ul><p>Where is it used?</p><ul><li>Binary classification output layer.</li><li>Probability prediction.</li></ul><p><strong>Interview takeaway:</strong> Sigmoid is useful for binary classification because its output can represent probabilities, but it is generally avoided in deep hidden layers due to vanishing gradients.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 8,
+      "id": 7,
       "number": 8,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What is ReLU?",
-      "answer": "<p>ReLU returns the input when it is positive and zero otherwise.</p><ul><li><strong>Positive inputs:</strong> Pass through unchanged.</li><li><strong>Negative inputs:</strong> Become zero.</li><li><strong>Limitation:</strong> A unit that stays on the negative side can stop receiving useful gradients.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>ReLU(x) = max(0, x)</code></p><p><strong>Remember:</strong> ReLU keeps positives and zeros negatives.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What is the Tanh activation function, and how does it differ from Sigmoid?",
+      "answer": "<p>Tanh</p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"tanh(x)=frac{e^x-e^{-x}}{e^x+e^{-x}}\"><mrow><mi>tanh</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mfrac><mrow><msup><mi>e</mi><mrow><mi>x</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow><mrow><msup><mi>e</mi><mrow><mi>x</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup></mrow></mfrac></mrow></math><p><a href=\"https://images.openai.com/static-rsc-4/exzv0pk__4rHYflbhy4Y-FTVEv-aZi_uJqKBJ1pNpItzPQon1dcnr69ggNpp7cbAGD5E_Pq-Cs6sa2gJO6UYUyZURNaHH3fqHakfyZx3WHgeEPzidoqhepdbM2f11jnFqzXpmdTS4dIAy-ItXMspOWHMh_DL36jEd2YAgr1kew8?purpose=inline\" target=\"_blank\" rel=\"noopener noreferrer\">Excurse: Activation functions and the vanishing gradient problem - Fabrizio Musacchio ↗</a></p><p><strong>Properties:</strong></p><ul><li>Output range: -1 to +1.</li><li>Zero-centered.</li><li>Negative inputs produce negative outputs.</li><li>Positive inputs produce positive outputs.</li></ul><p><strong>Sigmoid vs Tanh:</strong></p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Sigmoid</th><th scope=\"col\">Tanh</th></tr></thead><tbody><tr><th scope=\"row\">0 to 1</th><td>-1 to +1</td></tr><tr><th scope=\"row\">Not zero-centered</th><td>Zero-centered</td></tr><tr><th scope=\"row\">Vanishing gradients</th><td>Vanishing gradients</td></tr><tr><th scope=\"row\">Binary output probability</th><td>Older RNN hidden layers</td></tr></tbody></table></div><p><strong>Interview takeaway:</strong> Tanh is zero-centered, unlike Sigmoid, but both suffer from vanishing gradients.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 9,
+      "id": 8,
       "number": 9,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What is GELU?",
-      "answer": "<p>GELU smoothly scales an input using the cumulative probability of a standard normal distribution.</p><ul><li><strong>Near zero:</strong> Changes smoothly rather than using ReLU's sharp cutoff.</li><li><strong>Negative inputs:</strong> Small negative values can produce nonzero negative outputs.</li><li><strong>Use:</strong> Appears in the feed-forward layers of many transformers.</li></ul><p><strong>Remember:</strong> GELU smoothly weights an input instead of sharply clipping it.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What is the ReLU activation function, how does it work, and what is the Dying ReLU problem?",
+      "answer": "<p>ReLU</p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"f(x)=max(0,x)\"><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>max</mi><mo>(</mo><mn>0</mn><mo>,</mo><mi>x</mi><mo>)</mo></mrow></math><p><a href=\"https://images.openai.com/static-rsc-4/SsWK5_KdhRGV8XC8nISLjiljWg9WzEf8aFK0gnu8FkP07DHcwOer8w6DJ6JCpK1ukUnvMiEQTxgXcCq_1iqlms9eh0h7kOL9vTQZrsIPDajoRCBF_l6xL5jbD1BXnluHmBc7RjIIEtfn7nn0wjbjUi9y4a1pFHK6cTou6WYfM1Q?purpose=inline\" target=\"_blank\" rel=\"noopener noreferrer\">The ReLU Activation Function: Powering Modern Neural Networks | CodeSignal Learn ↗</a></p><p>How does it work?</p><ul><li>Negative input → 0.</li><li>Positive input → same input.</li><li>Simple and computationally efficient.</li></ul><p><strong>Dying ReLU problem:</strong></p><p>Jab neuron consistently negative inputs receive karta hai, toh output 0 ho jata hai.</p><p>Is situation mein gradient bhi 0 ho sakta hai, jiski wajah se neuron learning stop kar deta hai.</p><p><strong>Advantages:</strong></p><ul><li>Computationally fast.</li><li>Positive side par vanishing gradient problem significantly reduce karta hai.</li><li>Deep neural networks mein useful.</li></ul><p><strong>Interview takeaway:</strong> ReLU is computationally efficient, but neurons can die when they consistently output zero.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
-      "id": 10,
+      "id": 9,
       "number": 10,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "type": "conceptual",
-      "question": "What is SwiGLU?",
-      "answer": "<p>SwiGLU is a gated feed-forward construction that multiplies two learned projections.</p><ul><li><strong>Branches:</strong> Compute two transformations of the same input.</li><li><strong>Gate:</strong> Apply SiLU to one branch, then multiply it element by element with the other.</li><li><strong>Role:</strong> Lets learned features modulate other features in a feed-forward block.</li></ul><p class=\"formula\"><strong>Formula:</strong> <code>SiLU(x) = x * sigmoid(x); gated_features = SiLU(branch_a) * branch_b</code></p><p><strong>Remember:</strong> SwiGLU combines non-linearity with learned feature gating.</p><p><a href=\"https://arxiv.org/abs/1606.08415\" target=\"_blank\" rel=\"noopener noreferrer\">GELU paper</a> / <a href=\"https://arxiv.org/abs/2002.05202\" target=\"_blank\" rel=\"noopener noreferrer\">SwiGLU paper</a></p>",
+      "question": "What is GELU, and how does its behaviour differ from ReLU?",
+      "answer": "<p>GELU</p><p>GELU = Gaussian Error Linear Unit.</p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"GELU(x)=xPhi(x)\"><mrow><mi>GELU</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>x</mi><mi>Φ</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow></math><p>Yahan ?(x) standard Gaussian distribution ka CDF hai.</p><p><a href=\"https://images.openai.com/static-rsc-4/z7U_y_bZ0IotBcvgMsYFrOWnROr5Rn2MR-AU52N2adnztgJSWymlELrYrNUZMav5VKShDKOu_1Q0-Y1hLR2Sk6Ba1X-eJ4_w6bRuKYG32yfVnV-oQHOnEXmsL645LJJvTJi2UmOSt7glWaOjrYorsYEOVFXC0KdHz72RyZHewBM?purpose=inline\" target=\"_blank\" rel=\"noopener noreferrer\">Encoder Architecture: Bidirectional Transformers for Understanding Tasks - Interactive | Michael Brenndoerfer | Michael Brenndoerfer ↗</a></p><p>How does it work?</p><ul><li>ReLU negative values ko completely zero kar deta hai.</li><li>GELU negative values ko smoothly suppress karta hai.</li><li>GELU input magnitude ke basis par values ko weight karta hai.</li><li>Iska transition ReLU ke comparison mein smooth hota hai.</li></ul><p><strong>ReLU vs GELU:</strong></p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">ReLU</th><th scope=\"col\">GELU</th></tr></thead><tbody><tr><th scope=\"row\">Hard zero for negatives</th><td>Smooth suppression</td></tr><tr><th scope=\"row\">Simple max operation</th><td>More computationally expensive</td></tr><tr><th scope=\"row\">Piecewise linear</th><td>Smooth nonlinear</td></tr><tr><th scope=\"row\">CNNs, MLPs</th><td>Transformers, BERT</td></tr></tbody></table></div><p><strong>Interview takeaway:</strong> GELU provides a smoother activation than ReLU and is widely used in Transformer architectures.</p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 10,
+      "number": 11,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is SwiGLU, and how does its gated mechanism work?",
+      "answer": "<p>SwiGLU</p><p>SwiGLU = Swish + Gated Linear Unit.</p><p><strong>Basic intuition:</strong></p><p>Normal activation function input ko transform karta hai, whereas SwiGLU mein ek additional gate hota hai jo information control karta hai.</p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"SwiGLU(x)=(xW<sub>1</sub>)odot Swish(xW<sub>2</sub>)\"><mrow><mi>SwiGLU</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>x</mi><msub><mi>W</mi><mn>1</mn></msub><mo>)</mo><mo>⊙</mo><mi>Swish</mi><mo>(</mo><mi>x</mi><msub><mi>W</mi><mn>2</mn></msub><mo>)</mo></mrow></math><p><strong>Where:</strong></p><ul><li>W<sub>1</sub>,W<sub>2</sub> = learnable weight matrices.</li><li>Swish = smooth activation function.</li><li>? = element-wise multiplication.</li></ul><p>How does it work?</p><ol><li>Input two different linear transformations se pass hota hai.</li><li>One branch information generate karta hai.</li><li>Second branch gate ki tarah behave karta hai.</li><li>Dono branches element-wise multiply hoti hain.</li></ol><p><a href=\"https://images.openai.com/static-rsc-4/zD8IEd3dbufY-pMuZJPTR30fsLkXYE0b-vAgQgMkpYRYGqnvGK7DbXZqJznPKXfj3xtgiOjB2Wh1-qMXpzY5r14pyY4-WcQlSeDHX40-LnTC3Sa0103BVbFM0fQCZa7MkHg5J6lCg1SGNr9QToi_ny94n_LOCIA-2WuD6qOqFnU?purpose=inline\" target=\"_blank\" rel=\"noopener noreferrer\">T-one — открытая русскоязычная потоковая модель для телефонии / Хабр ↗</a></p><p>Where is it used?</p><ul><li>Modern Transformer architectures.</li><li>LLaMA-family models.</li><li>Large Language Models.</li></ul><p><strong>Interview takeaway:</strong> SwiGLU uses a gating mechanism to control information flow and improve the expressive capacity of Transformer feed-forward networks.</p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 114,
+      "number": 12,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "What is the vanishing gradient problem, and how do different activation functions contribute to it?",
+      "answer": "<p><strong>Definition:</strong> Vanishing gradient tab hota hai jab backpropagation ke during gradients bahut small ho jaate hain.</p><p>As a result, early layers mein weights effectively update nahi ho paate.</p><p><strong>Simple intuition:</strong></p><p><strong>Imagine gradient har layer mein 0.1 se multiply ho raha hai:</strong></p><math class=\"activation-equation\" xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\" aria-label=\"0.1 times 0.1 times 0.1 = 0.001\"><mrow><mn>0.1</mn><mo>×</mo><mn>0.1</mn><mo>×</mo><mn>0.1</mn><mo>=</mo><mn>0.001</mn></mrow></math><p>Multiple layers ke baad gradient extremely small ho sakta hai.</p><p><strong>Activation functions ka role:</strong></p><ul><li>Sigmoid: Saturation regions mein gradients almost zero ho jaate hain.</li><li>Tanh: Extreme positive/negative values par gradients small ho jaate hain.</li><li>ReLU: Positive side par gradient 1 hota hai, negative side par 0.</li><li>GELU: Smooth gradients provide karta hai, but vanishing gradients ko completely eliminate nahi karta.</li><li>SwiGLU: Gating aur smooth activation provide karta hai, but vanishing gradients ka complete solution nahi hai.</li></ul><p><strong>Interview takeaway:</strong> Vanishing gradients make early layers learn slowly. ReLU and modern activation functions help, but do not completely eliminate this problem.</p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 115,
+      "number": 13,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "How do Sigmoid, Tanh, ReLU, GELU, and SwiGLU compare?",
+      "answer": "<div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Activation</th><th scope=\"col\">Output range</th><th scope=\"col\">Gradient behaviour</th><th scope=\"col\">Cost</th></tr></thead><tbody><tr><th scope=\"row\">Sigmoid</th><td>(0, 1)</td><td>Vanishing</td><td>Medium</td></tr><tr><th scope=\"row\">Tanh</th><td>(-1, 1)</td><td>Vanishing</td><td>Medium</td></tr><tr><th scope=\"row\">ReLU</th><td>[0, ∞)</td><td>Zero for negative inputs</td><td>Low</td></tr><tr><th scope=\"row\">GELU</th><td>Approximately (-0.17, ∞)</td><td>Smooth</td><td>Medium–High</td></tr><tr><th scope=\"row\">SwiGLU</th><td>Depends on input and weights</td><td>Gated, smooth</td><td>High</td></tr></tbody></table></div><p><strong>Typical applications:</strong></p><div class=\"table-wrap\"><table><thead><tr><th scope=\"col\">Activation</th><th scope=\"col\">Applications</th></tr></thead><tbody><tr><th scope=\"row\">Sigmoid</th><td>Binary classification</td></tr><tr><th scope=\"row\">Tanh</th><td>Traditional RNNs</td></tr><tr><th scope=\"row\">ReLU</th><td>CNNs, MLPs</td></tr><tr><th scope=\"row\">GELU</th><td>BERT, Transformers</td></tr><tr><th scope=\"row\">SwiGLU</th><td>LLaMA and modern LLMs</td></tr></tbody></table></div><p><strong>Interview takeaway:</strong> No single activation function is best for every situation. Selection depends on architecture, computational budget and learning requirements.</p>",
+      "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
+    },
+    {
+      "id": 116,
+      "number": 14,
+      "section": "4.1 Neural Network Fundamentals",
+      "bullet": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "type": "conceptual",
+      "question": "Why are GELU and SwiGLU commonly used in modern Transformer architectures instead of traditional activation functions?",
+      "answer": "<p><strong>GELU:</strong></p><ul><li>Smooth activation.</li><li>Gradually suppresses negative values.</li><li>Works well in Transformer feed-forward networks.</li><li>Used in BERT and other Transformer architectures.</li></ul><p><strong>SwiGLU:</strong></p><ul><li>Uses a gating mechanism.</li><li>Controls how much information passes through.</li><li>Provides greater expressive flexibility.</li><li>Used in several modern LLM architectures, including LLaMA.</li></ul><p>Why not traditional ReLU everywhere?</p><p>ReLU is simple and fast, but GELU and SwiGLU offer smoother or gated transformations that can work better in certain Transformer architectures.</p><p><strong>Interview takeaway:</strong> GELU and SwiGLU are popular because they provide useful nonlinear transformations, and SwiGLU additionally offers controlled information flow through gating.</p>",
       "subtopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU"
     },
     {
       "id": 11,
-      "number": 11,
+      "number": 15,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Forward pass - how information flows",
       "type": "conceptual",
@@ -114,7 +154,7 @@
     },
     {
       "id": 12,
-      "number": 12,
+      "number": 16,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Forward pass - how information flows",
       "type": "conceptual",
@@ -124,7 +164,7 @@
     },
     {
       "id": 13,
-      "number": 13,
+      "number": 17,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Backpropagation - how gradients flow backward",
       "type": "conceptual",
@@ -134,7 +174,7 @@
     },
     {
       "id": 14,
-      "number": 14,
+      "number": 18,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Backpropagation - how gradients flow backward",
       "type": "conceptual",
@@ -144,7 +184,7 @@
     },
     {
       "id": 15,
-      "number": 15,
+      "number": 19,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Weight initialization strategies",
       "type": "conceptual",
@@ -154,7 +194,7 @@
     },
     {
       "id": 16,
-      "number": 16,
+      "number": 20,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Weight initialization strategies",
       "type": "conceptual",
@@ -164,7 +204,7 @@
     },
     {
       "id": 17,
-      "number": 17,
+      "number": 21,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Weight initialization strategies",
       "type": "conceptual",
@@ -174,7 +214,7 @@
     },
     {
       "id": 18,
-      "number": 18,
+      "number": 22,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Vanishing / exploding gradient problem",
       "type": "conceptual",
@@ -184,7 +224,7 @@
     },
     {
       "id": 19,
-      "number": 19,
+      "number": 23,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Vanishing / exploding gradient problem",
       "type": "conceptual",
@@ -194,7 +234,7 @@
     },
     {
       "id": 20,
-      "number": 20,
+      "number": 24,
       "section": "4.1 Neural Network Fundamentals",
       "bullet": "Vanishing / exploding gradient problem",
       "type": "conceptual",

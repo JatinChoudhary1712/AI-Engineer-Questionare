@@ -1,0 +1,26 @@
+[
+  {
+    "oldQuestion": "What are a neuron, a perceptron, and a multilayer perceptron (MLP)?",
+    "newQuestion": "What is the difference between an artificial neuron, a perceptron, and an MLP?",
+    "oldId": "question-01",
+    "newId": "question-04"
+  },
+  {
+    "oldQuestion": "What is an artificial neuron?",
+    "newQuestion": "What is an artificial neuron?",
+    "oldId": "question-02",
+    "newId": "question-01"
+  },
+  {
+    "oldQuestion": "What is a perceptron?",
+    "newQuestion": "What is a perceptron?",
+    "oldId": "question-03",
+    "newId": "question-02"
+  },
+  {
+    "oldQuestion": "What is an MLP, and what do hidden layers do?",
+    "newQuestion": "What is a multilayer perceptron (MLP)?",
+    "oldId": "question-04",
+    "newId": "question-03"
+  }
+]

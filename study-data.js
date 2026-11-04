@@ -50,7 +50,7 @@ window.STUDY_CHAPTERS = [
     "phase": 4,
     "title": "Neural Network Fundamentals",
     "href": "PHASE%204%20-%20Deep%20Learning/4.1%20Neural%20Network%20Fundamentals/index.html",
-    "count": 20,
+    "count": 24,
     "topics": 6,
     "description": "Build intuition for neurons, activations, gradients, and how networks learn."
   },

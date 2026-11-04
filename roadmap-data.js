@@ -12197,15 +12197,6 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-01",
-      "key": "4.1:znjcvj",
-      "text": "What are a neuron, a perceptron, and a multilayer perceptron (MLP)?",
-      "sourceTopic": "Neuron, Perceptron, MLP",
-      "topicId": "4.1-point-0"
-    },
-    {
-      "chapterId": "4.1",
-      "phase": 4,
-      "id": "question-02",
       "key": "4.1:1sc3kug",
       "text": "What is an artificial neuron?",
       "sourceTopic": "Neuron, Perceptron, MLP",
@@ -12214,7 +12205,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-03",
+      "id": "question-02",
       "key": "4.1:1xro9t",
       "text": "What is a perceptron?",
       "sourceTopic": "Neuron, Perceptron, MLP",
@@ -12223,9 +12214,18 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
+      "id": "question-03",
+      "key": "4.1:10rwe5x",
+      "text": "What is a multilayer perceptron (MLP)?",
+      "sourceTopic": "Neuron, Perceptron, MLP",
+      "topicId": "4.1-point-0"
+    },
+    {
+      "chapterId": "4.1",
+      "phase": 4,
       "id": "question-04",
-      "key": "4.1:10gqhif",
-      "text": "What is an MLP, and what do hidden layers do?",
+      "key": "4.1:1iay3ms",
+      "text": "What is the difference between an artificial neuron, a perceptron, and an MLP?",
       "sourceTopic": "Neuron, Perceptron, MLP",
       "topicId": "4.1-point-0"
     },
@@ -12233,8 +12233,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-05",
-      "key": "4.1:10p97on",
-      "text": "What are activation functions, and what are the basic differences between Sigmoid, Tanh, ReLU, GELU, and SwiGLU?",
+      "key": "4.1:zhjz72",
+      "text": "What are activation functions, and why are they needed in neural networks?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12242,8 +12242,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-06",
-      "key": "4.1:11th3hb",
-      "text": "What is the sigmoid activation function?",
+      "key": "4.1:wnlstu",
+      "text": "What is the mathematical intuition behind an activation function, and how does it introduce non-linearity?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12251,8 +12251,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-07",
-      "key": "4.1:1hrdxlw",
-      "text": "What is the tanh activation function?",
+      "key": "4.1:1p3mnb3",
+      "text": "What is the Sigmoid activation function, and what are its mathematical properties and limitations?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12260,8 +12260,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-08",
-      "key": "4.1:1t89oxe",
-      "text": "What is ReLU?",
+      "key": "4.1:pubsqp",
+      "text": "What is the Tanh activation function, and how does it differ from Sigmoid?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12269,8 +12269,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-09",
-      "key": "4.1:q86jpt",
-      "text": "What is GELU?",
+      "key": "4.1:jwrnto",
+      "text": "What is the ReLU activation function, how does it work, and what is the Dying ReLU problem?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12278,8 +12278,8 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-10",
-      "key": "4.1:16ondon",
-      "text": "What is SwiGLU?",
+      "key": "4.1:16hulym",
+      "text": "What is GELU, and how does its behaviour differ from ReLU?",
       "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
       "topicId": "4.1-point-1"
     },
@@ -12287,6 +12287,42 @@ window.RECALL_ROADMAP = {
       "chapterId": "4.1",
       "phase": 4,
       "id": "question-11",
+      "key": "4.1:2962s2",
+      "text": "What is SwiGLU, and how does its gated mechanism work?",
+      "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "topicId": "4.1-point-1"
+    },
+    {
+      "chapterId": "4.1",
+      "phase": 4,
+      "id": "question-12",
+      "key": "4.1:158y8p6",
+      "text": "What is the vanishing gradient problem, and how do different activation functions contribute to it?",
+      "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "topicId": "4.1-point-1"
+    },
+    {
+      "chapterId": "4.1",
+      "phase": 4,
+      "id": "question-13",
+      "key": "4.1:hfz0ys",
+      "text": "How do Sigmoid, Tanh, ReLU, GELU, and SwiGLU compare?",
+      "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "topicId": "4.1-point-1"
+    },
+    {
+      "chapterId": "4.1",
+      "phase": 4,
+      "id": "question-14",
+      "key": "4.1:lgjrn2",
+      "text": "Why are GELU and SwiGLU commonly used in modern Transformer architectures instead of traditional activation functions?",
+      "sourceTopic": "Activation functions: Sigmoid, Tanh, ReLU, GELU, SwiGLU",
+      "topicId": "4.1-point-1"
+    },
+    {
+      "chapterId": "4.1",
+      "phase": 4,
+      "id": "question-15",
       "key": "4.1:1tbn3zm",
       "text": "What is a forward pass, and how does information flow through a neural network?",
       "sourceTopic": "Forward pass - how information flows",
@@ -12295,7 +12331,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-12",
+      "id": "question-16",
       "key": "4.1:185i7xm",
       "text": "Does a forward pass update the model's weights?",
       "sourceTopic": "Forward pass - how information flows",
@@ -12304,7 +12340,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-13",
+      "id": "question-17",
       "key": "4.1:kvuau",
       "text": "What is backpropagation, and how do gradients flow backward through a neural network?",
       "sourceTopic": "Backpropagation - how gradients flow backward",
@@ -12313,7 +12349,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-14",
+      "id": "question-18",
       "key": "4.1:qhasfm",
       "text": "What is the difference between backpropagation and an optimizer?",
       "sourceTopic": "Backpropagation - how gradients flow backward",
@@ -12322,7 +12358,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-15",
+      "id": "question-19",
       "key": "4.1:lu55s0",
       "text": "What is weight initialization, and what are Xavier and He initialization?",
       "sourceTopic": "Weight initialization strategies",
@@ -12331,7 +12367,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-16",
+      "id": "question-20",
       "key": "4.1:1i84dab",
       "text": "What is Xavier initialization?",
       "sourceTopic": "Weight initialization strategies",
@@ -12340,7 +12376,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-17",
+      "id": "question-21",
       "key": "4.1:cj669",
       "text": "What is He initialization?",
       "sourceTopic": "Weight initialization strategies",
@@ -12349,7 +12385,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-18",
+      "id": "question-22",
       "key": "4.1:v36ao2",
       "text": "What are vanishing and exploding gradients, and how do they affect learning?",
       "sourceTopic": "Vanishing / exploding gradient problem",
@@ -12358,7 +12394,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-19",
+      "id": "question-23",
       "key": "4.1:1odgjha",
       "text": "What is a vanishing gradient?",
       "sourceTopic": "Vanishing / exploding gradient problem",
@@ -12367,7 +12403,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "4.1",
       "phase": 4,
-      "id": "question-20",
+      "id": "question-24",
       "key": "4.1:p9co87",
       "text": "What is an exploding gradient?",
       "sourceTopic": "Vanishing / exploding gradient problem",

@@ -94,3 +94,21 @@ Saved Resources keeps links found on X, Instagram, and elsewhere. Interview Prep
 All three collections support create, edit, search, status filters, delete with Undo, global search, and JSON export. They start empty. Saved notes do not alter the original learning content, reviewed-question count, or progress. `recall.notebooks.v1` stores the items; `recall.notebook-drafts.v1` keeps independent drafts for each item and each collection's new-item form. Storage is local to this browser; Export notes provides a backup of saved items across the three collections.
 
 Changes for this update: `recall-app.js`, `recall-app.css`, this report, new `scripts/verify-notebooks.cjs`, and screenshots in `artifacts/ui-review/personal-*.png`. Run the notebooks suite using the same Playwright/Chromium environment variables as the other suites.
+
+## Dedicated phase pages
+
+Roadmap phase rows now navigate to a separate `phase.html?phase=3` page in the same tab, rather than expanding inside the roadmap. Dashboard phase links and global phase/chapter/topic search results use the same page. Native links support keyboard activation, browser Back, and opening another tab through normal browser controls.
+
+Each phase page has its own title, goal, section/sheet/question counts, chapter/topic navigation, progress panel, Start/Continue learning action when content exists, and next-phase link. Empty phases show Coming Soon outlines without a progress bar or a learning action. Chapters and topics still expand within the selected phase. Original study URLs, saved review data, and previous `index.html?page=roadmap&phase=...` deep links continue working.
+
+Added `phase.html`, updated `recall-app.js` and `recall-app.css`, adapted the roadmap regression checks, and added `scripts/verify-phase-pages.cjs`. The new suite passed for all 19 phase/Capstone pages, deep links, keyboard navigation, browser history, Coming Soon states, dark mode, and layouts at 320, 375, 768, 1024, and 1536 pixels.
+
+## Activation-functions notes replacement
+
+The supplied Hinglish revision document replaces the six activation questions in chapter 4.1 with its ten interview questions. The chapter now has **24 questions**, Phase 4 has **116**, and the app has **717 questions across 50 sheets**. Earlier 713-question figures in this report describe the pre-edit baseline. The other five chapter topics retain their content.
+
+The section includes eight rendered equations, comparison tables, the five-item quick-revision table, and the supplied five-question self-test. The revision/self-test panel is initially collapsed. Its radio choices, answer validation, score, explanations, and reset work in the browser; quiz attempts do not change reviewed-question progress. The original document and its source links are retained in `artifacts/activation-functions-notes.md`.
+
+The chapter script and Phase 4 JSON source are synchronized. Metadata, search indexes, audit counts, and test expectations were regenerated. `theme.js` migrates matching old activation review/bookmark keys and shifts saved chapter positions after the inserted questions; it runs once and does not duplicate review counts. The previous neuron/perceptron/MLP migration remains intact.
+
+`scripts/verify-activation-notes.cjs` passed for the ten questions, equations, revision table, complete/incomplete/incorrect quiz attempts, reset, collapsed state, study views, 320–768px layouts, counts, and migration idempotence. `scripts/update-activation-notes.cjs` records the reproducible content transformation and safely skips an already-applied replacement.

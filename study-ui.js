@@ -434,8 +434,8 @@
     let mode = 'reading';
     let index = Math.max(0, records.findIndex(item => lastPosition && lastPosition.chapterId === current.id && item.detail.id === lastPosition.questionId));
     let borrowed = null;
-    // Reading starts expanded. Later view changes keep individual disclosure states.
-    for (const item of records) item.detail.open = true;
+    // Start with answers hidden. Explicit question links open only their target.
+    for (const item of records) item.detail.open = false;
     const savePosition = item => {
       lastPosition = {chapterId: current.id, questionId: item.detail.id, question: item.question, topic: item.topic.querySelector('h2').textContent.replace(/^\d+\s*/, '').trim()};
       try {
