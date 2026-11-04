@@ -1,4 +1,5 @@
 :root {
+  --ui-font: "Inter", "Manrope", "Montserrat", system-ui, sans-serif;
   color-scheme: light;
   --ui-bg: #f6f8fc;
   --ui-surface: #ffffff;
@@ -70,7 +71,7 @@
 }
 * { box-sizing: border-box; }
 html { font-size: 16px; scroll-padding-top: 96px; }
-body { margin: 0; padding-top: var(--ui-header); background: var(--ui-bg); color: var(--ui-ink); font-family: "Manrope", system-ui, sans-serif; line-height: 1.7; }
+body { margin: 0; padding-top: var(--ui-header); background: var(--ui-bg); color: var(--ui-ink); font-family: var(--ui-font); line-height: 1.7; }
 body.study-page, body.library-page { padding-left: var(--ui-sidebar); }
 button, input, select { font: inherit; }
 button, a, summary, select { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
@@ -114,7 +115,7 @@ progress::-moz-progress-bar { background: var(--ui-accent); }
 .study-page .hero, .library-page .hero { padding: 36px 0 20px; background: transparent; border: 0; }
 .study-page .container, .study-page .page-tools, .library-main { width: min(calc(100% - 80px), 1060px); margin-inline: auto; }
 .study-page .hero .chapter-nav { display: none; }
-.study-page h1, .library-page h1 { font-family: "Manrope", system-ui, sans-serif; color: var(--ui-ink); font-size: clamp(1.85rem, 3vw, 2.7rem); font-weight: 800; line-height: 1.23; letter-spacing: -.045em; margin: 12px 0; text-wrap: balance; }
+.study-page h1, .library-page h1 { font-family: var(--ui-font); color: var(--ui-ink); font-size: clamp(1.85rem, 3vw, 2.7rem); font-weight: 800; line-height: 1.23; letter-spacing: -.045em; margin: 12px 0; text-wrap: balance; }
 .study-page h1 > span { display: none; }
 .study-eyebrow { margin: 0 0 10px; font-size: .71rem; font-weight: 750; color: var(--ui-accent); text-transform: uppercase; letter-spacing: .11em; }
 .study-description { margin: 0; max-width: 65ch; color: var(--ui-muted); font-size: .9rem; }
@@ -215,7 +216,7 @@ progress::-moz-progress-bar { background: var(--ui-accent); }
 .mobile-navigation { width: min(340px,calc(100% - 24px)); max-height: calc(100dvh - 32px); border: 1px solid var(--ui-line); border-radius: 16px; padding: 18px; color: var(--ui-ink); background: var(--ui-surface); }
 .mobile-navigation::backdrop { background: var(--ui-backdrop); }
 .dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.dialog-heading h2 { margin: 0; font: 750 1rem "Manrope",sans-serif; }
+.dialog-heading h2 { margin: 0; font: 750 1rem var(--ui-font); }
 body:has(.mobile-navigation[open]) { overflow: hidden; }
 .storage-status { color: var(--ui-muted); font-size: .75rem; }
 .sidebar-phase { margin: 16px 0 0; padding: 0; border: 0; border-radius: 0; background: transparent; overflow: visible; }
@@ -253,7 +254,7 @@ body:has(.mobile-navigation[open]) { overflow: hidden; }
 .chapter-row { display: flex; align-items: center; gap: 20px; padding: 21px 24px; border: 1px solid var(--ui-line); border-radius: 11px; background: var(--ui-surface); color: var(--ui-ink); text-decoration: none; transition: border-color 140ms, background-color 140ms; }
 .chapter-row:hover { border-color: var(--ui-hover-line); background: var(--ui-row-hover); }
 .chapter-row .row-title { flex: 1; min-width: 0; }
-.chapter-row h2 { margin: 0 0 4px; font: 700 .96rem/1.5 "Manrope",sans-serif; letter-spacing: -.015em; }
+.chapter-row h2 { margin: 0 0 4px; font: 700 .96rem/1.5 var(--ui-font); letter-spacing: -.015em; }
 .chapter-row p { margin: 0; font-size: .76rem; color: var(--ui-muted); }
 .chapter-row .card-number { width: 38px; height: 38px; flex: 0 0 38px; }
 .phase-parent-link { display: inline-flex; min-height: 44px; align-items: center; font-size: .8rem; margin-top: 24px; text-underline-offset: 4px; }
@@ -338,19 +339,19 @@ body.guided-ui { padding-left: 0; }
 .guided-ui[data-view=focus] .menu-button { display: none; }
 .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 28px 30px; margin: 0 0 38px; background: var(--ui-surface); border: 1px solid var(--ui-line); border-left: 3px solid var(--ui-accent); border-radius: var(--ui-radius); }
 .resume-card > div { min-width: 0; }
-.resume-card h2 { font: 750 1.2rem/1.5 "Manrope",sans-serif; margin: 0 0 5px; letter-spacing: -.025em; }
+.resume-card h2 { font: 750 1.2rem/1.5 var(--ui-font); margin: 0 0 5px; letter-spacing: -.025em; }
 .resume-card .study-eyebrow { font-size: .65rem; margin-bottom: 9px; }
 .resume-card p.resume-location { color: var(--ui-muted); font-size: .76rem; margin: 0; }
 .resume-question { color: var(--ui-muted); font-size: .85rem; margin: 8px 0 0; overflow-wrap: anywhere; }
 .resume-card > a { flex-shrink: 0; }
-.library-section-title { font: 700 1rem/1.5 "Manrope",sans-serif; margin: 0 0 18px; color: var(--ui-ink); }
+.library-section-title { font: 700 1rem/1.5 var(--ui-font); margin: 0 0 18px; color: var(--ui-ink); }
 .guided-ui .phase-card { padding: 24px; }
 .guided-ui .phase-card p { margin-bottom: 20px; }
 .row-progress { display: block; margin-top: 5px; color: var(--ui-muted); font-size: .72rem; }
 .guided-ui .chapter-overview > span { border: 0; background: transparent; padding: 0; }
 .guided-ui .chapter-progress progress { width: 75px; height: 4px; }
 .chapter-start { border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 30px; margin: 12px 0 32px; background: var(--ui-surface); }
-.chapter-start h2 { font: 700 1.2rem/1.5 "Manrope",sans-serif; margin: 0 0 10px; letter-spacing: -.025em; }
+.chapter-start h2 { font: 700 1.2rem/1.5 var(--ui-font); margin: 0 0 10px; letter-spacing: -.025em; }
 .chapter-start p { color: var(--ui-muted); font-size: .9rem; margin: 0 0 24px; max-width: 62ch; }
 .study-start-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
 .secondary-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ui-muted); font-size: .82rem; text-underline-offset: 4px; }
@@ -373,7 +374,7 @@ body.guided-ui { padding-left: 0; }
 .study-navigation button { min-width: 100px; }
 .session-browse { display: flex; width: fit-content; margin-inline: auto; font-size: .78rem; }
 .session-completion { padding: 38px 32px; border: 1px solid var(--ui-line); border-radius: var(--ui-radius); background: var(--ui-surface); }
-.session-completion h2 { margin: 0 0 12px; font: 750 1.5rem/1.5 "Manrope",sans-serif; letter-spacing: -.03em; }
+.session-completion h2 { margin: 0 0 12px; font: 750 1.5rem/1.5 var(--ui-font); letter-spacing: -.03em; }
 .session-completion p { margin: 0 0 26px; color: var(--ui-muted); font-size: .92rem; }
 .study-this-question { font-size: .76rem; }
 .guided-ui.study-page .container { max-width: 860px; }
@@ -394,7 +395,7 @@ body.guided-ui { padding-left: 0; }
 .index-intro { color: var(--ui-muted); font-size: .88rem; margin: 0 0 18px; }
 .index-topics { display: grid; gap: 16px; }
 .index-topic { min-width: 0; padding: 18px 20px; border: 1px solid var(--ui-line); border-radius: var(--ui-radius); background: var(--ui-surface); }
-.index-topic h2 { font: 700 1rem/1.55 "Manrope",sans-serif; letter-spacing: -.015em; margin: 0 0 2px; overflow-wrap: anywhere; }
+.index-topic h2 { font: 700 1rem/1.55 var(--ui-font); letter-spacing: -.015em; margin: 0 0 2px; overflow-wrap: anywhere; }
 .index-topic-count { display: block; font-size: .72rem; color: var(--ui-muted); margin-bottom: 10px; }
 .index-questions { list-style: none; padding: 0; margin: 0; }
 .index-questions li + li { border-top: 1px solid var(--ui-line); }
@@ -408,10 +409,10 @@ body.guided-ui { padding-left: 0; }
 .roadmap-index { width: min(calc(100% - 48px), 860px); margin-inline: auto; padding: 36px 0 64px; }
 .roadmap-phase { margin: 0 0 48px; }
 .roadmap-phase + .roadmap-phase { padding-top: 32px; border-top: 1px solid var(--ui-line); }
-.roadmap-index h2 { font: 750 1.5rem/1.45 "Manrope",sans-serif; letter-spacing: -.03em; margin: 0 0 8px; }
+.roadmap-index h2 { font: 750 1.5rem/1.45 var(--ui-font); letter-spacing: -.03em; margin: 0 0 8px; }
 .roadmap-goal { color: var(--ui-muted); font-size: .94rem; margin: 0 0 26px; }
-.roadmap-index h3 { font: 750 1.08rem/1.6 "Manrope",sans-serif; margin: 26px 0 8px; }
-.roadmap-index h4 { font: 700 .95rem/1.6 "Manrope",sans-serif; margin: 16px 0 6px; }
+.roadmap-index h3 { font: 750 1.08rem/1.6 var(--ui-font); margin: 26px 0 8px; }
+.roadmap-index h4 { font: 700 .95rem/1.6 var(--ui-font); margin: 16px 0 6px; }
 .roadmap-index a { text-decoration: none; text-underline-offset: 4px; }
 .roadmap-index a:hover { text-decoration: underline; }
 .roadmap-index h3 a, .roadmap-index h4 a { color: var(--ui-ink); }

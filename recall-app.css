@@ -18,7 +18,7 @@
   --ui-hover-line:#72738b;--lavender:#252333;--lavender-border:#423b69;--lavender-ink:#494268;
   --amber-bg:#3c301d;--amber-ink:#ffd193;--green-bg:#1b3525;--green-ink:#a1eeb4;
 }
-body.recall-app {margin:0;padding:84px 0 0 var(--sidebar-width);background:var(--ui-bg);color:var(--ui-ink);font-family:Inter,"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.55;}
+body.recall-app {margin:0;padding:84px 0 0 var(--sidebar-width);background:var(--ui-bg);color:var(--ui-ink);font-family:var(--ui-font);font-size:15px;line-height:1.55;}
 .recall-app * {box-sizing:border-box;}
 .recall-app a {color:inherit;}
 .recall-app button,.recall-app input,.recall-app select {font:inherit;}
