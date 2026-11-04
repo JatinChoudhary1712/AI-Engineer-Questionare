@@ -24,6 +24,9 @@
     chart:'M3 22v-7h4v7M10 22V8h4v14M17 22V2h4v20',
     sun:'M12 2v2m0 16v2M2 12h2m16 0h2M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',
     moon:'M21 13a9 9 0 0 1-10-10 9 9 0 1 0 10 10',
+    resources:'M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2',
+    interviews:'M4 5h16v12H9l-5 4V5m4 4h8m-8 4h5',
+    miscellaneous:'M8 4h8m-7-2h6v4H9V2M6 4H4v18h16V4h-2M8 11h8m-8 5h6',
     menu:'M3 6h18M3 12h18M3 18h18', arrow:'M4 12h16m-6-6 6 6-6 6',chevron:'m9 5 7 7-7 7'
   };
   const icon = name => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.book}"/></svg>`;
@@ -32,6 +35,15 @@
   const sheetURL = s => new URL(s.href+'?view=reading',root).href;
   const load = (key,fallback) => {try {const value=JSON.parse(localStorage.getItem(key));return value&&typeof value==='object'&&!Array.isArray(value)?value:fallback;} catch{return fallback;}};
   let reviewed=load('recall.reviewed.v1',{}), bookmarks=load('recall.bookmarks.v1',{}), projects=load('recall.projects.v1',{});
+  const notebookKey='recall.notebooks.v1',draftKey='recall.notebook-drafts.v1';
+  let notebookEntries=load(notebookKey,{}), notebookDrafts=load(draftKey,{});
+  const notebookTypes={
+    resources:{title:'Saved Resources',description:'Things you find on X, Instagram, or anywhere else. Keep them here for later.',hint:'Save an article, post, video, or a topic you want to explore. Add why it matters to you.',example:'e.g. Harness engineering — explore this later',types:['Article / post','Video','Topic to explore','Tool / course'],detail:'What I want to explore',statuses:['To explore','In progress','Done']},
+    interviews:{title:'Interview Prep',description:'Real interview questions, shared experiences, and your own preparation notes.',hint:'Keep real questions, interview rounds, and experiences from people who have been there.',example:'e.g. AI engineer interview — RAG system design',types:['Interview question','Interview experience','Question set'],detail:'Question or interview experience',statuses:['To prepare','Practising','Ready']},
+    miscellaneous:{title:'Miscellaneous',description:'A place for career tasks, LinkedIn improvements, ideas, and everything in between.',hint:'Remember the small things: update LinkedIn, improve your portfolio, or follow up on an idea.',example:'e.g. Improve my LinkedIn About section',types:['Task','Career / profile','Idea','General note'],detail:'Details / next steps',statuses:['To do','In progress','Done']}
+  };
+  const notebookItems=category=>Object.values(notebookEntries).filter(item=>item&&typeof item.id==='string'&&typeof item.title==='string'&&notebookTypes[item.category]&&(!category||item.category===category)).sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||''));
+  const externalURL=value=>{try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:'';}catch{return '';}};
   const announce=el('p','sr-only');announce.setAttribute('role','status');announce.setAttribute('aria-live','polite');
   const save = (key,value) => {try{localStorage.setItem(key,JSON.stringify(value));}catch{announce.textContent='Your change works for this visit. Browser storage is unavailable.';}};
   const countDone = list => list.filter(q=>reviewed[q.key]===true).length;
@@ -46,8 +58,8 @@
   const sidebar=el('aside','recall-sidebar');sidebar.id='recall-sidebar';
   const brand=el('a','recall-brand');brand.href=home.href;brand.innerHTML=`${icon('brain')}<span><strong>Recall</strong><small>AI Engineering Learning</small></span>`;
   const nav=el('nav','product-nav');nav.setAttribute('aria-label','Main navigation');
-  const navItems=[['overview','Overview'],['roadmap','Roadmap'],['questions','Question Bank'],['revision','Revision'],['bookmarks','Bookmarks'],['projects','Projects']];
-  for(const [key,title]of navItems){const a=el('a');a.href=url(key);a.dataset.page=key;a.innerHTML=icon(key==='questions'?'search':key)+`<span>${title}</span>`;nav.append(a);}
+  const navItems=[['overview','Overview'],['roadmap','Roadmap'],['questions','Question Bank'],['revision','Revision'],['bookmarks','Bookmarks'],['projects','Projects'],...Object.entries(notebookTypes).map(([key,config])=>[key,config.title])];
+  for(const [key,title]of navItems){if(key==='resources')nav.append(el('p','personal-nav-label','PERSONAL SPACE'));const a=el('a');a.href=url(key);a.dataset.page=key;a.innerHTML=icon(key==='questions'?'search':key)+`<span>${title}</span>`;nav.append(a);}
   const theme=el('div','theme-control');theme.innerHTML=icon('sun')+'<label class="sr-only" for="product-theme">Color theme</label><select id="product-theme"><option value="light">Light</option><option value="dark">Dark</option></select>';
   const themeSelect=theme.querySelector('select');themeSelect.value=window.RecallTheme?.current||'light';
   themeSelect.addEventListener('change',()=>window.RecallTheme?.set(themeSelect.value));
@@ -81,10 +93,11 @@
   searchInput.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>{
     results.replaceChildren();const terms=searchInput.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
     results.hidden=!terms.length;searchInput.setAttribute('aria-expanded',String(Boolean(terms.length)));if(!terms.length)return;
-    const matches=searchIndex.filter(r=>terms.every(t=>(r.title+' '+r.context).toLowerCase().includes(t)));
+    const personalResults=notebookItems().map(item=>({title:item.title,context:notebookTypes[item.category].title,searchText:[item.notes,item.content,item.source].join(' '),href:url(item.category,{item:item.id}),personal:true}));
+    const matches=searchIndex.concat(personalResults).filter(r=>terms.every(t=>(r.title+' '+r.context+' '+(r.searchText||'')).toLowerCase().includes(t)));
     results.append(el('p','search-caption',`${matches.length} results${matches.length>40?' · showing first 40':''}`));
     if(!matches.length)results.append(el('p','empty-state','No results. Try another question, topic, or chapter.'));
-    for(const r of matches.slice(0,40)){const a=el('a','search-result');a.href=r.href;a.innerHTML=`<span><strong>${esc(r.title)}</strong><small>${esc(r.context)}</small></span>${r.project?'<span class="availability">Project</span>':badge(r.count)}`;results.append(a);}
+    for(const r of matches.slice(0,40)){const a=el('a','search-result');a.href=r.href;a.innerHTML=`<span><strong>${esc(r.title)}</strong><small>${esc(r.context)}</small></span>${r.personal?'<span class="availability">Personal note</span>':r.project?'<span class="availability">Project</span>':badge(r.count)}`;results.append(a);}
   },100);});
   document.addEventListener('click',e=>{if(!global.contains(e.target)){results.hidden=true;searchInput.setAttribute('aria-expanded','false');}});
   document.addEventListener('keydown',e=>{
@@ -162,8 +175,89 @@
     main.innerHTML=`<section class="dashboard-intro"><p class="greeting">Good to see you back, Jatin <span aria-hidden="true">👋</span></p><h1>Continue your AI Engineering journey.</h1><p>Learn, revise and build expertise across the complete AI engineering roadmap.</p></section>
       <section class="stats-row" aria-label="Learning statistics">${[['book',questions.length,'Questions'],['roadmap',sheets.length,'Chapters'],['check',done,'Reviewed'],['chart',pct+'%','Overall Progress']].map(([i,n,label])=>`<div class="stat">${icon(i)}<span><strong>${n}</strong><small>${label}</small></span></div>`).join('')}</section>
       <section class="dashboard-cards"><article class="progress-card"><h2>Your Progress</h2><div class="progress-line"><progress max="${questions.length}" value="${done}" aria-label="Overall progress"></progress><span>${pct}%</span></div><p>${done} of ${questions.length} questions reviewed</p></article><article class="continue-card"><div><p>Continue Learning</p><h2>${esc(resume.id+' '+resume.title)}</h2><p class="resume-phase">Phase ${p.id} · ${esc(p.title)}</p><a class="primary-button" href="${esc(q?questionURL(q):sheetURL(resume))}">Resume ${icon('arrow')}</a></div><svg class="contours" viewBox="0 0 260 150" fill="none" aria-hidden="true"><path d="M0 150c35-65 50 3 80-57s45 20 80-45 60-30 100-12M20 165c35-65 50 3 80-57s45 20 80-45 60-30 100-12M40 180c35-65 50 3 80-57s45 20 80-45 60-30 100-12" stroke="currentColor"/></svg></article></section>
-      <section class="roadmap-preview"><div class="section-heading"><div><h2>AI Engineering Roadmap</h2><p>The complete learning path from fundamentals to production-ready AI systems.</p></div><a href="${url('roadmap')}">View Full Roadmap ${icon('arrow')}</a></div><div id="roadmap-preview-list"></div></section>`;
-    for(const p of data.phases.slice(0,5))main.querySelector('#roadmap-preview-list').append(roadmapRow(p));
+      <section class="personal-dashboard-grid" aria-label="Your learning and personal collections"><article class="workspace-card roadmap-preview"><div class="workspace-card-heading"><span class="workspace-card-icon">${icon('roadmap')}</span><span class="workspace-eyebrow">YOUR LEARNING PATH</span></div><div class="section-heading"><div><h2>AI Engineering Roadmap</h2><p>From fundamentals to production-ready AI systems.</p></div></div><div id="roadmap-preview-list"></div><footer class="workspace-card-footer"><span>${data.phases.length-1} phases + Capstone</span><a href="${url('roadmap')}">View all ${icon('arrow')}</a></footer></article></section>`;
+    for(const p of data.phases.slice(0,5)){
+      const row=el('a','compact-phase');row.href=url('roadmap',{phase:p.id});
+      const count=questions.filter(q=>q.phase===p.id).length;
+      row.innerHTML=`<span class="phase-number">${p.id}</span><strong>${esc(phaseName(p)+' — '+p.title)}</strong><span class="phase-dot ${count?'has-content':''}" role="img" aria-label="${count?'Available':'Coming Soon'}"></span><span class="chevron">${icon('chevron')}</span>`;
+      main.querySelector('#roadmap-preview-list').append(row);
+    }
+    for(const category of Object.keys(notebookTypes))main.querySelector('.personal-dashboard-grid').append(notebookCard(category));
+  }
+  function notebookCard(category){
+    const config=notebookTypes[category],items=notebookItems(category),card=el('article','workspace-card');
+    card.dataset.collection=category;
+    card.innerHTML=`<div class="workspace-card-heading"><span class="workspace-card-icon">${icon(category)}</span><span class="workspace-eyebrow">${category==='resources'?'SAVE NOW, EXPLORE LATER':category==='interviews'?'PREPARE WITH REAL EXPERIENCES':'YOUR IDEAS & NEXT STEPS'}</span><a class="workspace-add" href="${url(category,{new:'1'})}" aria-label="Add to ${config.title}">+ Add</a></div><div class="section-heading"><div><h2>${config.title}</h2><p>${esc(config.description)}</p></div></div>`;
+    const preview=el('div','notebook-preview');
+    if(!items.length){const empty=el('div','notebook-card-empty');empty.innerHTML=`${icon(category)}<strong>${category==='resources'?'A good find deserves a place.':category==='interviews'?'Your next interview starts here.':'A little less to keep in your head.'}</strong><p>${esc(config.hint)}</p><a href="${url(category,{new:'1'})}">+ Add your first ${category==='resources'?'resource':category==='interviews'?'interview note':'note'}</a>`;preview.append(empty);}
+    for(const item of items.slice(0,3)){
+      const link=el('a','notebook-preview-item');link.href=url(category,{item:item.id});link.innerHTML=`<span><strong>${esc(item.title)}</strong><small>${esc(item.source||item.type||'Personal note')}${item.notes?' · Has notes':''}</small></span><span class="notebook-status">${esc(config.statuses.includes(item.status)?item.status:config.statuses[0])}</span>`;preview.append(link);
+    }
+    const footer=el('footer','workspace-card-footer');footer.innerHTML=`<span>${items.length} saved ${items.length===1?'item':'items'}</span><a href="${url(category)}">View all ${icon('arrow')}</a>`;
+    card.append(preview,footer);return card;
+  }
+  function notebookPage(category,params){
+    const config=notebookTypes[category];
+    main.innerHTML=pageHeading(config.title,config.description);
+    const toolbar=el('div','notebook-toolbar');
+    const search=el('input');search.type='search';search.placeholder='Search titles, details, or notes...';search.setAttribute('aria-label','Search saved items');
+    const filter=el('select');filter.setAttribute('aria-label','Filter saved items by status');
+    for(const text of ['All statuses',...config.statuses]){const option=el('option','',text);option.value=text==='All statuses'?'':text;filter.append(option);}
+    const add=el('a','primary-button','+ Add item');add.href=url(category,{new:'1'});
+    const exportButton=el('button','notebook-secondary','Export notes');exportButton.type='button';
+    exportButton.onclick=()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),items:notebookItems()},null,2)],{type:'application/json'});const blobURL=URL.createObjectURL(blob);const link=el('a');link.href=blobURL;link.download='recall-personal-notes.json';link.click();setTimeout(()=>URL.revokeObjectURL(blobURL),1000);};
+    toolbar.append(search,filter,exportButton,add);main.append(toolbar,el('p','notebook-storage-note','Saved in this browser. Export your notes to keep a backup.'));
+    const layout=el('div','notebook-layout'),listPane=el('section','notebook-list-pane'),listTitle=el('h2','', 'Your saved items'),count=el('p','notebook-list-count'),list=el('div','notebook-list'),editor=el('section','notebook-editor');
+    listPane.setAttribute('aria-label','Saved items');listPane.append(listTitle,count,list);layout.append(listPane,editor);main.append(layout);
+    let activeId=null;
+    function drawList(){
+      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),items=notebookItems(category).filter(item=>(!filter.value||item.status===filter.value)&&terms.every(term=>[item.title,item.content,item.notes,item.source,item.type].join(' ').toLowerCase().includes(term)));
+      count.textContent=`${items.length} ${items.length===1?'item':'items'}`;list.replaceChildren();
+      if(!items.length)list.append(el('p','notebook-list-empty',notebookItems(category).length?'No items match your search.':'Nothing saved yet. Add a link, question, or idea and make it your own.'));
+      for(const item of items){const a=el('a','notebook-list-item');a.href=url(category,{item:item.id});if(item.id===activeId)a.setAttribute('aria-current','true');a.innerHTML=`<small>${esc(item.source||item.type||'Personal note')}</small><strong>${esc(item.title)}</strong><span>${esc(item.status||config.statuses[0])}${item.notes?' · Has notes':''}</span>`;list.append(a);}
+    }
+    function edit(item,isNew=false){
+      activeId=isNew?null:item.id;drawList();editor.replaceChildren();
+      const draftId=category+':'+(activeId||'new');
+      const storedDraft=notebookDrafts[draftId]||notebookDrafts[category],draftMatches=storedDraft&&storedDraft.itemId===(activeId||'new');
+      const value=draftMatches?{...item,...storedDraft.values}:item;
+      const form=el('form','notebook-form');form.innerHTML=`<div class="notebook-editor-heading"><div><p class="workspace-eyebrow">${isNew?'CAPTURE SOMETHING NEW':'YOUR PERSONAL COLLECTION'}</p><h2>${isNew?'Add an item':'Edit item'}</h2></div><span class="draft-state" role="status">${draftMatches?'Draft restored':''}</span></div><div class="notebook-edit-columns"><div class="notebook-detail-fields"></div><div class="personal-note-panel"><h3>My notes</h3><p>Your takeaways, thoughts, or what you want to do next.</p></div></div>`;
+      const fields=form.querySelector('.notebook-detail-fields'),notePanel=form.querySelector('.personal-note-panel'),controls={};
+      function field(key,label,tag='input',options){
+        const wrap=el('label','notebook-field',label),input=el(tag);input.name=key;input.id='notebook-'+key;input.setAttribute('aria-label',label);
+        if(tag==='select')for(const text of options){const o=el('option','',text);o.value=text;input.append(o);}
+        input.value=typeof value[key]==='string'?value[key]:(options?.[0]||'');controls[key]=input;wrap.append(input);(key==='notes'?notePanel:fields).append(wrap);return input;
+      }
+      const title=field('title','Title');title.required=true;title.maxLength=200;title.placeholder=config.example;
+      const source=field('source','Source / company (optional)');source.placeholder=category==='interviews'?'Company, role, or person who shared it':'X, Instagram, LinkedIn, or a website';source.maxLength=200;
+      const link=field('url','Source link (optional)');link.type='url';link.placeholder='https://...';link.addEventListener('input',()=>link.setCustomValidity(''));
+      field('type','Type','select',config.types);field('status','Status','select',config.statuses);
+      const content=field('content',config.detail,'textarea');content.rows=6;content.placeholder=category==='interviews'?'Paste the question, describe the interview rounds, or capture someone’s experience...':'Capture the idea, context, or what you want to do...';
+      const personal=field('notes','Personal notes','textarea');personal.rows=15;personal.placeholder='Write your own notes here...';
+      const actions=el('div','notebook-form-actions'),submit=el('button','primary-button','Save item');submit.type='submit';
+      const cancel=el('a','notebook-secondary','Back to overview');cancel.href=url('overview');actions.append(submit,cancel);
+      if(!isNew){const remove=el('button','notebook-delete','Delete item');remove.type='button';remove.onclick=()=>{
+        const removed=notebookEntries[item.id];notebookEntries={...load(notebookKey,notebookEntries)};delete notebookEntries[item.id];save(notebookKey,notebookEntries);notebookDrafts={...load(draftKey,notebookDrafts)};delete notebookDrafts[draftId];delete notebookDrafts[category];save(draftKey,notebookDrafts);
+        editor.replaceChildren();activeId=null;drawList();const notice=el('div','notebook-deleted','Item deleted. '),undo=el('button','notebook-secondary','Undo');undo.type='button';undo.onclick=()=>{if(removed){notebookEntries={...load(notebookKey,notebookEntries),[removed.id]:removed};save(notebookKey,notebookEntries);edit(removed);}};notice.append(undo);editor.append(notice);announce.textContent='Item deleted. Undo is available.';
+      };actions.append(remove);}
+      form.append(actions);editor.append(form);
+      const draftState=form.querySelector('.draft-state');
+      form.addEventListener('input',()=>{const values=Object.fromEntries(Object.entries(controls).map(([key,input])=>[key,input.value]));notebookDrafts={...load(draftKey,notebookDrafts),[draftId]:{itemId:activeId||'new',values}};try{localStorage.setItem(draftKey,JSON.stringify(notebookDrafts));draftState.textContent='Draft saved';}catch{draftState.textContent='Draft kept for this visit';}});
+      form.onsubmit=event=>{
+        event.preventDefault();title.value=title.value.trim();if(!title.value){title.setCustomValidity('Give this item a title.');title.reportValidity();return;}title.setCustomValidity('');
+        if(link.value&&!externalURL(link.value)){link.setCustomValidity('Use an http:// or https:// link.');link.reportValidity();return;}
+        const now=new Date().toISOString(),id=item.id||((typeof crypto.randomUUID==='function')?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2));
+        const entry={id,category,createdAt:item.createdAt||now,updatedAt:now,...Object.fromEntries(Object.entries(controls).map(([key,input])=>[key,input.value]))};
+        if(entry.url)entry.url=externalURL(entry.url);
+        notebookEntries={...load(notebookKey,notebookEntries),[id]:entry};let persisted=true;try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));}catch{persisted=false;}
+        notebookDrafts={...load(draftKey,notebookDrafts)};delete notebookDrafts[draftId];delete notebookDrafts[category];save(draftKey,notebookDrafts);history.replaceState({},'',url(category,{item:id}));edit(entry);editor.querySelector('.draft-state').textContent=persisted?'Saved':'Saved for this visit · browser storage unavailable';announce.textContent=persisted?'Item and personal notes saved.':'Item saved for this visit. Browser storage is unavailable.';
+      };
+      title.addEventListener('input',()=>title.setCustomValidity(''));
+      if(!isNew&&externalURL(value.url)){const open=el('a','notebook-source-link','Open source ↗');open.href=externalURL(value.url);open.target='_blank';open.rel='noopener noreferrer';form.querySelector('.notebook-editor-heading').append(open);}
+    }
+    const items=notebookItems(category),requested=items.find(item=>item.id===params.get('item'));
+    if(params.has('new'))edit({},true);else if(requested)edit(requested);else if(notebookDrafts[category+':new']||notebookDrafts[category]?.itemId==='new')edit({},true);else if(items.length)edit(items[0]);else edit({},true);
+    search.oninput=drawList;filter.onchange=drawList;
   }
   function roadmap(params){
     main.innerHTML=pageHeading('AI Engineering Roadmap','Your complete learning path, from first principles to production. Explore one phase at a time.')+`<p class="roadmap-meta">${data.phases.length-1} phases + Capstone <span>·</span> ${sheets.length} learning sheets <span>·</span> ${questions.length} questions</p>`;
@@ -212,10 +306,10 @@
     }if(params.get('project'))document.getElementById('project-'+params.get('project'))?.scrollIntoView({block:'center'});
   }
   function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.phase?'roadmap':'overview';if(!navItems.some(([k])=>k===view))view='overview';updateNav(view);main.replaceChildren();document.title=navItems.find(([k])=>k===view)[1]+' | Recall';
-    if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else collection(view);
+    if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(notebookTypes[view])notebookPage(view,params);else collection(view);
   }
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const dest=new URL(a.href);if(dest.origin===home.origin&&dest.pathname===home.pathname&&dest.searchParams.has('page')){e.preventDefault();history.pushState({},'',dest);closeDrawer();results.hidden=true;render();if(!dest.searchParams.has('topic')&&!dest.searchParams.has('project'))window.scrollTo(0,0);main.focus({preventScroll:true});}});
   window.addEventListener('popstate',render);
-  window.addEventListener('storage',e=>{if(e.key===null||['recall.reviewed.v1','recall.bookmarks.v1','recall.projects.v1'].includes(e.key)){reviewed=load('recall.reviewed.v1',{});bookmarks=load('recall.bookmarks.v1',{});projects=load('recall.projects.v1',{});render();}});
+  window.addEventListener('storage',e=>{if(e.key===notebookKey){notebookEntries=load(notebookKey,{});if(!Object.keys(notebookTypes).includes(new URL(location.href).searchParams.get('page')))render();return;}if(e.key===null||['recall.reviewed.v1','recall.bookmarks.v1','recall.projects.v1'].includes(e.key)){reviewed=load('recall.reviewed.v1',{});bookmarks=load('recall.bookmarks.v1',{});projects=load('recall.projects.v1',{});if(e.key===null){notebookEntries=load(notebookKey,{});notebookDrafts=load(draftKey,{});}render();}});
   render();
 })();

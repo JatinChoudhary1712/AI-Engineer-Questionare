@@ -84,3 +84,13 @@ The redesign suite checks original source integrity, all 713 IDs/keys, 50 reader
 Final results: all three suites passed. The study suite compared all 713 answers across all 50 chapters. Additional layout checks passed for every product view at 320, 375, 768, 1024, and 1536 pixels. No browser page errors were reported. JavaScript syntax checks and `git diff --check` passed. Existing regression screenshots were refreshed alongside the new `recall-*.png` screenshots.
 
 UI/UX Pro Max's instructions were read and applied. Its Python search could not run because no Python interpreter is installed; documented general guidance and the supplied screenshot determined the design.
+
+## Personal collections update
+
+The Overview now has a two-column grid of four cards: AI Engineering Roadmap, Saved Resources, Interview Prep, and Miscellaneous. Every card has a View all action. Roadmap rows open the full phase; the other cards preview up to three saved items and offer Add actions.
+
+Saved Resources keeps links found on X, Instagram, and elsewhere. Interview Prep stores real questions, sets, and interview experiences. Miscellaneous stores career/profile tasks, ideas, and general notes. Each item has a title, optional source/company and link, type, category-specific status, details, and a separate personal-notes panel alongside the details on desktop. The notes panel stacks on narrow screens.
+
+All three collections support create, edit, search, status filters, delete with Undo, global search, and JSON export. They start empty. Saved notes do not alter the original learning content, reviewed-question count, or progress. `recall.notebooks.v1` stores the items; `recall.notebook-drafts.v1` keeps independent drafts for each item and each collection's new-item form. Storage is local to this browser; Export notes provides a backup of saved items across the three collections.
+
+Changes for this update: `recall-app.js`, `recall-app.css`, this report, new `scripts/verify-notebooks.cjs`, and screenshots in `artifacts/ui-review/personal-*.png`. Run the notebooks suite using the same Playwright/Chromium environment variables as the other suites.
