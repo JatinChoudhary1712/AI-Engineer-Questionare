@@ -11,7 +11,7 @@ const sandbox = {window: {}};
 vm.runInNewContext(fs.readFileSync(path.join(root, 'study-data.js'), 'utf8'), sandbox);
 const chapters = sandbox.window.STUDY_CHAPTERS;
 assert.equal(chapters.length, 50);
-assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 717);
+assert.equal(chapters.reduce((sum, c) => sum + c.count, 0), 718);
 const server = http.createServer((req, res) => {
   const file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
   if (!file.startsWith(root + path.sep)) {res.writeHead(403); res.end(); return;}
@@ -41,7 +41,7 @@ async function verify() {
     page.on('pageerror', error => errors.push(error.message));
     fs.mkdirSync(snapshots, {recursive:true});
     await page.goto(base+'index.html');
-    assert.equal(await page.locator('.stat strong').first().textContent(),'717');
+    assert.equal(await page.locator('.stat strong').first().textContent(),'718');
     await page.goto(base+'index.html?page=roadmap');
     assert.equal(await page.locator('.phase-row').count(),19);
     assert((await page.locator('#phase-10').innerText()).toLowerCase().includes('coming soon'));

@@ -40,11 +40,13 @@ input[type=search]{padding:10px 12px;border:1px solid var(--line);border-radius:
 .toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:12px 0 16px}.toolbar p{font-size:.8rem;margin:0;color:var(--muted)}
 #toggle-all-sections{font-size:.85rem;white-space:nowrap}
 main.container{padding-bottom:32px}
-#questions .topic{margin:0 0 24px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
-#questions .topic h2{padding:14px 16px;margin:0;background:#f7f8fa;border:0;font-size:1.05rem;line-height:1.5}
-.topic-number{color:var(--muted);margin-right:10px}
-#questions details,#questions details[open]{border:0;border-top:1px solid var(--line);border-radius:0;margin:0}
-#questions summary{padding:16px;gap:10px;flex-wrap:nowrap;font-weight:600;font-size:1.05rem}
+#questions .topic{margin:0 0 24px;border:0;border-radius:0;background:transparent}
+#questions .topic h2{padding:0 4px;margin:0 0 12px;background:transparent;border:0;font-size:1.05rem;line-height:1.5}
+.topic-number{color:var(--accent);margin-right:10px}
+#questions details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.03);transition:all 160ms ease}
+#questions details:hover{border-color:#cbd5e1;box-shadow:0 4px 12px rgba(0,0,0,0.05)}
+#questions details[open]{border-color:#93c5fd;box-shadow:0 6px 16px rgba(0,0,0,0.06)}
+#questions summary{padding:18px 22px;gap:12px;flex-wrap:nowrap;font-weight:650;font-size:1.02rem}
 summary{display:flex;align-items:center;cursor:pointer;list-style:none;line-height:1.5}
 summary::-webkit-details-marker{display:none}
 #questions summary::after,.mastery-items .mastery-summary::after{content:"";display:block;width:8px;height:8px;border-right:2px solid #7c8795;border-bottom:2px solid #7c8795;transform:rotate(45deg);margin:-4px 3px 0 auto;flex:0 0 8px}

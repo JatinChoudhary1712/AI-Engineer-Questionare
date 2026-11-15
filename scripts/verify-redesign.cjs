@@ -5,7 +5,7 @@ for(const file of ['study-data.js','roadmap-data.js'])vm.runInNewContext(fs.read
 const sheets=state.window.STUDY_CHAPTERS,data=state.window.RECALL_ROADMAP;
 const server=http.createServer((req,res)=>{const relative=decodeURIComponent(req.url.split('?')[0]);const file=path.resolve(root,'.'+relative);if(!file.startsWith(root+path.sep)){res.writeHead(403);return res.end();}fs.readFile(file,(err,body)=>{if(err){res.writeHead(404);return res.end();}res.setHeader('Content-Type',({'.js':'text/javascript','.html':'text/html','.css':'text/css'})[path.extname(file)]||'text/plain');res.end(body);});});
 async function run(){
-  assert.equal(sheets.length,50);assert.equal(data.questions.length,717);assert.equal(data.phases.length,19);assert.equal(new Set(data.questions.map(q=>q.key)).size,717);
+  assert.equal(sheets.length,50);assert.equal(data.questions.length,718);assert.equal(data.phases.length,19);assert.equal(new Set(data.questions.map(q=>q.key)).size,718);
   for(const s of sheets){const file=decodeURIComponent(s.href).replace(/index\.html$/,'script.js');const original=cp.execFileSync('git',['show','HEAD:'+file],{cwd:root});assert.equal(s.id==='4.1'?'c47fce3aa5a75313f38749a28af794f530cd2aec95f8c03fea219b35886f33d7':crypto.createHash('sha256').update(original.toString().replace(/\r\n/g,'\n')).digest('hex'),crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file),'utf8').replace(/\r\n/g,'\n')).digest('hex'),s.id+' Q&A source changed');}
   await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}/`;
   const browser=await chromium.launch({headless:true,executablePath:process.env.RECALL_CHROMIUM});
@@ -13,7 +13,7 @@ async function run(){
     const context=await browser.newContext({viewport:{width:1536,height:1024}});await context.route('https://**',r=>r.abort());
     const page=await context.newPage(),errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error('BROWSER:',e.message);});page.setDefaultTimeout(10000);
     await page.goto(base+'index.html');await page.waitForSelector('.stats-row');
-    assert.deepEqual(await page.locator('.stat strong').allTextContents(),['717','50','0','0%']);
+    assert.deepEqual(await page.locator('.stat strong').allTextContents(),['718','50','0','0%']);
     await page.screenshot({path:path.join(root,'artifacts/ui-review/recall-overview-desktop.png'),fullPage:true});
     await page.locator('.product-nav a[data-page=roadmap]').click();assert.equal(await page.locator('.phase-row').count(),19);
     await page.locator('#phase-0').click();await page.waitForSelector('.phase-page-hero');assert(await page.locator('.coming-placeholder').first().isVisible());

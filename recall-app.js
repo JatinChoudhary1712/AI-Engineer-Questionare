@@ -102,6 +102,15 @@
   const notebookItems=category=>Object.values(notebookEntries).filter(item=>item&&typeof item.id==='string'&&typeof item.title==='string'&&notebookTypes[item.category]&&(!category||item.category===category)).sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||''));
   const externalURL=value=>{try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:'';}catch{return '';}};
   const announce=el('p','sr-only');announce.setAttribute('role','status');announce.setAttribute('aria-live','polite');
+  const toastNotice=el('div','toast-notice');toastNotice.setAttribute('role','status');toastNotice.setAttribute('aria-live','polite');
+  let toastTimer;
+  const showToast=msg=>{
+    toastNotice.textContent=msg;
+    toastNotice.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(()=>toastNotice.classList.remove('show'),2200);
+  };
+  window.showToast=showToast;
   const save = (key,value) => {try{localStorage.setItem(key,JSON.stringify(value));}catch{announce.textContent='Your change works for this visit. Browser storage is unavailable.';}};
   const countDone = list => list.filter(q=>reviewed[q.key]===true).length;
   const percent = list => list.length?Math.round(countDone(list)/list.length*100):0;
@@ -135,7 +144,7 @@
   const scrim=el('button','drawer-scrim');scrim.setAttribute('aria-label','Close navigation');
   const closeDrawer=()=>{document.body.classList.remove('drawer-open');menu.setAttribute('aria-expanded','false');sidebar.removeAttribute('role');sidebar.removeAttribute('aria-modal');};
   menu.onclick=()=>{const open=document.body.classList.toggle('drawer-open');menu.setAttribute('aria-expanded',String(open));if(open){sidebar.setAttribute('role','dialog');sidebar.setAttribute('aria-modal','true');sidebar.setAttribute('aria-label','Navigation');sidebar.querySelector('a').focus();}else closeDrawer();};scrim.onclick=closeDrawer;
-  document.body.prepend(sidebar,header,scrim);document.body.append(announce);
+  document.body.prepend(sidebar,header,scrim);document.body.append(announce,toastNotice);
   const results=el('section','search-results');results.id='search-results';results.hidden=true;results.setAttribute('aria-label','Search results');global.append(results);
   const searchIndex=[];
   for(const p of data.phases) {
@@ -171,7 +180,7 @@
       const q=questions.find(q=>q.chapterId===current.id&&q.id===detail.id);if(!q)return;
       const btn=el('button','bookmark-button');btn.type='button';
       const sync=()=>{btn.textContent=bookmarks[q.key]?'Remove bookmark':'Bookmark';btn.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));};
-      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';};sync();
+      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};sync();
       const actions=detail.querySelector('.review-actions') || document.querySelector('#study-answer .review-actions');
       if(actions)actions.append(btn);
     });
@@ -395,8 +404,8 @@
       if(!found.length)list.append(el('p','empty-state',view==='bookmarks'?'No saved questions match. Bookmark a question while reading to keep it here.':view==='revision'&&!questions.some(q=>reviewed[q.key]!==true)?'You’re all caught up. Every question has been reviewed.':'No questions match your filters. Try a broader search.'));
       for(const q of found.slice(0,limit)){
         const card=el('article','question-result');const link=el('a');link.href=questionURL(q);link.innerHTML=`<small>Phase ${q.phase} <span>·</span> ${esc(q.chapterId+' '+sheets.find(s=>s.id===q.chapterId).title)} <span>·</span> ${esc(q.sourceTopic)}</small><h2>${esc(q.text)}</h2>`;
-        const controls=el('div','question-result-actions');const r=el('button','',reviewed[q.key]?'Reviewed':'Mark as reviewed');r.type='button';r.setAttribute('aria-pressed',String(reviewed[q.key]===true));r.onclick=()=>{if(reviewed[q.key])delete reviewed[q.key];else reviewed[q.key]=true;save('recall.reviewed.v1',reviewed);draw();};
-        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);draw();};controls.append(r,b);card.append(link,controls);list.append(card);
+        const controls=el('div','question-result-actions');const r=el('button','',reviewed[q.key]?'Reviewed':'Mark as reviewed');r.type='button';r.setAttribute('aria-pressed',String(reviewed[q.key]===true));r.onclick=()=>{if(reviewed[q.key])delete reviewed[q.key];else reviewed[q.key]=true;save('recall.reviewed.v1',reviewed);draw();showToast(reviewed[q.key]?'Question marked as reviewed ✓':'Marked as not reviewed');};
+        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);draw();showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};controls.append(r,b);card.append(link,controls);list.append(card);
       }more.hidden=found.length<=limit;
     }
     phase.onchange=()=>{options(chapter,sheets.filter(s=>!phase.value||String(s.phase)===phase.value).map(s=>[s.id,s.id+' '+s.title]),'All chapters');options(topic,[],'All topics');limit=60;draw();};phase.onchange();

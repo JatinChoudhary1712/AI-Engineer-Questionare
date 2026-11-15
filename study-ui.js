@@ -271,6 +271,26 @@
   const status = create('p', 'sr-only');
   status.setAttribute('role', 'status');
   main.append(status);
+  const toast = create('div', 'toast-notice');
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  document.body.append(toast);
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+  const scrollTopBtn = create('button', 'scroll-top-btn');
+  scrollTopBtn.type = 'button';
+  scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+  scrollTopBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>';
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+  document.body.append(scrollTopBtn);
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 350);
+  }, {passive: true});
   const reviewControls = [];
   const hash = text => { let value = 2166136261; for (let i = 0; i < text.length; i++) value = Math.imul(value ^ text.charCodeAt(i), 16777619); return (value >>> 0).toString(36); };
   function syncReviewControls() {
@@ -301,9 +321,22 @@
       try { localStorage.setItem(storageKey, JSON.stringify(reviewed)); }
       catch { storageFailed = true; }
       status.textContent = `Question ${number} ${done ? 'marked as reviewed' : 'marked as not reviewed'}.${storageFailed ? ' Progress is available for this visit, but could not be saved in this browser.' : ''}`;
+      showToast(done ? `Question ${number} marked as reviewed ✓` : `Question ${number} marked as not reviewed`);
       syncReviewControls();
     });
-    actions.append(button, link('Link to this question', `#${detail.id}`));
+    const copyLink = link('Link to this question', `#${detail.id}`);
+    copyLink.addEventListener('click', e => {
+      e.preventDefault();
+      const u = new URL(location.href);
+      u.hash = detail.id;
+      history.replaceState(null, '', u.href);
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(u.href).then(() => showToast('Link copied to clipboard! 📋'));
+      } else {
+        showToast('Link copied: #' + detail.id);
+      }
+    });
+    actions.append(button, copyLink);
     detail.querySelector('.answer').append(actions);
     reviewControls.push({key, button, badge, detail, number, question});
   }
@@ -535,6 +568,20 @@
     previous.addEventListener('click', () => { if (index > 0) navigate('focus', index - 1); });
     next.addEventListener('click', () => { if (index + 1 < records.length) navigate('focus', index + 1); });
     review.addEventListener('click', () => { records[index].button.click(); syncReview(); });
+    document.addEventListener('keydown', event => {
+      if (mode !== 'focus') return;
+      if (event.target.matches('input, textarea, select')) return;
+      if ((event.key === 'ArrowRight' || event.key === 'l') && index < records.length - 1) {
+        event.preventDefault();
+        navigate('focus', index + 1);
+      } else if ((event.key === 'ArrowLeft' || event.key === 'h') && index > 0) {
+        event.preventDefault();
+        navigate('focus', index - 1);
+      } else if (event.key.toLowerCase() === 'r') {
+        event.preventDefault();
+        review.click();
+      }
+    });
     for (const [at, item] of records.entries()) {
       item.detail.querySelector('.review-actions').prepend(link('Focus on this question', '?view=focus#' + item.detail.id, 'secondary-link'));
       item.detail.querySelector('summary').addEventListener('click', () => {
