@@ -44,15 +44,23 @@
   } catch { /* Keep learning available when storage is unavailable. */ }
   const key = 'recall.theme.v1';
   const preference = window.matchMedia('(prefers-color-scheme: dark)');
-  const valid = value => value === 'dark' || value === 'light';
-  let selected = null;
-  try { const stored = localStorage.getItem(key); if (valid(stored)) selected = stored; } catch { /* Use device preference when storage is unavailable. */ }
+  const valid = value => value === 'dark' || value === 'light' || value === 'system';
+  let selected = 'system';
+  try {
+    const stored = localStorage.getItem(key);
+    if (valid(stored)) selected = stored;
+  } catch { /* Use device preference when storage is unavailable. */ }
+  const resolve = value => (value === 'dark' || value === 'light') ? value : (preference.matches ? 'dark' : 'light');
   const apply = () => {
-    document.documentElement.dataset.theme = selected || 'light';
+    const resolved = resolve(selected);
+    document.documentElement.dataset.theme = resolved;
+    document.documentElement.dataset.themeMode = selected;
+    document.documentElement.style.colorScheme = resolved;
     window.dispatchEvent(new Event('recall:theme'));
   };
   window.RecallTheme = {
     get current() { return document.documentElement.dataset.theme; },
+    get mode() { return selected; },
     set(value) {
       if (!valid(value)) return;
       selected = value;
@@ -60,10 +68,10 @@
       apply();
     }
   };
-  preference.addEventListener('change', () => { if (!selected) apply(); });
+  preference.addEventListener('change', () => { if (selected === 'system') apply(); });
   window.addEventListener('storage', event => {
     if (event.key !== key && event.key !== null) return;
-    selected = valid(event.newValue) ? event.newValue : null;
+    selected = valid(event.newValue) ? event.newValue : 'system';
     apply();
   });
   apply();

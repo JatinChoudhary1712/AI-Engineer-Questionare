@@ -386,7 +386,36 @@
     const indexTopics = create('div', 'index-topics');
     indexView.append(indexIntro, controls, indexTopics, empty);
     const readerTools = create('div', 'reading-tools');
-    readerTools.append(controls.querySelector('#toggle-all-sections'));
+    const filterGroup = create('div', 'reading-filter-group');
+    filterGroup.setAttribute('role', 'group');
+    filterGroup.setAttribute('aria-label', 'Filter questions in reading mode');
+    let readerFilter = 'all';
+    const applyReaderFilter = () => {
+      for (const item of records) {
+        const isDone = reviewed[item.key] === true;
+        let showItem = true;
+        if (readerFilter === 'todo') showItem = !isDone;
+        else if (readerFilter === 'done') showItem = isDone;
+        item.detail.hidden = !showItem;
+      }
+      for (const section of catalogue.querySelectorAll('.topic')) {
+        const visible = [...section.querySelectorAll('details')].some(d => !d.hidden);
+        section.hidden = !visible;
+      }
+    };
+    const filterBtns = [['all', 'All'], ['todo', 'Unreviewed'], ['done', 'Reviewed']].map(([val, label]) => {
+      const b = create('button', '', label);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(val === 'all'));
+      b.addEventListener('click', () => {
+        readerFilter = val;
+        filterBtns.forEach((btn, idx) => btn.setAttribute('aria-pressed', String(['all', 'todo', 'done'][idx] === val)));
+        applyReaderFilter();
+      });
+      filterGroup.append(b);
+      return b;
+    });
+    readerTools.append(filterGroup, controls.querySelector('#toggle-all-sections'));
     reader.prepend(readerTools);
     const viewNav = create('nav', 'view-switcher');
     viewNav.setAttribute('aria-label', 'Chapter views');

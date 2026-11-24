@@ -27,7 +27,8 @@
     resources:'M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2',
     interviews:'M4 5h16v12H9l-5 4V5m4 4h8m-8 4h5',
     miscellaneous:'M8 4h8m-7-2h6v4H9V2M6 4H4v18h16V4h-2M8 11h8m-8 5h6',
-    menu:'M3 6h18M3 12h18M3 18h18', arrow:'M4 12h16m-6-6 6 6-6 6',chevron:'m9 5 7 7-7 7'
+    menu:'M3 6h18M3 12h18M3 18h18', arrow:'M4 12h16m-6-6 6 6-6 6',chevron:'m9 5 7 7-7 7',
+    panel:'M15 18l-6-6 6-6'
   };
   const icon = name => `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.book}"/></svg>`;
   const url = (view, extra={}) => {const separate=view==='phase'||(view==='resources'&&!extra.new&&!extra.edit);const u=separate?new URL(view==='phase'?'phase.html':'resources.html',root):new URL(home);if(!separate)u.searchParams.set('page',view);for(const [k,v] of Object.entries(extra))u.searchParams.set(k,v);return u.href;};
@@ -120,27 +121,47 @@
   const nodeQuestions = (c,t) => {const ids=new Set([t.id,...t.points.map(p=>p.id)]);return questions.filter(q=>q.chapterId===c.id&&ids.has(q.topicId));};
   document.body.classList.add('recall-app');
   if(!reading) document.body.classList.add('portal-page');
+  try{if(localStorage.getItem('recall.sidebar-collapsed.v1')==='1')document.body.classList.add('sidebar-collapsed');}catch{}
   document.querySelectorAll('.app-header,.app-sidebar,.mobile-navigation').forEach(n=>n.remove());
   const sidebar=el('aside','recall-sidebar');sidebar.id='recall-sidebar';
-  const brand=el('a','recall-brand');brand.href=home.href;brand.innerHTML=`${icon('brain')}<span><strong>Recall</strong><small>AI Engineering Learning</small></span>`;
+  const brandRow=el('div','recall-brand-row');
+  const brand=el('a','recall-brand');brand.href=home.href;brand.innerHTML=`${icon('brain')}<span><strong>Recall</strong><small>AI Engineering</small></span>`;
+  const collapseBtn=el('button','sidebar-collapse-btn');collapseBtn.type='button';collapseBtn.innerHTML=icon('panel');
+  const syncCollapseLabel=()=>{const collapsed=document.body.classList.contains('sidebar-collapsed');collapseBtn.setAttribute('aria-label',collapsed?'Expand sidebar':'Collapse sidebar');collapseBtn.title=collapsed?'Expand sidebar':'Collapse sidebar';};
+  collapseBtn.onclick=()=>{const collapsed=document.body.classList.toggle('sidebar-collapsed');try{localStorage.setItem('recall.sidebar-collapsed.v1',collapsed?'1':'0');}catch{}syncCollapseLabel();};
+  syncCollapseLabel();
+  brandRow.append(brand,collapseBtn);
   const nav=el('nav','product-nav');nav.setAttribute('aria-label','Main navigation');
+  nav.append(el('p','nav-group-label','LEARNING'));
   const navItems=[['overview','Overview'],['roadmap','Roadmap'],['questions','Question Bank'],['revision','Revision'],['bookmarks','Bookmarks'],['projects','Projects'],...Object.entries(notebookTypes).map(([key,config])=>[key,config.title])];
-  for(const [key,title]of navItems){if(key==='resources')nav.append(el('p','personal-nav-label','PERSONAL SPACE'));const a=el('a');a.href=url(key);a.dataset.page=key;a.innerHTML=icon(key==='questions'?'search':key)+`<span>${title}</span>`;nav.append(a);}
-  const theme=el('div','theme-control');theme.innerHTML=icon('sun')+'<label class="sr-only" for="product-theme">Color theme</label><select id="product-theme"><option value="light">Light</option><option value="dark">Dark</option></select>';
-  const themeSelect=theme.querySelector('select');themeSelect.value=window.RecallTheme?.current||'light';
+  for(const [key,title]of navItems){
+    if(key==='resources')nav.append(el('p','personal-nav-label','PERSONAL SPACE'));
+    const a=el('a');a.href=url(key);a.dataset.page=key;a.dataset.tooltip=title;
+    a.innerHTML=icon(key==='questions'?'search':key)+`<span>${title}</span>`;
+    if(key==='bookmarks'){const b=el('span','nav-badge',String(Object.keys(bookmarks).filter(k=>bookmarks[k]).length));b.dataset.badgeFor='bookmarks';if(b.textContent==='0')b.hidden=true;a.append(b);}
+    nav.append(a);
+  }
+  const syncBadges=()=>{
+    const bCount=Object.keys(bookmarks).filter(k=>bookmarks[k]).length;
+    const bEl=nav.querySelector('[data-badge-for="bookmarks"]');
+    if(bEl){bEl.textContent=String(bCount);bEl.hidden=bCount===0;}
+  };
+  const theme=el('div','theme-control');theme.innerHTML=icon('sun')+'<label class="sr-only" for="product-theme">Color theme</label><select id="product-theme"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select>';
+  const themeSelect=theme.querySelector('select');themeSelect.value=window.RecallTheme?.mode||'system';
   themeSelect.addEventListener('change',()=>window.RecallTheme?.set(themeSelect.value));
-  window.addEventListener('recall:theme',()=>themeSelect.value=window.RecallTheme.current);
-  sidebar.append(brand,nav,theme);
+  window.addEventListener('recall:theme',()=>{themeSelect.value=window.RecallTheme?.mode||'system';});
+  sidebar.append(brandRow,nav,theme);
   const header=el('header','recall-topbar');
   const menu=el('button','drawer-toggle');menu.type='button';menu.innerHTML=icon('menu');menu.setAttribute('aria-label','Open navigation');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-controls',sidebar.id);
-  const global=el('div','global-search');global.innerHTML=icon('search')+'<label class="sr-only" for="global-search">Search questions, topics, or chapters</label><input id="global-search" type="search" placeholder="Search questions, topics, or chapters..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><kbd>Ctrl + K</kbd>';
+  const topbarSection=el('div','topbar-section');
+  const global=el('div','global-search');global.innerHTML=icon('search')+'<label class="sr-only" for="global-search">Search questions, topics, or chapters</label><input id="global-search" type="search" placeholder="Search questions, topics, chapters..." autocomplete="off" aria-controls="search-results" aria-expanded="false"><kbd>Ctrl + K</kbd>';
   const searchInput=global.querySelector('input');
   const avatar=el('span','user-avatar','J');avatar.setAttribute('aria-label','Jatin');
   const themeShortcut=el('button','topbar-theme');themeShortcut.type='button';
   const syncThemeShortcut=()=>{const dark=window.RecallTheme?.current==='dark';const label=dark?'Switch to light theme':'Switch to dark theme';themeShortcut.innerHTML=icon(dark?'sun':'moon');themeShortcut.setAttribute('aria-label',label);themeShortcut.title=label;};
   themeShortcut.addEventListener('click',()=>window.RecallTheme?.set(window.RecallTheme.current==='dark'?'light':'dark'));
   window.addEventListener('recall:theme',syncThemeShortcut);syncThemeShortcut();
-  header.append(menu,global,themeShortcut,avatar);
+  header.append(menu,topbarSection,global,themeShortcut,avatar);
   const scrim=el('button','drawer-scrim');scrim.setAttribute('aria-label','Close navigation');
   const closeDrawer=()=>{document.body.classList.remove('drawer-open');menu.setAttribute('aria-expanded','false');sidebar.removeAttribute('role');sidebar.removeAttribute('aria-modal');};
   menu.onclick=()=>{const open=document.body.classList.toggle('drawer-open');menu.setAttribute('aria-expanded',String(open));if(open){sidebar.setAttribute('role','dialog');sidebar.setAttribute('aria-modal','true');sidebar.setAttribute('aria-label','Navigation');sidebar.querySelector('a').focus();}else closeDrawer();};scrim.onclick=closeDrawer;
@@ -176,11 +197,13 @@
   const updateNav=view=>nav.querySelectorAll('a').forEach(a=>{if(a.dataset.page===view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   if(reading){
     updateNav('roadmap');
+    topbarSection.innerHTML=`<span>Phase ${current.phase}</span><small>/</small><span>${esc(current.id)} ${esc(current.title)}</span>`;
     document.querySelectorAll('#questions details').forEach(detail=>{
       const q=questions.find(q=>q.chapterId===current.id&&q.id===detail.id);if(!q)return;
+      detail.querySelectorAll('.answer p').forEach(p=>{if(/^(Remember|One-liner|Takeaway):/i.test(p.textContent.trim()))p.classList.add('takeaway-line');});
       const btn=el('button','bookmark-button');btn.type='button';
       const sync=()=>{btn.textContent=bookmarks[q.key]?'Remove bookmark':'Bookmark';btn.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));};
-      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};sync();
+      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();syncBadges();announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};sync();
       const actions=detail.querySelector('.review-actions') || document.querySelector('#study-answer .review-actions');
       if(actions)actions.append(btn);
     });
@@ -188,7 +211,14 @@
     for(const s of sheets.filter(s=>s.phase===current.phase)){const a=el('a','',`${s.id} ${s.title}`);a.href=sheetURL(s);if(s.id===current.id)a.setAttribute('aria-current','page');chapterNav.append(a);}
     sidebar.insertBefore(chapterNav,theme);
     const toc=el('aside','reader-toc');toc.setAttribute('aria-label','On this page');toc.append(el('strong','','On this page'));
-    document.querySelectorAll('#questions .topic').forEach((section,i)=>{section.id='reader-topic-'+i;const a=el('a','',section.querySelector('h2').textContent);a.href='#'+section.id;toc.append(a);});
+    const tocLinks=[];
+    document.querySelectorAll('#questions .topic').forEach((section,i)=>{section.id='reader-topic-'+i;const h2=section.querySelector('h2');const num=h2.querySelector('.topic-number')?.textContent||'';const label=num?h2.textContent.replace(num,num+' ').trim():h2.textContent;const a=el('a','',label);a.href='#'+section.id;toc.append(a);tocLinks.push({section,a});});
+    if(typeof IntersectionObserver!=='undefined'&&tocLinks.length){
+      const obs=new IntersectionObserver(entries=>{
+        for(const e of entries){if(e.isIntersecting){tocLinks.forEach(l=>l.a.classList.toggle('is-active',l.section===e.target));}}
+      },{rootMargin:'-80px 0px -70% 0px'});
+      tocLinks.forEach(l=>obs.observe(l.section));
+    }
     const back=el('a','reader-back','← All chapters');back.href=url('phase',{phase:current.phase,chapter:current.id});toc.append(back);document.body.append(toc);
     return;
   }
@@ -259,13 +289,19 @@
   }
   function overview(){
     const done=countDone(questions),pct=percent(questions);
+    const remaining=Math.max(0,questions.length-done);
+    const bookmarkedCount=Object.keys(bookmarks).filter(k=>bookmarks[k]).length;
+    const completedChapters=sheets.filter(s=>{const cq=questions.filter(q=>q.chapterId===s.id);return cq.length&&countDone(cq)===cq.length;}).length;
     let position=load('recall.position.v1',{}),last;try{last=localStorage.getItem('recall.last-chapter');}catch{}
     const resume=sheets.find(s=>s.id===(position.chapterId||last))||sheets[0];
     const q=questions.find(q=>q.chapterId===resume.id&&q.id===position.questionId);const p=data.phases.find(p=>p.id===resume.phase);
-    main.innerHTML=`<section class="dashboard-intro"><p class="greeting">Good to see you back, Jatin <span aria-hidden="true">👋</span></p><h1>Continue your AI Engineering journey.</h1><p>Learn, revise and build expertise across the complete AI engineering roadmap.</p></section>
+    const priorityPool=questions.filter(item=>item.chapterId===resume.id&&reviewed[item.key]!==true);
+    const priorities=(priorityPool.length?priorityPool:questions.filter(item=>reviewed[item.key]!==true)).slice(0,3);
+    main.innerHTML=`<div class="dashboard-header"><section class="dashboard-intro"><p class="greeting">Welcome back, Jatin</p><h1>AI Engineering Workspace</h1><p>Track mastery across 19 roadmap phases, active recall sheets, and interview prep.</p></section></div>
       <section class="stats-row" aria-label="Learning statistics">${[['book',questions.length,'Questions'],['roadmap',sheets.length,'Chapters'],['check',done,'Reviewed'],['chart',pct+'%','Overall Progress']].map(([i,n,label])=>`<div class="stat">${icon(i)}<span><strong>${n}</strong><small>${label}</small></span></div>`).join('')}</section>
-      <section class="dashboard-cards"><article class="progress-card"><h2>Your Progress</h2><div class="progress-line"><progress max="${questions.length}" value="${done}" aria-label="Overall progress"></progress><span>${pct}%</span></div><p>${done} of ${questions.length} questions reviewed</p></article><article class="continue-card"><div><p>Continue Learning</p><h2>${esc(resume.id+' '+resume.title)}</h2><p class="resume-phase">Phase ${p.id} · ${esc(p.title)}</p><a class="primary-button" href="${esc(q?questionURL(q):sheetURL(resume))}">Resume ${icon('arrow')}</a></div><svg class="contours" viewBox="0 0 260 150" fill="none" aria-hidden="true"><path d="M0 150c35-65 50 3 80-57s45 20 80-45 60-30 100-12M20 165c35-65 50 3 80-57s45 20 80-45 60-30 100-12M40 180c35-65 50 3 80-57s45 20 80-45 60-30 100-12" stroke="currentColor"/></svg></article></section>
-      <section class="personal-dashboard-grid" aria-label="Your learning and personal collections"><article class="workspace-card roadmap-preview"><div class="workspace-card-heading"><span class="workspace-card-icon">${icon('roadmap')}</span><span class="workspace-eyebrow">YOUR LEARNING PATH</span></div><div class="section-heading"><div><h2>AI Engineering Roadmap</h2><p>From fundamentals to production-ready AI systems.</p></div></div><div id="roadmap-preview-list"></div><footer class="workspace-card-footer"><span>${data.phases.length-1} phases + Capstone</span><a href="${url('roadmap')}">View all ${icon('arrow')}</a></footer></article></section>`;
+      <section class="dashboard-cards"><article class="progress-card"><div><h2>Mastery Progress</h2><div class="progress-line"><progress max="${questions.length}" value="${done}" aria-label="Overall progress"></progress><span>${pct}%</span></div><p>${done} of ${questions.length} questions reviewed</p></div><div class="progress-meta-pills"><span class="meta-pill"><strong>${remaining}</strong> remaining</span><span class="meta-pill"><strong>${completedChapters}/${sheets.length}</strong> chapters done</span><span class="meta-pill"><strong>${bookmarkedCount}</strong> bookmarked</span></div></article><article class="continue-card"><div><p class="eyebrow-label">Continue Learning</p><h2>${esc(resume.id+' '+resume.title)}</h2><p class="resume-phase">Phase ${p.id} · ${esc(p.title)}</p><div class="continue-actions"><a class="primary-button" href="${esc(q?questionURL(q):sheetURL(resume))}">Resume ${icon('arrow')}</a><a class="outline-button" href="${url('revision')}">Quick Revision</a></div></div><svg class="contours" viewBox="0 0 260 150" fill="none" aria-hidden="true"><path d="M0 150c35-65 50 3 80-57s45 20 80-45 60-30 100-12M20 165c35-65 50 3 80-57s45 20 80-45 60-30 100-12M40 180c35-65 50 3 80-57s45 20 80-45 60-30 100-12" stroke="currentColor"/></svg></article></section>
+      ${priorities.length?`<section class="revision-priority-card" aria-label="Up next for revision"><div class="section-heading"><div><h2>Up Next for Revision</h2><p>Unreviewed questions from your active learning path.</p></div><a href="${url('revision')}">View all (${remaining}) ${icon('arrow')}</a></div><div class="revision-priority-list">${priorities.map(item=>`<a class="priority-item" href="${questionURL(item)}"><small>${esc(item.chapterId)} · ${esc(item.sourceTopic)}</small><strong>${esc(item.text)}</strong></a>`).join('')}</div></section>`:''}
+      <section class="personal-dashboard-grid" aria-label="Your learning and personal collections"><article class="workspace-card roadmap-preview"><div class="workspace-card-heading"><span class="workspace-card-icon">${icon('roadmap')}</span><span class="workspace-eyebrow">LEARNING PATH</span></div><div class="section-heading"><div><h2>AI Engineering Roadmap</h2><p>From fundamentals to production-ready AI systems.</p></div></div><div id="roadmap-preview-list"></div><footer class="workspace-card-footer"><span>${data.phases.length-1} phases + Capstone</span><a href="${url('roadmap')}">View all ${icon('arrow')}</a></footer></article></section>`;
     for(const p of data.phases.slice(0,5)){
       const row=el('a','compact-phase');row.href=url('phase',{phase:p.id});
       const count=questions.filter(q=>q.phase===p.id).length;
@@ -395,22 +431,65 @@
     const phase=select('Phase',[['','All phases'],...data.phases.filter(p=>questions.some(q=>q.phase===p.id)).map(p=>[p.id,phaseName(p)+' · '+p.title])]);
     const chapter=select('Chapter',[['','All chapters']]);const topic=select('Topic',[['','All topics']]);
     const review=select('Review state',[['','All questions'],['todo','Not reviewed'],['done','Reviewed']]);if(view==='revision')review.closest('label').hidden=true;
-    const count=el('p','collection-count');count.setAttribute('role','status');const list=el('div','question-list');const more=el('button','load-more','Show more questions');more.type='button';let limit=60;
+    let quickBookmarkedOnly=false;
+    const metaBar=el('div','collection-meta-bar');
+    const count=el('p','collection-count');count.setAttribute('role','status');
+    const quickTabs=el('div','collection-quick-tabs');
+    if(view!=='bookmarks'){
+      const allBtn=el('button','','All');allBtn.type='button';allBtn.setAttribute('aria-pressed','true');
+      const bmBtn=el('button','','Bookmarked only');bmBtn.type='button';bmBtn.setAttribute('aria-pressed','false');
+      allBtn.onclick=()=>{quickBookmarkedOnly=false;allBtn.setAttribute('aria-pressed','true');bmBtn.setAttribute('aria-pressed','false');page=1;draw();};
+      bmBtn.onclick=()=>{quickBookmarkedOnly=true;bmBtn.setAttribute('aria-pressed','true');allBtn.setAttribute('aria-pressed','false');page=1;draw();};
+      quickTabs.append(allBtn,bmBtn);
+    }
+    metaBar.append(count,quickTabs);
+    const list=el('div','question-list');
+    const pager=el('nav','pagination-bar');pager.setAttribute('aria-label','Question pagination');
+    let pageSize=20;try{const s=Number(localStorage.getItem('recall.page-size.v1'));if([10,20,50].includes(s))pageSize=s;}catch{}
+    let page=1;
     const options=(select,values,label)=>{select.replaceChildren();for(const [v,title]of [['',label],...values]){const o=el('option','',title);o.value=v;select.append(o);}};
+    function drawPager(total,totalPages){
+      pager.replaceChildren();
+      if(!total){pager.hidden=true;return;}
+      pager.hidden=false;
+      const start=(page-1)*pageSize+1,end=Math.min(total,page*pageSize);
+      const info=el('div','pagination-info');
+      const range=el('span','',`Showing ${start}–${end} of ${total}`);
+      const sizeSel=el('select');sizeSel.setAttribute('aria-label','Questions per page');
+      for(const n of [10,20,50]){const o=el('option','',`${n} / page`);o.value=String(n);if(n===pageSize)o.selected=true;sizeSel.append(o);}
+      sizeSel.onchange=()=>{pageSize=Number(sizeSel.value);try{localStorage.setItem('recall.page-size.v1',String(pageSize));}catch{}page=1;draw();};
+      info.append(range,sizeSel);
+      const ctrls=el('div','pagination-controls');
+      const mkBtn=(label,target,disabled,current=false)=>{const b=el('button','',label);b.type='button';b.disabled=disabled;if(current)b.setAttribute('aria-current','page');b.onclick=()=>{page=target;draw();window.scrollTo({top:0,behavior:'smooth'});};return b;};
+      ctrls.append(mkBtn('First',1,page<=1),mkBtn('Prev',Math.max(1,page-1),page<=1));
+      const nums=[];
+      for(let i=1;i<=totalPages;i++){if(i===1||i===totalPages||Math.abs(i-page)<=1)nums.push(i);else if(nums.at(-1)!=='…')nums.push('…');}
+      for(const n of nums){if(n==='…')ctrls.append(el('span','','…'));else ctrls.append(mkBtn(String(n),n,false,n===page));}
+      ctrls.append(mkBtn('Next',Math.min(totalPages,page+1),page>=totalPages),mkBtn('Last',totalPages,page>=totalPages));
+      const jump=el('div','pagination-jump');
+      const jInput=el('input');jInput.type='number';jInput.min='1';jInput.max=String(totalPages);jInput.value=String(page);jInput.setAttribute('aria-label','Jump to page');
+      jInput.onchange=()=>{const v=Math.max(1,Math.min(totalPages,Number(jInput.value)||1));page=v;draw();window.scrollTo({top:0,behavior:'smooth'});};
+      jump.append(el('span','','Page'),jInput,el('span','',`of ${totalPages}`));
+      pager.append(info,ctrls,jump);
+    }
     function draw(){
       const terms=text.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
-      const found=questions.filter(q=>(view!=='revision'||reviewed[q.key]!==true)&&(view!=='bookmarks'||bookmarks[q.key])&&(!phase.value||String(q.phase)===phase.value)&&(!chapter.value||q.chapterId===chapter.value)&&(!topic.value||q.topicId===topic.value)&&(!review.value||(review.value==='done')===(reviewed[q.key]===true))&&terms.every(t=>(q.text+' '+q.sourceTopic).toLowerCase().includes(t)));
-      count.textContent=`${found.length} ${view==='revision'?'questions to review':'questions'}${found.length>limit?` · showing ${limit}`:''}`;list.replaceChildren();
+      const found=questions.filter(q=>(view!=='revision'||reviewed[q.key]!==true)&&(view!=='bookmarks'||bookmarks[q.key])&&(!quickBookmarkedOnly||bookmarks[q.key])&&(!phase.value||String(q.phase)===phase.value)&&(!chapter.value||q.chapterId===chapter.value)&&(!topic.value||q.topicId===topic.value)&&(!review.value||(review.value==='done')===(reviewed[q.key]===true))&&terms.every(t=>(q.text+' '+q.sourceTopic).toLowerCase().includes(t)));
+      const totalPages=Math.max(1,Math.ceil(found.length/pageSize));
+      if(page>totalPages)page=totalPages;
+      const slice=found.slice((page-1)*pageSize,page*pageSize);
+      count.textContent=`${found.length} ${view==='revision'?'questions to review':'questions'}`;list.replaceChildren();
       if(!found.length)list.append(el('p','empty-state',view==='bookmarks'?'No saved questions match. Bookmark a question while reading to keep it here.':view==='revision'&&!questions.some(q=>reviewed[q.key]!==true)?'You’re all caught up. Every question has been reviewed.':'No questions match your filters. Try a broader search.'));
-      for(const q of found.slice(0,limit)){
+      for(const q of slice){
         const card=el('article','question-result');const link=el('a');link.href=questionURL(q);link.innerHTML=`<small>Phase ${q.phase} <span>·</span> ${esc(q.chapterId+' '+sheets.find(s=>s.id===q.chapterId).title)} <span>·</span> ${esc(q.sourceTopic)}</small><h2>${esc(q.text)}</h2>`;
         const controls=el('div','question-result-actions');const r=el('button','',reviewed[q.key]?'Reviewed':'Mark as reviewed');r.type='button';r.setAttribute('aria-pressed',String(reviewed[q.key]===true));r.onclick=()=>{if(reviewed[q.key])delete reviewed[q.key];else reviewed[q.key]=true;save('recall.reviewed.v1',reviewed);draw();showToast(reviewed[q.key]?'Question marked as reviewed ✓':'Marked as not reviewed');};
-        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);draw();showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};controls.append(r,b);card.append(link,controls);list.append(card);
-      }more.hidden=found.length<=limit;
+        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);syncBadges();draw();showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};controls.append(r,b);card.append(link,controls);list.append(card);
+      }
+      drawPager(found.length,totalPages);
     }
-    phase.onchange=()=>{options(chapter,sheets.filter(s=>!phase.value||String(s.phase)===phase.value).map(s=>[s.id,s.id+' '+s.title]),'All chapters');options(topic,[],'All topics');limit=60;draw();};phase.onchange();
-    chapter.onchange=()=>{const qs=questions.filter(q=>(!chapter.value||q.chapterId===chapter.value)&&(!phase.value||String(q.phase)===phase.value));const seen=new Map(qs.map(q=>[q.topicId,q.sourceTopic]));options(topic,[...seen],'All topics');limit=60;draw();};chapter.onchange();
-    for(const control of [text,topic,review])control.addEventListener('input',()=>{limit=60;draw();});more.onclick=()=>{limit+=60;draw();};main.append(filters,count,list,more);draw();
+    phase.onchange=()=>{options(chapter,sheets.filter(s=>!phase.value||String(s.phase)===phase.value).map(s=>[s.id,s.id+' '+s.title]),'All chapters');options(topic,[],'All topics');page=1;draw();};phase.onchange();
+    chapter.onchange=()=>{const qs=questions.filter(q=>(!chapter.value||q.chapterId===chapter.value)&&(!phase.value||String(q.phase)===phase.value));const seen=new Map(qs.map(q=>[q.topicId,q.sourceTopic]));options(topic,[...seen],'All topics');page=1;draw();};chapter.onchange();
+    for(const control of [text,topic,review])control.addEventListener('input',()=>{page=1;draw();});main.append(filters,metaBar,list,pager);draw();
   }
   function projectPage(params){
     main.innerHTML=pageHeading('Build what you learn.','Practical projects from the roadmap. Start small, then work toward your production AI system.');
@@ -425,7 +504,7 @@
       }section.append(grid);main.append(section);
     }if(params.get('project'))document.getElementById('project-'+params.get('project'))?.scrollIntoView({block:'center'});
   }
-  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.page||(document.body.dataset.phase?'roadmap':'overview');if(view!=='phase'&&!navItems.some(([k])=>k===view))view='overview';updateNav(view==='phase'?'roadmap':view);main.replaceChildren();main.classList.remove('resources-table-page');document.title=(view==='phase'?'Phase':navItems.find(([k])=>k===view)[1])+' | Recall';
+  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.page||(document.body.dataset.phase?'roadmap':'overview');if(view!=='phase'&&!navItems.some(([k])=>k===view))view='overview';updateNav(view==='phase'?'roadmap':view);const sectionTitle=view==='phase'?'Roadmap Phase':navItems.find(([k])=>k===view)[1];topbarSection.innerHTML=`<span>Recall</span><small>/</small><span>${esc(sectionTitle)}</span>`;main.replaceChildren();main.classList.remove('resources-table-page');document.title=sectionTitle+' | Recall';
     if(view==='phase')phasePage(params);else if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(view==='resources'&&!params.has('new')&&!params.has('edit'))resourcesPage(params);else if(notebookTypes[view])notebookPage(view,params);else collection(view);
   }
   document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const dest=new URL(a.href);if(dest.origin===home.origin&&dest.pathname===home.pathname&&dest.searchParams.has('page')){e.preventDefault();history.pushState({},'',dest);closeDrawer();results.hidden=true;render();if(!dest.searchParams.has('topic')&&!dest.searchParams.has('project'))window.scrollTo(0,0);main.focus({preventScroll:true});}});
