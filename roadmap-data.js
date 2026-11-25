@@ -11180,6 +11180,33 @@ window.RECALL_ROADMAP = {
       "chapterId": "3.2",
       "phase": 3,
       "id": "question-02",
+      "key": "3.2:1cmw5xv",
+      "text": "What is Regression?",
+      "sourceTopic": "Linear regression - closed form and gradient descent",
+      "topicId": "3.2-point-0"
+    },
+    {
+      "chapterId": "3.2",
+      "phase": 3,
+      "id": "question-03",
+      "key": "3.2:1qkvn8y",
+      "text": "Types of Variables in Regression",
+      "sourceTopic": "Linear regression - closed form and gradient descent",
+      "topicId": "3.2-point-0"
+    },
+    {
+      "chapterId": "3.2",
+      "phase": 3,
+      "id": "question-04",
+      "key": "3.2:1hp1tgn",
+      "text": "How does the graph look like for linear regression?",
+      "sourceTopic": "Linear regression - closed form and gradient descent",
+      "topicId": "3.2-point-0"
+    },
+    {
+      "chapterId": "3.2",
+      "phase": 3,
+      "id": "question-05",
       "key": "3.2:19ur0v4",
       "text": "How does the closed-form solution train linear regression?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11188,7 +11215,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-03",
+      "id": "question-06",
       "key": "3.2:wjqie1",
       "text": "How does gradient descent train linear regression?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11197,7 +11224,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-04",
+      "id": "question-07",
       "key": "3.2:1s14tvz",
       "text": "How does the learning rate affect linear regression training?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11206,7 +11233,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-05",
+      "id": "question-08",
       "key": "3.2:10uz49z",
       "text": "What happens in one gradient descent update?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11215,7 +11242,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-06",
+      "id": "question-09",
       "key": "3.2:1yrgbxb",
       "text": "When should I use closed form versus gradient descent?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11224,7 +11251,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-07",
+      "id": "question-10",
       "key": "3.2:15ofg2l",
       "text": "How do I solve the same linear regression with NumPy least squares and gradient descent?",
       "sourceTopic": "Linear regression - closed form and gradient descent",
@@ -11233,7 +11260,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-08",
+      "id": "question-11",
       "key": "3.2:1he0xdu",
       "text": "What is logistic regression, and how does it perform binary classification?",
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
@@ -11242,7 +11269,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-09",
+      "id": "question-12",
       "key": "3.2:9nf38b",
       "text": "What is the sigmoid function?",
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
@@ -11251,7 +11278,16 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-10",
+      "id": "question-13",
+      "key": "3.2:savmyw",
+      "text": "How does the graph look like for logistic regression?",
+      "sourceTopic": "Logistic regression - sigmoid output and binary classification",
+      "topicId": "3.2-point-1"
+    },
+    {
+      "chapterId": "3.2",
+      "phase": 3,
+      "id": "question-14",
       "key": "3.2:146i46t",
       "text": "How does a probability threshold determine the binary class?",
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
@@ -11260,7 +11296,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-11",
+      "id": "question-15",
       "key": "3.2:tgyld8",
       "text": "What probabilities does sigmoid produce for scores -2, 0, and 2?",
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
@@ -11269,7 +11305,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-12",
+      "id": "question-16",
       "key": "3.2:1kmtfgq",
       "text": "How do I calculate sigmoid probability and a binary label in NumPy?",
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
@@ -11278,7 +11314,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-13",
+      "id": "question-17",
       "key": "3.2:tfm8px",
       "text": "What is a cost function, and how does MSE measure error?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
@@ -11287,7 +11323,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-14",
+      "id": "question-18",
       "key": "3.2:td0ev8",
       "text": "What is Binary Cross-Entropy (BCE)?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
@@ -11296,16 +11332,16 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-15",
-      "key": "3.2:8c9dek",
-      "text": "Why use MSE for linear regression and BCE for logistic regression?",
+      "id": "question-19",
+      "key": "3.2:139mod7",
+      "text": "Why do we use MSE (Mean Squared Error) for Linear Regression instead of Log Loss (Binary Cross-Entropy)?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
       "topicId": "3.2-point-2"
     },
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-16",
+      "id": "question-20",
       "key": "3.2:rat29s",
       "text": "Why does BCE strongly penalize a confident wrong prediction?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
@@ -11314,7 +11350,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-17",
+      "id": "question-21",
       "key": "3.2:vjltyw",
       "text": "How do I avoid log(0) when computing BCE?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
@@ -11323,7 +11359,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-18",
+      "id": "question-22",
       "key": "3.2:1ymb05k",
       "text": "How do I calculate MSE and BCE for a batch in NumPy?",
       "sourceTopic": "Cost functions - MSE and Binary Cross-Entropy",
@@ -11332,25 +11368,34 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-19",
-      "key": "3.2:bad1rf",
-      "text": "What is regularization, and how does Ridge (L2) apply it?",
+      "id": "question-23",
+      "key": "3.2:19yserc",
+      "text": "What is regularization?",
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
       "topicId": "3.2-point-3"
     },
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-20",
-      "key": "3.2:qm8llh",
-      "text": "What is Lasso regression (L1 regularization)?",
+      "id": "question-24",
+      "key": "3.2:11amiwq",
+      "text": "What is L1 Regularization (Lasso)?",
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
       "topicId": "3.2-point-3"
     },
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-21",
+      "id": "question-25",
+      "key": "3.2:13aeav6",
+      "text": "What is L2 Regularization (Ridge)?",
+      "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
+      "topicId": "3.2-point-3"
+    },
+    {
+      "chapterId": "3.2",
+      "phase": 3,
+      "id": "question-26",
       "key": "3.2:18jaagy",
       "text": "What is the difference between Ridge and Lasso?",
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
@@ -11359,7 +11404,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-22",
+      "id": "question-27",
       "key": "3.2:b3ddae",
       "text": "What changes when the regularization strength increases?",
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
@@ -11368,7 +11413,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-23",
+      "id": "question-28",
       "key": "3.2:1ky9fxy",
       "text": "Why should features be scaled before Ridge or Lasso?",
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
@@ -11377,25 +11422,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-24",
-      "key": "3.2:19jksbf",
-      "text": "How do I calculate the L1 and L2 penalties for weights [3, 4]?",
-      "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
-      "topicId": "3.2-point-3"
-    },
-    {
-      "chapterId": "3.2",
-      "phase": 3,
-      "id": "question-25",
-      "key": "3.2:zikbdd",
-      "text": "How do I fit Ridge and Lasso with feature scaling in scikit-learn?",
-      "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
-      "topicId": "3.2-point-3"
-    },
-    {
-      "chapterId": "3.2",
-      "phase": 3,
-      "id": "question-26",
+      "id": "question-29",
       "key": "3.2:g99svx",
       "text": "What is One-vs-Rest, and how does it extend binary classification?",
       "sourceTopic": "Multi-class classification - One-vs-Rest",
@@ -11404,7 +11431,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-27",
+      "id": "question-30",
       "key": "3.2:oajvx9",
       "text": "How are training labels created for each One-vs-Rest classifier?",
       "sourceTopic": "Multi-class classification - One-vs-Rest",
@@ -11413,7 +11440,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-28",
+      "id": "question-31",
       "key": "3.2:s0is1",
       "text": "How does One-vs-Rest choose a class from scores 0.7, 0.2, and 0.4?",
       "sourceTopic": "Multi-class classification - One-vs-Rest",
@@ -11422,7 +11449,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-29",
+      "id": "question-32",
       "key": "3.2:mkzhtj",
       "text": "Must One-vs-Rest sigmoid outputs sum to 1?",
       "sourceTopic": "Multi-class classification - One-vs-Rest",
@@ -11431,7 +11458,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.2",
       "phase": 3,
-      "id": "question-30",
+      "id": "question-33",
       "key": "3.2:13u6xl4",
       "text": "How do I train One-vs-Rest logistic classifiers in scikit-learn?",
       "sourceTopic": "Multi-class classification - One-vs-Rest",

@@ -14,7 +14,7 @@ window.STUDY_CHAPTERS = [
     "phase": 3,
     "title": "Linear & Logistic Regression",
     "href": "PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.2%20Linear%20%26%20Logistic%20Regression/index.html",
-    "count": 30,
+    "count": 33,
     "topics": 5,
     "description": "From fitting a line to predicting a class: models, losses, and regularization."
   },

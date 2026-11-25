@@ -699,6 +699,31 @@ progress::-moz-progress-bar { background: var(--ui-accent); border-radius: 9999p
   font-weight: 700;
   color: var(--ui-accent);
 }
+.study-page #questions .topic.topic-later h2 {
+  background: rgba(239, 68, 68, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--ui-radius);
+  padding: 8px 12px;
+}
+:root[data-theme="dark"] .study-page #questions .topic.topic-later h2 {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
+}
+.study-page #questions .topic.topic-later h2 .topic-number {
+  color: inherit;
+}
+.study-page #questions .topic.topic-later h2::after {
+  content: "Do later";
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(239, 68, 68, 0.18);
+  color: inherit;
+}
 
 .study-page #questions details {
   margin: 0 0 8px;

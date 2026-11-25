@@ -1,6 +1,6 @@
 {
   "sheets": 50,
-  "questions": 718,
+  "questions": 721,
   "phaseCounts": [
     {
       "phase": 0,
@@ -23,7 +23,7 @@
     {
       "phase": 3,
       "sheets": 5,
-      "questions": 151,
+      "questions": 154,
       "officialChapters": 6
     },
     {
@@ -171,7 +171,7 @@
       "sourceTopic": "Linear regression - closed form and gradient descent",
       "canonicalTopic": "Linear regression - closed form and gradient descent",
       "topicId": "3.2-point-0",
-      "questions": 7,
+      "questions": 10,
       "review": false
     },
     {
@@ -179,7 +179,7 @@
       "sourceTopic": "Logistic regression - sigmoid output and binary classification",
       "canonicalTopic": "Logistic regression - sigmoid output, binary classification",
       "topicId": "3.2-point-1",
-      "questions": 5,
+      "questions": 6,
       "review": false
     },
     {
@@ -195,7 +195,7 @@
       "sourceTopic": "Regularization - Ridge (L2) and Lasso (L1)",
       "canonicalTopic": "Regularization: Ridge (L2), Lasso (L1)",
       "topicId": "3.2-point-3",
-      "questions": 7,
+      "questions": 6,
       "review": false
     },
     {
@@ -3750,7 +3750,7 @@
     },
     {
       "id": "3.2",
-      "sha256": "bf849020f42d1b51fc917a4bf444232de6964f782a405e1b2d373375a92020f4"
+      "sha256": "d446e110d09bfc2eb029cceb6fdcf2f08e15f3f223f1bd8e3a5ef2829f789b35"
     },
     {
       "id": "3.3",
