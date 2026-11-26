@@ -56,7 +56,8 @@ const topics = [
       ],
       [
         "Why does a random forest also sample features at each split?",
-        "<p>Random feature sampling makes trees less dependent on the same dominant features.</p><ul><li><strong>Correlation:</strong> Similar trees tend to make similar errors.</li><li><strong>Diversity:</strong> Different candidate features encourage different splits.</li><li><strong>Variance:</strong> Combining less-correlated trees can give more stable predictions.</li></ul><p><strong>Remember:</strong> A forest benefits from trees that make different mistakes.</p>"
+        "<p>Random feature sampling makes trees less dependent on the same dominant features.</p><ul><li><strong>Correlation:</strong> Similar trees tend to make similar errors.</li><li><strong>Diversity:</strong> Different candidate features encourage different splits.</li><li><strong>Variance:</strong> Combining less-correlated trees can give more stable predictions.</li></ul><p><strong>Remember:</strong> A forest benefits from trees that make different mistakes.</p>",
+        { "later": true }
       ],
       [
         "How does a random forest combine tree predictions?",
@@ -72,7 +73,8 @@ const topics = [
       ],
       [
         "How do I train a bagged random forest in scikit-learn?",
-        "<p>Train a random forest on the training split and evaluate it on held-out examples.</p><ol><li><strong>Split:</strong> Separate training and test data before fitting.</li><li><strong>Fit:</strong> Enable bootstrap sampling and configure the forest.</li><li><strong>Evaluate:</strong> Predict only after fitting; compare predictions with held-out targets.</li></ol><pre><code class=\"language-python\">from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, stratify=y, random_state=42)\nforest = RandomForestClassifier(\n    n_estimators=100, max_depth=4, bootstrap=True, random_state=42)\nforest.fit(X_train, y_train)\nprint(forest.score(X_test, y_test))</code></pre><p><strong>Remember:</strong> Bootstrap inside training; evaluate outside training.</p>"
+        "<p>Train a random forest on the training split and evaluate it on held-out examples.</p><ol><li><strong>Split:</strong> Separate training and test data before fitting.</li><li><strong>Fit:</strong> Enable bootstrap sampling and configure the forest.</li><li><strong>Evaluate:</strong> Predict only after fitting; compare predictions with held-out targets.</li></ol><pre><code class=\"language-python\">from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\n\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, stratify=y, random_state=42)\nforest = RandomForestClassifier(\n    n_estimators=100, max_depth=4, bootstrap=True, random_state=42)\nforest.fit(X_train, y_train)\nprint(forest.score(X_test, y_test))</code></pre><p><strong>Remember:</strong> Bootstrap inside training; evaluate outside training.</p>",
+        { "later": true }
       ]
     ]
   },
