@@ -74,6 +74,15 @@
       notes:''
     },
     {
+      id:'youtube-1-million-requests-W4EwfEU8CGA',category:'resources',
+      title:'Let’s Handle 1 Million Requests per Second, It’s Scarier Than You Think!',
+      source:'YouTube',type:'Video',status:'To explore',
+      url:'https://www.youtube.com/watch?v=W4EwfEU8CGA',
+      originalUrl:'https://youtu.be/W4EwfEU8CGA',
+      content:'System design deep-dive on handling 1 million requests per second, scaling bottlenecks, load balancing, caching, and infrastructure trade-offs.',
+      notes:''
+    },
+    {
       id:'rag-interview-100-1nh2EyRFnIlD3S4s3mTeLWizVjFqzEun4aMDqJtI3l60',category:'interviews',
       title:'100 RAG Interview Questions — With Detailed Answers',
       source:'Google Docs · 2026 study guide',type:'Question set',status:'To prepare',
@@ -82,7 +91,7 @@
       notes:''
     }
   ];
-  const resourceIdentity=value=>{try{const u=new URL(value);const doc=u.pathname.match(/\/document\/d\/([^/]+)/);return doc?'google-doc:'+doc[1]:u.origin+u.pathname.replace(/\/$/,'');}catch{return value;}};
+  const resourceIdentity=value=>{try{const u=new URL(value);const doc=u.pathname.match(/\/document\/d\/([^/]+)/);if(doc)return 'google-doc:'+doc[1];const yt=u.hostname.includes('youtu.be')?u.pathname.slice(1):(u.hostname.includes('youtube.com')?u.searchParams.get('v'):null);if(yt)return 'youtube:'+yt;return u.origin+u.pathname.replace(/\/$/,'');}catch{return value;}};
   const bundledImportKey='recall.bundled-resources.v1',importedResources=load(bundledImportKey,{});
   let importsChanged=false;
   for(const item of bundledResources){
