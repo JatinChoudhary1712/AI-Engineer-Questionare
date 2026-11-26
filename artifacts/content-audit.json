@@ -1,6 +1,6 @@
 {
   "sheets": 50,
-  "questions": 721,
+  "questions": 722,
   "phaseCounts": [
     {
       "phase": 0,
@@ -23,7 +23,7 @@
     {
       "phase": 3,
       "sheets": 5,
-      "questions": 154,
+      "questions": 155,
       "officialChapters": 6
     },
     {
@@ -211,7 +211,7 @@
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
       "canonicalTopic": "Decision trees - splitting criteria (Gini, entropy)",
       "topicId": "3.3-point-0",
-      "questions": 7,
+      "questions": 8,
       "review": false
     },
     {
@@ -3754,7 +3754,7 @@
     },
     {
       "id": "3.3",
-      "sha256": "05ec639e9fb951feb074219ddfe52c216852f5640cced5eb2a1f01c355f4386a"
+      "sha256": "72d0d0ff95ae0d7ea14da13470306b67a337984bef47ce26bc0ac14f23ab63db"
     },
     {
       "id": "3.4",

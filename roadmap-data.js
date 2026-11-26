@@ -11477,6 +11477,15 @@ window.RECALL_ROADMAP = {
       "chapterId": "3.3",
       "phase": 3,
       "id": "question-02",
+      "key": "3.3:1cr6s2h",
+      "text": "What are Entropy and Gini Impurity, and where are they used?",
+      "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
+      "topicId": "3.3-point-0"
+    },
+    {
+      "chapterId": "3.3",
+      "phase": 3,
+      "id": "question-03",
       "key": "3.3:1cjbh6a",
       "text": "What is Gini impurity?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11485,7 +11494,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-03",
+      "id": "question-04",
       "key": "3.3:1rrlyiz",
       "text": "What is entropy in a decision tree?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11494,7 +11503,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-04",
+      "id": "question-05",
       "key": "3.3:12sgnvr",
       "text": "How do Gini impurity and entropy differ?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11503,7 +11512,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-05",
+      "id": "question-06",
       "key": "3.3:1cbs5ph",
       "text": "How does a tree choose a split using Gini or entropy?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11512,7 +11521,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-06",
+      "id": "question-07",
       "key": "3.3:1ygu3ca",
       "text": "How do I calculate impurity reduction when child nodes have different sizes?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11521,7 +11530,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-07",
+      "id": "question-08",
       "key": "3.3:11i8ixk",
       "text": "How do I train a decision tree with Gini versus entropy in scikit-learn?",
       "sourceTopic": "Decision trees - splitting criteria (Gini and entropy)",
@@ -11530,7 +11539,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-08",
+      "id": "question-09",
       "key": "3.3:v1rd3q",
       "text": "What is a random forest, and why does it use bagging?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11539,7 +11548,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-09",
+      "id": "question-10",
       "key": "3.3:hzmxtz",
       "text": "What does sampling with replacement mean in bagging?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11548,7 +11557,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-10",
+      "id": "question-11",
       "key": "3.3:51mjxc",
       "text": "Why does a random forest also sample features at each split?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11557,7 +11566,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-11",
+      "id": "question-12",
       "key": "3.3:kmemqr",
       "text": "How does a random forest combine tree predictions?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11566,7 +11575,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-12",
+      "id": "question-13",
       "key": "3.3:1n3iwxx",
       "text": "Why can combining many trees reduce variance?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11575,7 +11584,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-13",
+      "id": "question-14",
       "key": "3.3:1nb6l1g",
       "text": "What are out-of-bag samples in a random forest?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11584,7 +11593,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-14",
+      "id": "question-15",
       "key": "3.3:53djlk",
       "text": "How do I train a bagged random forest in scikit-learn?",
       "sourceTopic": "Random forests - bagging of decision trees",
@@ -11593,7 +11602,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-15",
+      "id": "question-16",
       "key": "3.3:1ca978y",
       "text": "What is gradient boosting, and how do its trees improve a model?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11602,7 +11611,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-16",
+      "id": "question-17",
       "key": "3.3:18qbgyx",
       "text": "How does one boosting step update a prediction?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11611,7 +11620,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-17",
+      "id": "question-18",
       "key": "3.3:h8pgml",
       "text": "How does bagging in a random forest differ from gradient boosting?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11620,7 +11629,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-18",
+      "id": "question-19",
       "key": "3.3:1ulfk9y",
       "text": "What is XGBoost?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11629,7 +11638,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-19",
+      "id": "question-20",
       "key": "3.3:163wy4o",
       "text": "What is LightGBM?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11638,7 +11647,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-20",
+      "id": "question-21",
       "key": "3.3:zx82db",
       "text": "How do learning rate and tree count affect gradient boosting?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11647,7 +11656,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-21",
+      "id": "question-22",
       "key": "3.3:l37aiv",
       "text": "What distinguishes XGBoost from LightGBM?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11656,7 +11665,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-22",
+      "id": "question-23",
       "key": "3.3:y13hkx",
       "text": "How do I train XGBoost and LightGBM classifiers on the same data?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11665,7 +11674,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-23",
+      "id": "question-24",
       "key": "3.3:ccpxp",
       "text": "What is feature importance in tree models?",
       "sourceTopic": "Feature importance",
@@ -11674,7 +11683,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-24",
+      "id": "question-25",
       "key": "3.3:kqwtf4",
       "text": "How do impurity, gain, and split-count importance differ?",
       "sourceTopic": "Feature importance",
@@ -11683,7 +11692,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-25",
+      "id": "question-26",
       "key": "3.3:ilv6nm",
       "text": "How is permutation importance calculated?",
       "sourceTopic": "Feature importance",
@@ -11692,7 +11701,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-26",
+      "id": "question-27",
       "key": "3.3:bss5e1",
       "text": "What is the importance if accuracy drops from 0.90 to 0.80 after shuffling?",
       "sourceTopic": "Feature importance",
@@ -11701,7 +11710,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-27",
+      "id": "question-28",
       "key": "3.3:1ofqc2q",
       "text": "Why can feature-importance rankings be misleading?",
       "sourceTopic": "Feature importance",
@@ -11710,7 +11719,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-28",
+      "id": "question-29",
       "key": "3.3:1tj1nm",
       "text": "How do I calculate held-out permutation importance for a random forest?",
       "sourceTopic": "Feature importance",
