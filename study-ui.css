@@ -724,6 +724,38 @@ progress::-moz-progress-bar { background: var(--ui-accent); border-radius: 9999p
   background: rgba(239, 68, 68, 0.18);
   color: inherit;
 }
+.study-page #questions details.question-later {
+  border-color: rgba(239, 68, 68, 0.45);
+}
+.study-page #questions details.question-later > summary {
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+}
+.study-page #questions details.question-later .q-number {
+  background: rgba(239, 68, 68, 0.16);
+  color: #dc2626;
+}
+.study-page #questions details.question-later > summary > span:nth-child(2)::after {
+  content: "Do later";
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: rgba(239, 68, 68, 0.16);
+  color: #dc2626;
+  vertical-align: middle;
+}
+:root[data-theme="dark"] .study-page #questions details.question-later > summary {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+}
+:root[data-theme="dark"] .study-page #questions details.question-later .q-number,
+:root[data-theme="dark"] .study-page #questions details.question-later > summary > span:nth-child(2)::after {
+  background: rgba(239, 68, 68, 0.22);
+  color: #fca5a5;
+}
 
 .study-page #questions details {
   margin: 0 0 8px;
