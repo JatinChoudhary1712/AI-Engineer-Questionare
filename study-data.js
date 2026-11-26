@@ -23,7 +23,7 @@ window.STUDY_CHAPTERS = [
     "phase": 3,
     "title": "Decision Trees & Ensembles",
     "href": "PHASE%203%20-%20Machine%20Learning%20Fundamentals/3.3%20Decision%20Trees%20%26%20Ensembles/index.html",
-    "count": 29,
+    "count": 30,
     "topics": 4,
     "description": "Understand how trees split, forests combine, and boosting improves predictions."
   },
