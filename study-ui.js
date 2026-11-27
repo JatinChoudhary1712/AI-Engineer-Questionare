@@ -276,8 +276,23 @@
   toast.setAttribute('aria-live', 'polite');
   document.body.append(toast);
   let toastTimer;
+  const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const popElement = node => { if (!node || reducedMotion()) return; node.classList.remove('is-popping'); void node.offsetWidth; node.classList.add('is-popping'); };
+  const arcBurst = (anchor, symbol = '✓') => {
+    if (!anchor || reducedMotion()) return;
+    const rect = anchor.getBoundingClientRect();
+    const burst = create('span', 'ux-arc-burst', symbol);
+    burst.setAttribute('aria-hidden', 'true');
+    burst.style.left = `${rect.left + rect.width / 2}px`;
+    burst.style.top = `${rect.top + rect.height / 2}px`;
+    document.body.append(burst);
+    burst.addEventListener('animationend', () => burst.remove(), {once: true});
+    setTimeout(() => burst.remove(), 700);
+  };
   function showToast(msg) {
-    toast.textContent = msg;
+    toast.replaceChildren(icon('check'), create('span', '', msg));
+    toast.classList.remove('show');
+    void toast.offsetWidth;
     toast.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
@@ -321,6 +336,8 @@
       try { localStorage.setItem(storageKey, JSON.stringify(reviewed)); }
       catch { storageFailed = true; }
       status.textContent = `Question ${number} ${done ? 'marked as reviewed' : 'marked as not reviewed'}.${storageFailed ? ' Progress is available for this visit, but could not be saved in this browser.' : ''}`;
+      popElement(button);
+      if (done) arcBurst(button, '✓');
       showToast(done ? `Question ${number} marked as reviewed ✓` : `Question ${number} marked as not reviewed`);
       syncReviewControls();
     });
@@ -490,7 +507,22 @@
     questionNav.append(previous, next);
     const returnLinks = create('div', 'focus-return');
     returnLinks.append(link('Return to Reading Mode', '?view=reading', 'secondary-link'), link('Content / Index', '?view=index', 'secondary-link'));
-    focusView.append(focusHeading, card, questionNav, returnLinks);
+    const completeCard = create('section', 'focus-complete-card');
+    completeCard.hidden = true;
+    completeCard.setAttribute('aria-live', 'polite');
+    const completeBadge = create('div', 'focus-complete-badge');
+    completeBadge.append(icon('check'));
+    const completeTitle = create('h2', '', 'Chapter complete!');
+    const completeSummary = create('p');
+    const completeActions = create('div', 'focus-complete-actions');
+    const nextChapter = siblings[siblings.indexOf(current) + 1];
+    const nextDest = nextChapter ? link(`Next: ${nextChapter.id} ${nextChapter.title} →`, href(nextChapter), 'ui-button ui-button-primary') : link(`Back to Phase ${current.phase} →`, phaseURL(current.phase), 'ui-button ui-button-primary');
+    const restartFocus = create('button', 'ui-button', 'Review from start');
+    restartFocus.type = 'button';
+    restartFocus.addEventListener('click', () => navigate('focus', 0));
+    completeActions.append(nextDest, restartFocus, link('Reading Mode', '?view=reading', 'ui-button'));
+    completeCard.append(completeBadge, completeTitle, completeSummary, completeActions);
+    focusView.append(focusHeading, card, questionNav, completeCard, returnLinks);
     main.append(viewNav, indexView, reader, focusView);
 
     let mode = 'reading';
@@ -516,6 +548,9 @@
       review.setAttribute('aria-pressed', String(done));
     };
     function renderFocus(focus) {
+      completeCard.hidden = true;
+      card.hidden = false;
+      questionNav.hidden = false;
       const item = records[index];
       borrowed = item;
       answerSlot.replaceChildren(item.answer);
@@ -525,9 +560,18 @@
       position.textContent = `Question ${index + 1} of ${records.length}`;
       focusProgress.value = index + 1;
       previous.disabled = index === 0;
-      next.disabled = index === records.length - 1;
+      next.disabled = false;
+      next.textContent = index === records.length - 1 ? 'Finish chapter ✓' : 'Next';
       syncReview();
       if (focus) { window.scrollTo(0, 0); questionTitle.focus({preventScroll: true}); }
+    }
+    function showChapterComplete() {
+      const doneCount = Math.min(current.count, countReviewed(current));
+      completeSummary.textContent = `You reached the end of ${current.id} ${current.title} (${doneCount} of ${current.count} questions marked reviewed).`;
+      card.hidden = true;
+      questionNav.hidden = true;
+      completeCard.hidden = false;
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
     function urlFor(view, at = null) {
       const url = new URL(location.href);
@@ -595,8 +639,8 @@
     }
     main.addEventListener('click', handleViewLink);
     previous.addEventListener('click', () => { if (index > 0) navigate('focus', index - 1); });
-    next.addEventListener('click', () => { if (index + 1 < records.length) navigate('focus', index + 1); });
-    review.addEventListener('click', () => { records[index].button.click(); syncReview(); });
+    next.addEventListener('click', () => { if (index + 1 < records.length) navigate('focus', index + 1); else showChapterComplete(); });
+    review.addEventListener('click', () => { records[index].button.click(); syncReview(); popElement(review); });
     document.addEventListener('keydown', event => {
       if (mode !== 'focus') return;
       if (event.target.matches('input, textarea, select')) return;

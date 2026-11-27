@@ -26,6 +26,7 @@
     moon:'M21 13a9 9 0 0 1-10-10 9 9 0 1 0 10 10',
     resources:'M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2',
     interviews:'M4 5h16v12H9l-5 4V5m4 4h8m-8 4h5',
+    ux:'M3 3h8v8H3V3m10 0h8v5h-8V3m0 7h8v11h-8V10M3 13h8v8H3v-8',
     miscellaneous:'M8 4h8m-7-2h6v4H9V2M6 4H4v18h16V4h-2M8 11h8m-8 5h6',
     menu:'M3 6h18M3 12h18M3 18h18', arrow:'M4 12h16m-6-6 6 6-6 6',chevron:'m9 5 7 7-7 7',
     panel:'M15 18l-6-6 6-6'
@@ -41,6 +42,7 @@
   const notebookTypes={
     resources:{title:'Saved Resources',description:'Things you find on X, Instagram, or anywhere else. Keep them here for later.',hint:'Save an article, post, video, or a topic you want to explore. Add why it matters to you.',example:'e.g. Harness engineering — explore this later',types:['Article / post','Video','Topic to explore','Tool / course'],detail:'What I want to explore',statuses:['To explore','In progress','Done']},
     interviews:{title:'Interview Prep',description:'Real interview questions, shared experiences, and your own preparation notes.',hint:'Keep real questions, interview rounds, and experiences from people who have been there.',example:'e.g. AI engineer interview — RAG system design',types:['Interview question','Interview experience','Question set'],detail:'Question or interview experience',statuses:['To prepare','Practising','Ready']},
+    ux:{title:'UX Principles',description:'19 UI/UX, motion, and behavioural psychology principles for building intuitive interfaces.',hint:'Save a UX law, motion principle, or interaction pattern with a practical example.',example:'e.g. Fitts’s Law — enlarge primary CTA targets',types:['Animation & Motion','UX Laws & Psychology'],detail:'Principle & practical example',statuses:['Reference','To try','Applied']},
     miscellaneous:{title:'Miscellaneous',description:'A place for career tasks, LinkedIn improvements, ideas, and everything in between.',hint:'Remember the small things: update LinkedIn, improve your portfolio, or follow up on an idea.',example:'e.g. Improve my LinkedIn About section',types:['Task','Career / profile','Idea','General note'],detail:'Details / next steps',statuses:['To do','In progress','Done']}
   };
   // User-requested public resources. Import each once; keep subsequent edits and deletions.
@@ -97,7 +99,32 @@
       url:'https://docs.google.com/document/d/1nh2EyRFnIlD3S4s3mTeLWizVjFqzEun4aMDqJtI3l60/mobilebasic',
       content:'A RAG interview study guide with 100 numbered questions and detailed answers, verified across five categories of 20 questions each:\n\n1. RAG Fundamentals — questions 1–20.\n2. Chunking & Embeddings — questions 21–40.\n3. Vector DBs & Retrieval — questions 41–60.\n4. Evaluation — questions 61–80.\n5. Production & Advanced RAG — questions 81–100.\n\nTopics include retrieval failures, embedding choices, vector indexes, hybrid retrieval, evaluation, citations, production architecture, and advanced retrieval patterns.\n\nThe guide suggests answering aloud before reading the explanation, identifying weak areas, and practising mock interviews. Use the source document for the complete questions and answers.',
       notes:''
-    }
+    },
+    ...[
+      [1,'Exaggeration','Animation & Motion','Make important movements slightly more noticeable to communicate an action clearly.','A notification icon briefly bounces when a new notification arrives.'],
+      [2,'Origin awareness','Animation & Motion','Animation should communicate where an element comes from and where it goes.','A small profile icon expands into a profile panel.'],
+      [3,'Staggering','Animation & Motion','Animate multiple elements with small time delays instead of simultaneously.','Dashboard cards appear one after another.'],
+      [4,'Squash and stretch','Animation & Motion','Change an object’s shape slightly during movement to create a sense of flexibility and physicality.','A button compresses when clicked and expands when released.'],
+      [5,'Rubber banding','Animation & Motion','Give users elastic feedback when they reach the boundary of a scrollable area.','An iPhone screen slightly bounces when you scroll beyond the end of a list.'],
+      [6,'Density threshold','Animation & Motion','Adapt visual elements and motion according to the amount of information being displayed.','A map clusters individual location markers when too many appear together.'],
+      [7,'Anticipation','Animation & Motion','Prepare users for an upcoming action through a small visual cue.','A button slightly compresses before triggering a major transition.'],
+      [8,'Fitts’s Law','UX Laws & Psychology','The larger and closer a target is, the easier and faster it is to click or tap.','Make the primary CTA button large and easy to reach.'],
+      [9,'Slow in, slow out','Animation & Motion','Objects accelerate when starting and decelerate when stopping.','A sidebar smoothly slides into the screen instead of appearing abruptly.'],
+      [10,'Hick’s Law','UX Laws & Psychology','More choices generally increase the time required to make a decision.','Instead of displaying 20 options in one menu, organize them into meaningful categories.'],
+      [11,'Follow-through','Animation & Motion','Parts of an element continue moving briefly after its main movement stops.','A dropdown menu settles with a slight bounce after opening.'],
+      [12,'Arcs','Animation & Motion','Natural movement often follows curved paths rather than perfectly straight lines.','An animated notification travels along a curved path into an inbox icon.'],
+      [13,'Von Restorff Effect','UX Laws & Psychology','An element that visually stands out from similar elements is more likely to be remembered.','Highlight the recommended pricing plan with a distinctive visual treatment.'],
+      [14,'Timing','Animation & Motion','The duration and speed of an animation influence how users perceive it.','A subtle hover effect takes 150–200 milliseconds, while a larger page transition may take longer.'],
+      [15,'Interruptible motion','UX Laws & Psychology','Users should be able to interrupt or control animations rather than being forced to wait.','Allow users to close a modal while its entrance animation is playing.'],
+      [16,'Secondary action','Animation & Motion','Add supporting animations that reinforce the primary action without distracting from it.','A successful form submission displays a checkmark animation.'],
+      [17,'Solid drawing','Animation & Motion','Maintain clear shapes, proportions, depth, and visual consistency.','Icons and animated illustrations should retain their proportions during movement.'],
+      [18,'Frequency of use','UX Laws & Psychology','Frequently used features should be easier to discover and access.','Put commonly used dashboard actions in prominent locations.'],
+      [19,'Peak-end rule','UX Laws & Psychology','People tend to remember an experience based heavily on its most intense moment and how it ends.','End an onboarding journey with a satisfying success screen instead of an abrupt redirect.']
+    ].map(([order,title,type,summary,example])=>({
+      id:`ux-principle-${order}`,category:'ux',order,title:`#${order} · ${title}`,
+      source:type,type,status:'Reference',
+      content:`${summary}\n\nExample: ${example}`,notes:''
+    }))
   ];
   const resourceIdentity=value=>{try{const u=new URL(value);const doc=u.pathname.match(/\/document\/d\/([^/]+)/);if(doc)return 'google-doc:'+doc[1];const yt=u.hostname.includes('youtu.be')?u.pathname.slice(1):(u.hostname.includes('youtube.com')?u.searchParams.get('v'):null);if(yt)return 'youtube:'+yt;return u.origin+u.pathname.replace(/\/$/,'');}catch{return value;}};
   const bundledImportKey='recall.bundled-resources.v1',importedResources=load(bundledImportKey,{});
@@ -117,13 +144,33 @@
     }
   }
   if(importsChanged)try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));localStorage.setItem(bundledImportKey,JSON.stringify(importedResources));}catch{ /* Resources remain available for this visit when storage is unavailable. */ }
-  const notebookItems=category=>Object.values(notebookEntries).filter(item=>item&&typeof item.id==='string'&&typeof item.title==='string'&&notebookTypes[item.category]&&(!category||item.category===category)).sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||''));
+  const notebookItems=category=>Object.values(notebookEntries).filter(item=>item&&typeof item.id==='string'&&typeof item.title==='string'&&notebookTypes[item.category]&&(!category||item.category===category)).sort((a,b)=>category==='ux'?(a.order??999)-(b.order??999)||(b.updatedAt||'').localeCompare(a.updatedAt||''):(b.updatedAt||'').localeCompare(a.updatedAt||''));
   const externalURL=value=>{try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:'';}catch{return '';}};
   const announce=el('p','sr-only');announce.setAttribute('role','status');announce.setAttribute('aria-live','polite');
   const toastNotice=el('div','toast-notice');toastNotice.setAttribute('role','status');toastNotice.setAttribute('aria-live','polite');
   let toastTimer;
+  const reducedMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const popElement=node=>{if(!node||reducedMotion())return;node.classList.remove('is-popping');void node.offsetWidth;node.classList.add('is-popping');};
+  const arcBurst=(anchor,symbol='★')=>{if(!anchor||reducedMotion())return;const r=anchor.getBoundingClientRect();const b=el('span','ux-arc-burst',symbol);b.setAttribute('aria-hidden','true');b.style.left=(r.left+r.width/2)+'px';b.style.top=(r.top+r.height/2)+'px';document.body.append(b);b.addEventListener('animationend',()=>b.remove(),{once:true});setTimeout(()=>b.remove(),700);};
+  const attachRubberBand=node=>{
+    if(!node||reducedMotion())return;
+    node.classList.add('ux-rubberband');
+    let pull=0,timer;
+    const reset=()=>{pull=0;node.classList.remove('is-pulling');node.style.transform='';};
+    node.addEventListener('wheel',e=>{
+      const atTop=node.scrollTop<=0&&e.deltaY<0;
+      const atBottom=node.scrollTop+node.clientHeight>=node.scrollHeight-1&&e.deltaY>0;
+      if(!atTop&&!atBottom)return;
+      pull=Math.max(-14,Math.min(14,pull-e.deltaY*0.12));
+      node.classList.add('is-pulling');
+      node.style.transform=`translateY(${pull.toFixed(1)}px)`;
+      clearTimeout(timer);
+      timer=setTimeout(reset,90);
+    },{passive:true});
+  };
   const showToast=msg=>{
-    toastNotice.textContent=msg;
+    toastNotice.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>${esc(msg)}</span>`;
+    toastNotice.classList.remove('show');void toastNotice.offsetWidth;
     toastNotice.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer=setTimeout(()=>toastNotice.classList.remove('show'),2200);
@@ -158,10 +205,10 @@
     if(key==='bookmarks'){const b=el('span','nav-badge',String(Object.keys(bookmarks).filter(k=>bookmarks[k]).length));b.dataset.badgeFor='bookmarks';if(b.textContent==='0')b.hidden=true;a.append(b);}
     nav.append(a);
   }
-  const syncBadges=()=>{
+  const syncBadges=(animate=false)=>{
     const bCount=Object.keys(bookmarks).filter(k=>bookmarks[k]).length;
     const bEl=nav.querySelector('[data-badge-for="bookmarks"]');
-    if(bEl){bEl.textContent=String(bCount);bEl.hidden=bCount===0;}
+    if(bEl){bEl.textContent=String(bCount);bEl.hidden=bCount===0;if(animate&&bCount>0)popElement(bEl);}
   };
   const theme=el('div','theme-control');theme.innerHTML=icon('sun')+'<label class="sr-only" for="product-theme">Color theme</label><select id="product-theme"><option value="light">Light</option><option value="dark">Dark</option><option value="system">System</option></select>';
   const themeSelect=theme.querySelector('select');themeSelect.value=window.RecallTheme?.mode||'system';
@@ -183,6 +230,7 @@
   const closeDrawer=()=>{document.body.classList.remove('drawer-open');menu.setAttribute('aria-expanded','false');sidebar.removeAttribute('role');sidebar.removeAttribute('aria-modal');};
   menu.onclick=()=>{const open=document.body.classList.toggle('drawer-open');menu.setAttribute('aria-expanded',String(open));if(open){sidebar.setAttribute('role','dialog');sidebar.setAttribute('aria-modal','true');sidebar.setAttribute('aria-label','Navigation');sidebar.querySelector('a').focus();}else closeDrawer();};scrim.onclick=closeDrawer;
   document.body.prepend(sidebar,header,scrim);document.body.append(announce,toastNotice);
+  attachRubberBand(sidebar);
   const results=el('section','search-results');results.id='search-results';results.hidden=true;results.setAttribute('aria-label','Search results');global.append(results);
   const searchIndex=[];
   for(const p of data.phases) {
@@ -220,7 +268,7 @@
       detail.querySelectorAll('.answer p').forEach(p=>{if(/^(Remember|One-liner|Takeaway):/i.test(p.textContent.trim()))p.classList.add('takeaway-line');});
       const btn=el('button','bookmark-button');btn.type='button';
       const sync=()=>{btn.textContent=bookmarks[q.key]?'Remove bookmark':'Bookmark';btn.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));};
-      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();syncBadges();announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};sync();
+      btn.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);sync();syncBadges(true);popElement(btn);if(bookmarks[q.key])arcBurst(btn,'★');announce.textContent=bookmarks[q.key]?'Question bookmarked.':'Bookmark removed.';showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};sync();
       const actions=detail.querySelector('.review-actions') || document.querySelector('#study-answer .review-actions');
       if(actions)actions.append(btn);
     });
@@ -330,7 +378,7 @@
   function notebookCard(category){
     const config=notebookTypes[category],items=notebookItems(category),card=el('article','workspace-card');
     card.dataset.collection=category;
-    card.innerHTML=`<div class="workspace-card-heading"><span class="workspace-card-icon">${icon(category)}</span><span class="workspace-eyebrow">${category==='resources'?'SAVE NOW, EXPLORE LATER':category==='interviews'?'PREPARE WITH REAL EXPERIENCES':'YOUR IDEAS & NEXT STEPS'}</span><a class="workspace-add" href="${url(category,{new:'1'})}" aria-label="Add to ${config.title}">+ Add</a></div><div class="section-heading"><div><h2>${config.title}</h2><p>${esc(config.description)}</p></div></div>`;
+    card.innerHTML=`<div class="workspace-card-heading"><span class="workspace-card-icon">${icon(category)}</span><span class="workspace-eyebrow">${category==='resources'?'SAVE NOW, EXPLORE LATER':category==='interviews'?'PREPARE WITH REAL EXPERIENCES':category==='ux'?'DESIGN INTUITIVE INTERFACES':'YOUR IDEAS & NEXT STEPS'}</span><a class="workspace-add" href="${url(category,{new:'1'})}" aria-label="Add to ${config.title}">+ Add</a></div><div class="section-heading"><div><h2>${config.title}</h2><p>${esc(config.description)}</p></div></div>`;
     const preview=el('div','notebook-preview');
     if(!items.length){const empty=el('div','notebook-card-empty');empty.innerHTML=`${icon(category)}<strong>${category==='resources'?'A good find deserves a place.':category==='interviews'?'Your next interview starts here.':'A little less to keep in your head.'}</strong><p>${esc(config.hint)}</p><a href="${url(category,{new:'1'})}">+ Add your first ${category==='resources'?'resource':category==='interviews'?'interview note':'note'}</a>`;preview.append(empty);}
     for(const item of items.slice(0,3)){
@@ -459,6 +507,40 @@
     draw();
     if(selected){const panel=el('form','resource-personal-notes');panel.id='resource-personal-notes';panel.hidden=true;const label=el('label','','My notes'),textarea=el('textarea');textarea.id='resource-notes-text';textarea.rows=6;textarea.value=selected.notes||'';label.htmlFor=textarea.id;const saveButton=el('button','primary-button','Save notes');saveButton.type='submit';const state=el('p','resources-note-state');state.setAttribute('role','status');panel.append(label,textarea,saveButton,state);panel.onsubmit=e=>{e.preventDefault();notebookEntries={...load(notebookKey,notebookEntries)};const existing=notebookEntries[selected.id];if(!existing){state.textContent='This resource was deleted. Return to Saved Resources to choose another.';return;}notebookEntries[selected.id]={...existing,notes:textarea.value,updatedAt:new Date().toISOString()};try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));state.textContent='Notes saved.';}catch{state.textContent='Notes kept for this visit. Browser storage is unavailable.';}};main.append(panel);}
   }
+  function uxPage(){
+    const config=notebookTypes.ux,items=notebookItems('ux');
+    const back=el('a','resources-back','← Back to overview');back.href=url('overview');main.append(back);
+    const heading=el('div','resources-page-heading');heading.innerHTML=pageHeading('19 UX & Motion Principles','Micro-interactions, motion design, interaction laws, and behavioural psychology for building intuitive products.');
+    const actions=el('div','resources-page-actions');const add=el('a','primary-button','+ Add principle');add.href=url('ux',{new:'1'});const manage=el('a','notebook-secondary','Manage & notes');manage.href=url('ux',{edit:'1'});actions.append(add,manage);heading.append(actions);main.append(heading);
+    const toolbar=el('div','resources-toolbar');
+    const search=el('input','resources-table-search');search.type='search';search.placeholder='Search principles, examples, or laws...';search.setAttribute('aria-label','Search UX principles');
+    const makeSelect=(label,allLabel,values)=>{const s=el('select','resources-filter');s.setAttribute('aria-label',label);const all=el('option','',allLabel);all.value='';s.append(all);for(const v of values){const o=el('option','',v);o.value=v;s.append(o);}return s;};
+    const typeFilter=makeSelect('Filter by category','All categories',config.types);
+    const statusFilter=makeSelect('Filter by status','All statuses',config.statuses);
+    const clearBtn=el('button','notebook-secondary resources-filter-clear','Clear');clearBtn.type='button';clearBtn.hidden=true;
+    toolbar.append(search,typeFilter,statusFilter,clearBtn);main.append(toolbar);
+    const count=el('p','resources-table-count');count.setAttribute('role','status');main.append(count);
+    const grid=el('div','ux-principles-grid');main.append(grid);
+    const draw=()=>{
+      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),tVal=typeFilter.value,sVal=statusFilter.value;
+      clearBtn.hidden=!(terms.length||tVal||sVal);
+      const found=items.filter(item=>(!tVal||(item.type||config.types[0])===tVal)&&(!sVal||(item.status||config.statuses[0])===sVal)&&terms.every(t=>[item.title,item.content,item.notes,item.type,item.status].join(' ').toLowerCase().includes(t)));
+      grid.replaceChildren();
+      for(const item of found){
+        const [desc,ex]=String(item.content||'').split(/\n\nExample:\s*/);
+        const card=el('article','ux-principle-card');
+        card.innerHTML=`<div class="ux-card-top"><span class="ux-card-cat">${esc(item.type||item.source||'Principle')}</span><span class="notebook-status">${esc(item.status||config.statuses[0])}</span></div><h3>${esc(item.title)}</h3><p>${esc(desc||'')}</p>${ex?`<p class="ux-card-example"><strong>Example:</strong> ${esc(ex)}</p>`:''}<div class="ux-card-footer"><a href="${url('ux',{item:item.id,edit:'1'})}">Edit / notes ↗</a></div>`;
+        grid.append(card);
+      }
+      if(!found.length)grid.append(el('p','empty-state','No UX principles match your filters.'));
+      count.textContent=`${found.length} ${found.length===1?'principle':'principles'}`;
+    };
+    search.oninput=draw;typeFilter.onchange=draw;statusFilter.onchange=draw;
+    clearBtn.onclick=()=>{search.value='';typeFilter.value='';statusFilter.value='';draw();};draw();
+    const ref=el('section','ux-reference-section');
+    ref.innerHTML=`<h2>How These Principles Fit Into Product Development</h2><div class="resources-simple-table-wrap"><table class="resources-simple-table"><thead><tr><th scope="col">Product area</th><th scope="col">Principles to apply</th></tr></thead><tbody><tr><td><p>Visual experience</p></td><td>Exaggeration, Solid drawing, Von Restorff Effect</td></tr><tr><td><p>Interaction design</p></td><td>Fitts’s Law, Hick’s Law, Origin awareness</td></tr><tr><td><p>Motion design</p></td><td>Staggering, Squash and stretch, Arcs, Timing, Follow-through</td></tr><tr><td><p>User experience</p></td><td>Anticipation, Interruptible motion, Frequency of use, Peak-end rule</td></tr></tbody></table></div><h2>Practical Example: SaaS Dashboard (ATS / CRM)</h2><ul class="ux-saas-list"><li><strong>Candidate creation:</strong> Button compresses on click (Squash and stretch).</li><li><strong>Candidate profile:</strong> Profile expands from the selected candidate (Origin awareness).</li><li><strong>Dashboard loading:</strong> Cards appear sequentially (Staggering).</li><li><strong>Navigation:</strong> Frequently used modules are easier to access (Frequency of use).</li><li><strong>Candidate actions:</strong> Primary actions are large and accessible (Fitts’s Law).</li><li><strong>Pipeline management:</strong> Too many options are grouped into categories (Hick’s Law).</li><li><strong>Successful placement:</strong> A satisfying completion animation reinforces success (Peak-end rule).</li></ul>`;
+    main.append(ref);
+  }
   function roadmap(params){
     if(params.has('phase')){phasePage(params);return;}
     main.innerHTML=pageHeading('AI Engineering Roadmap','Your complete learning path, from first principles to production. Explore one phase at a time.')+`<p class="roadmap-meta">${data.phases.length-1} phases + Capstone <span>·</span> ${sheets.length} learning sheets <span>·</span> ${questions.length} questions</p>`;
@@ -523,11 +605,19 @@
       if(page>totalPages)page=totalPages;
       const slice=found.slice((page-1)*pageSize,page*pageSize);
       count.textContent=`${found.length} ${view==='revision'?'questions to review':'questions'}`;list.replaceChildren();
-      if(!found.length)list.append(el('p','empty-state',view==='bookmarks'?'No saved questions match. Bookmark a question while reading to keep it here.':view==='revision'&&!questions.some(q=>reviewed[q.key]!==true)?'You’re all caught up. Every question has been reviewed.':'No questions match your filters. Try a broader search.'));
+      if(!found.length){
+        if(view==='revision'&&!questions.some(q=>reviewed[q.key]!==true)){
+          const doneCard=el('div','revision-complete-card');
+          doneCard.innerHTML=`<strong>You’re all caught up!</strong><p>Every question across the roadmap has been reviewed. Keep your streak going or explore new topics.</p><a class="primary-button" href="${url('overview')}">Back to Overview</a>`;
+          list.append(doneCard);
+        }else{
+          list.append(el('p','empty-state',view==='bookmarks'?'No saved questions match. Bookmark a question while reading to keep it here.':'No questions match your filters. Try a broader search.'));
+        }
+      }
       for(const q of slice){
         const card=el('article','question-result');const link=el('a');link.href=questionURL(q);link.innerHTML=`<small>Phase ${q.phase} <span>·</span> ${esc(q.chapterId+' '+sheets.find(s=>s.id===q.chapterId).title)} <span>·</span> ${esc(q.sourceTopic)}</small><h2>${esc(q.text)}</h2>`;
-        const controls=el('div','question-result-actions');const r=el('button','',reviewed[q.key]?'Reviewed':'Mark as reviewed');r.type='button';r.setAttribute('aria-pressed',String(reviewed[q.key]===true));r.onclick=()=>{if(reviewed[q.key])delete reviewed[q.key];else reviewed[q.key]=true;save('recall.reviewed.v1',reviewed);draw();showToast(reviewed[q.key]?'Question marked as reviewed ✓':'Marked as not reviewed');};
-        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);syncBadges();draw();showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};controls.append(r,b);card.append(link,controls);list.append(card);
+        const controls=el('div','question-result-actions');const r=el('button','',reviewed[q.key]?'Reviewed':'Mark as reviewed');r.type='button';r.setAttribute('aria-pressed',String(reviewed[q.key]===true));r.onclick=()=>{const nowDone=!reviewed[q.key];if(reviewed[q.key])delete reviewed[q.key];else reviewed[q.key]=true;save('recall.reviewed.v1',reviewed);draw();if(nowDone)arcBurst(r,'✓');showToast(reviewed[q.key]?'Question marked as reviewed ✓':'Marked as not reviewed');};
+        const b=el('button','',bookmarks[q.key]?'Remove bookmark':'Bookmark');b.type='button';b.setAttribute('aria-pressed',String(Boolean(bookmarks[q.key])));b.onclick=()=>{const nowBm=!bookmarks[q.key];if(bookmarks[q.key])delete bookmarks[q.key];else bookmarks[q.key]=true;save('recall.bookmarks.v1',bookmarks);syncBadges(true);draw();if(nowBm)arcBurst(b,'★');showToast(bookmarks[q.key]?'Question bookmarked ★':'Bookmark removed');};controls.append(r,b);card.append(link,controls);list.append(card);
       }
       drawPager(found.length,totalPages);
     }
@@ -548,10 +638,10 @@
       }section.append(grid);main.append(section);
     }if(params.get('project'))document.getElementById('project-'+params.get('project'))?.scrollIntoView({block:'center'});
   }
-  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.page||(document.body.dataset.phase?'roadmap':'overview');if(view!=='phase'&&!navItems.some(([k])=>k===view))view='overview';updateNav(view==='phase'?'roadmap':view);const sectionTitle=view==='phase'?'Roadmap Phase':navItems.find(([k])=>k===view)[1];topbarSection.innerHTML=`<span>Recall</span><small>/</small><span>${esc(sectionTitle)}</span>`;main.replaceChildren();main.classList.remove('resources-table-page');document.title=sectionTitle+' | Recall';
-    if(view==='phase')phasePage(params);else if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(view==='resources'&&!params.has('new')&&!params.has('edit'))resourcesPage(params);else if(notebookTypes[view])notebookPage(view,params);else collection(view);
+  function render(){const params=new URL(location.href).searchParams;let view=params.get('page');if(!view)view=document.body.dataset.page||(document.body.dataset.phase?'roadmap':'overview');if(view!=='phase'&&!navItems.some(([k])=>k===view))view='overview';updateNav(view==='phase'?'roadmap':view);const sectionTitle=view==='phase'?'Roadmap Phase':navItems.find(([k])=>k===view)[1];topbarSection.innerHTML=`<span>Recall</span><small>/</small><span>${esc(sectionTitle)}</span>`;main.replaceChildren();main.classList.remove('resources-table-page','is-entering');void main.offsetWidth;main.classList.add('is-entering');document.title=sectionTitle+' | Recall';
+    if(view==='phase')phasePage(params);else if(view==='overview')overview();else if(view==='roadmap'){if(!params.has('phase')&&document.body.dataset.phase)params.set('phase',document.body.dataset.phase);roadmap(params);}else if(view==='projects')projectPage(params);else if(view==='resources'&&!params.has('new')&&!params.has('edit'))resourcesPage(params);else if(view==='ux'&&!params.has('new')&&!params.has('edit'))uxPage();else if(notebookTypes[view])notebookPage(view,params);else collection(view);
   }
-  document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const dest=new URL(a.href);if(dest.origin===home.origin&&dest.pathname===home.pathname&&dest.searchParams.has('page')){e.preventDefault();history.pushState({},'',dest);closeDrawer();results.hidden=true;render();if(!dest.searchParams.has('topic')&&!dest.searchParams.has('project'))window.scrollTo(0,0);main.focus({preventScroll:true});}});
+  document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const dest=new URL(a.href);if(dest.origin===home.origin&&dest.pathname===home.pathname&&dest.searchParams.has('page')){e.preventDefault();const go=()=>{history.pushState({},'',dest);closeDrawer();results.hidden=true;render();if(!dest.searchParams.has('topic')&&!dest.searchParams.has('project'))window.scrollTo(0,0);main.focus({preventScroll:true});};if(document.startViewTransition&&!reducedMotion())document.startViewTransition(go);else go();}});
   window.addEventListener('popstate',render);
   window.addEventListener('storage',e=>{if(e.key===notebookKey){notebookEntries=load(notebookKey,{});if(!Object.keys(notebookTypes).includes(new URL(location.href).searchParams.get('page')))render();return;}if(e.key===null||['recall.reviewed.v1','recall.bookmarks.v1','recall.projects.v1'].includes(e.key)){reviewed=load('recall.reviewed.v1',{});bookmarks=load('recall.bookmarks.v1',{});projects=load('recall.projects.v1',{});if(e.key===null){notebookEntries=load(notebookKey,{});notebookDrafts=load(draftKey,{});}render();}});
   render();

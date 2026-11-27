@@ -126,7 +126,7 @@ button, .ui-button {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: var(--ui-shadow-sm);
 }
 button:hover, .ui-button:hover {
@@ -137,7 +137,8 @@ button:hover, .ui-button:hover {
 }
 button:active, .ui-button:active {
   background: var(--ui-active);
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.96, 0.94);
+  transition-duration: 90ms;
 }
 button:disabled {
   opacity: .5;
@@ -803,10 +804,19 @@ progress::-moz-progress-bar { background: var(--ui-accent); border-radius: 9999p
   border-bottom: 2px solid var(--ui-muted);
   transform: rotate(45deg);
   margin-left: auto;
-  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.study-page #questions summary:hover::after {
+  transform: rotate(45deg) translate(1px, 1px);
 }
 .study-page #questions details[open] > summary::after {
   transform: rotate(-135deg);
+}
+.study-page #questions summary:active {
+  transform: scale(0.994);
+}
+.study-page #questions details[open] > .answer {
+  animation: ux-answer-reveal 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .study-page #questions summary:hover {
   background: var(--ui-hover);
@@ -1265,13 +1275,13 @@ progress::-moz-progress-bar { background: var(--ui-accent); border-radius: 9999p
   z-index: 60;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(10px, 16px) rotate(12deg) scale(0.85);
+  transition: all 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .scroll-top-btn.visible {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translate(0, 0) rotate(0deg) scale(1);
 }
 .scroll-top-btn:hover {
   background: var(--ui-primary-bg);
@@ -1283,22 +1293,123 @@ progress::-moz-progress-bar { background: var(--ui-accent); border-radius: 9999p
   position: fixed;
   bottom: 24px;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
+  transform: translateX(-50%) translateY(24px) scale(0.92);
   background: #0f172a;
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 9999px;
   font-size: .84rem;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   z-index: 999;
   opacity: 0;
   pointer-events: none;
-  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .toast-notice.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+.toast-notice svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #34d399;
+}
+.toast-notice.show svg path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: ux-check-draw 320ms cubic-bezier(0.16, 1, 0.3, 1) 80ms forwards;
+}
+
+/* UX Motion Keyframes & Micro-interactions */
+@keyframes ux-answer-reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ux-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.16); }
+  75% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+@keyframes ux-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ux-arc-float {
+  0% { opacity: 0; transform: translate(-8px, 10px) scale(0.75) rotate(-14deg); }
+  35% { opacity: 1; transform: translate(6px, -16px) scale(1.12) rotate(8deg); }
+  100% { opacity: 0; transform: translate(18px, -34px) scale(0.85) rotate(16deg); }
+}
+@keyframes ux-dialog-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+dialog.mobile-navigation[open] {
+  animation: ux-dialog-in 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.is-popping {
+  animation: ux-pop 340ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.ux-arc-burst {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ui-success);
+  animation: ux-arc-float 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Focus Mode Completion (Peak-End Rule) */
+.focus-complete-card {
+  padding: 36px 28px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-success-line);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-md);
+  text-align: center;
+  animation: ux-dialog-in 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.focus-complete-badge {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+  border: 1px solid var(--ui-success-line);
+  display: grid;
+  place-items: center;
+}
+.focus-complete-badge svg {
+  width: 28px;
+  height: 28px;
+}
+.focus-complete-badge svg path {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: ux-check-draw 420ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
+}
+.focus-complete-card h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  letter-spacing: -0.02em;
+}
+.focus-complete-card p {
+  margin: 0 auto 22px;
+  max-width: 46ch;
+  color: var(--ui-muted);
+  font-size: 0.94rem;
+}
+.focus-complete-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Responsive Rules */
