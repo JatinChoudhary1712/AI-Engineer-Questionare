@@ -348,15 +348,17 @@
     const search=el('input');search.type='search';search.placeholder='Search titles, details, or notes...';search.setAttribute('aria-label','Search saved items');
     const filter=el('select');filter.setAttribute('aria-label','Filter saved items by status');
     for(const text of ['All statuses',...config.statuses]){const option=el('option','',text);option.value=text==='All statuses'?'':text;filter.append(option);}
+    const typeFilter=el('select');typeFilter.setAttribute('aria-label','Filter saved items by type');
+    for(const text of ['All types',...config.types]){const option=el('option','',text);option.value=text==='All types'?'':text;typeFilter.append(option);}
     const add=el('a','primary-button','+ Add item');add.href=url(category,{new:'1'});
     const exportButton=el('button','notebook-secondary','Export notes');exportButton.type='button';
     exportButton.onclick=()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),items:notebookItems()},null,2)],{type:'application/json'});const blobURL=URL.createObjectURL(blob);const link=el('a');link.href=blobURL;link.download='recall-personal-notes.json';link.click();setTimeout(()=>URL.revokeObjectURL(blobURL),1000);};
-    toolbar.append(search,filter,exportButton,add);main.append(toolbar,el('p','notebook-storage-note','Saved in this browser. Export your notes to keep a backup.'));
+    toolbar.append(search,typeFilter,filter,exportButton,add);main.append(toolbar,el('p','notebook-storage-note','Saved in this browser. Export your notes to keep a backup.'));
     const layout=el('div','notebook-layout'),listPane=el('section','notebook-list-pane'),listTitle=el('h2','', 'Your saved items'),count=el('p','notebook-list-count'),list=el('div','notebook-list'),editor=el('section','notebook-editor');
     listPane.setAttribute('aria-label','Saved items');listPane.append(listTitle,count,list);layout.append(listPane,editor);main.append(layout);
     let activeId=null;
     function drawList(){
-      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),items=notebookItems(category).filter(item=>(!filter.value||item.status===filter.value)&&terms.every(term=>[item.title,item.content,item.notes,item.source,item.type].join(' ').toLowerCase().includes(term)));
+      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),items=notebookItems(category).filter(item=>(!filter.value||(item.status||config.statuses[0])===filter.value)&&(!typeFilter.value||(item.type||config.types[0])===typeFilter.value)&&terms.every(term=>[item.title,item.content,item.notes,item.source,item.type].join(' ').toLowerCase().includes(term)));
       count.textContent=`${items.length} ${items.length===1?'item':'items'}`;list.replaceChildren();
       if(!items.length)list.append(el('p','notebook-list-empty',notebookItems(category).length?'No items match your search.':'Nothing saved yet. Add a link, question, or idea and make it your own.'));
       for(const item of items){const a=el('a','notebook-list-item');a.href=url(category,{item:item.id,...(category==='resources'?{edit:'1'}:{})});if(item.id===activeId)a.setAttribute('aria-current','true');a.innerHTML=`<small>${esc(item.source||item.type||'Personal note')}</small><strong>${esc(item.title)}</strong><span>${esc(item.status||config.statuses[0])}${item.notes?' · Has notes':''}</span>`;list.append(a);}
@@ -411,10 +413,10 @@
     }
     const items=notebookItems(category),requested=items.find(item=>item.id===params.get('item'));
     if(params.has('new'))edit({},true);else if(requested)edit(requested);else if(notebookDrafts[category+':new']||notebookDrafts[category]?.itemId==='new')edit({},true);else if(items.length)edit(items[0]);else edit({},true);
-    search.oninput=drawList;filter.onchange=drawList;
+    search.oninput=drawList;filter.onchange=drawList;typeFilter.onchange=drawList;
   }
   function resourcesPage(params){
-    const items=notebookItems('resources'),selected=items.find(item=>item.id===params.get('item'))||(items.length===1?items[0]:null);
+    const config=notebookTypes.resources,items=notebookItems('resources'),selected=items.find(item=>item.id===params.get('item'))||(items.length===1?items[0]:null);
     main.classList.add('resources-table-page');
     const back=el('a','resources-back','← Back to overview');back.href=url('overview');main.append(back);
     const heading=el('div','resources-page-heading');heading.innerHTML=pageHeading(selected?selected.title:'Saved Resources','Explore your saved resources. Main information on the left, original links on the right.');
@@ -422,14 +424,39 @@
     if(selected){const edit=el('a','notebook-secondary','Edit item');edit.href=url('resources',{item:selected.id,edit:'1'});actions.append(edit);const notes=el('button','notebook-secondary','My notes');notes.type='button';notes.setAttribute('aria-expanded','false');notes.setAttribute('aria-controls','resource-personal-notes');notes.onclick=()=>{const panel=document.getElementById('resource-personal-notes');panel.hidden=!panel.hidden;notes.setAttribute('aria-expanded',String(!panel.hidden));if(!panel.hidden)panel.querySelector('textarea').focus();};actions.append(notes);}
     if(!selected&&items.length){const manage=el('a','notebook-secondary','Manage items');manage.href=url('resources',{edit:'1'});actions.append(manage);}
     heading.append(actions);main.append(heading);
-    const search=el('input','resources-table-search');search.type='search';search.placeholder='Search resources or topics...';search.setAttribute('aria-label','Search resource table');main.append(search);
+    const entries=(selected?[selected]:items).flatMap(item=>Array.isArray(item.resourceTable)&&item.resourceTable.length?item.resourceTable.filter(row=>row&&typeof row.info==='string').map(row=>({...row,item})): [{group:item.source||item.type||'Saved resource',info:item.title,url:item.url,item}]);
+    const toolbar=el('div','resources-toolbar');
+    const search=el('input','resources-table-search');search.type='search';search.placeholder='Search resources or topics...';search.setAttribute('aria-label','Search resource table');
+    toolbar.append(search);
+    const makeSelect=(label,allLabel,values)=>{const s=el('select','resources-filter');s.setAttribute('aria-label',label);const all=el('option','',allLabel);all.value='';s.append(all);for(const v of values){const o=el('option','',v);o.value=v;s.append(o);}return s;};
+    const typeValues=[...new Set([...config.types,...items.map(i=>i.type).filter(Boolean)])];
+    const typeFilter=selected?null:makeSelect('Filter resources by type','All types',typeValues);
+    const statusFilter=selected?null:makeSelect('Filter resources by status','All statuses',config.statuses);
+    const groupValues=[...new Set(entries.map(r=>r.group).filter(Boolean))];
+    const groupFilter=groupValues.length>1?makeSelect('Filter resources by topic or source',selected?'All topics':'All sources & topics',groupValues):null;
+    if(typeFilter)toolbar.append(typeFilter);
+    if(statusFilter)toolbar.append(statusFilter);
+    if(groupFilter)toolbar.append(groupFilter);
+    const clearBtn=el('button','notebook-secondary resources-filter-clear','Clear');clearBtn.type='button';clearBtn.hidden=true;
+    toolbar.append(clearBtn);
+    main.append(toolbar);
     if(selected&&externalURL(selected.url)){const source=el('a','resources-original-source','Open original post / source ↗');source.href=externalURL(selected.url);source.target='_blank';source.rel='noopener noreferrer';main.append(source);}
     const wrap=el('div','resources-simple-table-wrap');wrap.innerHTML='<table class="resources-simple-table"><caption class="sr-only">Saved resources with main information and original links</caption><thead><tr><th scope="col">Main info</th><th scope="col">Link</th></tr></thead><tbody></tbody></table>';main.append(wrap);const count=el('p','resources-table-count');count.setAttribute('role','status');main.append(count);
-    const entries=(selected?[selected]:items).flatMap(item=>Array.isArray(item.resourceTable)&&item.resourceTable.length?item.resourceTable.filter(row=>row&&typeof row.info==='string').map(row=>({...row,item})): [{group:item.source||item.type||'Saved resource',info:item.title,url:item.url,item}]);
-    const draw=()=>{const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean),found=entries.filter(row=>terms.every(term=>[row.info,row.group,row.item.title,row.url].join(' ').toLowerCase().includes(term)));const body=wrap.querySelector('tbody');body.replaceChildren();
+    const draw=()=>{
+      const terms=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const tVal=typeFilter?typeFilter.value:'',sVal=statusFilter?statusFilter.value:'',gVal=groupFilter?groupFilter.value:'';
+      clearBtn.hidden=!(terms.length||tVal||sVal||gVal);
+      const found=entries.filter(row=>(!tVal||(row.item.type||config.types[0])===tVal)&&(!sVal||(row.item.status||config.statuses[0])===sVal)&&(!gVal||row.group===gVal)&&terms.every(term=>[row.info,row.group,row.item.title,row.item.type,row.item.status,row.url].join(' ').toLowerCase().includes(term)));
+      const body=wrap.querySelector('tbody');body.replaceChildren();
       for(const resource of found){const row=el('tr'),info=el('td'),linkCell=el('td');info.append(el('small','',resource.group||''),el('p','',resource.info));if(!Array.isArray(resource.item.resourceTable)){const view=el('a','resource-view-notes','View details & notes');view.href=url('resources',{item:resource.item.id});info.append(view);}if(externalURL(resource.url)){const a=el('a','resource-table-link',new URL(resource.url).host+new URL(resource.url).pathname+' ↗');a.href=externalURL(resource.url);a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Open resource: '+resource.info);linkCell.append(a);}else linkCell.append(el('span','resources-no-link','No source link added'));row.append(info,linkCell);body.append(row);}
-      if(!found.length){const row=el('tr'),cell=el('td','resources-empty',items.length?'No resources match your search.':'No resources yet. Add your first resource to keep it here.');cell.colSpan=2;row.append(cell);body.append(row);}count.textContent=`${found.length} ${found.length===1?'resource':'resources'}`;
-    };search.oninput=draw;draw();
+      if(!found.length){const row=el('tr'),cell=el('td','resources-empty',items.length?'No resources match your filters.':'No resources yet. Add your first resource to keep it here.');cell.colSpan=2;row.append(cell);body.append(row);}count.textContent=`${found.length} ${found.length===1?'resource':'resources'}`;
+    };
+    search.oninput=draw;
+    if(typeFilter)typeFilter.onchange=draw;
+    if(statusFilter)statusFilter.onchange=draw;
+    if(groupFilter)groupFilter.onchange=draw;
+    clearBtn.onclick=()=>{search.value='';if(typeFilter)typeFilter.value='';if(statusFilter)statusFilter.value='';if(groupFilter)groupFilter.value='';draw();};
+    draw();
     if(selected){const panel=el('form','resource-personal-notes');panel.id='resource-personal-notes';panel.hidden=true;const label=el('label','','My notes'),textarea=el('textarea');textarea.id='resource-notes-text';textarea.rows=6;textarea.value=selected.notes||'';label.htmlFor=textarea.id;const saveButton=el('button','primary-button','Save notes');saveButton.type='submit';const state=el('p','resources-note-state');state.setAttribute('role','status');panel.append(label,textarea,saveButton,state);panel.onsubmit=e=>{e.preventDefault();notebookEntries={...load(notebookKey,notebookEntries)};const existing=notebookEntries[selected.id];if(!existing){state.textContent='This resource was deleted. Return to Saved Resources to choose another.';return;}notebookEntries[selected.id]={...existing,notes:textarea.value,updatedAt:new Date().toISOString()};try{localStorage.setItem(notebookKey,JSON.stringify(notebookEntries));state.textContent='Notes saved.';}catch{state.textContent='Notes kept for this visit. Browser storage is unavailable.';}};main.append(panel);}
   }
   function roadmap(params){

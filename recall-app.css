@@ -1449,17 +1449,34 @@ details[open] > summary > .chevron svg { transform: rotate(90deg); }
 .resources-back:hover { color: var(--primary); }
 .resources-page-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
 .resources-page-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.resources-toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 14px; }
 .resources-table-search {
-  width: 100%;
+  flex: 1 1 220px;
+  min-width: 0;
   height: 38px;
   padding: 6px 12px;
-  margin: 0 0 14px;
   border: 1px solid var(--input);
   border-radius: var(--radius-sm);
   background: var(--card);
   color: var(--foreground);
   font-size: 13.5px;
 }
+.resources-filter {
+  flex: 0 1 180px;
+  height: 38px;
+  padding: 6px 10px;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--foreground);
+  font-size: 13.5px;
+}
+.resources-table-search:focus, .resources-filter:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+.resources-filter-clear { height: 38px; }
 .resources-simple-table-wrap { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--card); }
 .resources-simple-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 13.5px; line-height: 1.55; }
 .resources-simple-table th { padding: 10px 14px; text-align: left; background: var(--muted); font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
