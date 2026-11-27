@@ -11612,6 +11612,15 @@ window.RECALL_ROADMAP = {
       "chapterId": "3.3",
       "phase": 3,
       "id": "question-17",
+      "key": "3.3:adab01",
+      "text": "What is AdaBoost, and how does it differ from Gradient Boosting?",
+      "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
+      "topicId": "3.3-point-2"
+    },
+    {
+      "chapterId": "3.3",
+      "phase": 3,
+      "id": "question-18",
       "key": "3.3:1ca978y",
       "text": "What is gradient boosting, and how do its trees improve a model?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11620,7 +11629,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-18",
+      "id": "question-19",
       "key": "3.3:18qbgyx",
       "text": "How does one boosting step update a prediction?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11629,7 +11638,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-19",
+      "id": "question-20",
       "key": "3.3:h8pgml",
       "text": "How does bagging in a random forest differ from gradient boosting?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11638,7 +11647,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-20",
+      "id": "question-21",
       "key": "3.3:1ulfk9y",
       "text": "What is XGBoost?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11647,7 +11656,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-21",
+      "id": "question-22",
       "key": "3.3:163wy4o",
       "text": "What is LightGBM?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11656,7 +11665,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-22",
+      "id": "question-23",
       "key": "3.3:zx82db",
       "text": "How do learning rate and tree count affect gradient boosting?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11665,7 +11674,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-23",
+      "id": "question-24",
       "key": "3.3:l37aiv",
       "text": "What distinguishes XGBoost from LightGBM?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11674,7 +11683,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-24",
+      "id": "question-25",
       "key": "3.3:y13hkx",
       "text": "How do I train XGBoost and LightGBM classifiers on the same data?",
       "sourceTopic": "Gradient boosting - XGBoost and LightGBM",
@@ -11683,7 +11692,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-25",
+      "id": "question-26",
       "key": "3.3:ccpxp",
       "text": "What is feature importance in tree models?",
       "sourceTopic": "Feature importance",
@@ -11692,7 +11701,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-26",
+      "id": "question-27",
       "key": "3.3:kqwtf4",
       "text": "How do impurity, gain, and split-count importance differ?",
       "sourceTopic": "Feature importance",
@@ -11701,7 +11710,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-27",
+      "id": "question-28",
       "key": "3.3:ilv6nm",
       "text": "How is permutation importance calculated?",
       "sourceTopic": "Feature importance",
@@ -11710,7 +11719,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-28",
+      "id": "question-29",
       "key": "3.3:bss5e1",
       "text": "What is the importance if accuracy drops from 0.90 to 0.80 after shuffling?",
       "sourceTopic": "Feature importance",
@@ -11719,7 +11728,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-29",
+      "id": "question-30",
       "key": "3.3:1ofqc2q",
       "text": "Why can feature-importance rankings be misleading?",
       "sourceTopic": "Feature importance",
@@ -11728,7 +11737,7 @@ window.RECALL_ROADMAP = {
     {
       "chapterId": "3.3",
       "phase": 3,
-      "id": "question-30",
+      "id": "question-31",
       "key": "3.3:1tj1nm",
       "text": "How do I calculate held-out permutation importance for a random forest?",
       "sourceTopic": "Feature importance",
