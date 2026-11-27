@@ -64,6 +64,14 @@
   ];
   const bundledResources=[
     {
+      id:'aiengg-swiggy-slms-search',category:'resources',
+      title:'How Swiggy uses SLMs - AI Engineering Case Study #2',
+      source:'AI Engg · Gaurav Sen',type:'Article / post',status:'To explore',
+      url:'https://aiengg.dev/blog/how-swiggy-is-using-slms-to-improve-search',
+      content:'Case study on how Swiggy fine-tuned small language models (all-mpnet-base-v2 and all-MiniLM-L6-v2) to understand contextual food search queries within 100 ms on CPU servers:\n\n• Problem: Plain text search (BM25) misses intent-heavy queries like "Karnataka famous sweets" or "healthy snacks for binge watch" that share no words with the target dish.\n• Stage 1 (TSDAE on 996k past orders): Self-supervised denoising auto-encoder training on historical search-to-order documents to align Indian food semantics.\n• Stage 2 (300k curated query–dish pairs): Contrastive fine-tuning on LLM-assisted, human-verified pairs covering regional cuisines, diets, and preparation styles.\n• Results: Evaluated on 5,000+ queries across 20 cuisines and 10+ diets — improved from 0.61 MAP / 0.39 P@1 (BM25) and 0.82 MAP (pre-trained) to 0.95 MAP, 0.93 P@1, and 0.89 P@5.',
+      notes:''
+    },
+    {
       id:'linkedin-ai-interview-resources-7523388742007586817',category:'resources',
       title:'AI Engineer interview questions and resources — Shirin Khosravi Jam',
       source:'LinkedIn · Shirin Khosravi Jam',type:'Article / post',status:'To explore',
@@ -102,7 +110,7 @@
     importedResources[item.id]=true;importsChanged=true;
   }
   // Enrich already-saved copies without replacing their personal fields or restoring deleted items.
-  const shirinResource=bundledResources[0];
+  const shirinResource=bundledResources.find(r=>r.id==='linkedin-ai-interview-resources-7523388742007586817');
   for(const [id,item]of Object.entries(notebookEntries)){
     if(item&&(item.id===shirinResource.id||[shirinResource.url,shirinResource.originalUrl].map(resourceIdentity).includes(resourceIdentity(item.url)))&&!Array.isArray(item.resourceTable)){
       notebookEntries[id]={...item,resourceTable:shirinResourceTable};importsChanged=true;
